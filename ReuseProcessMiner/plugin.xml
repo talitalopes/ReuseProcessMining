@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+	<extension point="org.eclipse.emf.ecore.generated_package">
+  		<package
+			uri="http://process/reuse/miner"
+			class="br.ufrj.cos.prisma.miner.MinerPackage"/>
+	</extension>
+	<extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            objectClass="org.eclipse.core.resources.IFile"
+            id="ProcessReuseMiner.contribution1">
+         <menu
+               label="Process Miner"
+               path="additions"
+               id="ProcessReuseMiner.menu1">
+            <separator
+                  name="group1">
+            </separator>
+			<separator
+                  name="group2">
+            </separator>
+         </menu>
+         <action
+               label="Extract Reuse Actions"
+               class="Miner.popup.actions.StartExtractionAction"
+               menubarPath="ProcessReuseMiner.menu1/group1"
+               enablesFor="1"
+               id="Miner.popup.actions.StartExtractionAction">
+         </action>
+         <action
+               label="Generate XES Log"
+               class="Miner.popup.actions.GenerateXESFileAction"
+               menubarPath="ProcessReuseMiner.menu1/group2"
+               enablesFor="1"
+               id="Miner.popup.actions.StartExtractionAction">
+         </action>
+         
+      </objectContribution>
+   </extension>
+</plugin>
