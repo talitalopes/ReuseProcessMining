@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<net.sf:ProjectNode xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:net.sf="http://jetset.sf.net" name="Document Root" sourceMetaModel="platform:/resource/JETTransformation/metamodel/prom.xsd" sourceRootClass="Prom:WorkflowProcesses_._type" targetMetaModel="platform:/resource/JETTransformation/metamodel/rdl.xsd" outputProjectName="Prom2RdlTransformator" outputProjectNamespace="br.ufrj.cos.prisma.prom2rdl" mainClassName="Prom2RdlTransformator">
+  <children xsi:type="net.sf:IterationNode" name="WorkflowProcess" iterationReference="WorkflowProcess (Prom:WorkflowProcess_._type)">
+    <children xsi:type="net.sf:FileNode" name="Workflow Process Type" outputFileName="RDL_Process.xml">
+      <children xsi:type="net.sf:XmlNode" name="definitions" targetElement="definitions (Rdl:definitions_._type)">
+        <children xsi:type="net.sf:XmlNode" name="itemDefinition" targetElement="itemDefinition (Rdl:itemDefinition_._type)"/>
+        <children xsi:type="net.sf:XmlNode" name="process" targetElement="process (Rdl:process_._type)">
+          <children xsi:type="net.sf:XmlNode" name="property" targetElement="property (Rdl:property_._type)"/>
+          <children xsi:type="net.sf:IterationNode" name="Activities" iterationReference="Activities (Prom:Activities_._type)">
+            <children xsi:type="net.sf:IterationNode" name="Activitys" iterationReference="Activity (Prom:Activity_._type)" conditionFilter="&lt;%=getValue(&quot;Name&quot;).contains(&quot;CLASS&quot;)%>" sortDescending="true">
+              <children xsi:type="net.sf:XmlNode" name="task" targetElement="task (Rdl:task_._type)">
+                <children xsi:type="net.sf:XmlNode" name="ioSpecification" targetElement="ioSpecification (Rdl:ioSpecification_._type)">
+                  <children xsi:type="net.sf:XmlNode" name="dataInput" targetElement="dataInput (Rdl:dataInput_._type)">
+                    <xmlAttributes name="id" value="_&lt;%=getValue(&quot;Id&quot;)%>SUPERNAMEInput"/>
+                    <xmlAttributes name="name" value="SUPER_NAME&#xA;"/>
+                  </children>
+                  <children xsi:type="net.sf:XmlNode" name="dataInput" targetElement="dataInput (Rdl:dataInput_._type)"/>
+                  <children xsi:type="net.sf:XmlNode" name="dataInput" targetElement="dataInput (Rdl:dataInput_._type)"/>
+                  <children xsi:type="net.sf:XmlNode" name="inputSet" targetElement="inputSet (Rdl:inputSet_._type)">
+                    <children xsi:type="net.sf:XmlNode">
+                      <xmlAttributes name="dataInputRefs" value="_&lt;%=getValue(&quot;Id&quot;)%>SUPERNAMEInput"/>
+                    </children>
+                    <children xsi:type="net.sf:XmlNode"/>
+                    <children xsi:type="net.sf:XmlNode"/>
+                  </children>
+                </children>
+                <xmlAttributes name="id" value="_&lt;%=getValue(&quot;Id&quot;)%>"/>
+                <xmlAttributes name="name" value="&lt;%=getValue(&quot;Name&quot;).split('_')[0]%>"/>
+                <xmlAttributes name="taskName" value="&lt;%=getValue(&quot;Name&quot;).split('_')[0]%>"/>
+              </children>
+            </children>
+          </children>
+        </children>
+      </children>
+    </children>
+  </children>
+</net.sf:ProjectNode>

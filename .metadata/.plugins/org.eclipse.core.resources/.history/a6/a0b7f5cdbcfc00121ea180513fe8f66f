@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<net.sf:ProjectNode xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:net.sf="http://jetset.sf.net" name="Document Root" sourceMetaModel="platform:/resource/JETTransformation/models/PurchaseOrder.xsd" sourceRootClass="po:DocumentRoot" targetMetaModel="platform:/resource/JETTransformation/models/SimpleDoc.xsd" outputProjectName="PurchaseOrderToSimpleDocTransformator" mainClassName="PurchaseOrderToSimpleDocTransformator">
+  <children xsi:type="net.sf:IterationNode" name="purchaseOrder" iterationReference="purchaseOrder (po:PurchaseOrder)">
+    <children xsi:type="net.sf:IterationNode" name="shipTo" iterationReference="shipTo (po:Address)"/>
+  </children>
+</net.sf:ProjectNode>

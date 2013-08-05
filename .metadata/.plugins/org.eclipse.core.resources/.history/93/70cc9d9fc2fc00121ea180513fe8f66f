@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<net.sf:ProjectNode xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:net.sf="http://jetset.sf.net" sourceMetaModel="platform:/resource/BPMNConverter/model/BPMN_ProM_simplified.xsd" sourceRootClass="br.ufrj.cos.prisma.bpmn.prom:Activity" targetMetaModel="" outputProjectName="BPMN_ProM_simplifiedTransformator" mainClassName="BPMN_ProM_simplifiedTransformator"/>

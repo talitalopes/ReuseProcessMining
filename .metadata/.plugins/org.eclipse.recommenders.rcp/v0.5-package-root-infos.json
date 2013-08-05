@@ -1,0 +1,896 @@
+[
+  {
+    "symbolicName": "org.eclipse.update.configurator",
+    "version": {
+      "major": 3,
+      "minor": 3,
+      "micro": 200,
+      "qualifier": "v20120912-144026"
+    },
+    "jarFileFingerprint": "8dd77da353749eee5f9cbe3f3d8e3a85421fe1eb",
+    "jarFileModificationDate": "2013-02-25T00:00:15-05:00",
+    "location": "/Applications/eclipse-mestrado/plugins/org.eclipse.update.configurator_3.3.200.v20120912-144026.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "BPMNConverter",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": "qualifier"
+    },
+    "jarFileModificationDate": "2013-07-26T13:43:00-04:00",
+    "location": "/Users/talitalopes/Documents/UFRJ/ReuseProcessMining/BPMNConverter/src",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "org.eclipse.emf.databinding",
+    "version": {
+      "major": 1,
+      "minor": 3,
+      "micro": 0,
+      "qualifier": "v20130610-0406"
+    },
+    "jarFileFingerprint": "5af4deeb24dd4ee93227874b816cb47c023a592d",
+    "jarFileModificationDate": "2013-08-03T19:00:58-04:00",
+    "location": "/Applications/eclipse-mestrado/plugins/org.eclipse.emf.databinding_1.3.0.v20130610-0406.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "ca9e390a18f6bed5719c731eb0a021da33ada472",
+    "jarFileModificationDate": "2011-07-14T15:43:29-04:00",
+    "location": "/System/Library/Java/Extensions/j3dcore.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "187a3cf6ae2087c1e05147287a8c627acbc4d497",
+    "jarFileModificationDate": "2011-09-02T19:37:04-04:00",
+    "location": "/System/Library/Java/Extensions/AppleScriptEngine.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "org.eclipse.emf.ecore",
+    "version": {
+      "major": 2,
+      "minor": 9,
+      "micro": 0,
+      "qualifier": "v20130528-0742"
+    },
+    "jarFileFingerprint": "652c93949acf2e55e18200e770a168827d22db69",
+    "jarFileModificationDate": "2013-08-03T19:01:04-04:00",
+    "location": "/Applications/eclipse-mestrado/plugins/org.eclipse.emf.ecore_2.9.0.v20130528-0742.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "org.eclipse.equinox.common",
+    "version": {
+      "major": 3,
+      "minor": 6,
+      "micro": 100,
+      "qualifier": "v20120522-1841"
+    },
+    "jarFileFingerprint": "2ffba3865361c2a30ca30fb975a15bbec3cd5e28",
+    "jarFileModificationDate": "2013-02-24T23:59:53-05:00",
+    "location": "/Applications/eclipse-mestrado/plugins/org.eclipse.equinox.common_3.6.100.v20120522-1841.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "3a1fb5c4f887ebe190890089d36c29e9c9040430",
+    "jarFileModificationDate": "2013-06-20T15:07:03-04:00",
+    "location": "/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/ext/apple_provider.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "8b112e0ff29363a01c6a93438a0dd273bd80e221",
+    "jarFileModificationDate": "2013-06-20T15:33:34-04:00",
+    "location": "/System/Library/Java/Extensions/QTJava.zip",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "org.eclipse.core.databinding",
+    "version": {
+      "major": 1,
+      "minor": 4,
+      "micro": 1,
+      "qualifier": "v20120912-132807"
+    },
+    "jarFileFingerprint": "5436d2164b592f15b90c036bf51a8b8df6700514",
+    "jarFileModificationDate": "2013-02-24T23:59:50-05:00",
+    "location": "/Applications/eclipse-mestrado/plugins/org.eclipse.core.databinding_1.4.1.v20120912-132807.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "org.eclipse.ui.views",
+    "version": {
+      "major": 3,
+      "minor": 6,
+      "micro": 100,
+      "qualifier": "v20120705-114010"
+    },
+    "jarFileFingerprint": "3525f8d19ed01c8602b2213a7dc48b15c96d950a",
+    "jarFileModificationDate": "2013-02-25T00:00:14-05:00",
+    "location": "/Applications/eclipse-mestrado/plugins/org.eclipse.ui.views_3.6.100.v20120705-114010.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "Prom2RdlTransformator",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileModificationDate": "2013-08-04T12:36:47-04:00",
+    "location": "/Users/talitalopes/Documents/UFRJ/ReuseProcessMining/Prom2RdlTransformator/src",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "org.eclipse.core.runtime",
+    "version": {
+      "major": 3,
+      "minor": 8,
+      "micro": 0,
+      "qualifier": "v20120912-155025"
+    },
+    "jarFileFingerprint": "07e7d1ad93a50e4989b63a5b352ae7fb0f408274",
+    "jarFileModificationDate": "2013-02-24T23:59:50-05:00",
+    "location": "/Applications/eclipse-mestrado/plugins/org.eclipse.core.runtime_3.8.0.v20120912-155025.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "f433861631c5e16bbe890a2303a14cbd183f5237",
+    "jarFileModificationDate": "2013-07-01T14:27:13-04:00",
+    "location": "/System/Library/Java/Extensions/MRJToolkit.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "org.eclipse.emf.common",
+    "version": {
+      "major": 2,
+      "minor": 9,
+      "micro": 0,
+      "qualifier": "v20130528-0742"
+    },
+    "jarFileFingerprint": "be080e83e026467dcfcf0fc845263da0772995fd",
+    "jarFileModificationDate": "2013-08-03T19:00:57-04:00",
+    "location": "/Applications/eclipse-mestrado/plugins/org.eclipse.emf.common_2.9.0.v20130528-0742.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "org.eclipse.ui",
+    "version": {
+      "major": 3,
+      "minor": 104,
+      "micro": 0,
+      "qualifier": "v20121024-145224"
+    },
+    "jarFileFingerprint": "a99732b7ab16a6e6763c819dc71e78d898eb2709",
+    "jarFileModificationDate": "2013-02-25T00:00:12-05:00",
+    "location": "/Applications/eclipse-mestrado/plugins/org.eclipse.ui_3.104.0.v20121024-145224.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "org.eclipse.equinox.app",
+    "version": {
+      "major": 1,
+      "minor": 3,
+      "micro": 100,
+      "qualifier": "v20120522-1841"
+    },
+    "jarFileFingerprint": "b8d040404b3c5be1c48a364c4fdc2a4c0525c1ad",
+    "jarFileModificationDate": "2013-02-24T23:59:53-05:00",
+    "location": "/Applications/eclipse-mestrado/plugins/org.eclipse.equinox.app_1.3.100.v20120522-1841.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "OpenXES-XStream",
+    "version": {
+      "major": -1,
+      "minor": -1,
+      "micro": -1,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "cc977e4f582a179921d474f228bcca6abde1704d",
+    "jarFileModificationDate": "2013-07-26T11:36:35-04:00",
+    "location": "/Users/talitalopes/Documents/UFRJ/ReuseProcessMining/ReuseProcessMiner/libs/OpenXES-XStream.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "org.eclipse.emf.common.ui",
+    "version": {
+      "major": 2,
+      "minor": 8,
+      "micro": 0,
+      "qualifier": "v20130610-0406"
+    },
+    "jarFileFingerprint": "de46d4f0e544856fc69e68065e89c04083e97d45",
+    "jarFileModificationDate": "2013-08-03T19:00:57-04:00",
+    "location": "/Applications/eclipse-mestrado/plugins/org.eclipse.emf.common.ui_2.8.0.v20130610-0406.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "org.eclipse.jdt",
+    "version": {
+      "major": 3,
+      "minor": 8,
+      "micro": 1,
+      "qualifier": "v201302041200"
+    },
+    "jarFileFingerprint": "73ae2f73aea65352cb18d247398074a19a713d1d",
+    "jarFileModificationDate": "2013-02-24T23:59:55-05:00",
+    "location": "/Applications/eclipse-mestrado/plugins/org.eclipse.jdt_3.8.1.v201302041200.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "bcd6ab898f8c739b8347e7daa8fe1de5f375b39d",
+    "jarFileModificationDate": "2013-06-20T14:49:47-04:00",
+    "location": "/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/jsse.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "xmlpull-1.1.3.1",
+    "version": {
+      "major": -1,
+      "minor": -1,
+      "micro": -1,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "2b8e230d2ab644e4ecaa94db7cdedbc40c805dfa",
+    "jarFileModificationDate": "2013-07-26T11:36:35-04:00",
+    "location": "/Users/talitalopes/Documents/UFRJ/ReuseProcessMining/ReuseProcessMiner/libs/xmlpull-1.1.3.1.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "21e2c89c20c89d5ec767e01e214e5a7f92c2b139",
+    "jarFileModificationDate": "2013-06-20T14:59:53-04:00",
+    "location": "/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/ext/localedata.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "4f8da5f0b2561d280a59a4414c59083dec8e0227",
+    "jarFileModificationDate": "2011-07-14T16:44:11-04:00",
+    "location": "/System/Library/Java/Extensions/jai_codec.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "org.eclipse.core.commands",
+    "version": {
+      "major": 3,
+      "minor": 6,
+      "micro": 2,
+      "qualifier": "v20130123-162658"
+    },
+    "jarFileFingerprint": "89cd174d42ea121618c53a35959ac0ee10d500c4",
+    "jarFileModificationDate": "2013-02-24T23:59:50-05:00",
+    "location": "/Applications/eclipse-mestrado/plugins/org.eclipse.core.commands_3.6.2.v20130123-162658.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "ProcessReuseMiner",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": "qualifier"
+    },
+    "jarFileModificationDate": "2013-07-26T11:36:35-04:00",
+    "location": "/Users/talitalopes/Documents/UFRJ/ReuseProcessMining/ReuseProcessMiner/src",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "org.eclipse.emf.edit",
+    "version": {
+      "major": 2,
+      "minor": 9,
+      "micro": 0,
+      "qualifier": "v20130610-0406"
+    },
+    "jarFileFingerprint": "7e7a284a57e82b33bbc8570837df03c7be80bb03",
+    "jarFileModificationDate": "2013-08-03T19:01:10-04:00",
+    "location": "/Applications/eclipse-mestrado/plugins/org.eclipse.emf.edit_2.9.0.v20130610-0406.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "org.eclipse.emf.ecore.change",
+    "version": {
+      "major": 2,
+      "minor": 9,
+      "micro": 0,
+      "qualifier": "v20130528-0742"
+    },
+    "jarFileFingerprint": "c71075e084ad043186ae0f5a7d46075dccbb7093",
+    "jarFileModificationDate": "2013-08-03T19:01:00-04:00",
+    "location": "/Applications/eclipse-mestrado/plugins/org.eclipse.emf.ecore.change_2.9.0.v20130528-0742.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "34699721120eede31b7fe5140226deedc0b2aab9",
+    "jarFileModificationDate": "2011-07-14T15:43:29-04:00",
+    "location": "/System/Library/Java/Extensions/j3daudio.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "com.thoughtworks.xstream.xstream",
+    "version": {
+      "major": 1,
+      "minor": 4,
+      "micro": 4,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "488e9e4a47afc81d2b2dec3c3eb3a4d0f10fe105",
+    "jarFileModificationDate": "2013-07-26T11:36:35-04:00",
+    "location": "/Users/talitalopes/Documents/UFRJ/ReuseProcessMining/ReuseProcessMiner/libs/xstream-1.4.4.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "org.eclipse.core.databinding.observable",
+    "version": {
+      "major": 1,
+      "minor": 4,
+      "micro": 1,
+      "qualifier": "v20120521-2329"
+    },
+    "jarFileFingerprint": "fdf3070d2c537d7dcb4462d5e048e131bbbfa67d",
+    "jarFileModificationDate": "2013-02-24T23:59:50-05:00",
+    "location": "/Applications/eclipse-mestrado/plugins/org.eclipse.core.databinding.observable_1.4.1.v20120521-2329.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "0999f1f3951d713e9a0d96f063f6f6e931589cdd",
+    "jarFileModificationDate": "2011-07-14T15:43:29-04:00",
+    "location": "/System/Library/Java/Extensions/vecmath.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "0a96b7d4126b3a5e4ac1bfb648ce0a059e03f7de",
+    "jarFileModificationDate": "2013-07-01T14:27:17-04:00",
+    "location": "/System/Library/Java/Extensions/dns_sd.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "org.eclipse.core.resources",
+    "version": {
+      "major": 3,
+      "minor": 8,
+      "micro": 1,
+      "qualifier": "v20121114-124432"
+    },
+    "jarFileFingerprint": "2849cb9b5de8de73d83b35d5f4c11832cb672514",
+    "jarFileModificationDate": "2013-02-24T23:59:50-05:00",
+    "location": "/Applications/eclipse-mestrado/plugins/org.eclipse.core.resources_3.8.1.v20121114-124432.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "c40b948a8103c939a0da54723630db9d4633c350",
+    "jarFileModificationDate": "2013-06-20T14:49:47-04:00",
+    "location": "/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/ext/sunjce_provider.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "f61f71496ffdd90c7b1af3c651a2223e906508a5",
+    "jarFileModificationDate": "2013-06-20T14:55:57-04:00",
+    "location": "/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/ext/sunpkcs11.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "c5d7b7bfab9b433c4b62aebbe76a564b6bcf8192",
+    "jarFileModificationDate": "2011-07-14T16:43:57-04:00",
+    "location": "/System/Library/Java/Extensions/mlibwrapper_jai.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "org.eclipse.core.contenttype",
+    "version": {
+      "major": 3,
+      "minor": 4,
+      "micro": 200,
+      "qualifier": "v20120523-2004"
+    },
+    "jarFileFingerprint": "4a29cf0cb9197e69c4ea1347cc275c422c85c21b",
+    "jarFileModificationDate": "2013-02-24T23:59:50-05:00",
+    "location": "/Applications/eclipse-mestrado/plugins/org.eclipse.core.contenttype_3.4.200.v20120523-2004.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "org.eclipse.emf.edit.ui",
+    "version": {
+      "major": 2,
+      "minor": 9,
+      "micro": 0,
+      "qualifier": "v20130610-0406"
+    },
+    "jarFileFingerprint": "9b198fa3503192e794c91ce9a286f83e76472619",
+    "jarFileModificationDate": "2013-08-03T19:01:07-04:00",
+    "location": "/Applications/eclipse-mestrado/plugins/org.eclipse.emf.edit.ui_2.9.0.v20130610-0406.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "net.sf.jetset.runtime",
+    "version": {
+      "major": 2,
+      "minor": 0,
+      "micro": 2,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "e32e1e589c6b515304b79671ef2968b720ea2fb2",
+    "jarFileModificationDate": "2013-08-01T22:53:47-04:00",
+    "location": "/Applications/eclipse-mestrado/plugins/net.sf.jetset.runtime_2.0.2.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "org.eclipse.ui.workbench",
+    "version": {
+      "major": 3,
+      "minor": 104,
+      "micro": 0,
+      "qualifier": "v20130204-164612"
+    },
+    "jarFileFingerprint": "3a15f808598d763319be19945dc3a84199efe530",
+    "jarFileModificationDate": "2013-02-25T00:00:15-05:00",
+    "location": "/Applications/eclipse-mestrado/plugins/org.eclipse.ui.workbench_3.104.0.v20130204-164612.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "org.eclipse.core.jobs",
+    "version": {
+      "major": 3,
+      "minor": 5,
+      "micro": 300,
+      "qualifier": "v20120912-155018"
+    },
+    "jarFileFingerprint": "4ec98d105d54b25214bb678f1a07eda17ae621b1",
+    "jarFileModificationDate": "2013-02-24T23:59:50-05:00",
+    "location": "/Applications/eclipse-mestrado/plugins/org.eclipse.core.jobs_3.5.300.v20120912-155018.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "Spex",
+    "version": {
+      "major": -1,
+      "minor": -1,
+      "micro": -1,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "302c73de27176b563d7ca53d4b688baa311117bd",
+    "jarFileModificationDate": "2013-07-26T11:36:35-04:00",
+    "location": "/Users/talitalopes/Documents/UFRJ/ReuseProcessMining/ReuseProcessMiner/libs/Spex.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "org.eclipse.equinox.registry",
+    "version": {
+      "major": 3,
+      "minor": 5,
+      "micro": 200,
+      "qualifier": "v20120522-1841"
+    },
+    "jarFileFingerprint": "3460c85af958a3f99f8b2aaf527f2bed9cc10b92",
+    "jarFileModificationDate": "2013-02-24T23:59:55-05:00",
+    "location": "/Applications/eclipse-mestrado/plugins/org.eclipse.equinox.registry_3.5.200.v20120522-1841.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "OpenXES",
+    "version": {
+      "major": -1,
+      "minor": -1,
+      "micro": -1,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "5283347c1bd91207a305842eb43f42366c0e96ac",
+    "jarFileModificationDate": "2013-07-26T11:36:35-04:00",
+    "location": "/Users/talitalopes/Documents/UFRJ/ReuseProcessMining/ReuseProcessMiner/libs/OpenXES.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "org.eclipse.osgi",
+    "version": {
+      "major": 3,
+      "minor": 8,
+      "micro": 2,
+      "qualifier": "v20130124-134944"
+    },
+    "jarFileFingerprint": "9a2ddf569f6236e110648c55d91bd5334b7aeed9",
+    "jarFileModificationDate": "2013-02-25T00:00:08-05:00",
+    "location": "/Applications/eclipse-mestrado/plugins/org.eclipse.osgi_3.8.2.v20130124-134944.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "org.eclipse.xsd",
+    "version": {
+      "major": 2,
+      "minor": 9,
+      "micro": 0,
+      "qualifier": "v20130610-0406"
+    },
+    "jarFileFingerprint": "3034226fe839f9d2fa3809e5ceb5b541d32988e0",
+    "jarFileModificationDate": "2013-08-03T19:04:27-04:00",
+    "location": "/Applications/eclipse-mestrado/plugins/org.eclipse.xsd_2.9.0.v20130610-0406.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "80a1b59c9a46cd5cd3869637f77eb5261937fd35",
+    "jarFileModificationDate": "2011-07-14T15:43:29-04:00",
+    "location": "/System/Library/Java/Extensions/j3dutils.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "org.eclipse.equinox.preferences",
+    "version": {
+      "major": 3,
+      "minor": 5,
+      "micro": 1,
+      "qualifier": "v20121031-182809"
+    },
+    "jarFileFingerprint": "7250d6b59918b87739c95d94c76b286a1b337c9b",
+    "jarFileModificationDate": "2013-02-24T23:59:55-05:00",
+    "location": "/Applications/eclipse-mestrado/plugins/org.eclipse.equinox.preferences_3.5.1.v20121031-182809.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "org.eclipse.jdt.core",
+    "version": {
+      "major": 3,
+      "minor": 8,
+      "micro": 3,
+      "qualifier": "v20130121-145325"
+    },
+    "jarFileFingerprint": "d1489fa9ff217ebf6697faf058835fc9ca3bee75",
+    "jarFileModificationDate": "2013-02-24T23:59:56-05:00",
+    "location": "/Applications/eclipse-mestrado/plugins/org.eclipse.jdt.core_3.8.3.v20130121-145325.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "org.eclipse.jdt.compiler.tool",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 200,
+      "qualifier": "v20130116-050536"
+    },
+    "jarFileFingerprint": "16c2238758b2f6a6e96031a8ffdb0bfb157f42ca",
+    "jarFileModificationDate": "2013-02-24T23:59:55-05:00",
+    "location": "/Applications/eclipse-mestrado/plugins/org.eclipse.jdt.compiler.tool_1.0.200.v20130116-050536.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "org.eclipse.jface.text",
+    "version": {
+      "major": 3,
+      "minor": 8,
+      "micro": 2,
+      "qualifier": "v20121126-164145"
+    },
+    "jarFileFingerprint": "826166afbdd79e20df7c08d42436bc9ace4d892f",
+    "jarFileModificationDate": "2013-02-25T00:00:00-05:00",
+    "location": "/Applications/eclipse-mestrado/plugins/org.eclipse.jface.text_3.8.2.v20121126-164145.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "70e3f9e76e3d5884415516c0cee0855295bcb571",
+    "jarFileModificationDate": "2013-06-20T14:49:47-04:00",
+    "location": "/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/jce.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "9ca8d787aee281343cffe1507d3b5e7f808b8d12",
+    "jarFileModificationDate": "2013-06-20T15:00:02-04:00",
+    "location": "/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/charsets.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "org.eclipse.jdt.ui",
+    "version": {
+      "major": 3,
+      "minor": 8,
+      "micro": 2,
+      "qualifier": "v20130107-165834"
+    },
+    "jarFileFingerprint": "d6242939c519eef42dc02ecc885c4801631d7120",
+    "jarFileModificationDate": "2013-02-24T23:59:59-05:00",
+    "location": "/Applications/eclipse-mestrado/plugins/org.eclipse.jdt.ui_3.8.2.v20130107-165834.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "org.eclipse.jface",
+    "version": {
+      "major": 3,
+      "minor": 8,
+      "micro": 102,
+      "qualifier": "v20130123-162658"
+    },
+    "jarFileFingerprint": "e1ffe54bec9d30bdba9ed9fe15df0a62e313995a",
+    "jarFileModificationDate": "2013-02-24T23:59:59-05:00",
+    "location": "/Applications/eclipse-mestrado/plugins/org.eclipse.jface_3.8.102.v20130123-162658.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "org.eclipse.swt.cocoa.macosx.x86_64",
+    "version": {
+      "major": 3,
+      "minor": 100,
+      "micro": 1,
+      "qualifier": "v4236b"
+    },
+    "jarFileFingerprint": "88bcf6a93acb824fe86afc71f85b08b14c40536d",
+    "jarFileModificationDate": "2013-02-25T00:00:11-05:00",
+    "location": "/Applications/eclipse-mestrado/plugins/org.eclipse.swt.cocoa.macosx.x86_64_3.100.1.v4236b.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "runtime_registry_compatibility",
+    "version": {
+      "major": -1,
+      "minor": -1,
+      "micro": -1,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "607a5f56c791de4d56cb8db89d5179fb4e16d0b9",
+    "jarFileModificationDate": "2013-01-09T13:06:46-05:00",
+    "location": "/Applications/eclipse-mestrado/plugins/org.eclipse.core.runtime.compatibility.registry_3.5.101.v20130108-163257/runtime_registry_compatibility.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "org.eclipse.core.runtime.compatibility",
+    "version": {
+      "major": 3,
+      "minor": 2,
+      "micro": 200,
+      "qualifier": "v20120521-2346"
+    },
+    "jarFileFingerprint": "b235362783c15f1a69d27942aa661f97b8e0e0bd",
+    "jarFileModificationDate": "2013-02-24T23:59:50-05:00",
+    "location": "/Applications/eclipse-mestrado/plugins/org.eclipse.core.runtime.compatibility_3.2.200.v20120521-2346.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "org.eclipse.swt",
+    "version": {
+      "major": 3,
+      "minor": 100,
+      "micro": 1,
+      "qualifier": "v4236b"
+    },
+    "jarFileFingerprint": "141ad7fdd167383cef0f89f100f0193d8a233131",
+    "jarFileModificationDate": "2013-02-25T00:00:11-05:00",
+    "location": "/Applications/eclipse-mestrado/plugins/org.eclipse.swt_3.100.1.v4236b.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "c0c9c3ebe7167f7bf790909276f5a0f7db034b1a",
+    "jarFileModificationDate": "2013-06-20T15:06:56-04:00",
+    "location": "/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/ui.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "org.eclipse.emf.ecore.xmi",
+    "version": {
+      "major": 2,
+      "minor": 9,
+      "micro": 0,
+      "qualifier": "v20130528-0742"
+    },
+    "jarFileFingerprint": "a77b2af20d7127e4a551eebb2a87dfab2516eb45",
+    "jarFileModificationDate": "2013-08-03T19:01:05-04:00",
+    "location": "/Applications/eclipse-mestrado/plugins/org.eclipse.emf.ecore.xmi_2.9.0.v20130528-0742.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "org.eclipse.jdt.compiler.apt",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 600,
+      "qualifier": "v20130116-050536"
+    },
+    "jarFileFingerprint": "00aab0babfd68f12bd9d4d9c1c692710bcada232",
+    "jarFileModificationDate": "2013-02-24T23:59:55-05:00",
+    "location": "/Applications/eclipse-mestrado/plugins/org.eclipse.jdt.compiler.apt_1.0.600.v20130116-050536.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "096c07686702497c46affdf25d6559ac10235884",
+    "jarFileModificationDate": "2011-07-14T16:44:11-04:00",
+    "location": "/System/Library/Java/Extensions/jai_core.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "4f7f0960a64ab5df8d33e0bb48a77134e25f52fb",
+    "jarFileModificationDate": "2013-06-20T15:04:23-04:00",
+    "location": "/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/classes.jar",
+    "javaRuntime": true
+  },
+  {
+    "symbolicName": "org.eclipse.text",
+    "version": {
+      "major": 3,
+      "minor": 5,
+      "micro": 200,
+      "qualifier": "v20120523-1310"
+    },
+    "jarFileFingerprint": "d13bd0f657a67d01bac95760bdb098980ddc964b",
+    "jarFileModificationDate": "2013-02-25T00:00:12-05:00",
+    "location": "/Applications/eclipse-mestrado/plugins/org.eclipse.text_3.5.200.v20120523-1310.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "org.eclipse.e4.ui.workbench3",
+    "version": {
+      "major": 0,
+      "minor": 12,
+      "micro": 0,
+      "qualifier": "v20120521-2329"
+    },
+    "jarFileFingerprint": "06ceb15caf8cb93993d77a65d2bf2b2243082f7e",
+    "jarFileModificationDate": "2013-02-24T23:59:52-05:00",
+    "location": "/Applications/eclipse-mestrado/plugins/org.eclipse.e4.ui.workbench3_0.12.0.v20120521-2329.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "org.eclipse.jface.databinding",
+    "version": {
+      "major": 1,
+      "minor": 6,
+      "micro": 0,
+      "qualifier": "v20120912-132807"
+    },
+    "jarFileFingerprint": "a7b1a1f43281a5c5f7d7905fdf06f44ed7498e10",
+    "jarFileModificationDate": "2013-02-24T23:59:59-05:00",
+    "location": "/Applications/eclipse-mestrado/plugins/org.eclipse.jface.databinding_1.6.0.v20120912-132807.jar",
+    "javaRuntime": false
+  },
+  {
+    "symbolicName": "jre",
+    "version": {
+      "major": 1,
+      "minor": 0,
+      "micro": 0,
+      "qualifier": ""
+    },
+    "jarFileFingerprint": "3d8a1a2a25b21ebd6b7ab99613e91c57e46bda9c",
+    "jarFileModificationDate": "2013-07-01T14:27:15-04:00",
+    "location": "/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/ext/dnsns.jar",
+    "javaRuntime": true
+  }
+]

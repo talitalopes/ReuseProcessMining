@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="ProM_BPMN" nsURI="br.ufrj.cos.prisma.bpmn.prom" nsPrefix="br.ufrj.cos.prisma.bpmn.prom">
+  <eClassifiers xsi:type="ecore:EClass" name="Package">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="workflowProcesses" upperBound="-1"
+        eType="#//WorkflowProcess" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="WorkflowProcess">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="startActivity" eType="#//StartActivity"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Activities" upperBound="-1"
+        eType="#//Activity" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="endActivity" eType="#//EndActivity"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Transitions" upperBound="-1"
+        eType="#//Transition" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="routingActivities" eType="#//RoutingActivity"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Activity">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="ActivityType" eType="#//ActivityType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StartEvent"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EndEvent"/>
+  <eClassifiers xsi:type="ecore:EClass" name="StartActivity" eSuperTypes="#//Activity">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="StartEvent" eType="#//StartEvent"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EndActivity" eSuperTypes="#//Activity">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="EndEvent" eType="#//EndEvent"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RoutingActivity" eSuperTypes="#//Activity">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Route" eType="#//Route"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="TransitionRestrictions"
+        upperBound="-1" eType="#//TransitionRestriction" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Route">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="GatewayType" eType="#//GatewayType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="MarkerVisible" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TransitionRestriction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Split" eType="#//Split"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Split">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Type" eType="#//GatewayType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="TransitionRefs" upperBound="-1"
+        eType="#//TransitionRef" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TransitionRef">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="Name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Transition">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="From" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="To" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ActivityType">
+    <eLiterals name="METHOD_EXTENSION" literal="METHOD_EXTENSION"/>
+    <eLiterals name="CLASS_EXTENSION" value="1"/>
+    <eLiterals name="INTERFACE_IMPLEMENTATION" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="GatewayType">
+    <eLiterals name="XOR"/>
+    <eLiterals name="OR" value="1" literal=""/>
+  </eClassifiers>
+</ecore:EPackage>

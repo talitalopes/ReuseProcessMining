@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xsd:schema xmlns:br.ufrj.cos.prisma.bpmn.prom="br.ufrj.cos.prisma.bpmn.prom" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ecore:nsPrefix="br.ufrj.cos.prisma.bpmn.prom" ecore:package="ProM_BPMN" targetNamespace="br.ufrj.cos.prisma.bpmn.prom">
+  <xsd:import namespace="http://www.eclipse.org/emf/2002/Ecore" schemaLocation="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.xsd"/>
+  <xsd:element ecore:ignore="true" name="Package" type="br.ufrj.cos.prisma.bpmn.prom:Package"/>
+  <xsd:element ecore:ignore="true" name="PackageHeader" type="br.ufrj.cos.prisma.bpmn.prom:PackageHeader"/>
+  <xsd:element ecore:ignore="true" name="WorkflowProcess" type="br.ufrj.cos.prisma.bpmn.prom:WorkflowProcess"/>
+  <xsd:element ecore:ignore="true" name="ProcessHeader" type="br.ufrj.cos.prisma.bpmn.prom:ProcessHeader"/>
+  <xsd:element ecore:ignore="true" name="RedefinableHeader" type="br.ufrj.cos.prisma.bpmn.prom:RedefinableHeader"/>
+  <xsd:element ecore:ignore="true" name="Participant" type="br.ufrj.cos.prisma.bpmn.prom:Participant"/>
+  <xsd:element ecore:ignore="true" name="Activity" type="br.ufrj.cos.prisma.bpmn.prom:Activity"/>
+  <xsd:element ecore:ignore="true" name="Event" type="br.ufrj.cos.prisma.bpmn.prom:Event"/>
+  <xsd:element ecore:ignore="true" name="StartEvent" type="br.ufrj.cos.prisma.bpmn.prom:StartEvent"/>
+  <xsd:element ecore:ignore="true" name="EndEvent" type="br.ufrj.cos.prisma.bpmn.prom:EndEvent"/>
+  <xsd:element ecore:ignore="true" name="StartActivity" type="br.ufrj.cos.prisma.bpmn.prom:StartActivity"/>
+  <xsd:element ecore:ignore="true" name="EndActivity" type="br.ufrj.cos.prisma.bpmn.prom:EndActivity"/>
+  <xsd:element ecore:ignore="true" name="RoutingActivity" type="br.ufrj.cos.prisma.bpmn.prom:RoutingActivity"/>
+  <xsd:element ecore:ignore="true" name="Route" type="br.ufrj.cos.prisma.bpmn.prom:Route"/>
+  <xsd:element ecore:ignore="true" name="TransitionRestriction" type="br.ufrj.cos.prisma.bpmn.prom:TransitionRestriction"/>
+  <xsd:element ecore:ignore="true" name="Split" type="br.ufrj.cos.prisma.bpmn.prom:Split"/>
+  <xsd:element ecore:ignore="true" name="TransitionRef" type="br.ufrj.cos.prisma.bpmn.prom:TransitionRef"/>
+  <xsd:element ecore:ignore="true" name="Transition" type="br.ufrj.cos.prisma.bpmn.prom:Transition"/>
+  <xsd:complexType name="Package">
+    <xsd:sequence>
+      <xsd:element ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="workflowProcesses" type="br.ufrj.cos.prisma.bpmn.prom:WorkflowProcess"/>
+    </xsd:sequence>
+    <xsd:attribute ecore:name="PackageHeader" ecore:reference="br.ufrj.cos.prisma.bpmn.prom:PackageHeader" name="PackageHeader" type="xsd:anyURI"/>
+  </xsd:complexType>
+  <xsd:complexType name="PackageHeader">
+    <xsd:attribute ecore:name="XPDLVersion" name="XPDLVersion" type="ecore:EString"/>
+    <xsd:attribute ecore:name="Vendor" name="Vendor" type="ecore:EString"/>
+    <xsd:attribute ecore:name="Created" name="Created" type="ecore:EDate"/>
+    <xsd:attribute ecore:name="Description" name="Description" type="ecore:EString"/>
+    <xsd:attribute ecore:name="Documentation" name="Documentation" type="ecore:EString"/>
+  </xsd:complexType>
+  <xsd:complexType name="WorkflowProcess">
+    <xsd:sequence>
+      <xsd:element ecore:name="XpdlParticipants" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="XpdlParticipants" type="br.ufrj.cos.prisma.bpmn.prom:Participant"/>
+      <xsd:element ecore:name="Activities" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Activities" type="br.ufrj.cos.prisma.bpmn.prom:Activity"/>
+      <xsd:element ecore:name="Transitions" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Transitions" type="br.ufrj.cos.prisma.bpmn.prom:Transition"/>
+    </xsd:sequence>
+    <xsd:attribute ecore:name="ProcessHeader" ecore:reference="br.ufrj.cos.prisma.bpmn.prom:ProcessHeader" name="ProcessHeader" type="xsd:anyURI"/>
+    <xsd:attribute ecore:name="RefinableHeader" ecore:reference="br.ufrj.cos.prisma.bpmn.prom:RedefinableHeader" name="RefinableHeader" type="xsd:anyURI"/>
+  </xsd:complexType>
+  <xsd:complexType name="ProcessHeader">
+    <xsd:attribute ecore:name="Created" name="Created" type="ecore:EString"/>
+    <xsd:attribute ecore:name="Priority" name="Priority" type="ecore:EString"/>
+  </xsd:complexType>
+  <xsd:complexType name="RedefinableHeader">
+    <xsd:attribute ecore:name="Author" name="Author" type="ecore:EString"/>
+    <xsd:attribute ecore:name="Version" name="Version" type="ecore:EString"/>
+  </xsd:complexType>
+  <xsd:complexType name="Participant">
+    <xsd:attribute name="type" type="ecore:EString"/>
+    <xsd:attribute name="id" type="ecore:EString"/>
+  </xsd:complexType>
+  <xsd:complexType name="Activity">
+    <xsd:attribute name="id" type="ecore:EString"/>
+    <xsd:attribute name="name" type="ecore:EString"/>
+    <xsd:attribute ecore:name="ActivityType" ecore:unsettable="false" name="ActivityType" type="br.ufrj.cos.prisma.bpmn.prom:ActivityType"/>
+  </xsd:complexType>
+  <xsd:complexType name="Event"/>
+  <xsd:complexType name="StartEvent">
+    <xsd:complexContent>
+      <xsd:extension base="br.ufrj.cos.prisma.bpmn.prom:Event"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="EndEvent">
+    <xsd:complexContent>
+      <xsd:extension base="br.ufrj.cos.prisma.bpmn.prom:Event"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:simpleType name="ActivityType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="METHOD_EXTENSION"/>
+      <xsd:enumeration value="CLASS_EXTENSION"/>
+      <xsd:enumeration value="INTERFACE_IMPLEMENTATION"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType name="StartActivity">
+    <xsd:complexContent>
+      <xsd:extension base="br.ufrj.cos.prisma.bpmn.prom:Activity">
+        <xsd:attribute ecore:name="StartEvent" ecore:reference="br.ufrj.cos.prisma.bpmn.prom:StartEvent" name="StartEvent" type="xsd:anyURI"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="EndActivity">
+    <xsd:complexContent>
+      <xsd:extension base="br.ufrj.cos.prisma.bpmn.prom:Activity">
+        <xsd:attribute ecore:name="EndEvent" ecore:reference="br.ufrj.cos.prisma.bpmn.prom:EndEvent" name="EndEvent" type="xsd:anyURI"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="RoutingActivity">
+    <xsd:complexContent>
+      <xsd:extension base="br.ufrj.cos.prisma.bpmn.prom:Activity">
+        <xsd:sequence>
+          <xsd:element ecore:name="TransitionRestrictions" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="TransitionRestrictions" type="br.ufrj.cos.prisma.bpmn.prom:TransitionRestriction"/>
+        </xsd:sequence>
+        <xsd:attribute ecore:name="Route" ecore:reference="br.ufrj.cos.prisma.bpmn.prom:Route" name="Route" type="xsd:anyURI"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  <xsd:complexType name="Route">
+    <xsd:attribute ecore:name="GatewayType" ecore:unsettable="false" name="GatewayType" type="br.ufrj.cos.prisma.bpmn.prom:GatewayType"/>
+    <xsd:attribute ecore:name="MarkerVisible" name="MarkerVisible" type="ecore:EBooleanObject"/>
+  </xsd:complexType>
+  <xsd:simpleType name="GatewayType">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="XOR"/>
+      <xsd:enumeration ecore:name="OR" value=""/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType name="TransitionRestriction">
+    <xsd:attribute ecore:name="Split" ecore:reference="br.ufrj.cos.prisma.bpmn.prom:Split" name="Split" type="xsd:anyURI"/>
+  </xsd:complexType>
+  <xsd:complexType name="Split">
+    <xsd:sequence>
+      <xsd:element ecore:name="TransitionRefs" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="TransitionRefs" type="br.ufrj.cos.prisma.bpmn.prom:TransitionRef"/>
+    </xsd:sequence>
+    <xsd:attribute ecore:name="Type" ecore:unsettable="false" name="Type" type="br.ufrj.cos.prisma.bpmn.prom:GatewayType"/>
+  </xsd:complexType>
+  <xsd:complexType name="TransitionRef">
+    <xsd:attribute name="id" type="ecore:EString"/>
+    <xsd:attribute ecore:name="Name" name="Name" type="ecore:EString"/>
+  </xsd:complexType>
+  <xsd:complexType name="Transition">
+    <xsd:attribute name="id" type="ecore:EString"/>
+    <xsd:attribute ecore:name="From" name="From" type="ecore:EString"/>
+    <xsd:attribute ecore:name="To" name="To" type="ecore:EString"/>
+  </xsd:complexType>
+</xsd:schema>

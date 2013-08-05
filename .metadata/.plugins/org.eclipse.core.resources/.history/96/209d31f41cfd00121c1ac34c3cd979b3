@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<net.sf:ProjectNode xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:net.sf="http://jetset.sf.net" name="Document Root" sourceMetaModel="platform:/resource/JETTransformation/metamodel/prom.xsd" sourceRootClass="Prom:Package_._type" targetMetaModel="platform:/resource/JETTransformation/metamodel/rdl.xsd" outputProjectName="Prom2RdlTransformator" outputProjectNamespace="br.ufrj.cos.prisma.prom2rdl" mainClassName="Prom2RdlTransformator"/>

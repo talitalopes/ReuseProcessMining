@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package Id="XPDL_BPMN Diagram" Name="BPMN Diagram">
+	<PackageHeader>
+		<XPDLVersion>2.0</XPDLVersion>
+		<Vendor>ProM</Vendor>
+		<Created>17/06/2013 10:07</Created>
+		<Description>ProM Mined BPMN Model</Description>
+		<Documentation>ProM Mined BPMN Model</Documentation>
+	</PackageHeader>
+	<WorkflowProcesses>
+		<WorkflowProcess Id="MainProcess-WF_BPMN Diagram" Name="BPMN Diagram" AccessLevel="PUBLIC">
+			<ProcessHeader>
+				<Created>17/06/2013 10:07</Created>
+				<Priority>Normal</Priority>
+			</ProcessHeader>
+			<RedefinableHeader>
+				<Author>ProM</Author>
+				<Version>2.0</Version>
+			</RedefinableHeader>
+<XpdlParticipants>
+	<Participant Id="currentOwner">
+	<ParticipantType Type="ROLE"/>
+
+</Participant>
+
+</XpdlParticipants>
+<ActivitySets/>
+	<Activities>
+		<Activity Id="1738023306" Name="END"/>
+		<Activity Id="311689420" Name="CLASS_EXTENSION_org.eclipse.gef.palette.PaletteRoot"/>
+		<Activity Id="-1181581051" Name="CLASS_EXTENSION_org.eclipse.gef.editpolicies.GraphicalNodeEditPolicy"/>
+		<Activity Id="1656610729" Name="CLASS_EXTENSION_org.eclipse.gef.editpolicies.XYLayoutEditPolicy"/>
+		<Activity Id="960839150" Name="CLASS_EXTENSION_org.eclipse.gef.editparts.AbstractGraphicalEditPart"/>
+		<Activity Id="-1811986499" Name="CLASS_EXTENSION_org.eclipse.gef.ui.actions.ActionBarContributor"/>
+		<Activity Id="-50088373" Name="CLASS_EXTENSION_org.eclipse.gef.editparts.AbstractConnectionEditPart"/>
+		<Activity Id="-666008340" Name="CLASS_EXTENSION_org.eclipse.gef.commands.Command"/>
+		<Activity Id="834091191" Name="Artificial Start"/>
+		<Activity Id="1352277766" Name="CLASS_EXTENSION_org.eclipse.gef.editpolicies.ConnectionEditPolicy"/>
+		<Activity Id="-1562002954" Name="CLASS_EXTENSION_org.eclipse.gef.ui.parts.GraphicalEditorWithFlyoutPalette"/>
+		<Activity Id="-1832951294" Name="CLASS_EXTENSION_org.eclipse.gef.editpolicies.ComponentEditPolicy"/>
+		<Activity Id="-1844479799" Name="Artificial End"/>
+		<Activity Id="1462753898" Name="START"/>
+		<Activity Id="-1647031060" Name="START EVENT"/>
+		<Activity Id="-886261312" Name="END EVENT"/>
+	</Activities>
+
+</WorkflowProcess>
+
+</WorkflowProcesses>
+
+</Package>

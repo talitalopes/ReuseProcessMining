@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete resource &apos;ProM_BPMNTransformator&apos;" deleteContents="false" description="Delete resource &apos;ProM_BPMNTransformator&apos;" element1="/ProM_BPMNTransformator" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1375571242873"/>
+</session>

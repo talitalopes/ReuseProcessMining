@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<net.sf:ProjectNode xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:net.sf="http://jetset.sf.net" sourceMetaModel="platform:/resource/JETTransformation/models/BPMN_RDL.xsd" sourceRootClass="rdl:DocumentRoot" targetMetaModel="" outputProjectName="BPMN_RDLTransformator" mainClassName="BPMN_RDLTransformator"/>

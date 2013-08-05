@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/JETTransformation/src" modelPluginID="JETTransformation"
+    modelName="Test1" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.xsd.ecore.importer" complianceLevel="6.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>test1.xsd</foreignModel>
+  <genPackages prefix="Test1" resource="XML" disposableProviderFactory="true" ecorePackage="Test1.ecore#/">
+    <genClasses ecoreClass="Test1.ecore#//AssignmentType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Test1.ecore#//AssignmentType/from"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Test1.ecore#//AssignmentType/to"/>
+    </genClasses>
+    <genClasses ecoreClass="Test1.ecore#//DataInputAssociationType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test1.ecore#//DataInputAssociationType/targetRef"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Test1.ecore#//DataInputAssociationType/assignment"/>
+    </genClasses>
+    <genClasses ecoreClass="Test1.ecore#//DataInputType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test1.ecore#//DataInputType/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test1.ecore#//DataInputType/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test1.ecore#//DataInputType/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Test1.ecore#//DefinitionsType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Test1.ecore#//DefinitionsType/itemDefinition"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Test1.ecore#//DefinitionsType/process"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test1.ecore#//DefinitionsType/expressionLanguage"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test1.ecore#//DefinitionsType/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test1.ecore#//DefinitionsType/schemaLocation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test1.ecore#//DefinitionsType/targetNamespace"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test1.ecore#//DefinitionsType/typeLanguage"/>
+    </genClasses>
+    <genClasses ecoreClass="Test1.ecore#//DocumentRoot">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute Test1.ecore#//DocumentRoot/mixed"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Test1.ecore#//DocumentRoot/xMLNSPrefixMap"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Test1.ecore#//DocumentRoot/xSISchemaLocation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Test1.ecore#//DocumentRoot/definitions"/>
+    </genClasses>
+    <genClasses ecoreClass="Test1.ecore#//EndEventType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test1.ecore#//EndEventType/terminateEventDefinition"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test1.ecore#//EndEventType/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test1.ecore#//EndEventType/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Test1.ecore#//ExclusiveGatewayType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test1.ecore#//ExclusiveGatewayType/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test1.ecore#//ExclusiveGatewayType/gatewayDirection"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test1.ecore#//ExclusiveGatewayType/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test1.ecore#//ExclusiveGatewayType/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Test1.ecore#//FromType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test1.ecore#//FromType/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test1.ecore#//FromType/type"/>
+    </genClasses>
+    <genClasses ecoreClass="Test1.ecore#//InputSetType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test1.ecore#//InputSetType/dataInputRefs"/>
+    </genClasses>
+    <genClasses ecoreClass="Test1.ecore#//IoSpecificationType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Test1.ecore#//IoSpecificationType/dataInput"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Test1.ecore#//IoSpecificationType/inputSet"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test1.ecore#//IoSpecificationType/outputSet"/>
+    </genClasses>
+    <genClasses ecoreClass="Test1.ecore#//ItemDefinitionType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test1.ecore#//ItemDefinitionType/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test1.ecore#//ItemDefinitionType/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test1.ecore#//ItemDefinitionType/structureRef"/>
+    </genClasses>
+    <genClasses ecoreClass="Test1.ecore#//ProcessType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Test1.ecore#//ProcessType/property"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Test1.ecore#//ProcessType/startEvent"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Test1.ecore#//ProcessType/sequenceFlow"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Test1.ecore#//ProcessType/task"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Test1.ecore#//ProcessType/exclusiveGateway"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Test1.ecore#//ProcessType/endEvent"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test1.ecore#//ProcessType/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test1.ecore#//ProcessType/isExecutable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test1.ecore#//ProcessType/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test1.ecore#//ProcessType/processType"/>
+    </genClasses>
+    <genClasses ecoreClass="Test1.ecore#//PropertyType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test1.ecore#//PropertyType/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test1.ecore#//PropertyType/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test1.ecore#//PropertyType/itemSubjectRef"/>
+    </genClasses>
+    <genClasses ecoreClass="Test1.ecore#//SequenceFlowType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test1.ecore#//SequenceFlowType/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test1.ecore#//SequenceFlowType/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test1.ecore#//SequenceFlowType/sourceRef"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test1.ecore#//SequenceFlowType/targetRef"/>
+    </genClasses>
+    <genClasses ecoreClass="Test1.ecore#//StartEventType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test1.ecore#//StartEventType/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test1.ecore#//StartEventType/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test1.ecore#//StartEventType/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Test1.ecore#//TaskType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Test1.ecore#//TaskType/ioSpecification"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Test1.ecore#//TaskType/dataInputAssociation"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test1.ecore#//TaskType/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test1.ecore#//TaskType/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test1.ecore#//TaskType/taskName"/>
+    </genClasses>
+    <genClasses ecoreClass="Test1.ecore#//ToType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test1.ecore#//ToType/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test1.ecore#//ToType/type"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

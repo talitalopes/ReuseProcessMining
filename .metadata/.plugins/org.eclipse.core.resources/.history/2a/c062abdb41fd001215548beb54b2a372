@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<net.sf:ProjectNode xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:net.sf="http://jetset.sf.net" name="Document Root" sourceMetaModel="platform:/resource/JETTransformation/metamodel/prom.xsd" sourceRootClass="Prom:WorkflowProcesses_._type" targetMetaModel="platform:/resource/JETTransformation/metamodel/rdl.xsd" outputProjectName="Prom2RdlTransformator" outputProjectNamespace="br.ufrj.cos.prisma.prom2rdl" mainClassName="Prom2RdlTransformator">
+  <children xsi:type="net.sf:IterationNode" name="WorkflowProcess" iterationReference="WorkflowProcess (Prom:WorkflowProcess_._type)">
+    <children xsi:type="net.sf:FileNode" name="Workflow Process Type" outputFileName="RDL_Process.xml">
+      <children xsi:type="net.sf:XmlNode" name="definitions" targetElement="definitions (Rdl:definitions_._type)">
+        <children xsi:type="net.sf:XmlNode" name="itemDefinition" targetElement="itemDefinition (Rdl:itemDefinition_._type)"/>
+        <children xsi:type="net.sf:XmlNode" name="process" targetElement="process (Rdl:process_._type)">
+          <children xsi:type="net.sf:XmlNode" name="property" targetElement="property (Rdl:property_._type)"/>
+          <children xsi:type="net.sf:IterationNode" name="Activities" iterationReference="Activities (Prom:Activities_._type)">
+            <children xsi:type="net.sf:IterationNode" name="Activitys [Class Extension]" iterationReference="Activity (Prom:Activity_._type)" conditionFilter="&lt;%=getValue(&quot;Name&quot;).contains(&quot;ClassExtension&quot;)%>" sortDescending="true">
+              <children xsi:type="net.sf:XmlNode" name="task" targetElement="task (Rdl:task_._type)">
+                <children xsi:type="net.sf:XmlNode" name="ioSpecification" targetElement="ioSpecification (Rdl:ioSpecification_._type)">
+                  <children xsi:type="net.sf:XmlNode" name="dataInput" targetElement="dataInput (Rdl:dataInput_._type)">
+                    <xmlAttributes name="id" value="_&lt;%=getValue(&quot;Id&quot;)%>SUPER_NAMEInput"/>
+                    <xmlAttributes name="name" value="SUPER_NAME&#xA;"/>
+                  </children>
+                  <children xsi:type="net.sf:XmlNode" name="dataInput" targetElement="dataInput (Rdl:dataInput_._type)">
+                    <xmlAttributes name="id" value="_&lt;%=getValue(&quot;Id&quot;)%>SUB_PNAMEInput"/>
+                    <xmlAttributes name="name" value="SUB_PNAME&#xA;"/>
+                  </children>
+                  <children xsi:type="net.sf:XmlNode" name="dataInput" targetElement="dataInput (Rdl:dataInput_._type)">
+                    <xmlAttributes name="id" value="_&lt;%=getValue(&quot;Id&quot;)%>SUB_NAMEInput"/>
+                    <xmlAttributes name="name" value="_&lt;%=getValue(&quot;Id&quot;)%>SUB_NAMEInput"/>
+                  </children>
+                  <children xsi:type="net.sf:XmlNode" name="inputSet" targetElement="inputSet (Rdl:inputSet_._type)">
+                    <children xsi:type="net.sf:XmlNode" name="dataInputRefs" targetElement="dataInputRefs (xs:string)">
+                      <xmlAttributes name="text" value="_&lt;%=getValue(&quot;Id&quot;)%>SUPER_NAMEInput&#xA;"/>
+                    </children>
+                    <children xsi:type="net.sf:XmlNode" name="dataInputRefs" targetElement="dataInputRefs (xs:string)">
+                      <xmlAttributes name="text" value="_&lt;%=getValue(&quot;Id&quot;)%>SUB_PNAMEInput"/>
+                    </children>
+                    <children xsi:type="net.sf:XmlNode" name="dataInputRefs" targetElement="dataInputRefs (xs:string)">
+                      <xmlAttributes name="text" value="_&lt;%=getValue(&quot;Id&quot;)%>SUB_NAMEInput"/>
+                    </children>
+                  </children>
+                </children>
+                <children xsi:type="net.sf:XmlNode" name="dataInputAssociation" targetElement="dataInputAssociation (Rdl:dataInputAssociation_._type)">
+                  <children xsi:type="net.sf:XmlNode" name="targetRef" targetElement="targetRef (xs:string)">
+                    <xmlAttributes name="targetRef" value="_&lt;%=getValue(&quot;Id&quot;)%>SUPER_NAMEInput"/>
+                    <xmlAttributes name="text" value="_&lt;%=getValue(&quot;Id&quot;)%>SUPER_NAMEInput"/>
+                  </children>
+                  <children xsi:type="net.sf:XmlNode" name="assignment" targetElement="assignment (Rdl:assignment_._type)">
+                    <children xsi:type="net.sf:XmlNode" name="to" targetElement="to (Rdl:to_._type)">
+                      <xmlAttributes name="type" value="tFormalExpression"/>
+                      <xmlAttributes name="value" value="_&lt;%=getValue(&quot;Id&quot;)%>SUPER_NAMEInput"/>
+                    </children>
+                    <children xsi:type="net.sf:XmlNode" name="from" targetElement="from (Rdl:from_._type)">
+                      <xmlAttributes name="type" value="tFormalExpression"/>
+                      <xmlAttributes name="value" value="&lt;%=getValue(&quot;Name&quot;).split(&quot;_&quot;)[1]%>"/>
+                    </children>
+                  </children>
+                </children>
+                <children xsi:type="net.sf:XmlNode" name="dataInputAssociation" targetElement="dataInputAssociation (Rdl:dataInputAssociation_._type)">
+                  <children xsi:type="net.sf:XmlNode" name="targetRef" targetElement="targetRef (xs:string)">
+                    <xmlAttributes name="text" value="_&lt;%=getValue(&quot;Id&quot;)%>SUB_PNAMEInput"/>
+                  </children>
+                  <children xsi:type="net.sf:XmlNode" name="assignment" targetElement="assignment (Rdl:assignment_._type)">
+                    <children xsi:type="net.sf:XmlNode" name="to" targetElement="to (Rdl:to_._type)">
+                      <xmlAttributes name="type" value="tFormalExpression"/>
+                      <xmlAttributes name="value" value="_&lt;%=getValue(&quot;Id&quot;)%>SUB_PNAMEInput"/>
+                    </children>
+                    <children xsi:type="net.sf:XmlNode" name="from" targetElement="from (Rdl:from_._type)">
+                      <xmlAttributes name="type" value="tFormalExpression"/>
+                      <xmlAttributes name="value" value="packageName"/>
+                    </children>
+                  </children>
+                </children>
+                <children xsi:type="net.sf:XmlNode" name="dataInputAssociation" targetElement="dataInputAssociation (Rdl:dataInputAssociation_._type)">
+                  <children xsi:type="net.sf:XmlNode" name="targetRef" targetElement="targetRef (xs:string)">
+                    <xmlAttributes name="text" value="_&lt;%=getValue(&quot;Id&quot;)%>SUB_NAMEInput"/>
+                  </children>
+                  <children xsi:type="net.sf:XmlNode" name="assignment" targetElement="assignment (Rdl:assignment_._type)">
+                    <children xsi:type="net.sf:XmlNode" name="to" targetElement="to (Rdl:to_._type)">
+                      <xmlAttributes name="type" value="tFormalExpression"/>
+                      <xmlAttributes name="value" value="_&lt;%=getValue(&quot;Id&quot;)%>SUB_NAMEInput"/>
+                    </children>
+                    <children xsi:type="net.sf:XmlNode" name="from" targetElement="from (Rdl:from_._type)">
+                      <xmlAttributes name="type" value="tFormalExpression"/>
+                      <xmlAttributes name="value" value="&quot;?&quot;"/>
+                    </children>
+                  </children>
+                </children>
+                <xmlAttributes name="id" value="_&lt;%=getValue(&quot;Id&quot;)%>"/>
+                <xmlAttributes name="name" value="&lt;%=getValue(&quot;Name&quot;).split(&quot;_&quot;)[0]%>"/>
+                <xmlAttributes name="taskName" value="&lt;%=getValue(&quot;Name&quot;).split(&quot;_&quot;)[0]%>"/>
+              </children>
+            </children>
+            <children xsi:type="net.sf:IterationNode" name="Activitys [Method Extension]" iterationReference="Activity (Prom:Activity_._type)" conditionFilter="&lt;%=getValue(&quot;Name&quot;).contains(&quot;MethodExtension&quot;)%>">
+              <children xsi:type="net.sf:XmlNode" name="task" targetElement="task (Rdl:task_._type)">
+                <children xsi:type="net.sf:XmlNode" name="ioSpecification" targetElement="ioSpecification (Rdl:ioSpecification_._type)">
+                  <children xsi:type="net.sf:XmlNode" name="dataInput" targetElement="dataInput (Rdl:dataInput_._type)">
+                    <xmlAttributes name="id" value="_&lt;%=getValue(&quot;Id&quot;)%>SUPER_NAMEInput"/>
+                    <xmlAttributes name="name" value="SUPER_NAME&#xA;"/>
+                  </children>
+                  <children xsi:type="net.sf:XmlNode" name="dataInput" targetElement="dataInput (Rdl:dataInput_._type)">
+                    <xmlAttributes name="id" value="_&lt;%=getValue(&quot;Id&quot;)%>SUB_NAMEInput"/>
+                    <xmlAttributes name="name" value="SUB_PNAME&#xA;"/>
+                  </children>
+                  <children xsi:type="net.sf:XmlNode" name="dataInput" targetElement="dataInput (Rdl:dataInput_._type)">
+                    <xmlAttributes name="id" value="_&lt;%=getValue(&quot;Id&quot;)%>MethodNameInput"/>
+                    <xmlAttributes name="name" value="_&lt;%=getValue(&quot;Id&quot;)%>SUB_NAMEInput"/>
+                  </children>
+                  <children xsi:type="net.sf:XmlNode" name="inputSet" targetElement="inputSet (Rdl:inputSet_._type)">
+                    <children xsi:type="net.sf:XmlNode" name="dataInputRefs" targetElement="dataInputRefs (xs:string)">
+                      <xmlAttributes name="text" value="_&lt;%=getValue(&quot;Id&quot;)%>SUPER_NAMEInput&#xA;"/>
+                    </children>
+                    <children xsi:type="net.sf:XmlNode" name="dataInputRefs" targetElement="dataInputRefs (xs:string)">
+                      <xmlAttributes name="text" value="_&lt;%=getValue(&quot;Id&quot;)%>SUB_PNAMEInput"/>
+                    </children>
+                    <children xsi:type="net.sf:XmlNode" name="dataInputRefs" targetElement="dataInputRefs (xs:string)">
+                      <xmlAttributes name="text" value="_&lt;%=getValue(&quot;Id&quot;)%>SUB_NAMEInput"/>
+                    </children>
+                  </children>
+                </children>
+                <children xsi:type="net.sf:XmlNode" name="dataInputAssociation" targetElement="dataInputAssociation (Rdl:dataInputAssociation_._type)">
+                  <children xsi:type="net.sf:XmlNode" name="targetRef" targetElement="targetRef (xs:string)">
+                    <xmlAttributes name="targetRef" value="_&lt;%=getValue(&quot;Id&quot;)%>SUPER_NAMEInput"/>
+                    <xmlAttributes name="text" value="_&lt;%=getValue(&quot;Id&quot;)%>SUPER_NAMEInput"/>
+                  </children>
+                  <children xsi:type="net.sf:XmlNode" name="assignment" targetElement="assignment (Rdl:assignment_._type)">
+                    <children xsi:type="net.sf:XmlNode" name="to" targetElement="to (Rdl:to_._type)">
+                      <xmlAttributes name="type" value="tFormalExpression"/>
+                      <xmlAttributes name="value" value="_&lt;%=getValue(&quot;Id&quot;)%>SUPER_NAMEInput"/>
+                    </children>
+                    <children xsi:type="net.sf:XmlNode" name="from" targetElement="from (Rdl:from_._type)">
+                      <xmlAttributes name="type" value="tFormalExpression"/>
+                      <xmlAttributes name="value" value="&lt;%=getValue(&quot;Name&quot;).split(&quot;_&quot;)[1]%>"/>
+                    </children>
+                  </children>
+                </children>
+                <children xsi:type="net.sf:XmlNode" name="dataInputAssociation" targetElement="dataInputAssociation (Rdl:dataInputAssociation_._type)">
+                  <children xsi:type="net.sf:XmlNode" name="targetRef" targetElement="targetRef (xs:string)">
+                    <xmlAttributes name="text" value="_&lt;%=getValue(&quot;Id&quot;)%>SUB_PNAMEInput"/>
+                  </children>
+                  <children xsi:type="net.sf:XmlNode" name="assignment" targetElement="assignment (Rdl:assignment_._type)">
+                    <children xsi:type="net.sf:XmlNode" name="to" targetElement="to (Rdl:to_._type)">
+                      <xmlAttributes name="type" value="tFormalExpression"/>
+                      <xmlAttributes name="value" value="_&lt;%=getValue(&quot;Id&quot;)%>SUB_PNAMEInput"/>
+                    </children>
+                    <children xsi:type="net.sf:XmlNode" name="from" targetElement="from (Rdl:from_._type)">
+                      <xmlAttributes name="type" value="tFormalExpression"/>
+                      <xmlAttributes name="value" value="packageName"/>
+                    </children>
+                  </children>
+                </children>
+                <children xsi:type="net.sf:XmlNode" name="dataInputAssociation" targetElement="dataInputAssociation (Rdl:dataInputAssociation_._type)">
+                  <children xsi:type="net.sf:XmlNode" name="targetRef" targetElement="targetRef (xs:string)">
+                    <xmlAttributes name="text" value="_&lt;%=getValue(&quot;Id&quot;)%>SUB_NAMEInput"/>
+                  </children>
+                  <children xsi:type="net.sf:XmlNode" name="assignment" targetElement="assignment (Rdl:assignment_._type)">
+                    <children xsi:type="net.sf:XmlNode" name="to" targetElement="to (Rdl:to_._type)">
+                      <xmlAttributes name="type" value="tFormalExpression"/>
+                      <xmlAttributes name="value" value="_&lt;%=getValue(&quot;Id&quot;)%>SUB_NAMEInput"/>
+                    </children>
+                    <children xsi:type="net.sf:XmlNode" name="from" targetElement="from (Rdl:from_._type)">
+                      <xmlAttributes name="type" value="tFormalExpression"/>
+                      <xmlAttributes name="value" value="&quot;?&quot;"/>
+                    </children>
+                  </children>
+                </children>
+                <xmlAttributes name="id" value="_&lt;%=getValue(&quot;Id&quot;)%>"/>
+                <xmlAttributes name="name" value="&lt;%=getValue(&quot;Name&quot;).split(&quot;_&quot;)[0]%>"/>
+                <xmlAttributes name="taskName" value="&lt;%=getValue(&quot;Name&quot;).split(&quot;_&quot;)[0]%>"/>
+              </children>
+            </children>
+          </children>
+        </children>
+      </children>
+    </children>
+  </children>
+</net.sf:ProjectNode>

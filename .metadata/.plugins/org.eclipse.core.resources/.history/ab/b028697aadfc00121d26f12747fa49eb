@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/BPMNConverter/src" modelPluginID="BPMNConverter"
+    modelName="RDL_BPMN" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>RDL_BPMN.ecore</foreignModel>
+  <genPackages prefix="RDL_BPMN" disposableProviderFactory="true" ecorePackage="RDL_BPMN.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="RDL_BPMN.ecore#//RDLCommands">
+      <genEnumLiterals ecoreEnumLiteral="RDL_BPMN.ecore#//RDLCommands/ImportModel"/>
+      <genEnumLiterals ecoreEnumLiteral="RDL_BPMN.ecore#//RDLCommands/ExportModel"/>
+      <genEnumLiterals ecoreEnumLiteral="RDL_BPMN.ecore#//RDLCommands/Declaration"/>
+      <genEnumLiterals ecoreEnumLiteral="RDL_BPMN.ecore#//RDLCommands/NewPackage"/>
+      <genEnumLiterals ecoreEnumLiteral="RDL_BPMN.ecore#//RDLCommands/Assignment"/>
+      <genEnumLiterals ecoreEnumLiteral="RDL_BPMN.ecore#//RDLCommands/NewClass"/>
+      <genEnumLiterals ecoreEnumLiteral="RDL_BPMN.ecore#//RDLCommands/NewAttribute"/>
+      <genEnumLiterals ecoreEnumLiteral="RDL_BPMN.ecore#//RDLCommands/NewMethod"/>
+      <genEnumLiterals ecoreEnumLiteral="RDL_BPMN.ecore#//RDLCommands/NewGeneralization"/>
+      <genEnumLiterals ecoreEnumLiteral="RDL_BPMN.ecore#//RDLCommands/ClassExtension"/>
+      <genEnumLiterals ecoreEnumLiteral="RDL_BPMN.ecore#//RDLCommands/MethodExtension"/>
+    </genEnums>
+    <genClasses ecoreClass="RDL_BPMN.ecore#//Process">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDL_BPMN.ecore#//Process/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDL_BPMN.ecore#//Process/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDL_BPMN.ecore#//Process/isExecutable"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDL_BPMN.ecore#//Process/processType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDL_BPMN.ecore#//Process/Properties"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RDL_BPMN.ecore#//Process/startEvent"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDL_BPMN.ecore#//Process/tasks"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference RDL_BPMN.ecore#//Process/sequenceFlow"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RDL_BPMN.ecore#//Process/endEvent"/>
+    </genClasses>
+    <genClasses ecoreClass="RDL_BPMN.ecore#//Property">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDL_BPMN.ecore#//Property/itemSubjectRef"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDL_BPMN.ecore#//Property/id"/>
+    </genClasses>
+    <genClasses ecoreClass="RDL_BPMN.ecore#//Event">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDL_BPMN.ecore#//Event/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDL_BPMN.ecore#//Event/name"/>
+    </genClasses>
+    <genClasses ecoreClass="RDL_BPMN.ecore#//StartEvent"/>
+    <genClasses ecoreClass="RDL_BPMN.ecore#//EndEvent"/>
+    <genClasses ecoreClass="RDL_BPMN.ecore#//SequenceFlow">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDL_BPMN.ecore#//SequenceFlow/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDL_BPMN.ecore#//SequenceFlow/sourceRef"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDL_BPMN.ecore#//SequenceFlow/targetRef"/>
+    </genClasses>
+    <genClasses ecoreClass="RDL_BPMN.ecore#//Task">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDL_BPMN.ecore#//Task/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDL_BPMN.ecore#//Task/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDL_BPMN.ecore#//Task/tns_taskName"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RDL_BPMN.ecore#//Task/iospecification"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RDL_BPMN.ecore#//Task/dataInputAssociation"/>
+    </genClasses>
+    <genClasses ecoreClass="RDL_BPMN.ecore#//IOSpecification">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RDL_BPMN.ecore#//IOSpecification/dataInput"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RDL_BPMN.ecore#//IOSpecification/inputSet"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RDL_BPMN.ecore#//IOSpecification/outputSet"/>
+    </genClasses>
+    <genClasses ecoreClass="RDL_BPMN.ecore#//DataInput">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDL_BPMN.ecore#//DataInput/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDL_BPMN.ecore#//DataInput/name"/>
+    </genClasses>
+    <genClasses ecoreClass="RDL_BPMN.ecore#//InputSet"/>
+    <genClasses ecoreClass="RDL_BPMN.ecore#//OutputSet"/>
+    <genClasses ecoreClass="RDL_BPMN.ecore#//DataInputAssociation">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDL_BPMN.ecore#//DataInputAssociation/targetRef"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RDL_BPMN.ecore#//DataInputAssociation/assignment"/>
+    </genClasses>
+    <genClasses ecoreClass="RDL_BPMN.ecore#//Assignment">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RDL_BPMN.ecore#//Assignment/from"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference RDL_BPMN.ecore#//Assignment/to"/>
+    </genClasses>
+    <genClasses ecoreClass="RDL_BPMN.ecore#//AssignmentDirection">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RDL_BPMN.ecore#//AssignmentDirection/xsi_type"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

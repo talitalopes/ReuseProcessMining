@@ -7,7 +7,7 @@
         <children xsi:type="net.sf:XmlNode" name="process" targetElement="process (Rdl:process_._type)">
           <children xsi:type="net.sf:XmlNode" name="property" targetElement="property (Rdl:property_._type)"/>
           <children xsi:type="net.sf:IterationNode" name="Activities" iterationReference="Activities (Prom:Activities_._type)">
-            <children xsi:type="net.sf:IterationNode" name="Activitys [Class Extension]" iterationReference="Activity (Prom:Activity_._type)" conditionFilter="&lt;%=getValue(&quot;Name&quot;).contains(&quot;ClassExtension&quot;)%>" sortDescending="true">
+            <children xsi:type="net.sf:IterationNode" name="Activity [Class Extension]" iterationReference="Activity (Prom:Activity_._type)" conditionFilter="&lt;%=getValue(&quot;Name&quot;).contains(&quot;ClassExtension&quot;)%>" sortDescending="true">
               <children xsi:type="net.sf:XmlNode" name="task" targetElement="task (Rdl:task_._type)">
                 <children xsi:type="net.sf:XmlNode" name="ioSpecification" targetElement="ioSpecification (Rdl:ioSpecification_._type)">
                   <children xsi:type="net.sf:XmlNode" name="dataInput" targetElement="dataInput (Rdl:dataInput_._type)">
@@ -85,7 +85,7 @@
                 <xmlAttributes name="taskName" value="&lt;%=getValue(&quot;Name&quot;).split(&quot;_&quot;)[0]%>"/>
               </children>
             </children>
-            <children xsi:type="net.sf:IterationNode" name="Activitys [Method Extension]" iterationReference="Activity (Prom:Activity_._type)" conditionFilter="&lt;%=getValue(&quot;Name&quot;).contains(&quot;MethodExtension&quot;)%>">
+            <children xsi:type="net.sf:IterationNode" name="Activity [Method Extension]" iterationReference="Activity (Prom:Activity_._type)" conditionFilter="&lt;%=getValue(&quot;Name&quot;).contains(&quot;MethodExtension&quot;)%>">
               <children xsi:type="net.sf:XmlNode" name="task" targetElement="task (Rdl:task_._type)">
                 <children xsi:type="net.sf:XmlNode" name="ioSpecification" targetElement="ioSpecification (Rdl:ioSpecification_._type)">
                   <children xsi:type="net.sf:XmlNode" name="dataInput" targetElement="dataInput (Rdl:dataInput_._type)">
@@ -163,12 +163,13 @@
                 <xmlAttributes name="taskName" value="&lt;%=getValue(&quot;Name&quot;).split(&quot;_&quot;)[0]%>"/>
               </children>
             </children>
-            <children xsi:type="net.sf:IterationNode" name="Activity" iterationReference="Activity (Prom:Activity_._type)" conditionFilter="&lt;%=getValue(&quot;Name&quot;).contains(&quot;EXCLUSIVE-GATEWAY&quot;)%>">
-              <children xsi:type="net.sf:IterationNode" name="Route" iterationReference="Route (Prom:Route_._type)">
-                <children xsi:type="net.sf:XmlNode" name="exclusiveGateway" targetElement="exclusiveGateway (Rdl:exclusiveGateway_._type)">
-                  <xmlAttributes name="id" value="&lt;%=getValue(getTreeAncestor(1), &quot;Id&quot;)%>"/>
-                  <xmlAttributes name="name" value="Gateway"/>
-                </children>
+          </children>
+          <children xsi:type="net.sf:IterationNode" name="Transitions" iterationReference="Transitions (Prom:Transitions_._type)">
+            <children xsi:type="net.sf:IterationNode" name="Transition" iterationReference="Transition (Prom:Transition_._type)">
+              <children xsi:type="net.sf:XmlNode" name="sequenceFlow" targetElement="sequenceFlow (Rdl:sequenceFlow_._type)">
+                <xmlAttributes name="sourceRef" value="_&lt;%=getValue(&quot;From&quot;)%>"/>
+                <xmlAttributes name="targetRef" value="_&lt;%=getValue(&quot;To&quot;)%>"/>
+                <xmlAttributes name="id" value="_&lt;%=getValue(&quot;From&quot;)%>to&lt;%=getValue(&quot;To&quot;)%>"/>
               </children>
             </children>
           </children>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema 
+    targetNamespace="http://www.example.org/simpledoc" 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+    xmlns:doc="http://www.example.org/simpledoc">
+    
+ <xs:element name="simpleDoc" type="doc:SimpleDoc" />
+ 
+ <xs:complexType name="SimpleDoc">
+  <xs:sequence>
+   <xs:element name="object" type="doc:Object" 
+       minOccurs="1" maxOccurs="unbounded" />
+  </xs:sequence>
+ </xs:complexType>
+ 
+ <xs:complexType name="Object" abstract="true">
+  <xs:attribute name="title" type="xs:string" />
+ </xs:complexType>
+ 
+ <xs:complexType name="Paragraph">
+  <xs:complexContent>
+   <xs:extension base="doc:Object">
+    <xs:attribute name="text" type="xs:string"></xs:attribute>
+   </xs:extension>
+  </xs:complexContent>
+ </xs:complexType>
+ 
+ <xs:complexType name="Table">
+  <xs:complexContent>
+   <xs:extension base="doc:Object">
+    <xs:sequence>
+     <xs:element name="row" type="doc:Row" 
+         minOccurs="0" maxOccurs="unbounded">
+     </xs:element>
+    </xs:sequence>
+   </xs:extension>
+  </xs:complexContent>
+ </xs:complexType>
+ 
+ <xs:complexType name="Row">
+  <xs:sequence>
+   <xs:element name="cell" type="doc:Cell" 
+       minOccurs="1" maxOccurs="unbounded"></xs:element>
+  </xs:sequence>
+ </xs:complexType>
+ 
+ <xs:complexType name="Cell">
+  <xs:sequence>
+   <xs:element name="content" type="xs:string"></xs:element>
+  </xs:sequence>
+ </xs:complexType>
+</xs:schema>

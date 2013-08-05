@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="RDL_BPMN" nsURI="br/ufrj/cos/prisma/bpmn/converter" nsPrefix="br.ufrj.cos.prisma.bpmn.converter">
+  <eClassifiers xsi:type="ecore:EClass" name="Process">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Properties" upperBound="-1"
+        eType="#//Property" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="startEvent" eType="#//StartEvent"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="processType" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tasks" upperBound="-1"
+        eType="#//Task" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sequenceFlow" upperBound="-1"
+        eType="#//SequenceFlow" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="endEvent" eType="#//EndEvent"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Property">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="itemSubjectRef" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Event">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="StartEvent" eSuperTypes="#//Event"/>
+  <eClassifiers xsi:type="ecore:EClass" name="EndEvent" eSuperTypes="#//Event"/>
+  <eClassifiers xsi:type="ecore:EClass" name="SequenceFlow">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceRef" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="targetRef" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Task">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="#//RDLCommands"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tns_taskName" eType="#//RDLCommands"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="iospecification" eType="#//IOSpecification"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataInputAssociation" eType="#//DataInputAssociation"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IOSpecification">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="dataInput" upperBound="-1"
+        eType="#//DataInput"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inputSet" eType="#//InputSet"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outputSet" eType="#//OutputSet"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DataInput">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="id" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InputSet"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OutputSet"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DataInputAssociation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="targetRef" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="assignment" eType="#//Assignment"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Assignment">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="from" eType="#//AssignmentDirection"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="to" eType="#//AssignmentDirection"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AssignmentDirection">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="xsi_type" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="RDLCommands">
+    <eLiterals name="ImportModel"/>
+    <eLiterals name="ExportModel" value="1" literal=""/>
+    <eLiterals name="Declaration" value="2"/>
+    <eLiterals name="NewPackage" value="3"/>
+    <eLiterals name="Assignment" value="4"/>
+    <eLiterals name="NewClass" value="5"/>
+    <eLiterals name="NewAttribute" value="6"/>
+    <eLiterals name="NewMethod" value="7"/>
+    <eLiterals name="NewGeneralization" value="8"/>
+    <eLiterals name="ClassExtension" value="9"/>
+    <eLiterals name="MethodExtension" value="10"/>
+  </eClassifiers>
+</ecore:EPackage>

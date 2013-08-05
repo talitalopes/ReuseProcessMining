@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<net.sf:ProjectNode xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:net.sf="http://jetset.sf.net" name="Document Root" sourceMetaModel="platform:/resource/JETTransformation/metamodel/prom.xsd" sourceRootClass="Prom:DocumentRoot" targetMetaModel="platform:/resource/JETTransformation/metamodel/rdl.xsd" outputProjectName="PromToRdlTransformator" mainClassName="PromToRdlTransformator">
+  <children xsi:type="net.sf:IterationNode" name="Package" iterationReference="Package (Prom:Package_._type)">
+    <children xsi:type="net.sf:IterationNode" name="Workflow Processes" iterationReference="WorkflowProcesses (Prom:WorkflowProcesses_._type)">
+      <children xsi:type="net.sf:IterationNode" name="WorkflowProcess" iterationReference="WorkflowProcess (Prom:WorkflowProcess_._type)">
+        <children xsi:type="net.sf:IterationNode" name="ProcessHeader" iterationReference="ProcessHeader (Prom:ProcessHeader_._type)"/>
+        <children xsi:type="net.sf:IterationNode" name="Activities" iterationReference="Activities (Prom:Activities_._type)">
+          <children xsi:type="net.sf:IterationNode" name="Activitys" iterationReference="Activity (Prom:Activity_._type)"/>
+        </children>
+      </children>
+    </children>
+  </children>
+</net.sf:ProjectNode>

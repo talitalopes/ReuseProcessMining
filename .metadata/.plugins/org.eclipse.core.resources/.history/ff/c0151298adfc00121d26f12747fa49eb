@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/BPMNConverter/src" modelPluginID="BPMNConverter"
+    modelName="BPMN_ProM" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>BPMN_ProM.ecore</foreignModel>
+  <genPackages prefix="ProM_BPMN" disposableProviderFactory="true" ecorePackage="BPMN_ProM.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="BPMN_ProM.ecore#//ActivityType">
+      <genEnumLiterals ecoreEnumLiteral="BPMN_ProM.ecore#//ActivityType/METHOD_EXTENSION"/>
+      <genEnumLiterals ecoreEnumLiteral="BPMN_ProM.ecore#//ActivityType/CLASS_EXTENSION"/>
+      <genEnumLiterals ecoreEnumLiteral="BPMN_ProM.ecore#//ActivityType/INTERFACE_IMPLEMENTATION"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="BPMN_ProM.ecore#//GatewayType">
+      <genEnumLiterals ecoreEnumLiteral="BPMN_ProM.ecore#//GatewayType/XOR"/>
+      <genEnumLiterals ecoreEnumLiteral="BPMN_ProM.ecore#//GatewayType/OR"/>
+    </genEnums>
+    <genClasses ecoreClass="BPMN_ProM.ecore#//Package">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BPMN_ProM.ecore#//Package/PackageHeader"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BPMN_ProM.ecore#//Package/workflowProcesses"/>
+    </genClasses>
+    <genClasses ecoreClass="BPMN_ProM.ecore#//PackageHeader">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BPMN_ProM.ecore#//PackageHeader/XPDLVersion"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BPMN_ProM.ecore#//PackageHeader/Vendor"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BPMN_ProM.ecore#//PackageHeader/Created"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BPMN_ProM.ecore#//PackageHeader/Description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BPMN_ProM.ecore#//PackageHeader/Documentation"/>
+    </genClasses>
+    <genClasses ecoreClass="BPMN_ProM.ecore#//WorkflowProcess">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BPMN_ProM.ecore#//WorkflowProcess/ProcessHeader"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BPMN_ProM.ecore#//WorkflowProcess/RefinableHeader"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BPMN_ProM.ecore#//WorkflowProcess/XpdlParticipants"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BPMN_ProM.ecore#//WorkflowProcess/Activities"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BPMN_ProM.ecore#//WorkflowProcess/Transitions"/>
+    </genClasses>
+    <genClasses ecoreClass="BPMN_ProM.ecore#//ProcessHeader">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BPMN_ProM.ecore#//ProcessHeader/Created"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BPMN_ProM.ecore#//ProcessHeader/Priority"/>
+    </genClasses>
+    <genClasses ecoreClass="BPMN_ProM.ecore#//RedefinableHeader">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BPMN_ProM.ecore#//RedefinableHeader/Author"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BPMN_ProM.ecore#//RedefinableHeader/Version"/>
+    </genClasses>
+    <genClasses ecoreClass="BPMN_ProM.ecore#//Participant">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BPMN_ProM.ecore#//Participant/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BPMN_ProM.ecore#//Participant/id"/>
+    </genClasses>
+    <genClasses ecoreClass="BPMN_ProM.ecore#//Activity">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BPMN_ProM.ecore#//Activity/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BPMN_ProM.ecore#//Activity/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BPMN_ProM.ecore#//Activity/ActivityType"/>
+    </genClasses>
+    <genClasses ecoreClass="BPMN_ProM.ecore#//Event"/>
+    <genClasses ecoreClass="BPMN_ProM.ecore#//StartEvent"/>
+    <genClasses ecoreClass="BPMN_ProM.ecore#//EndEvent"/>
+    <genClasses ecoreClass="BPMN_ProM.ecore#//StartActivity">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BPMN_ProM.ecore#//StartActivity/StartEvent"/>
+    </genClasses>
+    <genClasses ecoreClass="BPMN_ProM.ecore#//EndActivity">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BPMN_ProM.ecore#//EndActivity/EndEvent"/>
+    </genClasses>
+    <genClasses ecoreClass="BPMN_ProM.ecore#//RoutingActivity">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BPMN_ProM.ecore#//RoutingActivity/Route"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BPMN_ProM.ecore#//RoutingActivity/TransitionRestrictions"/>
+    </genClasses>
+    <genClasses ecoreClass="BPMN_ProM.ecore#//Route">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BPMN_ProM.ecore#//Route/GatewayType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BPMN_ProM.ecore#//Route/MarkerVisible"/>
+    </genClasses>
+    <genClasses ecoreClass="BPMN_ProM.ecore#//TransitionRestriction">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference BPMN_ProM.ecore#//TransitionRestriction/Split"/>
+    </genClasses>
+    <genClasses ecoreClass="BPMN_ProM.ecore#//Split">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BPMN_ProM.ecore#//Split/Type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference BPMN_ProM.ecore#//Split/TransitionRefs"/>
+    </genClasses>
+    <genClasses ecoreClass="BPMN_ProM.ecore#//TransitionRef">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BPMN_ProM.ecore#//TransitionRef/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BPMN_ProM.ecore#//TransitionRef/Name"/>
+    </genClasses>
+    <genClasses ecoreClass="BPMN_ProM.ecore#//Transition">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BPMN_ProM.ecore#//Transition/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BPMN_ProM.ecore#//Transition/From"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute BPMN_ProM.ecore#//Transition/To"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

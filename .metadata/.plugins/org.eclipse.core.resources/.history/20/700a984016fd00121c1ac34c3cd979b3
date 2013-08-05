@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdl:schema xmlns:rdl="http://www.w3.org/2001/XMLSchema" xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:g="http://www.jboss.org/drools/flow/gpd" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:tns="http://www.jboss.org/drools" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <rdl:element name="definitions">
+    <rdl:complexType>
+      <rdl:sequence>
+        <rdl:element name="itemDefinition" minOccurs="0" maxOccurs="1">
+          <rdl:complexType>
+            <rdl:simpleContent>
+              <rdl:extension base="rdl:string">
+                <rdl:attribute name="id" type="rdl:normalizedString" use="required"/>
+                <rdl:attribute name="structureRef" type="rdl:normalizedString" use="required"/>
+              </rdl:extension>
+            </rdl:simpleContent>
+          </rdl:complexType>
+        </rdl:element>
+        <rdl:element name="process" minOccurs="0" maxOccurs="1">
+          <rdl:complexType>
+            <rdl:sequence>
+              <rdl:element name="property" maxOccurs="unbounded">
+                <rdl:complexType>
+                  <rdl:simpleContent>
+                    <rdl:extension base="rdl:string">
+                      <rdl:attribute name="id" type="rdl:normalizedString" use="required"/>
+                      <rdl:attribute name="itemSubjectRef" type="rdl:normalizedString" use="required"/>
+                    </rdl:extension>
+                  </rdl:simpleContent>
+                </rdl:complexType>
+              </rdl:element>
+              <rdl:element name="startEvent" minOccurs="0" maxOccurs="1">
+                <rdl:complexType>
+                  <rdl:simpleContent>
+                    <rdl:extension base="rdl:string">
+                      <rdl:attribute name="id" type="rdl:normalizedString" use="required"/>
+                      <rdl:attribute name="name" type="rdl:normalizedString" use="required"/>
+                    </rdl:extension>
+                  </rdl:simpleContent>
+                </rdl:complexType>
+              </rdl:element>
+              <rdl:element name="sequenceFlow" maxOccurs="unbounded">
+                <rdl:complexType>
+                  <rdl:simpleContent>
+                    <rdl:extension base="rdl:string">
+                      <rdl:attribute name="id" type="rdl:normalizedString" use="required"/>
+                      <rdl:attribute name="sourceRef" type="rdl:normalizedString" use="required"/>
+                      <rdl:attribute name="targetRef" type="rdl:normalizedString" use="required"/>
+                    </rdl:extension>
+                  </rdl:simpleContent>
+                </rdl:complexType>
+              </rdl:element>
+              <rdl:element name="task" maxOccurs="unbounded">
+                <rdl:complexType>
+                  <rdl:sequence>
+                    <rdl:element name="ioSpecification" minOccurs="0" maxOccurs="1">
+                      <rdl:complexType>
+                        <rdl:sequence>
+                          <rdl:element name="dataInput" minOccurs="0" maxOccurs="1">
+                            <rdl:complexType>
+                              <rdl:simpleContent>
+                                <rdl:extension base="rdl:string">
+                                  <rdl:attribute name="id" type="rdl:normalizedString" use="required"/>
+                                  <rdl:attribute name="name" type="rdl:normalizedString" use="required"/>
+                                </rdl:extension>
+                              </rdl:simpleContent>
+                            </rdl:complexType>
+                          </rdl:element>
+                          <rdl:element name="inputSet" minOccurs="0" maxOccurs="1">
+                            <rdl:complexType>
+                              <rdl:sequence>
+                                <rdl:element name="dataInputRefs" minOccurs="0" maxOccurs="1" type="rdl:normalizedString"/>
+                              </rdl:sequence>
+                            </rdl:complexType>
+                          </rdl:element>
+                          <rdl:element name="outputSet" minOccurs="0" maxOccurs="1" type="rdl:string"/>
+                        </rdl:sequence>
+                      </rdl:complexType>
+                    </rdl:element>
+                    <rdl:element name="dataInputAssociation" minOccurs="0" maxOccurs="1">
+                      <rdl:complexType>
+                        <rdl:sequence>
+                          <rdl:element name="targetRef" minOccurs="0" maxOccurs="1" type="rdl:normalizedString"/>
+                          <rdl:element name="assignment" minOccurs="0" maxOccurs="1">
+                            <rdl:complexType>
+                              <rdl:sequence>
+                                <rdl:element name="from" minOccurs="0" maxOccurs="1">
+                                  <rdl:complexType>
+                                    <rdl:simpleContent>
+                                      <rdl:extension base="rdl:normalizedString">
+                                        <rdl:attribute name="type" type="rdl:normalizedString" use="required"/>
+                                      </rdl:extension>
+                                    </rdl:simpleContent>
+                                  </rdl:complexType>
+                                </rdl:element>
+                                <rdl:element name="to" minOccurs="0" maxOccurs="1">
+                                  <rdl:complexType>
+                                    <rdl:simpleContent>
+                                      <rdl:extension base="rdl:normalizedString">
+                                        <rdl:attribute name="type" type="rdl:normalizedString" use="required"/>
+                                      </rdl:extension>
+                                    </rdl:simpleContent>
+                                  </rdl:complexType>
+                                </rdl:element>
+                              </rdl:sequence>
+                            </rdl:complexType>
+                          </rdl:element>
+                        </rdl:sequence>
+                      </rdl:complexType>
+                    </rdl:element>
+                  </rdl:sequence>
+                  <rdl:attribute name="id" type="rdl:normalizedString" use="required"/>
+                  <rdl:attribute name="name" type="rdl:normalizedString" use="required"/>
+                  <rdl:attribute name="taskName" type="rdl:normalizedString" use="required"/>
+                </rdl:complexType>
+              </rdl:element>
+              <rdl:element name="exclusiveGateway" maxOccurs="unbounded">
+                <rdl:complexType>
+                  <rdl:simpleContent>
+                    <rdl:extension base="rdl:string">
+                      <rdl:attribute name="id" type="rdl:normalizedString" use="required"/>
+                      <rdl:attribute name="name" type="rdl:normalizedString" use="required"/>
+                      <rdl:attribute name="gatewayDirection" type="rdl:normalizedString" use="required"/>
+                    </rdl:extension>
+                  </rdl:simpleContent>
+                </rdl:complexType>
+              </rdl:element>
+              <rdl:element name="endEvent" minOccurs="0" maxOccurs="1">
+                <rdl:complexType>
+                  <rdl:sequence>
+                    <rdl:element name="terminateEventDefinition" minOccurs="0" maxOccurs="1" type="rdl:string"/>
+                  </rdl:sequence>
+                  <rdl:attribute name="id" type="rdl:normalizedString" use="required"/>
+                  <rdl:attribute name="name" type="rdl:normalizedString" use="required"/>
+                </rdl:complexType>
+              </rdl:element>
+            </rdl:sequence>
+            <rdl:attribute name="processType" type="rdl:normalizedString" use="required"/>
+            <rdl:attribute name="isExecutable" type="rdl:boolean" use="required"/>
+            <rdl:attribute name="id" type="rdl:normalizedString" use="required"/>
+            <rdl:attribute name="name" type="rdl:string" use="required"/>
+          </rdl:complexType>
+        </rdl:element>
+      </rdl:sequence>
+      <rdl:attribute name="id" type="rdl:normalizedString" use="required"/>
+      <rdl:attribute name="targetNamespace" type="rdl:anyURI" use="required"/>
+      <rdl:attribute name="typeLanguage" type="rdl:anyURI" use="required"/>
+      <rdl:attribute name="expressionLanguage" type="rdl:anyURI" use="required"/>
+      <rdl:attribute name="schemaLocation" type="rdl:anyURI" use="required"/>
+    </rdl:complexType>
+    <rdl:attribute name="id" type="rdl:normalizedString" use="required"/>
+    <rdl:attribute name="targetNamespace" type="rdl:anyURI" use="required"/>
+    <rdl:attribute name="typeLanguage" type="rdl:anyURI" use="required"/>
+    <rdl:attribute name="expressionLanguage" type="rdl:anyURI" use="required"/>
+    <rdl:attribute name="schemaLocation" type="rdl:anyURI" use="required"/>
+  </rdl:element>
+</rdl:schema>
