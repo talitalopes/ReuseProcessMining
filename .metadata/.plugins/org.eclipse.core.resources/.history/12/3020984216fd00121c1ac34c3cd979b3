@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<net.sf:ProjectNode xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:net.sf="http://jetset.sf.net" name="Document Root" sourceMetaModel="platform:/resource/JETTransformation/models/file.xsd" sourceRootClass="File:DocumentRoot" targetMetaModel="" outputProjectName="FileTransformator" mainClassName="FileTransformator">
-  <children xsi:type="net.sf:IterationNode" name="definitions" iterationReference="definitions (File:definitions_._type)">
-    <children xsi:type="net.sf:IterationNode" name="itemDefinition" iterationReference="itemDefinition (File:itemDefinition_._type)"/>
-    <children xsi:type="net.sf:IterationNode" name="Process" iterationReference="process (File:process_._type)">
-      <children xsi:type="net.sf:IterationNode" name="Start Event" iterationReference="startEvent (File:startEvent_._type)"/>
-    </children>
-  </children>
-</net.sf:ProjectNode>

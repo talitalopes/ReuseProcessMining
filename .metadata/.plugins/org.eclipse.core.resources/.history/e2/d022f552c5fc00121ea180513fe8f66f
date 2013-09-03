@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<net.sf:ProjectNode xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:net.sf="http://jetset.sf.net" sourceMetaModel="platform:/resource/JETTransformation/models/file.xsd" sourceRootClass="File:DocumentRoot" targetMetaModel="" outputProjectName="FileTransformator" mainClassName="FileTransformator"/>

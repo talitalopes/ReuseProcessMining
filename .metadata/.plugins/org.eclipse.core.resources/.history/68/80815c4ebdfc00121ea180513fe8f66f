@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<net.sf:ProjectNode xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:net.sf="http://jetset.sf.net" name="Document Root" sourceMetaModel="platform:/resource/JETTransformation/models/BPMN_RDL.xsd" sourceRootClass="rdl:DocumentRoot" targetMetaModel="" outputProjectName="BPMN_RDLTransformator" mainClassName="BPMN_RDLTransformator">
-  <children xsi:type="net.sf:IterationNode" name="process" iterationReference="process (rdl:Process)">
-    <children xsi:type="net.sf:IterationNode" name="Tasks" iterationReference="properties (properties)"/>
-  </children>
-</net.sf:ProjectNode>

@@ -1,2 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<net.sf:ProjectNode xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:net.sf="http://jetset.sf.net" name="Activity" sourceMetaModel="platform:/resource/JETTransformation/models/ProM_BPMN.xsd" sourceRootClass="br.ufrj.cos.prisma.bpmn.prom:Activity" targetMetaModel="platform:/resource/JETTransformation/models/RDL_BPMN.xsd" outputProjectName="RDLBPMNTransformator" outputProjectNamespace="br.ufrj.cos.prisma.rdltransformation" mainClassName="RDLBPMNTransformator" projectDependencies="BPMNConverter ,ReuseProcessMiner"/>

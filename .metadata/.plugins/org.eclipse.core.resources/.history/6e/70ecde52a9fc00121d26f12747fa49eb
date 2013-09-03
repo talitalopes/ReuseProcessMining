@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<net.sf:ProjectNode xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:net.sf="http://jetset.sf.net" name="Activity" sourceMetaModel="platform:/resource/JETTransformation/models/ProM_BPMN.xsd" sourceRootClass="br.ufrj.cos.prisma.bpmn.prom:Activity" targetMetaModel="platform:/resource/JETTransformation/models/RDL_BPMN.xsd" outputProjectName="RDLBPMNTransformator" outputProjectNamespace="br.ufrj.cos.prisma.rdltransformation" mainClassName="RDLBPMNTransformator" projectDependencies="BPMNConverter ,ReuseProcessMiner">
-  <children xsi:type="net.sf:FileNode" name="Activity" outputFileName="&lt;%=StringUtils.toCamelCase(getValue(&quot;ActivityType&quot;))%>">
-    <children xsi:type="net.sf:IterationNode" name="Invalid Iteration"/>
-  </children>
-</net.sf:ProjectNode>
