@@ -163,6 +163,32 @@
                 <xmlAttributes name="taskName" value="&lt;%=getValue(&quot;Name&quot;).split(&quot;_&quot;)[0]%>"/>
               </children>
             </children>
+            <children xsi:type="net.sf:IterationNode" name="Activity [XOR - Diverging]" iterationReference="Activity (Prom:Activity_._type)">
+              <children xsi:type="net.sf:IterationNode" name="Transition Restrictions" iterationReference="TransitionRestrictions (Prom:TransitionRestrictions_._type)">
+                <children xsi:type="net.sf:IterationNode" name="TransitionRestriction" iterationReference="TransitionRestriction (Prom:TransitionRestriction_._type)">
+                  <children xsi:type="net.sf:IterationNode" name="Split [XOR - Diverging]" iterationReference="Split (Prom:Split_._type)" conditionFilter="&lt;%=getValue(&quot;Type&quot;).contains(&quot;XOR&quot;)%>">
+                    <children xsi:type="net.sf:XmlNode" name="exclusiveGateway" targetElement="exclusiveGateway (Rdl:exclusiveGateway_._type)">
+                      <xmlAttributes name="id" value="_&lt;%=getValue(getTreeAncestor(3), &quot;Id&quot;)%>"/>
+                      <xmlAttributes name="name" value="Gateway"/>
+                      <xmlAttributes name="gatewayDirection" value="Diverging"/>
+                    </children>
+                  </children>
+                </children>
+              </children>
+            </children>
+            <children xsi:type="net.sf:IterationNode" name="Activity [XOR - Converging]" iterationReference="Activity (Prom:Activity_._type)">
+              <children xsi:type="net.sf:IterationNode" name="Transition Restrictions" iterationReference="TransitionRestrictions (Prom:TransitionRestrictions_._type)">
+                <children xsi:type="net.sf:IterationNode" name="TransitionRestriction" iterationReference="TransitionRestriction (Prom:TransitionRestriction_._type)">
+                  <children xsi:type="net.sf:IterationNode" name="Split [XOR - Converging]" iterationReference="Split (Prom:Split_._type)">
+                    <children xsi:type="net.sf:XmlNode" name="exclusiveGateway" targetElement="exclusiveGateway (Rdl:exclusiveGateway_._type)">
+                      <xmlAttributes name="gatewayDirection" value="Converging"/>
+                      <xmlAttributes name="name" value="Gateway"/>
+                      <xmlAttributes name="id" value="_&lt;%=getValue(getTreeAncestor(3), &quot;Id&quot;)%>"/>
+                    </children>
+                  </children>
+                </children>
+              </children>
+            </children>
           </children>
           <children xsi:type="net.sf:IterationNode" name="Transitions" iterationReference="Transitions (Prom:Transitions_._type)">
             <children xsi:type="net.sf:IterationNode" name="Transition" iterationReference="Transition (Prom:Transition_._type)">
