@@ -1,0 +1,910 @@
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:g="http://www.jboss.org/drools/flow/gpd"
+	xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+	xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:tns="http://www.jboss.org/drools"
+	id="Definition" targetNamespace="http://www.jboss.org/drools"
+	typeLanguage="http://www.java.com/javaTypes" expressionLanguage="http://www.mvel.org/2.0"
+	xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+
+	<process xmlns:model="http://www.omg.org/spec/BPMN/20100524/MODEL"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL bpmn-semantic.xsd"
+		processType="Private" isExecutable="true" id="org.reusefusion.reuse"
+		name="Reuse Process">
+		<exclusiveGateway name="Gateway" gatewayDirection="Converging"
+			id="_1223139078" />
+		<exclusiveGateway name="Gateway" gatewayDirection="Converging"
+			id="_1754221575" />
+		<exclusiveGateway name="Gateway" gatewayDirection="Converging"
+			id="_-2086386720" />
+		<exclusiveGateway name="Gateway" gatewayDirection="Converging"
+			id="_-501332223" />
+		<exclusiveGateway id="_541349806" name="Gateway"
+			gatewayDirection="Diverging" />
+		<exclusiveGateway id="_-1450836171" name="Gateway"
+			gatewayDirection="Diverging" />
+		<exclusiveGateway id="_-1281355848" name="Gateway"
+			gatewayDirection="Diverging" />
+		<inclusiveGateway id="_-66091805" name="Gateway"
+			gatewayDirection="Converging" />
+		<inclusiveGateway id="_-1852775686" name="Gateway"
+			gatewayDirection="Diverging" />
+		<inclusiveGateway id="_541302833" name="Gateway"
+			gatewayDirection="Diverging" />
+		<inclusiveGateway id="_54270511" name="Gateway"
+			gatewayDirection="Diverging" />
+		<task name="ClassExtension" id="_311689420">
+			<ioSpecification>
+				<dataInput id="_311689420SUPER_NAMEInput" name="SUPER_NAME" />
+				<dataInput name="SUB_PNAME" id="_311689420SUB_PNAMEInput" />
+				<dataInput name="SUB_NAME" id="_311689420SUB_NAMEInput" />
+				<inputSet>
+					<dataInputRefs>_311689420SUPER_NAMEInput</dataInputRefs>
+					<dataInputRefs>_311689420SUB_NAMEInput</dataInputRefs>
+					<dataInputRefs>_311689420SUB_PNAMEInput</dataInputRefs>
+				</inputSet>
+			</ioSpecification>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						org.eclipse.gef.palette.PaletteRoot
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_311689420SUPER_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_311689420SUPER_NAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						packageName
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_311689420SUB_PNAMEInput
+					</to>
+				</assignment>
+				<targetRef>_311689420SUB_PNAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						"?"
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_311689420SUB_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_311689420SUB_NAMEInput</targetRef>
+			</dataInputAssociation>
+		</task>
+		<task name="ClassExtension" id="_-1181581051">
+			<ioSpecification>
+				<dataInput id="_-1181581051SUPER_NAMEInput" name="SUPER_NAME" />
+				<dataInput name="SUB_PNAME" id="_-1181581051SUB_PNAMEInput" />
+				<dataInput name="SUB_NAME" id="_-1181581051SUB_NAMEInput" />
+				<inputSet>
+					<dataInputRefs>_-1181581051SUPER_NAMEInput</dataInputRefs>
+					<dataInputRefs>_-1181581051SUB_NAMEInput</dataInputRefs>
+					<dataInputRefs>_-1181581051SUB_PNAMEInput</dataInputRefs>
+				</inputSet>
+			</ioSpecification>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						org.eclipse.gef.editpolicies.GraphicalNodeEditPolicy
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_-1181581051SUPER_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_-1181581051SUPER_NAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						packageName
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_-1181581051SUB_PNAMEInput
+					</to>
+				</assignment>
+				<targetRef>_-1181581051SUB_PNAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						"?"
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_-1181581051SUB_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_-1181581051SUB_NAMEInput</targetRef>
+			</dataInputAssociation>
+		</task>
+		<task name="ClassExtension" id="_1656610729">
+			<ioSpecification>
+				<dataInput id="_1656610729SUPER_NAMEInput" name="SUPER_NAME" />
+				<dataInput name="SUB_PNAME" id="_1656610729SUB_PNAMEInput" />
+				<dataInput name="SUB_NAME" id="_1656610729SUB_NAMEInput" />
+				<inputSet>
+					<dataInputRefs>_1656610729SUPER_NAMEInput</dataInputRefs>
+					<dataInputRefs>_1656610729SUB_NAMEInput</dataInputRefs>
+					<dataInputRefs>_1656610729SUB_PNAMEInput</dataInputRefs>
+				</inputSet>
+			</ioSpecification>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						org.eclipse.gef.editpolicies.XYLayoutEditPolicy
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_1656610729SUPER_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_1656610729SUPER_NAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						packageName
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_1656610729SUB_PNAMEInput
+					</to>
+				</assignment>
+				<targetRef>_1656610729SUB_PNAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						"?"
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_1656610729SUB_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_1656610729SUB_NAMEInput</targetRef>
+			</dataInputAssociation>
+		</task>
+		<task name="ClassExtension" id="_960839150">
+			<ioSpecification>
+				<dataInput id="_960839150SUPER_NAMEInput" name="SUPER_NAME" />
+				<dataInput name="SUB_PNAME" id="_960839150SUB_PNAMEInput" />
+				<dataInput name="SUB_NAME" id="_960839150SUB_NAMEInput" />
+				<inputSet>
+					<dataInputRefs>_960839150SUPER_NAMEInput</dataInputRefs>
+					<dataInputRefs>_960839150SUB_NAMEInput</dataInputRefs>
+					<dataInputRefs>_960839150SUB_PNAMEInput</dataInputRefs>
+				</inputSet>
+			</ioSpecification>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						org.eclipse.gef.editparts.AbstractGraphicalEditPart
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_960839150SUPER_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_960839150SUPER_NAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						packageName
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_960839150SUB_PNAMEInput
+					</to>
+				</assignment>
+				<targetRef>_960839150SUB_PNAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						"?"
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_960839150SUB_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_960839150SUB_NAMEInput</targetRef>
+			</dataInputAssociation>
+		</task>
+		<task name="ClassExtension" id="_-1811986499">
+			<ioSpecification>
+				<dataInput id="_-1811986499SUPER_NAMEInput" name="SUPER_NAME" />
+				<dataInput name="SUB_PNAME" id="_-1811986499SUB_PNAMEInput" />
+				<dataInput name="SUB_NAME" id="_-1811986499SUB_NAMEInput" />
+				<inputSet>
+					<dataInputRefs>_-1811986499SUPER_NAMEInput</dataInputRefs>
+					<dataInputRefs>_-1811986499SUB_NAMEInput</dataInputRefs>
+					<dataInputRefs>_-1811986499SUB_PNAMEInput</dataInputRefs>
+				</inputSet>
+			</ioSpecification>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						org.eclipse.gef.ui.actions.ActionBarContributor
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_-1811986499SUPER_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_-1811986499SUPER_NAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						packageName
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_-1811986499SUB_PNAMEInput
+					</to>
+				</assignment>
+				<targetRef>_-1811986499SUB_PNAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						"?"
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_-1811986499SUB_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_-1811986499SUB_NAMEInput</targetRef>
+			</dataInputAssociation>
+		</task>
+		<task name="ClassExtension" id="_-50088373">
+			<ioSpecification>
+				<dataInput id="_-50088373SUPER_NAMEInput" name="SUPER_NAME" />
+				<dataInput name="SUB_PNAME" id="_-50088373SUB_PNAMEInput" />
+				<dataInput name="SUB_NAME" id="_-50088373SUB_NAMEInput" />
+				<inputSet>
+					<dataInputRefs>_-50088373SUPER_NAMEInput</dataInputRefs>
+					<dataInputRefs>_-50088373SUB_NAMEInput</dataInputRefs>
+					<dataInputRefs>_-50088373SUB_PNAMEInput</dataInputRefs>
+				</inputSet>
+			</ioSpecification>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						org.eclipse.gef.editparts.AbstractConnectionEditPart
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_-50088373SUPER_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_-50088373SUPER_NAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						packageName
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_-50088373SUB_PNAMEInput
+					</to>
+				</assignment>
+				<targetRef>_-50088373SUB_PNAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						"?"
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_-50088373SUB_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_-50088373SUB_NAMEInput</targetRef>
+			</dataInputAssociation>
+		</task>
+		<task name="ClassExtension" id="_-666008340">
+			<ioSpecification>
+				<dataInput id="_-666008340SUPER_NAMEInput" name="SUPER_NAME" />
+				<dataInput name="SUB_PNAME" id="_-666008340SUB_PNAMEInput" />
+				<dataInput name="SUB_NAME" id="_-666008340SUB_NAMEInput" />
+				<inputSet>
+					<dataInputRefs>_-666008340SUPER_NAMEInput</dataInputRefs>
+					<dataInputRefs>_-666008340SUB_NAMEInput</dataInputRefs>
+					<dataInputRefs>_-666008340SUB_PNAMEInput</dataInputRefs>
+				</inputSet>
+			</ioSpecification>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						org.eclipse.gef.commands.Command
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_-666008340SUPER_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_-666008340SUPER_NAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						packageName
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_-666008340SUB_PNAMEInput
+					</to>
+				</assignment>
+				<targetRef>_-666008340SUB_PNAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						"?"
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_-666008340SUB_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_-666008340SUB_NAMEInput</targetRef>
+			</dataInputAssociation>
+		</task>
+		<task name="ClassExtension" id="_1352277766">
+			<ioSpecification>
+				<dataInput id="_1352277766SUPER_NAMEInput" name="SUPER_NAME" />
+				<dataInput name="SUB_PNAME" id="_1352277766SUB_PNAMEInput" />
+				<dataInput name="SUB_NAME" id="_1352277766SUB_NAMEInput" />
+				<inputSet>
+					<dataInputRefs>_1352277766SUPER_NAMEInput</dataInputRefs>
+					<dataInputRefs>_1352277766SUB_NAMEInput</dataInputRefs>
+					<dataInputRefs>_1352277766SUB_PNAMEInput</dataInputRefs>
+				</inputSet>
+			</ioSpecification>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						org.eclipse.gef.editpolicies.ConnectionEditPolicy
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_1352277766SUPER_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_1352277766SUPER_NAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						packageName
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_1352277766SUB_PNAMEInput
+					</to>
+				</assignment>
+				<targetRef>_1352277766SUB_PNAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						"?"
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_1352277766SUB_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_1352277766SUB_NAMEInput</targetRef>
+			</dataInputAssociation>
+		</task>
+		<task name="ClassExtension" id="_-1562002954">
+			<ioSpecification>
+				<dataInput id="_-1562002954SUPER_NAMEInput" name="SUPER_NAME" />
+				<dataInput name="SUB_PNAME" id="_-1562002954SUB_PNAMEInput" />
+				<dataInput name="SUB_NAME" id="_-1562002954SUB_NAMEInput" />
+				<inputSet>
+					<dataInputRefs>_-1562002954SUPER_NAMEInput</dataInputRefs>
+					<dataInputRefs>_-1562002954SUB_NAMEInput</dataInputRefs>
+					<dataInputRefs>_-1562002954SUB_PNAMEInput</dataInputRefs>
+				</inputSet>
+			</ioSpecification>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						org.eclipse.gef.ui.parts.GraphicalEditorWithFlyoutPalette
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_-1562002954SUPER_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_-1562002954SUPER_NAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						packageName
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_-1562002954SUB_PNAMEInput
+					</to>
+				</assignment>
+				<targetRef>_-1562002954SUB_PNAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						"?"
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_-1562002954SUB_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_-1562002954SUB_NAMEInput</targetRef>
+			</dataInputAssociation>
+		</task>
+		<task name="ClassExtension" id="_-1832951294">
+			<ioSpecification>
+				<dataInput id="_-1832951294SUPER_NAMEInput" name="SUPER_NAME" />
+				<dataInput name="SUB_PNAME" id="_-1832951294SUB_PNAMEInput" />
+				<dataInput name="SUB_NAME" id="_-1832951294SUB_NAMEInput" />
+				<inputSet>
+					<dataInputRefs>_-1832951294SUPER_NAMEInput</dataInputRefs>
+					<dataInputRefs>_-1832951294SUB_NAMEInput</dataInputRefs>
+					<dataInputRefs>_-1832951294SUB_PNAMEInput</dataInputRefs>
+				</inputSet>
+			</ioSpecification>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						org.eclipse.gef.editpolicies.ComponentEditPolicy
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_-1832951294SUPER_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_-1832951294SUPER_NAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						packageName
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_-1832951294SUB_PNAMEInput
+					</to>
+				</assignment>
+				<targetRef>_-1832951294SUB_PNAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						"?"
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_-1832951294SUB_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_-1832951294SUB_NAMEInput</targetRef>
+			</dataInputAssociation>
+		</task>
+		<startEvent
+			id="_-1647031060" name="StartProcess" />
+		<endEvent
+			id="_-886261312" name="EndProcess" />
+		<task name="Declaration" id="_311689419">
+			<ioSpecification>
+				<dataInput id="_3116894191TYPE_NAMEInput" name="TYPE_NAME" />
+				<dataInput name="VAR_NAME" id="_3116894191VAR_NAMEInput" />
+				<inputSet>
+					<dataInputRefs>_3116894191TYPE_NAMEInput</dataInputRefs>
+					<dataInputRefs>_3116894191VAR_NAMEInput</dataInputRefs>
+				</inputSet>
+			</ioSpecification>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						VOID
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_3116894191TYPE_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_3116894191TYPE_NAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						org.eclipse.gef.palette.palette_root
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_3116894191VAR_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_3116894191VAR_NAMEInput</targetRef>
+			</dataInputAssociation>
+		</task>
+		<task name="Declaration" id="_-1181581049">
+			<ioSpecification>
+				<dataInput id="_-11815810491TYPE_NAMEInput" name="TYPE_NAME" />
+				<dataInput name="VAR_NAME" id="_-11815810491VAR_NAMEInput" />
+				<inputSet>
+					<dataInputRefs>_-11815810491TYPE_NAMEInput
+					</dataInputRefs>
+					<dataInputRefs>_-11815810491VAR_NAMEInput
+					</dataInputRefs>
+				</inputSet>
+			</ioSpecification>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						VOID
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_-11815810491TYPE_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_-11815810491TYPE_NAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						org.eclipse.gef.editpolicies.graphical_node_edit_policy
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_-11815810491VAR_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_-11815810491VAR_NAMEInput</targetRef>
+			</dataInputAssociation>
+		</task>
+		<task name="Declaration" id="_1656610728">
+			<ioSpecification>
+				<dataInput id="_16566107281TYPE_NAMEInput" name="TYPE_NAME" />
+				<dataInput name="VAR_NAME" id="_16566107281VAR_NAMEInput" />
+				<inputSet>
+					<dataInputRefs>_16566107281TYPE_NAMEInput
+					</dataInputRefs>
+					<dataInputRefs>_16566107281VAR_NAMEInput
+					</dataInputRefs>
+				</inputSet>
+			</ioSpecification>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						VOID
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_16566107281TYPE_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_16566107281TYPE_NAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						org.eclipse.gef.editpolicies.xy_layout_edit_policy
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_16566107281VAR_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_16566107281VAR_NAMEInput</targetRef>
+			</dataInputAssociation>
+		</task>
+		<task name="Declaration" id="_960839149">
+			<ioSpecification>
+				<dataInput id="_9608391491TYPE_NAMEInput" name="TYPE_NAME" />
+				<dataInput name="VAR_NAME" id="_9608391491VAR_NAMEInput" />
+				<inputSet>
+					<dataInputRefs>_9608391491TYPE_NAMEInput
+					</dataInputRefs>
+					<dataInputRefs>_9608391491VAR_NAMEInput
+					</dataInputRefs>
+				</inputSet>
+			</ioSpecification>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						VOID
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_9608391491TYPE_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_9608391491TYPE_NAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						org.eclipse.gef.editparts.abstract_graphical_edit_part
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_9608391491VAR_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_9608391491VAR_NAMEInput</targetRef>
+			</dataInputAssociation>
+		</task>
+		<task name="Declaration" id="_-1811986498">
+			<ioSpecification>
+				<dataInput id="_-18119864981TYPE_NAMEInput" name="TYPE_NAME" />
+				<dataInput name="VAR_NAME" id="_-18119864981VAR_NAMEInput" />
+				<inputSet>
+					<dataInputRefs>_-18119864981TYPE_NAMEInput
+					</dataInputRefs>
+					<dataInputRefs>_-18119864981VAR_NAMEInput
+					</dataInputRefs>
+				</inputSet>
+			</ioSpecification>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						VOID
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_-18119864981TYPE_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_-18119864981TYPE_NAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						org.eclipse.gef.ui.actions.action_bar_contributor
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_-18119864981VAR_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_-18119864981VAR_NAMEInput</targetRef>
+			</dataInputAssociation>
+		</task>
+		<task name="Declaration" id="_-50088372">
+			<ioSpecification>
+				<dataInput id="_-500883721TYPE_NAMEInput" name="TYPE_NAME" />
+				<dataInput name="VAR_NAME" id="_-500883721VAR_NAMEInput" />
+				<inputSet>
+					<dataInputRefs>_-500883721TYPE_NAMEInput
+					</dataInputRefs>
+					<dataInputRefs>_-500883721VAR_NAMEInput
+					</dataInputRefs>
+				</inputSet>
+			</ioSpecification>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						VOID
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_-500883721TYPE_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_-500883721TYPE_NAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						org.eclipse.gef.editparts.abstract_connection_edit_part
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_-500883721VAR_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_-500883721VAR_NAMEInput</targetRef>
+			</dataInputAssociation>
+		</task>
+		<task name="Declaration" id="_-666008339">
+			<ioSpecification>
+				<dataInput id="_-6660083391TYPE_NAMEInput" name="TYPE_NAME" />
+				<dataInput name="VAR_NAME" id="_-6660083391VAR_NAMEInput" />
+				<inputSet>
+					<dataInputRefs>_-6660083391TYPE_NAMEInput
+					</dataInputRefs>
+					<dataInputRefs>_-6660083391VAR_NAMEInput
+					</dataInputRefs>
+				</inputSet>
+			</ioSpecification>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						VOID
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_-6660083391TYPE_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_-6660083391TYPE_NAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						org.eclipse.gef.commands.command
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_-6660083391VAR_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_-6660083391VAR_NAMEInput</targetRef>
+			</dataInputAssociation>
+		</task>
+		<task name="Declaration" id="_1352277765">
+			<ioSpecification>
+				<dataInput id="_13522777651TYPE_NAMEInput" name="TYPE_NAME" />
+				<dataInput name="VAR_NAME" id="_13522777651VAR_NAMEInput" />
+				<inputSet>
+					<dataInputRefs>_13522777651TYPE_NAMEInput
+					</dataInputRefs>
+					<dataInputRefs>_13522777651VAR_NAMEInput
+					</dataInputRefs>
+				</inputSet>
+			</ioSpecification>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						VOID
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_13522777651TYPE_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_13522777651TYPE_NAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						org.eclipse.gef.editpolicies.connection_edit_policy
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_13522777651VAR_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_13522777651VAR_NAMEInput</targetRef>
+			</dataInputAssociation>
+		</task>
+		<task name="Declaration" id="_-1562002953">
+			<ioSpecification>
+				<dataInput id="_-15620029531TYPE_NAMEInput" name="TYPE_NAME" />
+				<dataInput name="VAR_NAME" id="_-15620029531VAR_NAMEInput" />
+				<inputSet>
+					<dataInputRefs>_-15620029531TYPE_NAMEInput
+					</dataInputRefs>
+					<dataInputRefs>_-15620029531VAR_NAMEInput
+					</dataInputRefs>
+				</inputSet>
+			</ioSpecification>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						VOID
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_-15620029531TYPE_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_-15620029531TYPE_NAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						org.eclipse.gef.ui.parts.graphical_editor_with_flyout_palette
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_-15620029531VAR_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_-15620029531VAR_NAMEInput</targetRef>
+			</dataInputAssociation>
+		</task>
+		<task name="Declaration" id="_-1832951293">
+			<ioSpecification>
+				<dataInput id="_-18329512931TYPE_NAMEInput" name="TYPE_NAME" />
+				<dataInput name="VAR_NAME" id="_-18329512931VAR_NAMEInput" />
+				<inputSet>
+					<dataInputRefs>_-18329512931TYPE_NAMEInput
+					</dataInputRefs>
+					<dataInputRefs>_-18329512931VAR_NAMEInput
+					</dataInputRefs>
+				</inputSet>
+			</ioSpecification>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						VOID
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_-18329512931TYPE_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_-18329512931TYPE_NAMEInput
+				</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						org.eclipse.gef.editpolicies.component_edit_policy
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_-18329512931VAR_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_-18329512931VAR_NAMEInput</targetRef>
+			</dataInputAssociation>
+		</task>
+		<sequenceFlow id="_671782799" sourceRef="_-1647031060"
+			targetRef="54270511" />
+		<sequenceFlow id="_-1096731579" sourceRef="_-1181581051"
+			targetRef="541349806" />
+		<sequenceFlow id="_1629601609" sourceRef="_541349806"
+			targetRef="-1832951293" />
+		<sequenceFlow id="_1629601609" sourceRef="_-1832951293"
+			targetRef="-1832951294" />
+		<sequenceFlow id="_61508108" sourceRef="_1656610729"
+			targetRef="-1450836171" />
+		<sequenceFlow id="_1335968587" sourceRef="_-1450836171"
+			targetRef="1352277765" />
+		<sequenceFlow id="_1335968587" sourceRef="_1352277765"
+			targetRef="1352277766" />
+		<sequenceFlow id="_-1524071997" sourceRef="_960839150"
+			targetRef="-1852775686" />
+		<sequenceFlow id="_1397522298" sourceRef="_-1852775686"
+			targetRef="1656610728" />
+		<sequenceFlow id="_1397522298" sourceRef="_1656610728"
+			targetRef="1656610729" />
+		<sequenceFlow id="_1008013088" sourceRef="_-50088373"
+			targetRef="541302833" />
+		<sequenceFlow id="_-1309277747" sourceRef="_-666008340"
+			targetRef="-1281355848" />
+		<sequenceFlow id="_-1350333530" sourceRef="_54270511"
+			targetRef="-1562002953" />
+		<sequenceFlow id="_-1350333530" sourceRef="_-1562002953"
+			targetRef="-1562002954" />
+		<sequenceFlow id="_919165573" sourceRef="_54270511"
+			targetRef="311689419" />
+		<sequenceFlow id="_919165573" sourceRef="_311689419"
+			targetRef="311689420" />
+		<sequenceFlow id="_1411375347" sourceRef="_1352277766"
+			targetRef="-1811986498" />
+		<sequenceFlow id="_1411375347" sourceRef="_-1811986498"
+			targetRef="-1811986499" />
+		<sequenceFlow id="_-1126071667" sourceRef="_541302833"
+			targetRef="1223139078" />
+		<sequenceFlow id="_-1940353965" sourceRef="_-1811986499"
+			targetRef="1223139078" />
+		<sequenceFlow id="_-148420141" sourceRef="_1223139078"
+			targetRef="-1181581049" />
+		<sequenceFlow id="_-148420141" sourceRef="_-1181581049"
+			targetRef="-1181581051" />
+		<sequenceFlow id="_1652456476" sourceRef="_541302833"
+			targetRef="1754221575" />
+		<sequenceFlow id="_1162758112" sourceRef="_-1281355848"
+			targetRef="1754221575" />
+		<sequenceFlow id="_991635275" sourceRef="_-1852775686"
+			targetRef="1754221575" />
+		<sequenceFlow id="_2073858863" sourceRef="_1754221575"
+			targetRef="960839149" />
+		<sequenceFlow id="_2073858863" sourceRef="_960839149"
+			targetRef="960839150" />
+		<sequenceFlow id="_-43674813" sourceRef="_-1281355848"
+			targetRef="-2086386720" />
+		<sequenceFlow id="_-1038920632" sourceRef="_-1852775686"
+			targetRef="-2086386720" />
+		<sequenceFlow id="_-589523178" sourceRef="_-2086386720"
+			targetRef="-50088372" />
+		<sequenceFlow id="_-589523178" sourceRef="_-50088372"
+			targetRef="-50088373" />
+		<sequenceFlow id="_-1888020660" sourceRef="_-1562002954"
+			targetRef="-501332223" />
+		<sequenceFlow id="_-1601642951" sourceRef="_-1281355848"
+			targetRef="-501332223" />
+		<sequenceFlow id="_-657504422" sourceRef="_311689420"
+			targetRef="-501332223" />
+		<sequenceFlow id="_2111838896" sourceRef="_-501332223"
+			targetRef="-666008339" />
+		<sequenceFlow id="_2111838896" sourceRef="_-666008339"
+			targetRef="-666008340" />
+		<sequenceFlow id="_6175976" sourceRef="_-1832951294"
+			targetRef="-66091805" />
+		<sequenceFlow id="_-149229771" sourceRef="_541349806"
+			targetRef="-66091805" />
+		<sequenceFlow id="_2039500089" sourceRef="_-1450836171"
+			targetRef="-66091805" />
+		<sequenceFlow id="_-16571256" sourceRef="_-66091805"
+			targetRef="-886261312" />
+	</process>
+</definitions>
