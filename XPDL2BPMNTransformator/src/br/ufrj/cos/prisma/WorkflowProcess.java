@@ -72,7 +72,7 @@ public class WorkflowProcess extends IterationNodeGenerator{
     * @see net.sf.jetset.runtime.generator.NodeGenerator#getNodePath()
     */
    protected String getNodePath(){
-      return "DocumentRoot -> Workflow Processes -> WorkflowProcess";
+      return "Document Root -> WorkflowProcess";
    }
 
    /* (non-Javadoc)

@@ -128,7 +128,7 @@ public class InclusiveGateway2 extends XmlNodeGenerator{
     * @see net.sf.jetset.runtime.generator.NodeGenerator#getNodePath()
     */
    protected String getNodePath(){
-      return "DocumentRoot -> Workflow Processes -> WorkflowProcess -> WorkflowProcess -> process -> Activities -> Activitys [OR - Diverging] -> Transition Restrictions -> TransitionRestriction -> Split -> inclusive gateway";
+      return "Document Root -> WorkflowProcess -> WorkflowProcess -> process -> Activities -> Activitys [OR - Diverging] -> Transition Restrictions -> TransitionRestriction -> Split -> inclusive gateway";
    }
 
    /* (non-Javadoc)

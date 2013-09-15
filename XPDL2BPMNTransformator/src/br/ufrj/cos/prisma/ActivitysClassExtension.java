@@ -72,7 +72,7 @@ public class ActivitysClassExtension extends IterationNodeGenerator{
     * @see net.sf.jetset.runtime.generator.NodeGenerator#getNodePath()
     */
    protected String getNodePath(){
-      return "DocumentRoot -> Workflow Processes -> WorkflowProcess -> WorkflowProcess -> process -> Activities -> Activitys [Class Extension]";
+      return "Document Root -> WorkflowProcess -> WorkflowProcess -> process -> Activities -> Activitys [Class Extension]";
    }
 
    /* (non-Javadoc)
@@ -81,7 +81,7 @@ public class ActivitysClassExtension extends IterationNodeGenerator{
    protected NodeGenerator[] getChildNodeGenerators(){
 	
       NodeGenerator[] childGenerators = new NodeGenerator[1];
-      childGenerators[0] = new br.ufrj.cos.prisma.Task();
+      childGenerators[0] = new br.ufrj.cos.prisma.TaskclassExtension();
       return childGenerators;
       
    }

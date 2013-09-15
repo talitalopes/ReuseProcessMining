@@ -31,7 +31,7 @@ import net.sf.jetset.runtime.generator.PropertyGenerator;
   {
     final StringBuffer stringBuffer = new StringBuffer();
     stringBuffer.append(TEXT_1);
-    stringBuffer.append(getValue(getTreeAncestor(3), "CompletionQuantity"));
+    stringBuffer.append(getValue(getTreeAncestor(3), "Id"));
     return stringBuffer.toString();
   }
 }

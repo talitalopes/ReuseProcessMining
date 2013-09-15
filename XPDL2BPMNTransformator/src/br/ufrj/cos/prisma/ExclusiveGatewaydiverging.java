@@ -128,7 +128,7 @@ public class ExclusiveGatewaydiverging extends XmlNodeGenerator{
     * @see net.sf.jetset.runtime.generator.NodeGenerator#getNodePath()
     */
    protected String getNodePath(){
-      return "DocumentRoot -> Workflow Processes -> WorkflowProcess -> WorkflowProcess -> process -> Activities -> Activitys [XOR - Diverging] -> Transition Restrictions -> TransitionRestriction -> Split -> exclusive gateway [diverging]";
+      return "Document Root -> WorkflowProcess -> WorkflowProcess -> process -> Activities -> Activitys [XOR - Diverging] -> Transition Restrictions -> TransitionRestriction -> Split -> exclusive gateway [diverging]";
    }
 
    /* (non-Javadoc)

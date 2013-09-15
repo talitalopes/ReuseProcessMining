@@ -72,7 +72,7 @@ public class Transitions extends IterationNodeGenerator{
     * @see net.sf.jetset.runtime.generator.NodeGenerator#getNodePath()
     */
    protected String getNodePath(){
-      return "DocumentRoot -> Workflow Processes -> WorkflowProcess -> WorkflowProcess -> process -> Transitions";
+      return "Document Root -> WorkflowProcess -> WorkflowProcess -> process -> Transitions";
    }
 
    /* (non-Javadoc)

@@ -37,7 +37,7 @@ public class WorkflowProcess2 extends FileNodeGenerator{
     * @see net.sf.jetset.runtime.generator.NodeGenerator#getNodePath()
     */
    protected String getNodePath(){
-      return "DocumentRoot -> Workflow Processes -> WorkflowProcess -> WorkflowProcess";
+      return "Document Root -> WorkflowProcess -> WorkflowProcess";
    }
 
    /* (non-Javadoc)

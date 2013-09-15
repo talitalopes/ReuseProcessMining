@@ -36,8 +36,8 @@ public class DataInputAssociation6 extends XmlNodeGenerator{
     * @see net.sf.jetset.runtime.generator.XmlGenerator#getElementTextGenerator()
     */
    protected PropertyGenerator getElementTextGenerator(){
-   
-      return new br.ufrj.cos.prisma.DataInputAssociation6$TargetRef();
+
+      return null;
    }    
     
 
@@ -54,7 +54,7 @@ public class DataInputAssociation6 extends XmlNodeGenerator{
     * @see net.sf.jetset.runtime.generator.XmlGenerator#hasChildElements()
     */
    protected boolean hasChildElements(){   
-      return false;
+      return true;
    }
 
    /* (non-Javadoc)
@@ -122,7 +122,7 @@ public class DataInputAssociation6 extends XmlNodeGenerator{
     * @see net.sf.jetset.runtime.generator.NodeGenerator#getNodePath()
     */
    protected String getNodePath(){
-      return "DocumentRoot -> Workflow Processes -> WorkflowProcess -> WorkflowProcess -> process -> Activities -> Activitys [Method Extension] -> task -> dataInputAssociation";
+      return "Document Root -> WorkflowProcess -> WorkflowProcess -> process -> Activities -> Activitys [Method Extension] -> task -> dataInputAssociation";
    }
 
    /* (non-Javadoc)
@@ -130,7 +130,9 @@ public class DataInputAssociation6 extends XmlNodeGenerator{
     */
    protected NodeGenerator[] getChildNodeGenerators(){
 	
-      NodeGenerator[] childGenerators = new NodeGenerator[0];
+      NodeGenerator[] childGenerators = new NodeGenerator[2];
+      childGenerators[0] = new br.ufrj.cos.prisma.TargetRef6();
+      childGenerators[1] = new br.ufrj.cos.prisma.Assignment6();
       return childGenerators;
       
    }

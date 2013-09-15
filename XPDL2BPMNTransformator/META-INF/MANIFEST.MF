@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: XPDLToBPMNTransformator Plug-in
+Bundle-Name: XPDL2BPMNTransformator Plug-in
 Bundle-SymbolicName: XPDL2BPMNTransformator
 Bundle-Version: 1.0.0
 Bundle-Localization: plugin

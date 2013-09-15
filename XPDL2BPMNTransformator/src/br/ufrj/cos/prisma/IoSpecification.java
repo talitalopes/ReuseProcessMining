@@ -122,7 +122,7 @@ public class IoSpecification extends XmlNodeGenerator{
     * @see net.sf.jetset.runtime.generator.NodeGenerator#getNodePath()
     */
    protected String getNodePath(){
-      return "DocumentRoot -> Workflow Processes -> WorkflowProcess -> WorkflowProcess -> process -> Activities -> Activitys [Class Extension] -> task -> ioSpecification";
+      return "Document Root -> WorkflowProcess -> WorkflowProcess -> process -> Activities -> Activitys [Class Extension] -> task <classExtension> -> ioSpecification";
    }
 
    /* (non-Javadoc)
@@ -130,10 +130,11 @@ public class IoSpecification extends XmlNodeGenerator{
     */
    protected NodeGenerator[] getChildNodeGenerators(){
 	
-      NodeGenerator[] childGenerators = new NodeGenerator[3];
+      NodeGenerator[] childGenerators = new NodeGenerator[4];
       childGenerators[0] = new br.ufrj.cos.prisma.DataInput();
       childGenerators[1] = new br.ufrj.cos.prisma.DataInput2();
       childGenerators[2] = new br.ufrj.cos.prisma.DataInput3();
+      childGenerators[3] = new br.ufrj.cos.prisma.InputSet();
       return childGenerators;
       
    }

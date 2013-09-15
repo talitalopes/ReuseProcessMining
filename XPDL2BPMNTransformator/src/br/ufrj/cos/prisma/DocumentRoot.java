@@ -20,21 +20,21 @@ public class DocumentRoot extends ProjectNodeGenerator{
     * @see net.sf.jetset.runtime.generator.NodeGenerator#getSourceRootClass()
     */
    protected String getSourceRootClass(){
-      return "xpdl2:PackageType";
+      return "xpdl2:WorkflowProcesses_._type";
    }
     
    /* (non-Javadoc)
     * @see net.sf.jetset.runtime.generator.NodeGenerator#getNodeName()
     */
    protected String getNodeName(){
-      return "DocumentRoot";
+      return "Document Root";
    }
 
    /* (non-Javadoc)
     * @see net.sf.jetset.runtime.generator.NodeGenerator#getNodePath()
     */
    protected String getNodePath(){
-      return "DocumentRoot";
+      return "Document Root";
    }
 
    /* (non-Javadoc)
@@ -42,7 +42,7 @@ public class DocumentRoot extends ProjectNodeGenerator{
     */
    protected NodeGenerator[] getChildNodeGenerators(){	
       NodeGenerator[] childGenerators = new NodeGenerator[1];
-      childGenerators[0] = new br.ufrj.cos.prisma.WorkflowProcesses();
+      childGenerators[0] = new br.ufrj.cos.prisma.WorkflowProcess();
       return childGenerators;
       
    }

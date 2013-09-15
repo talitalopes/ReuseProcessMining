@@ -22,7 +22,6 @@ import net.sf.jetset.runtime.generator.PropertyGenerator;
 
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
   protected final String TEXT_1 = "_";
-  protected final String TEXT_2 = "to_";
 
    /**
     * The emitter method.
@@ -32,9 +31,7 @@ import net.sf.jetset.runtime.generator.PropertyGenerator;
   {
     final StringBuffer stringBuffer = new StringBuffer();
     stringBuffer.append(TEXT_1);
-    stringBuffer.append(getValue("From"));
-    stringBuffer.append(TEXT_2);
-    stringBuffer.append(getValue("To"));
+    stringBuffer.append(getValue("Id"));
     return stringBuffer.toString();
   }
 }

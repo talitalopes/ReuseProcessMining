@@ -19,6 +19,8 @@ public class Task2 extends XmlNodeGenerator{
     */
    protected Collection<String> getAttributeNames(){
       ArrayList<String> names = new ArrayList<String>();
+      names.add("id");
+      names.add("name");
       return names;
    }
 	
@@ -28,6 +30,8 @@ public class Task2 extends XmlNodeGenerator{
     */
    protected Collection<PropertyGenerator> getAttributeValueGenerators(){
       ArrayList<PropertyGenerator> generators = new ArrayList<PropertyGenerator>();
+      generators.add(new br.ufrj.cos.prisma.Task2$Id());
+      generators.add(new br.ufrj.cos.prisma.Task2$Name());
       return generators;
    }
 	
@@ -122,7 +126,7 @@ public class Task2 extends XmlNodeGenerator{
     * @see net.sf.jetset.runtime.generator.NodeGenerator#getNodePath()
     */
    protected String getNodePath(){
-      return "DocumentRoot -> Workflow Processes -> WorkflowProcess -> WorkflowProcess -> process -> Activities -> Activitys [Method Extension] -> task";
+      return "Document Root -> WorkflowProcess -> WorkflowProcess -> process -> Activities -> Activitys [Method Extension] -> task";
    }
 
    /* (non-Javadoc)

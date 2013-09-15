@@ -72,7 +72,7 @@ public class Transitions2 extends IterationNodeGenerator{
     * @see net.sf.jetset.runtime.generator.NodeGenerator#getNodePath()
     */
    protected String getNodePath(){
-      return "DocumentRoot -> Workflow Processes -> WorkflowProcess -> WorkflowProcess -> process -> Transitions -> Transitions";
+      return "Document Root -> WorkflowProcess -> WorkflowProcess -> process -> Transitions -> Transitions";
    }
 
    /* (non-Javadoc)
@@ -81,7 +81,7 @@ public class Transitions2 extends IterationNodeGenerator{
    protected NodeGenerator[] getChildNodeGenerators(){
 	
       NodeGenerator[] childGenerators = new NodeGenerator[1];
-      childGenerators[0] = new br.ufrj.cos.prisma.FlowElement();
+      childGenerators[0] = new br.ufrj.cos.prisma.FlowElement3();
       return childGenerators;
       
    }

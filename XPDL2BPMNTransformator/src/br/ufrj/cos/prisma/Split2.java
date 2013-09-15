@@ -22,8 +22,8 @@ public class Split2 extends IterationNodeGenerator{
    /* (non-Javadoc)
     * @see net.sf.jetset.runtime.generator.IterationNodeGenerator#getConditionGenerator()
     */
-   protected PropertyGenerator getConditionGenerator(){
-      return null;      
+   protected PropertyGenerator getConditionGenerator(){   
+      return new br.ufrj.cos.prisma.Split2$Condition();      
    }
 	
    /* (non-Javadoc)
@@ -72,7 +72,7 @@ public class Split2 extends IterationNodeGenerator{
     * @see net.sf.jetset.runtime.generator.NodeGenerator#getNodePath()
     */
    protected String getNodePath(){
-      return "DocumentRoot -> Workflow Processes -> WorkflowProcess -> WorkflowProcess -> process -> Activities -> Activitys [OR - Diverging] -> Transition Restrictions -> TransitionRestriction -> Split";
+      return "Document Root -> WorkflowProcess -> WorkflowProcess -> process -> Activities -> Activitys [OR - Diverging] -> Transition Restrictions -> TransitionRestriction -> Split";
    }
 
    /* (non-Javadoc)

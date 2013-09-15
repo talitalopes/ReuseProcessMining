@@ -126,7 +126,7 @@ public class DataInput extends XmlNodeGenerator{
     * @see net.sf.jetset.runtime.generator.NodeGenerator#getNodePath()
     */
    protected String getNodePath(){
-      return "DocumentRoot -> Workflow Processes -> WorkflowProcess -> WorkflowProcess -> process -> Activities -> Activitys [Class Extension] -> task -> ioSpecification -> dataInput";
+      return "Document Root -> WorkflowProcess -> WorkflowProcess -> process -> Activities -> Activitys [Class Extension] -> task <classExtension> -> ioSpecification -> dataInput";
    }
 
    /* (non-Javadoc)

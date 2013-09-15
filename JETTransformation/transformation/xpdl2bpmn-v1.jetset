@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<net.sf:ProjectNode xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:net.sf="http://jetset.sf.net" name="Document Root" sourceMetaModel="platform:/resource/JETTransformation/metamodel/xpdl.xsd" sourceRootClass="xpdl2:DocumentRoot" targetMetaModel="platform:/resource/JETTransformation/metamodel/bpmn-semantic.xsd" outputProjectName="XPDL2BPMNTransformator" outputProjectNamespace="br.ufrj.cos.prisma" mainClassName="XpdlToBpmn-semanticTransformator">
+<net.sf:ProjectNode xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:net.sf="http://jetset.sf.net" name="Document Root" sourceMetaModel="platform:/resource/JETTransformation/metamodel/xpdl.xsd" sourceRootClass="xpdl2:WorkflowProcesses_._type" targetMetaModel="platform:/resource/JETTransformation/metamodel/bpmn-semantic.xsd" outputProjectName="XPDL2BPMNTransformator" outputProjectNamespace="br.ufrj.cos.prisma" mainClassName="XPDL2BPMNTransformator">
   <children xsi:type="net.sf:IterationNode" name="WorkflowProcess" iterationReference="WorkflowProcess (xpdl2:ProcessType)">
     <children xsi:type="net.sf:FileNode" name="WorkflowProcess" outputFileName="exported-rdl.bpmn">
       <children xsi:type="net.sf:XmlNode" name="process" targetElement="process (model:tProcess)">
@@ -56,7 +56,7 @@
               </children>
             </children>
           </children>
-          <children xsi:type="net.sf:IterationNode" name="Activitys [Class Extension]" iterationReference="Activity (xpdl2:Activity_._type)" conditionFilter="getValue(&quot;Name&quot;).contains(&quot;ClassExtension&quot;)">
+          <children xsi:type="net.sf:IterationNode" name="Activitys [Class Extension]" iterationReference="Activity (xpdl2:Activity_._type)" conditionFilter="getValue(&quot;Name&quot;).equals(&quot;ClassExtension&quot;) == true">
             <children xsi:type="net.sf:XmlNode" name="task" targetElement="flowElement (model:tTask)">
               <children xsi:type="net.sf:XmlNode" name="ioSpecification" targetElement="ioSpecification (model:tInputOutputSpecification)">
                 <children xsi:type="net.sf:XmlNode" name="dataInput" targetElement="dataInput (model:tDataInput)">
@@ -83,7 +83,7 @@
               </children>
             </children>
           </children>
-          <children xsi:type="net.sf:IterationNode" name="Activitys [Method Extension]" iterationReference="Activity (xpdl2:Activity_._type)" conditionFilter="getValue(&quot;Name&quot;).contains(&quot;MethodExtension&quot;)">
+          <children xsi:type="net.sf:IterationNode" name="Activitys [Method Extension]" iterationReference="Activity (xpdl2:Activity_._type)" conditionFilter="getValue(&quot;Name&quot;).equals(&quot;MethodExtension&quot;)  == true">
             <children xsi:type="net.sf:XmlNode" name="task" targetElement="flowElement (model:tTask)">
               <children xsi:type="net.sf:XmlNode" name="ioSpecification" targetElement="ioSpecification (model:tInputOutputSpecification)">
                 <children xsi:type="net.sf:XmlNode" name="dataInput" targetElement="dataInput (model:tDataInput)">

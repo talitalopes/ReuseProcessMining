@@ -72,7 +72,7 @@ public class TransitionRestrictions4 extends IterationNodeGenerator{
     * @see net.sf.jetset.runtime.generator.NodeGenerator#getNodePath()
     */
    protected String getNodePath(){
-      return "DocumentRoot -> Workflow Processes -> WorkflowProcess -> WorkflowProcess -> process -> Activities -> Activitys [OR - Converging] -> Transition Restrictions";
+      return "Document Root -> WorkflowProcess -> WorkflowProcess -> process -> Activities -> Activitys [OR - Converging] -> Transition Restrictions";
    }
 
    /* (non-Javadoc)

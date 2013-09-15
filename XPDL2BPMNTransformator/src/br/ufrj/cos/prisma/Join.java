@@ -22,8 +22,8 @@ public class Join extends IterationNodeGenerator{
    /* (non-Javadoc)
     * @see net.sf.jetset.runtime.generator.IterationNodeGenerator#getConditionGenerator()
     */
-   protected PropertyGenerator getConditionGenerator(){
-      return null;      
+   protected PropertyGenerator getConditionGenerator(){   
+      return new br.ufrj.cos.prisma.Join$Condition();      
    }
 	
    /* (non-Javadoc)
@@ -72,7 +72,7 @@ public class Join extends IterationNodeGenerator{
     * @see net.sf.jetset.runtime.generator.NodeGenerator#getNodePath()
     */
    protected String getNodePath(){
-      return "DocumentRoot -> Workflow Processes -> WorkflowProcess -> WorkflowProcess -> process -> Activities -> Activitys [XOR - Converging] -> Transition Restrictions -> TransitionRestrictions -> Join";
+      return "Document Root -> WorkflowProcess -> WorkflowProcess -> process -> Activities -> Activitys [XOR - Converging] -> Transition Restrictions -> TransitionRestrictions -> Join";
    }
 
    /* (non-Javadoc)

@@ -2,7 +2,7 @@
 <projectDescription>
 	<name>XPDL2BPMNTransformator</name>
 	<comment></comment>
-	<projects>
+	<projects>		
 	</projects>
 	<buildSpec>
 		<buildCommand>

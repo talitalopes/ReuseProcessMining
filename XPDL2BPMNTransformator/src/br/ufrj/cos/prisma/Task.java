@@ -19,6 +19,8 @@ public class Task extends XmlNodeGenerator{
     */
    protected Collection<String> getAttributeNames(){
       ArrayList<String> names = new ArrayList<String>();
+      names.add("id");
+      names.add("name");
       return names;
    }
 	
@@ -28,6 +30,8 @@ public class Task extends XmlNodeGenerator{
     */
    protected Collection<PropertyGenerator> getAttributeValueGenerators(){
       ArrayList<PropertyGenerator> generators = new ArrayList<PropertyGenerator>();
+      generators.add(new br.ufrj.cos.prisma.Task$Id());
+      generators.add(new br.ufrj.cos.prisma.Task$Name());
       return generators;
    }
 	
@@ -122,7 +126,7 @@ public class Task extends XmlNodeGenerator{
     * @see net.sf.jetset.runtime.generator.NodeGenerator#getNodePath()
     */
    protected String getNodePath(){
-      return "DocumentRoot -> Workflow Processes -> WorkflowProcess -> WorkflowProcess -> process -> Activities -> Activitys [Class Extension] -> task";
+      return "Document Root -> WorkflowProcess -> WorkflowProcess -> process -> Activities -> Activitys [Method Extension] -> task";
    }
 
    /* (non-Javadoc)
@@ -131,10 +135,10 @@ public class Task extends XmlNodeGenerator{
    protected NodeGenerator[] getChildNodeGenerators(){
 	
       NodeGenerator[] childGenerators = new NodeGenerator[4];
-      childGenerators[0] = new br.ufrj.cos.prisma.IoSpecification();
-      childGenerators[1] = new br.ufrj.cos.prisma.DataInputAssociation();
-      childGenerators[2] = new br.ufrj.cos.prisma.DataInputAssociation2();
-      childGenerators[3] = new br.ufrj.cos.prisma.DataInputAssociation3();
+      childGenerators[0] = new br.ufrj.cos.prisma.IoSpecification2();
+      childGenerators[1] = new br.ufrj.cos.prisma.DataInputAssociation4();
+      childGenerators[2] = new br.ufrj.cos.prisma.DataInputAssociation5();
+      childGenerators[3] = new br.ufrj.cos.prisma.DataInputAssociation6();
       return childGenerators;
       
    }

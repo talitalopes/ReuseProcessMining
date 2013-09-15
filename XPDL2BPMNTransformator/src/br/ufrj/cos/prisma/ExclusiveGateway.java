@@ -128,7 +128,7 @@ public class ExclusiveGateway extends XmlNodeGenerator{
     * @see net.sf.jetset.runtime.generator.NodeGenerator#getNodePath()
     */
    protected String getNodePath(){
-      return "DocumentRoot -> Workflow Processes -> WorkflowProcess -> WorkflowProcess -> process -> Activities -> Activitys [XOR - Converging] -> Transition Restrictions -> TransitionRestrictions -> Join -> exclusive gateway";
+      return "Document Root -> WorkflowProcess -> WorkflowProcess -> process -> Activities -> Activitys [XOR - Converging] -> Transition Restrictions -> TransitionRestrictions -> Join -> exclusive gateway";
    }
 
    /* (non-Javadoc)
