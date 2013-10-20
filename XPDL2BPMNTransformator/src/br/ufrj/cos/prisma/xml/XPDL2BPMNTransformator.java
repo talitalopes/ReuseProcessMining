@@ -25,7 +25,7 @@ public class XPDL2BPMNTransformator {
 		}
 		try {
 			// Preprocess XPDL input
-			// XPDLPreprocessor.format(args[1], args[1]);
+			XPDLPreprocessor.format(args[1], args[1]);
 			
 			RuntimeLog.logInfo("XPDL2BPMNTransformator");
 			RuntimeLog.logInfo("   Meta Model : " + args[0]);

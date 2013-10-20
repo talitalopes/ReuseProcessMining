@@ -21,7 +21,7 @@ import net.sf.jetset.runtime.generator.PropertyGenerator;
   }
 
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-  protected final String TEXT_1 = "packageName";
+  protected final String TEXT_1 = "packageVar";
 
    /**
     * The emitter method.

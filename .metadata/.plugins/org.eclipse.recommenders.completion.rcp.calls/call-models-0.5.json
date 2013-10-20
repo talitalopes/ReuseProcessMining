@@ -1,7 +1,18 @@
 {
   "/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/classes.jar": {
+    "coordinate": "jre:jre:zip:call:1.0.0",
     "location": "/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/classes.jar",
-    "status": "UNRESOLVED",
+    "status": "RESOLVED",
     "error": "No call model found for \u0027/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Classes/classes.jar\u0027. Neither fingerprint \u00274f7f0960a64ab5df8d33e0bb48a77134e25f52fb\u0027 nor symbolic name \u0027jre\u0027 are known."
+  },
+  "/Users/talitalopes/Documents/UFRJ/ReuseProcessMining/XPDL2BPMNTransformator/libs/jgrapht-jdk1.6.jar": {
+    "location": "/Users/talitalopes/Documents/UFRJ/ReuseProcessMining/XPDL2BPMNTransformator/libs/jgrapht-jdk1.6.jar",
+    "status": "UNRESOLVED",
+    "error": "No call model found for \u0027/Users/talitalopes/Documents/UFRJ/ReuseProcessMining/XPDL2BPMNTransformator/libs/jgrapht-jdk1.6.jar\u0027. Neither fingerprint \u0027b47cbdf1abc4da9206e62d6c8f03afe6bf4c74dc\u0027 nor symbolic name \u0027jgrapht-jdk1.6\u0027 are known."
+  },
+  "/Users/talitalopes/Documents/UFRJ/ReuseProcessMining/XPDL2BPMNTransformator/src": {
+    "location": "/Users/talitalopes/Documents/UFRJ/ReuseProcessMining/XPDL2BPMNTransformator/src",
+    "status": "UNRESOLVED",
+    "error": "No call model found for \u0027/Users/talitalopes/Documents/UFRJ/ReuseProcessMining/XPDL2BPMNTransformator/src\u0027. Neither fingerprint \u0027null\u0027 nor symbolic name \u0027XPDL2BPMNTransformator\u0027 are known."
   }
 }

@@ -3,8 +3,8 @@ import org.w3c.dom.Node;
 
 
 public class Transition {
-	public Node classNode;
-	public Node declarationNode;
+	public Node targetNode;
+	public Node sourceNode;
 	public Node transition;
 	
 }

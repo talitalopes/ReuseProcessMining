@@ -80,7 +80,7 @@ public class Activities extends IterationNodeGenerator{
     */
    protected NodeGenerator[] getChildNodeGenerators(){
 	
-      NodeGenerator[] childGenerators = new NodeGenerator[9];
+      NodeGenerator[] childGenerators = new NodeGenerator[12];
       childGenerators[0] = new br.ufrj.cos.prisma.ActivitysXorConverging();
       childGenerators[1] = new br.ufrj.cos.prisma.ActivitysXorDiverging();
       childGenerators[2] = new br.ufrj.cos.prisma.ActivitysOrConverging();
@@ -90,6 +90,9 @@ public class Activities extends IterationNodeGenerator{
       childGenerators[6] = new br.ufrj.cos.prisma.ActivitysStartEvent();
       childGenerators[7] = new br.ufrj.cos.prisma.ActivitysEndEvent();
       childGenerators[8] = new br.ufrj.cos.prisma.ActivitysDeclaration();
+      childGenerators[9] = new br.ufrj.cos.prisma.ActivitysConditional();
+      childGenerators[10] = new br.ufrj.cos.prisma.ActivitysImportModel();
+      childGenerators[11] = new br.ufrj.cos.prisma.ActivitysNewPackage();
       return childGenerators;
       
    }

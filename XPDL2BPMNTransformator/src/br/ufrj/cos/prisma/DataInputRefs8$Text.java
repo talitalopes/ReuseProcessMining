@@ -32,7 +32,7 @@ import net.sf.jetset.runtime.generator.PropertyGenerator;
   {
     final StringBuffer stringBuffer = new StringBuffer();
     stringBuffer.append(TEXT_1);
-    stringBuffer.append(getValue("Id")+1);
+    stringBuffer.append(getValue("Id"));
     stringBuffer.append(TEXT_2);
     return stringBuffer.toString();
   }

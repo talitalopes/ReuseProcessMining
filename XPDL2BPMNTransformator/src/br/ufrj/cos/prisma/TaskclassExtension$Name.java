@@ -21,7 +21,7 @@ import net.sf.jetset.runtime.generator.PropertyGenerator;
   }
 
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-  protected final String TEXT_1 = "ClassExtension";
+  protected final String TEXT_1 = "";
 
    /**
     * The emitter method.
@@ -31,6 +31,7 @@ import net.sf.jetset.runtime.generator.PropertyGenerator;
   {
     final StringBuffer stringBuffer = new StringBuffer();
     stringBuffer.append(TEXT_1);
+    stringBuffer.append(getValue("Name"));
     return stringBuffer.toString();
   }
 }
