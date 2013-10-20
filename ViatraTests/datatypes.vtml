@@ -1,0 +1,25 @@
+entity('datatypes')
+{
+	entity('datatypes'.'Boolean')
+	{
+		entity('datatypes'.'Boolean'.'false');
+		entity('datatypes'.'Boolean'.'true');
+	}
+	entity('datatypes'.'Double');
+	entity('datatypes'.'Integer');
+	entity('datatypes'.'MultiplicityKind')
+	{
+		entity('datatypes'.'MultiplicityKind'.'many_to_many');
+		entity('datatypes'.'MultiplicityKind'.'many_to_one');
+		entity('datatypes'.'MultiplicityKind'.'one_to_many');
+		entity('datatypes'.'MultiplicityKind'.'one_to_one');
+	}
+	entity('datatypes'.'String');
+}
+
+instanceOf('datatypes'.'Boolean'.'false','datatypes'.'Boolean');
+instanceOf('datatypes'.'Boolean'.'true','datatypes'.'Boolean');
+instanceOf('datatypes'.'MultiplicityKind'.'many_to_many','datatypes'.'MultiplicityKind');
+instanceOf('datatypes'.'MultiplicityKind'.'many_to_one','datatypes'.'MultiplicityKind');
+instanceOf('datatypes'.'MultiplicityKind'.'one_to_many','datatypes'.'MultiplicityKind');
+instanceOf('datatypes'.'MultiplicityKind'.'one_to_one','datatypes'.'MultiplicityKind');

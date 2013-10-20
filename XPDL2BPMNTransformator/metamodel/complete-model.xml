@@ -1,0 +1,712 @@
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:g="http://www.jboss.org/drools/flow/gpd"
+	xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+	xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:tns="http://www.jboss.org/drools"
+	id="Definition" targetNamespace="http://www.jboss.org/drools"
+	typeLanguage="http://www.java.com/javaTypes" expressionLanguage="http://www.mvel.org/2.0"
+	xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd">
+
+	<process xmlns:model="http://www.omg.org/spec/BPMN/20100524/MODEL"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL bpmn-semantic.xsd"
+		processType="Private" isExecutable="true" id="org.reusefusion.reuse"
+		name="Reuse Process">
+		<exclusiveGateway name="Gateway" gatewayDirection="Converging"
+			id="_996674586" />
+		<exclusiveGateway name="Gateway" gatewayDirection="Converging"
+			id="_1412995081" />
+		<exclusiveGateway name="Gateway" gatewayDirection="Converging"
+			id="_1471730905" />
+		<exclusiveGateway id="_472249311" name="Gateway"
+			gatewayDirection="Diverging" />
+		<exclusiveGateway id="_1575161971" name="Gateway"
+			gatewayDirection="Diverging" />
+		<exclusiveGateway id="_-1980877097" name="Gateway"
+			gatewayDirection="Diverging" />
+		<task name="ClassExtension" id="_1482671067">
+			<ioSpecification>
+				<dataInput id="_1482671067SUPER_NAMEInput" name="SUPER_NAME" />
+				<dataInput name="SUB_PNAME" id="_1482671067SUB_PNAMEInput" />
+				<dataInput name="SUB_NAME" id="_1482671067SUB_NAMEInput" />
+				<inputSet>
+					<dataInputRefs>_1482671067SUPER_NAMEInput</dataInputRefs>
+					<dataInputRefs>_1482671067SUB_NAMEInput</dataInputRefs>
+					<dataInputRefs>_1482671067SUB_PNAMEInput</dataInputRefs>
+				</inputSet>
+			</ioSpecification>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						ActionBarContributor [1]
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_1482671067SUPER_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_1482671067SUPER_NAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						packageVar
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_1482671067SUB_PNAMEInput
+					</to>
+				</assignment>
+				<targetRef>_1482671067SUB_PNAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						"?"
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_1482671067SUB_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_1482671067SUB_NAMEInput</targetRef>
+			</dataInputAssociation>
+		</task>
+		<task name="ClassExtension" id="_-217769222">
+			<ioSpecification>
+				<dataInput id="_-217769222SUPER_NAMEInput" name="SUPER_NAME" />
+				<dataInput name="SUB_PNAME" id="_-217769222SUB_PNAMEInput" />
+				<dataInput name="SUB_NAME" id="_-217769222SUB_NAMEInput" />
+				<inputSet>
+					<dataInputRefs>_-217769222SUPER_NAMEInput</dataInputRefs>
+					<dataInputRefs>_-217769222SUB_NAMEInput</dataInputRefs>
+					<dataInputRefs>_-217769222SUB_PNAMEInput</dataInputRefs>
+				</inputSet>
+			</ioSpecification>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						PaletteRoot [4]
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_-217769222SUPER_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_-217769222SUPER_NAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						packageVar
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_-217769222SUB_PNAMEInput
+					</to>
+				</assignment>
+				<targetRef>_-217769222SUB_PNAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						"?"
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_-217769222SUB_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_-217769222SUB_NAMEInput</targetRef>
+			</dataInputAssociation>
+		</task>
+		<task name="ClassExtension" id="_1315553208">
+			<ioSpecification>
+				<dataInput id="_1315553208SUPER_NAMEInput" name="SUPER_NAME" />
+				<dataInput name="SUB_PNAME" id="_1315553208SUB_PNAMEInput" />
+				<dataInput name="SUB_NAME" id="_1315553208SUB_NAMEInput" />
+				<inputSet>
+					<dataInputRefs>_1315553208SUPER_NAMEInput</dataInputRefs>
+					<dataInputRefs>_1315553208SUB_NAMEInput</dataInputRefs>
+					<dataInputRefs>_1315553208SUB_PNAMEInput</dataInputRefs>
+				</inputSet>
+			</ioSpecification>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						ComponentEditPolicy [1]
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_1315553208SUPER_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_1315553208SUPER_NAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						packageVar
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_1315553208SUB_PNAMEInput
+					</to>
+				</assignment>
+				<targetRef>_1315553208SUB_PNAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						"?"
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_1315553208SUB_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_1315553208SUB_NAMEInput</targetRef>
+			</dataInputAssociation>
+		</task>
+		<task name="ClassExtension" id="_-26626835">
+			<ioSpecification>
+				<dataInput id="_-26626835SUPER_NAMEInput" name="SUPER_NAME" />
+				<dataInput name="SUB_PNAME" id="_-26626835SUB_PNAMEInput" />
+				<dataInput name="SUB_NAME" id="_-26626835SUB_NAMEInput" />
+				<inputSet>
+					<dataInputRefs>_-26626835SUPER_NAMEInput</dataInputRefs>
+					<dataInputRefs>_-26626835SUB_NAMEInput</dataInputRefs>
+					<dataInputRefs>_-26626835SUB_PNAMEInput</dataInputRefs>
+				</inputSet>
+			</ioSpecification>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						GraphicalNodeEditPolicy [3]
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_-26626835SUPER_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_-26626835SUPER_NAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						packageVar
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_-26626835SUB_PNAMEInput
+					</to>
+				</assignment>
+				<targetRef>_-26626835SUB_PNAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						"?"
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_-26626835SUB_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_-26626835SUB_NAMEInput</targetRef>
+			</dataInputAssociation>
+		</task>
+		<task name="ClassExtension" id="_1752820274">
+			<ioSpecification>
+				<dataInput id="_1752820274SUPER_NAMEInput" name="SUPER_NAME" />
+				<dataInput name="SUB_PNAME" id="_1752820274SUB_PNAMEInput" />
+				<dataInput name="SUB_NAME" id="_1752820274SUB_NAMEInput" />
+				<inputSet>
+					<dataInputRefs>_1752820274SUPER_NAMEInput</dataInputRefs>
+					<dataInputRefs>_1752820274SUB_NAMEInput</dataInputRefs>
+					<dataInputRefs>_1752820274SUB_PNAMEInput</dataInputRefs>
+				</inputSet>
+			</ioSpecification>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						Command [11]
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_1752820274SUPER_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_1752820274SUPER_NAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						packageVar
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_1752820274SUB_PNAMEInput
+					</to>
+				</assignment>
+				<targetRef>_1752820274SUB_PNAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						"?"
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_1752820274SUB_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_1752820274SUB_NAMEInput</targetRef>
+			</dataInputAssociation>
+		</task>
+		<task name="ClassExtension" id="_-1537233083">
+			<ioSpecification>
+				<dataInput id="_-1537233083SUPER_NAMEInput" name="SUPER_NAME" />
+				<dataInput name="SUB_PNAME" id="_-1537233083SUB_PNAMEInput" />
+				<dataInput name="SUB_NAME" id="_-1537233083SUB_NAMEInput" />
+				<inputSet>
+					<dataInputRefs>_-1537233083SUPER_NAMEInput</dataInputRefs>
+					<dataInputRefs>_-1537233083SUB_NAMEInput</dataInputRefs>
+					<dataInputRefs>_-1537233083SUB_PNAMEInput</dataInputRefs>
+				</inputSet>
+			</ioSpecification>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						XYLayoutEditPolicy [4]
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_-1537233083SUPER_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_-1537233083SUPER_NAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						packageVar
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_-1537233083SUB_PNAMEInput
+					</to>
+				</assignment>
+				<targetRef>_-1537233083SUB_PNAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						"?"
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_-1537233083SUB_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_-1537233083SUB_NAMEInput</targetRef>
+			</dataInputAssociation>
+		</task>
+		<task name="ClassExtension" id="_2067281209">
+			<ioSpecification>
+				<dataInput id="_2067281209SUPER_NAMEInput" name="SUPER_NAME" />
+				<dataInput name="SUB_PNAME" id="_2067281209SUB_PNAMEInput" />
+				<dataInput name="SUB_NAME" id="_2067281209SUB_NAMEInput" />
+				<inputSet>
+					<dataInputRefs>_2067281209SUPER_NAMEInput</dataInputRefs>
+					<dataInputRefs>_2067281209SUB_NAMEInput</dataInputRefs>
+					<dataInputRefs>_2067281209SUB_PNAMEInput</dataInputRefs>
+				</inputSet>
+			</ioSpecification>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						ConnectionEditPolicy [1]
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_2067281209SUPER_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_2067281209SUPER_NAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						packageVar
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_2067281209SUB_PNAMEInput
+					</to>
+				</assignment>
+				<targetRef>_2067281209SUB_PNAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						"?"
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_2067281209SUB_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_2067281209SUB_NAMEInput</targetRef>
+			</dataInputAssociation>
+		</task>
+		<task name="ClassExtension" id="_1047840537">
+			<ioSpecification>
+				<dataInput id="_1047840537SUPER_NAMEInput" name="SUPER_NAME" />
+				<dataInput name="SUB_PNAME" id="_1047840537SUB_PNAMEInput" />
+				<dataInput name="SUB_NAME" id="_1047840537SUB_NAMEInput" />
+				<inputSet>
+					<dataInputRefs>_1047840537SUPER_NAMEInput</dataInputRefs>
+					<dataInputRefs>_1047840537SUB_NAMEInput</dataInputRefs>
+					<dataInputRefs>_1047840537SUB_PNAMEInput</dataInputRefs>
+				</inputSet>
+			</ioSpecification>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						AbstractGraphicalEditPart [8]
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_1047840537SUPER_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_1047840537SUPER_NAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						packageVar
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_1047840537SUB_PNAMEInput
+					</to>
+				</assignment>
+				<targetRef>_1047840537SUB_PNAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						"?"
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_1047840537SUB_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_1047840537SUB_NAMEInput</targetRef>
+			</dataInputAssociation>
+		</task>
+		<task name="ClassExtension" id="_292702583">
+			<ioSpecification>
+				<dataInput id="_292702583SUPER_NAMEInput" name="SUPER_NAME" />
+				<dataInput name="SUB_PNAME" id="_292702583SUB_PNAMEInput" />
+				<dataInput name="SUB_NAME" id="_292702583SUB_NAMEInput" />
+				<inputSet>
+					<dataInputRefs>_292702583SUPER_NAMEInput</dataInputRefs>
+					<dataInputRefs>_292702583SUB_NAMEInput</dataInputRefs>
+					<dataInputRefs>_292702583SUB_PNAMEInput</dataInputRefs>
+				</inputSet>
+			</ioSpecification>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						GraphicalEditorWithFlyoutPalette [5]
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_292702583SUPER_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_292702583SUPER_NAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						packageVar
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_292702583SUB_PNAMEInput
+					</to>
+				</assignment>
+				<targetRef>_292702583SUB_PNAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						"?"
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_292702583SUB_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_292702583SUB_NAMEInput</targetRef>
+			</dataInputAssociation>
+		</task>
+		<task name="ClassExtension" id="_-1196856621">
+			<ioSpecification>
+				<dataInput id="_-1196856621SUPER_NAMEInput" name="SUPER_NAME" />
+				<dataInput name="SUB_PNAME" id="_-1196856621SUB_PNAMEInput" />
+				<dataInput name="SUB_NAME" id="_-1196856621SUB_NAMEInput" />
+				<inputSet>
+					<dataInputRefs>_-1196856621SUPER_NAMEInput</dataInputRefs>
+					<dataInputRefs>_-1196856621SUB_NAMEInput</dataInputRefs>
+					<dataInputRefs>_-1196856621SUB_PNAMEInput</dataInputRefs>
+				</inputSet>
+			</ioSpecification>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						AbstractConnectionEditPart [3]
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_-1196856621SUPER_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_-1196856621SUPER_NAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						packageVar
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_-1196856621SUB_PNAMEInput
+					</to>
+				</assignment>
+				<targetRef>_-1196856621SUB_PNAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						"?"
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_-1196856621SUB_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_-1196856621SUB_NAMEInput</targetRef>
+			</dataInputAssociation>
+		</task>
+		<flowElement xsi:type="model:tStartEvent" id="_-2144031553"
+			name="StartProcess" />
+		<flowElement xsi:type="model:tEndEvent" id="_-237194053"
+			name="EndProcess" />
+		<task name="Declaration" id="_996674588">
+			<ioSpecification>
+				<dataInput id="_996674588TYPE_NAMEInput" name="TYPE_NAME" />
+				<dataInput name="VAR_NAME" id="_996674588VAR_NAMEInput" />
+				<inputSet>
+					<dataInputRefs>_996674588TYPE_NAMEInput</dataInputRefs>
+					<dataInputRefs>_996674588VAR_NAMEInput</dataInputRefs>
+				</inputSet>
+			</ioSpecification>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						VOID
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_9966745881TYPE_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_996674588TYPE_NAMEInput</targetRef>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						package_var
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_996674588VAR_NAMEInput
+					</to>
+				</assignment>
+				<targetRef>_996674588VAR_NAMEInput</targetRef>
+			</dataInputAssociation>
+		</task>
+		<task name="EvalConditionBPMN" id="_472249310">
+			<ioSpecification>
+				<dataInput id="_472249310CURRENT_ADDRESSInput" name="CURRENT_ADDRESS" />
+				<dataInput id="_472249310CONDITIONInput" name="CONDITION" />
+				<inputSet>
+					<dataInputRefs>_472249310CURRENT_ADDRESSInput</dataInputRefs>
+					<dataInputRefs>_472249310CONDITIONInput</dataInputRefs>
+				</inputSet>
+			</ioSpecification>
+			<dataInputAssociation>
+				<targetRef>_472249310CURRENT_ADDRESSInput</targetRef>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						472249310
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_472249310CURRENT_ADDRESSInput
+					</to>
+				</assignment>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<targetRef>_472249310CURRENT_ADDRESSInput</targetRef>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						Condition Text
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_472249310CONDITIONInput
+					</to>
+				</assignment>
+			</dataInputAssociation>
+		</task>
+		<task name="EvalConditionBPMN" id="_1575161970">
+			<ioSpecification>
+				<dataInput id="_1575161970CURRENT_ADDRESSInput" name="CURRENT_ADDRESS" />
+				<dataInput id="_1575161970CONDITIONInput" name="CONDITION" />
+				<inputSet>
+					<dataInputRefs>_1575161970CURRENT_ADDRESSInput</dataInputRefs>
+					<dataInputRefs>_1575161970CONDITIONInput</dataInputRefs>
+				</inputSet>
+			</ioSpecification>
+			<dataInputAssociation>
+				<targetRef>_1575161970CURRENT_ADDRESSInput</targetRef>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						1575161970
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_1575161970CURRENT_ADDRESSInput
+					</to>
+				</assignment>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<targetRef>_1575161970CURRENT_ADDRESSInput</targetRef>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						Condition Text
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_1575161970CONDITIONInput
+					</to>
+				</assignment>
+			</dataInputAssociation>
+		</task>
+		<task name="EvalConditionBPMN" id="_-1980877098">
+			<ioSpecification>
+				<dataInput id="_-1980877098CURRENT_ADDRESSInput" name="CURRENT_ADDRESS" />
+				<dataInput id="_-1980877098CONDITIONInput" name="CONDITION" />
+				<inputSet>
+					<dataInputRefs>_-1980877098CURRENT_ADDRESSInput</dataInputRefs>
+					<dataInputRefs>_-1980877098CONDITIONInput</dataInputRefs>
+				</inputSet>
+			</ioSpecification>
+			<dataInputAssociation>
+				<targetRef>_-1980877098CURRENT_ADDRESSInput</targetRef>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						-1980877098
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_-1980877098CURRENT_ADDRESSInput
+					</to>
+				</assignment>
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<targetRef>_-1980877098CURRENT_ADDRESSInput</targetRef>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						Condition Text
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_-1980877098CONDITIONInput
+					</to>
+				</assignment>
+			</dataInputAssociation>
+		</task>
+		<task name="ImportModel" id="_996674587">
+			<ioSpecification>
+				<dataInput id="_996674587MODEL_URLInput" name="MODEL_URL" />
+				<inputSet>
+					<dataInputRefs>_996674587MODEL_URLInput</dataInputRefs>
+				</inputSet>
+			</ioSpecification>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						models/arcade.uml
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_996674587MODEL_URLInput
+					</to>
+				</assignment>
+				_996674587MODEL_URLInput
+			</dataInputAssociation>
+		</task>
+		<task name="NewPackage" id="_996674589">
+			<ioSpecification>
+				<dataInput id="_996674589CONTAINER_NAMEInput" name="CONTAINER_NAME" />
+				<dataInput id="_996674589PACKAGE_NAMEInput" name="PACKAGE_NAME" />
+				<inputSet>
+					<dataInputRefs>_996674589PACKAGE_NAMEInput</dataInputRefs>
+					<dataInputRefs>_996674589CONTAINER_NAMEInput</dataInputRefs>
+				</inputSet>
+			</ioSpecification>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						appModel
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_996674589CONTAINER_NAMEInput
+					</to>
+				</assignment>
+				_996674589CONTAINER_NAMEInput
+			</dataInputAssociation>
+			<dataInputAssociation>
+				<assignment>
+					<from xsi:type="model:tFormalExpression">
+						"?"
+					</from>
+					<to xsi:type="model:tFormalExpression">
+						_996674589PACKAGE_NAMEInput
+					</to>
+				</assignment>
+				_996674589PACKAGE_NAMEInput
+			</dataInputAssociation>
+		</task>
+		<sequenceFlow id="_-1962387401" sourceRef="_996674586"
+			targetRef="_-237194053" />
+		<sequenceFlow id="_-2042413713" sourceRef="_1482671067"
+			targetRef="_1315553208" />
+		<sequenceFlow id="_996674591" sourceRef="_996674587"
+			targetRef="_996674588" />
+		<sequenceFlow id="_-594027814" sourceRef="_-217769222"
+			targetRef="_1471730905" />
+		<sequenceFlow id="_996674590" sourceRef="_-2144031553"
+			targetRef="_996674587" />
+		<sequenceFlow id="_564210490" sourceRef="_1412995081"
+			targetRef="_1047840537" />
+		<sequenceFlow id="_-1170266900" sourceRef="_1315553208"
+			targetRef="_2067281209" />
+		<sequenceFlow id="_340475221" sourceRef="_-26626835"
+			targetRef="_1575161970" />
+		<sequenceFlow id="_841336021" sourceRef="_1471730905"
+			targetRef="_1752820274" />
+		<sequenceFlow id="_2140278597" sourceRef="_472249311"
+			targetRef="_1412995081" />
+		<sequenceFlow id="_-2139523751" sourceRef="_472249311"
+			targetRef="_1471730905" />
+		<sequenceFlow id="_2126424538" sourceRef="_1752820274"
+			targetRef="_472249310" />
+		<sequenceFlow id="_996674596" sourceRef="_472249310"
+			targetRef="_472249311" />
+		<sequenceFlow id="_-581526908" sourceRef="_-1537233083"
+			targetRef="_-1196856621" />
+		<sequenceFlow id="_996674592" sourceRef="_996674588"
+			targetRef="_996674589" />
+		<sequenceFlow id="_996674593" sourceRef="_996674589"
+			targetRef="_292702583" />
+		<sequenceFlow id="_-398398301" sourceRef="_2067281209"
+			targetRef="_996674586" />
+		<sequenceFlow id="_996674594" sourceRef="_1575161970"
+			targetRef="_1575161971" />
+		<sequenceFlow id="_-1298753212" sourceRef="_1047840537"
+			targetRef="_-1980877098" />
+		<sequenceFlow id="_1968969876" sourceRef="_1575161971"
+			targetRef="_996674586" />
+		<sequenceFlow id="_404767514" sourceRef="_1575161971"
+			targetRef="_1482671067" />
+		<sequenceFlow id="_-986513803" sourceRef="_292702583"
+			targetRef="_-217769222" />
+		<sequenceFlow id="_257529122" sourceRef="_-1980877097"
+			targetRef="_-1537233083" />
+		<sequenceFlow id="_327363913" sourceRef="_-1980877097"
+			targetRef="_1412995081" />
+		<sequenceFlow id="_996674595" sourceRef="_-1980877098"
+			targetRef="_-1980877097" />
+		<sequenceFlow id="_202843805" sourceRef="_-1196856621"
+			targetRef="_-26626835" />
+	</process>
+</definitions>
