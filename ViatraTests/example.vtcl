@@ -1,7 +1,0 @@
-machine helloworld
-{
-	rule main() = seq
-	{
-		println("Hello VIATRA2 world!");
-	}
-}
