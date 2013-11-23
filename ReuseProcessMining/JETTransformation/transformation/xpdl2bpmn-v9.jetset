@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<net.sf:ProjectNode xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:net.sf="http://jetset.sf.net" name="DocumentRoot" sourceMetaModel="platform:/resource/JETTransformation/metamodel/xpdl2-2.xsd" sourceRootClass="xpdl2:DocumentRoot" targetMetaModel="platform:/resource/JETTransformation/metamodel/bpmn-semantic.xsd" outputProjectName="XPDL2BPMNTransformator" outputProjectNamespace="br.ufrj.cos.prisma" mainClassName="XPDL2BPMNTransformator">
+  <children xsi:type="net.sf:IterationNode" name="WorkflowProcess" iterationReference="WorkflowProcess (xpdl2:ProcessType)">
+    <children xsi:type="net.sf:FileNode" name="WorkflowProcess" outputFileName="rdl.xml">
+      <children xsi:type="net.sf:XmlNode" name="process" targetElement="process (model:tProcess)">
+        <children xsi:type="net.sf:IterationNode" name="Activities" iterationReference="Activities (xpdl2:Activities_._type)">
+          <children xsi:type="net.sf:IterationNode" name="Activitys [XOR - Converging]" iterationReference="Activity (xpdl2:Activity_._type)" conditionFilter="&lt;%=getValue(&quot;Name&quot;).contains(&quot;EXCLUSIVE-GATEWAY&quot;)%>">
+            <children xsi:type="net.sf:IterationNode" name="Transition Restrictions" iterationReference="TransitionRestrictions (xpdl2:TransitionRestrictions_._type)">
+              <children xsi:type="net.sf:IterationNode" name="TransitionRestrictions" iterationReference="TransitionRestriction (xpdl2:TransitionRestriction_._type)">
+                <children xsi:type="net.sf:IterationNode" name="Join" iterationReference="Join (xpdl2:Join_._type)" conditionFilter="&lt;%=getValue(&quot;Type&quot;).contains(&quot;XOR&quot;)%>">
+                  <children xsi:type="net.sf:XmlNode" name="exclusive gateway" targetElement="flowElement (model:tExclusiveGateway)">
+                    <xmlAttributes name="name" value="Gateway"/>
+                    <xmlAttributes name="gatewayDirection" value="Converging"/>
+                    <xmlAttributes name="id" value="_&lt;%=getValue(getTreeAncestor(3), &quot;Id&quot;)%>"/>
+                  </children>
+                </children>
+              </children>
+            </children>
+          </children>
+          <children xsi:type="net.sf:IterationNode" name="Activitys [XOR - Diverging]" iterationReference="Activity (xpdl2:Activity_._type)" conditionFilter="&lt;%=getValue(&quot;Name&quot;).contains(&quot;EXCLUSIVE-GATEWAY&quot;)%>">
+            <children xsi:type="net.sf:IterationNode" name="Transition Restrictions" iterationReference="TransitionRestrictions (xpdl2:TransitionRestrictions_._type)">
+              <children xsi:type="net.sf:IterationNode" name="TransitionRestriction" iterationReference="TransitionRestriction (xpdl2:TransitionRestriction_._type)">
+                <children xsi:type="net.sf:IterationNode" name="Split" iterationReference="Split (xpdl2:Split_._type)" conditionFilter="&lt;%=getValue(&quot;Type&quot;).contains(&quot;XOR&quot;)%>">
+                  <children xsi:type="net.sf:XmlNode" name="exclusive gateway [diverging]" targetElement="flowElement (model:tExclusiveGateway)">
+                    <xmlAttributes name="id" value="_&lt;%=getValue(getTreeAncestor(3), &quot;Id&quot;)%>"/>
+                    <xmlAttributes name="name" value="Gateway"/>
+                    <xmlAttributes name="gatewayDirection" value="Diverging"/>
+                  </children>
+                </children>
+              </children>
+            </children>
+          </children>
+          <children xsi:type="net.sf:IterationNode" name="Activitys [OR - Converging]" iterationReference="Activity (xpdl2:Activity_._type)" conditionFilter="&lt;%=getValue(&quot;Name&quot;).contains(&quot;INCLUSIVE_GATEWAY&quot;)%>">
+            <children xsi:type="net.sf:IterationNode" name="Transition Restrictions" iterationReference="TransitionRestrictions (xpdl2:TransitionRestrictions_._type)">
+              <children xsi:type="net.sf:IterationNode" name="TransitionRestriction" iterationReference="TransitionRestriction (xpdl2:TransitionRestriction_._type)">
+                <children xsi:type="net.sf:IterationNode" name="Join" iterationReference="Join (xpdl2:Join_._type)" conditionFilter="&lt;%=getValue(&quot;Type&quot;).contains(&quot;OR&quot;)%>">
+                  <children xsi:type="net.sf:XmlNode" name="inclusive gateway" targetElement="flowElement (model:tInclusiveGateway)">
+                    <xmlAttributes name="id" value="_&lt;%=getValue(getTreeAncestor(3), &quot;Id&quot;)%>"/>
+                    <xmlAttributes name="name" value="Gateway"/>
+                    <xmlAttributes name="gatewayDirection" value="Converging"/>
+                  </children>
+                </children>
+              </children>
+            </children>
+          </children>
+          <children xsi:type="net.sf:IterationNode" name="Activitys [OR - Diverging]" iterationReference="Activity (xpdl2:Activity_._type)" conditionFilter="&lt;%=getValue(&quot;Name&quot;).contains(&quot;INCLUSIVE_GATEWAY&quot;)%>">
+            <children xsi:type="net.sf:IterationNode" name="Transition Restrictions" iterationReference="TransitionRestrictions (xpdl2:TransitionRestrictions_._type)">
+              <children xsi:type="net.sf:IterationNode" name="TransitionRestriction" iterationReference="TransitionRestriction (xpdl2:TransitionRestriction_._type)">
+                <children xsi:type="net.sf:IterationNode" name="Split" iterationReference="Split (xpdl2:Split_._type)" conditionFilter="&lt;%=getValue(&quot;Type&quot;).contains(&quot;OR&quot;)%>">
+                  <children xsi:type="net.sf:XmlNode" name="inclusive gateway" targetElement="flowElement (model:tInclusiveGateway)">
+                    <xmlAttributes name="id" value="_&lt;%=getValue(getTreeAncestor(3), &quot;Id&quot;)%>"/>
+                    <xmlAttributes name="name" value="Gateway"/>
+                    <xmlAttributes name="gatewayDirection" value="Diverging"/>
+                  </children>
+                </children>
+              </children>
+            </children>
+          </children>
+          <children xsi:type="net.sf:IterationNode" name="Activitys [Class Extension]" iterationReference="Activity (xpdl2:Activity_._type)" conditionFilter="&lt;%=getValue(&quot;Name&quot;).contains(&quot;ClassExtension&quot;)%>">
+            <children xsi:type="net.sf:XmlNode" name="task &lt;classExtension>" targetElement="flowElement (model:tTask)">
+              <children xsi:type="net.sf:XmlNode" name="ioSpecification" targetElement="ioSpecification (model:tInputOutputSpecification)">
+                <children xsi:type="net.sf:XmlNode" name="dataInput" targetElement="dataInput (model:tDataInput)">
+                  <xmlAttributes name="id" value="_&lt;%=getValue(&quot;Id&quot;)%>SUPER_NAMEInput"/>
+                  <xmlAttributes name="name" value="SUPER_NAME"/>
+                </children>
+                <children xsi:type="net.sf:XmlNode" name="dataInput" targetElement="dataInput (model:tDataInput)">
+                  <xmlAttributes name="name" value="SUB_PNAME"/>
+                  <xmlAttributes name="id" value="_&lt;%=getValue(&quot;Id&quot;)%>SUB_PNAMEInput"/>
+                </children>
+                <children xsi:type="net.sf:XmlNode" name="dataInput" targetElement="dataInput (model:tDataInput)">
+                  <xmlAttributes name="name" value="SUB_NAME"/>
+                  <xmlAttributes name="id" value="_&lt;%=getValue(&quot;Id&quot;)%>SUB_NAMEInput"/>
+                </children>
+                <children xsi:type="net.sf:XmlNode" name="inputSet" targetElement="inputSet (model:tInputSet)">
+                  <children xsi:type="net.sf:TextNode" name="dataInputRefs" text="&lt;dataInputRefs>_&lt;%=getValue(&quot;Id&quot;)%>SUPER_NAMEInput&lt;/dataInputRefs>"/>
+                  <children xsi:type="net.sf:TextNode" name="dataInputRefs" text="&lt;dataInputRefs>_&lt;%=getValue(&quot;Id&quot;)%>SUB_NAMEInput&lt;/dataInputRefs>"/>
+                  <children xsi:type="net.sf:TextNode" name="dataInputRefs" text="&lt;dataInputRefs>_&lt;%=getValue(&quot;Id&quot;)%>SUB_PNAMEInput&lt;/dataInputRefs>"/>
+                </children>
+              </children>
+              <children xsi:type="net.sf:XmlNode" name="dataInputAssociation" targetElement="dataInputAssociation (model:tDataInputAssociation)">
+                <children xsi:type="net.sf:XmlNode" name="assignment" targetElement="assignment (model:tAssignment)">
+                  <children xsi:type="net.sf:XmlNode" name="from" targetElement="from (model:tFormalExpression)">
+                    <children xsi:type="net.sf:TextNode" name="from" text="&lt;%=getValue(&quot;Name&quot;).split(&quot;_&quot;)[1]%>"/>
+                  </children>
+                  <children xsi:type="net.sf:XmlNode" name="to" targetElement="to (model:tFormalExpression)">
+                    <children xsi:type="net.sf:TextNode" name="to" text="_&lt;%=getValue(&quot;Id&quot;)%>SUPER_NAMEInput"/>
+                  </children>
+                </children>
+                <children xsi:type="net.sf:TextNode" name="targetRef" text="&lt;targetRef>_&lt;%=getValue(&quot;Id&quot;)%>SUPER_NAMEInput&lt;/targetRef>"/>
+              </children>
+              <children xsi:type="net.sf:XmlNode" name="dataInputAssociation" targetElement="dataInputAssociation (model:tDataInputAssociation)">
+                <children xsi:type="net.sf:XmlNode" name="assignment" targetElement="assignment (model:tAssignment)">
+                  <children xsi:type="net.sf:XmlNode" name="from" targetElement="from (model:tFormalExpression)">
+                    <children xsi:type="net.sf:TextNode" name="from" text="packageVar"/>
+                  </children>
+                  <children xsi:type="net.sf:XmlNode" name="to" targetElement="to (model:tFormalExpression)">
+                    <children xsi:type="net.sf:TextNode" name="to" text="_&lt;%=getValue(&quot;Id&quot;)%>SUB_PNAMEInput"/>
+                  </children>
+                </children>
+                <children xsi:type="net.sf:TextNode" name="targetRef" text="&lt;targetRef>_&lt;%=getValue(&quot;Id&quot;)%>SUB_PNAMEInput&lt;/targetRef>"/>
+              </children>
+              <children xsi:type="net.sf:XmlNode" name="dataInputAssociation" targetElement="dataInputAssociation (model:tDataInputAssociation)">
+                <children xsi:type="net.sf:XmlNode" name="assignment" targetElement="assignment (model:tAssignment)">
+                  <children xsi:type="net.sf:XmlNode" name="from" targetElement="from (model:tFormalExpression)">
+                    <children xsi:type="net.sf:TextNode" name="from" text="&quot;?&quot;"/>
+                  </children>
+                  <children xsi:type="net.sf:XmlNode" name="to" targetElement="to (model:tFormalExpression)">
+                    <children xsi:type="net.sf:TextNode" name="to" text="_&lt;%=getValue(&quot;Id&quot;)%>SUB_NAMEInput"/>
+                  </children>
+                </children>
+                <children xsi:type="net.sf:TextNode" name="targetRef" text="&lt;targetRef>_&lt;%=getValue(&quot;Id&quot;)%>SUB_NAMEInput&lt;/targetRef>"/>
+              </children>
+              <xmlAttributes name="name" value="&lt;%=getValue(&quot;Name&quot;)%>"/>
+              <xmlAttributes name="id" value="_&lt;%=getValue(&quot;Id&quot;)%>"/>
+            </children>
+          </children>
+          <children xsi:type="net.sf:IterationNode" name="Activitys [Method Extension]" iterationReference="Activity (xpdl2:Activity_._type)" conditionFilter="&lt;%=getValue(&quot;Name&quot;).contains(&quot;MethodExtension&quot;)%>">
+            <children xsi:type="net.sf:XmlNode" name="task" targetElement="flowElement (model:tTask)">
+              <children xsi:type="net.sf:XmlNode" name="ioSpecification" targetElement="ioSpecification (model:tInputOutputSpecification)">
+                <children xsi:type="net.sf:XmlNode" name="dataInput" targetElement="dataInput (model:tDataInput)">
+                  <xmlAttributes name="name" value="SUPER_NAME"/>
+                  <xmlAttributes name="id" value="_&lt;%=getValue(&quot;Id&quot;)%>SUPER_NAMEInput"/>
+                </children>
+                <children xsi:type="net.sf:XmlNode" name="dataInput" targetElement="dataInput (model:tDataInput)">
+                  <xmlAttributes name="name" value="SUB_NAME"/>
+                  <xmlAttributes name="id" value="_&lt;%=getValue(&quot;Id&quot;)%>SUB_NAMEInput"/>
+                </children>
+                <children xsi:type="net.sf:XmlNode" name="dataInput" targetElement="dataInput (model:tDataInput)">
+                  <xmlAttributes name="name" value="MethodName"/>
+                  <xmlAttributes name="id" value="_&lt;%=getValue(&quot;Id&quot;)%>MethodNameInput"/>
+                </children>
+                <children xsi:type="net.sf:XmlNode" name="inputSet" targetElement="inputSet (model:tInputSet)">
+                  <children xsi:type="net.sf:TextNode" name="dataInputRefs" text="&lt;dataInputRefs>_&lt;%=getValue(&quot;Id&quot;)%>SUPER_NAMEInput&lt;/dataInputRefs>"/>
+                  <children xsi:type="net.sf:TextNode" name="dataInputRefs" text="&lt;dataInputRefs>_&lt;%=getValue(&quot;Id&quot;)%>SUB_NAMEInput&lt;/dataInputRefs>"/>
+                  <children xsi:type="net.sf:TextNode" name="dataInputRefs" text="&lt;dataInputRefs>_&lt;%=getValue(&quot;Id&quot;)%>MethodNameInput&lt;/dataInputRefs>"/>
+                </children>
+              </children>
+              <children xsi:type="net.sf:XmlNode" name="dataInputAssociation" targetElement="dataInputAssociation (model:tDataInputAssociation)">
+                <children xsi:type="net.sf:XmlNode" name="assignment" targetElement="assignment (model:tAssignment)">
+                  <children xsi:type="net.sf:XmlNode" name="from" targetElement="from (model:tFormalExpression)">
+                    <children xsi:type="net.sf:TextNode" name="from" text="&lt;%=getValue(&quot;Name&quot;).split(&quot;_&quot;)[1]%>"/>
+                  </children>
+                  <children xsi:type="net.sf:XmlNode" name="to" targetElement="to (model:tFormalExpression)">
+                    <children xsi:type="net.sf:TextNode" name="to" text="_&lt;%=getValue(&quot;Id&quot;)%>SUPER_NAMEInput"/>
+                  </children>
+                </children>
+                <children xsi:type="net.sf:TextNode" name="targetRef" text="&lt;targetRef>_&lt;%=getValue(&quot;Id&quot;)%>SUPER_NAMEInput&lt;/targetRef>"/>
+              </children>
+              <children xsi:type="net.sf:XmlNode" name="dataInputAssociation" targetElement="dataInputAssociation (model:tDataInputAssociation)">
+                <children xsi:type="net.sf:TextNode" name="targetRef" text="&lt;targetRef>_&lt;%=getValue(&quot;Id&quot;)%>SUB_NAMEInput&lt;/targetRef>"/>
+                <children xsi:type="net.sf:XmlNode" name="assignment" targetElement="assignment (model:tAssignment)">
+                  <children xsi:type="net.sf:XmlNode" name="from" targetElement="from (model:tFormalExpression)">
+                    <children xsi:type="net.sf:TextNode" name="from" text="&lt;%=StringUtils.toUnderscoredLowerCase(getValue(&quot;Name&quot;).split(&quot;_&quot;)[1])%>"/>
+                  </children>
+                  <children xsi:type="net.sf:XmlNode" name="to" targetElement="to (model:tFormalExpression)">
+                    <children xsi:type="net.sf:TextNode" name="to" text="_&lt;%=getValue(&quot;Id&quot;)%>SUB_NAMEInput"/>
+                  </children>
+                </children>
+              </children>
+              <children xsi:type="net.sf:XmlNode" name="dataInputAssociation" targetElement="dataInputAssociation (model:tDataInputAssociation)">
+                <children xsi:type="net.sf:TextNode" name="targetRef" text="&lt;targetRef>_&lt;%=getValue(&quot;Id&quot;)%>MethodNameInput&lt;/targetRef>"/>
+                <children xsi:type="net.sf:XmlNode" name="assignment" targetElement="assignment (model:tAssignment)">
+                  <children xsi:type="net.sf:XmlNode" name="from" targetElement="from (model:tFormalExpression)">
+                    <children xsi:type="net.sf:TextNode" name="from" text="&lt;%=getValue(&quot;Name&quot;).split(&quot;_&quot;)[2]%>"/>
+                  </children>
+                  <children xsi:type="net.sf:XmlNode" name="to" targetElement="to (model:tFormalExpression)">
+                    <children xsi:type="net.sf:TextNode" name="to" text="_&lt;%=getValue(&quot;Id&quot;)%>MethodNameInput"/>
+                  </children>
+                </children>
+              </children>
+              <xmlAttributes name="id" value="_&lt;%=getValue(&quot;Id&quot;)%>"/>
+              <xmlAttributes name="name" value="MethodExtension"/>
+            </children>
+          </children>
+          <children xsi:type="net.sf:IterationNode" name="Activitys [Start Event]" iterationReference="Activity (xpdl2:Activity_._type)" conditionFilter="&lt;%=getValue(&quot;Name&quot;).contains(&quot;START EVENT&quot;)%>">
+            <children xsi:type="net.sf:XmlNode" name="flowElement" targetElement="flowElement (model:tStartEvent)">
+              <xmlAttributes name="id" value="_&lt;%=getValue(&quot;Id&quot;)%>"/>
+              <xmlAttributes name="name" value="StartProcess"/>
+            </children>
+          </children>
+          <children xsi:type="net.sf:IterationNode" name="Activitys [End Event]" iterationReference="Activity (xpdl2:Activity_._type)" conditionFilter="&lt;%=getValue(&quot;Name&quot;).contains(&quot;END EVENT&quot;)%>">
+            <children xsi:type="net.sf:XmlNode" name="flowElement" targetElement="flowElement (model:tEndEvent)">
+              <xmlAttributes name="id" value="_&lt;%=getValue(&quot;Id&quot;)%>"/>
+              <xmlAttributes name="name" value="EndProcess"/>
+            </children>
+          </children>
+          <children xsi:type="net.sf:IterationNode" name="Activitys [Declaration]" iterationReference="Activity (xpdl2:Activity_._type)" conditionFilter="&lt;%=getValue(&quot;Name&quot;).contains(&quot;Declaration&quot;)%>">
+            <children xsi:type="net.sf:XmlNode" name="task &lt;declaration>" targetElement="flowElement (model:tTask)">
+              <children xsi:type="net.sf:XmlNode" name="ioSpecification" targetElement="ioSpecification (model:tInputOutputSpecification)">
+                <children xsi:type="net.sf:XmlNode" name="dataInput" targetElement="dataInput (model:tDataInput)">
+                  <xmlAttributes name="id" value="_&lt;%=getValue(&quot;Id&quot;)%>TYPE_NAMEInput"/>
+                  <xmlAttributes name="name" value="TYPE_NAME"/>
+                </children>
+                <children xsi:type="net.sf:XmlNode" name="dataInput" targetElement="dataInput (model:tDataInput)">
+                  <xmlAttributes name="name" value="VAR_NAME"/>
+                  <xmlAttributes name="id" value="_&lt;%=getValue(&quot;Id&quot;)%>VAR_NAMEInput"/>
+                </children>
+                <children xsi:type="net.sf:XmlNode" name="inputSet" targetElement="inputSet (model:tInputSet)">
+                  <children xsi:type="net.sf:TextNode" name="dataInputRefs" text="&lt;dataInputRefs>_&lt;%=getValue(&quot;Id&quot;)%>TYPE_NAMEInput&lt;/dataInputRefs>"/>
+                  <children xsi:type="net.sf:TextNode" name="dataInputRefs" text="&lt;dataInputRefs>_&lt;%=getValue(&quot;Id&quot;)%>VAR_NAMEInput&lt;/dataInputRefs>"/>
+                </children>
+              </children>
+              <children xsi:type="net.sf:XmlNode" name="dataInputAssociation" targetElement="dataInputAssociation (model:tDataInputAssociation)">
+                <children xsi:type="net.sf:XmlNode" name="assignment" targetElement="assignment (model:tAssignment)">
+                  <children xsi:type="net.sf:XmlNode" name="from" targetElement="from (model:tFormalExpression)">
+                    <children xsi:type="net.sf:TextNode" name="from" text="VOID"/>
+                  </children>
+                  <children xsi:type="net.sf:XmlNode" name="to" targetElement="to (model:tFormalExpression)">
+                    <children xsi:type="net.sf:TextNode" name="to" text="_&lt;%=getValue(&quot;Id&quot;)+1%>TYPE_NAMEInput"/>
+                  </children>
+                </children>
+                <children xsi:type="net.sf:TextNode" name="targetRef" text="&lt;targetRef>_&lt;%=getValue(&quot;Id&quot;)%>TYPE_NAMEInput&lt;/targetRef>"/>
+              </children>
+              <children xsi:type="net.sf:XmlNode" name="dataInputAssociation" targetElement="dataInputAssociation (model:tDataInputAssociation)">
+                <children xsi:type="net.sf:XmlNode" name="assignment" targetElement="assignment (model:tAssignment)">
+                  <children xsi:type="net.sf:XmlNode" name="from" targetElement="from (model:tFormalExpression)">
+                    <children xsi:type="net.sf:TextNode" name="from" text="&lt;%=StringUtils.toUnderscoredLowerCase(getValue(&quot;Name&quot;).split(&quot;_&quot;)[1])%>"/>
+                  </children>
+                  <children xsi:type="net.sf:XmlNode" name="to" targetElement="to (model:tFormalExpression)">
+                    <children xsi:type="net.sf:TextNode" name="to" text="_&lt;%=getValue(&quot;Id&quot;)%>VAR_NAMEInput"/>
+                  </children>
+                </children>
+                <children xsi:type="net.sf:TextNode" name="targetRef" text="&lt;targetRef>_&lt;%=getValue(&quot;Id&quot;)%>VAR_NAMEInput&lt;/targetRef>"/>
+              </children>
+              <xmlAttributes name="name" value="Declaration"/>
+              <xmlAttributes name="id" value="_&lt;%=getValue(&quot;Id&quot;)%>"/>
+            </children>
+          </children>
+          <children xsi:type="net.sf:IterationNode" name="Activitys [Conditional]" iterationReference="Activity (xpdl2:Activity_._type)" conditionFilter="&lt;%=getValue(&quot;Name&quot;).contains(&quot;Condition&quot;)%>">
+            <children xsi:type="net.sf:XmlNode" name="task &lt;conditional>" targetElement="flowElement (model:tTask)">
+              <children xsi:type="net.sf:XmlNode" name="ioSpecification" targetElement="ioSpecification (model:tInputOutputSpecification)">
+                <children xsi:type="net.sf:XmlNode" name="dataInput" targetElement="dataInput (model:tDataInput)">
+                  <xmlAttributes name="id" value="_&lt;%=getValue(&quot;Id&quot;)%>CURRENT_ADDRESSInput"/>
+                  <xmlAttributes name="name" value="CURRENT_ADDRESS"/>
+                </children>
+                <children xsi:type="net.sf:XmlNode" name="dataInput" targetElement="dataInput (model:tDataInput)">
+                  <xmlAttributes name="id" value="_&lt;%=getValue(&quot;Id&quot;)%>CONDITIONInput"/>
+                  <xmlAttributes name="name" value="CONDITION"/>
+                </children>
+                <children xsi:type="net.sf:XmlNode" name="inputSet" targetElement="inputSet (model:tInputSet)">
+                  <children xsi:type="net.sf:TextNode" name="dataInputRefs" text="&lt;dataInputRefs>_&lt;%=getValue(&quot;Id&quot;)%>CURRENT_ADDRESSInput&lt;/dataInputRefs>"/>
+                  <children xsi:type="net.sf:TextNode" name="dataInputRefs" text="&lt;dataInputRefs>_&lt;%=getValue(&quot;Id&quot;)%>CONDITIONInput&lt;/dataInputRefs>"/>
+                </children>
+              </children>
+              <children xsi:type="net.sf:XmlNode" name="dataInputAssociation" targetElement="dataInputAssociation (model:tDataInputAssociation)">
+                <children xsi:type="net.sf:TextNode" name="TargetRef CurrentAddress" text="&lt;targetRef>_&lt;%=getValue(&quot;Id&quot;)%>CURRENT_ADDRESSInput&lt;/targetRef>"/>
+                <children xsi:type="net.sf:XmlNode" name="assignment" targetElement="assignment (model:tAssignment)">
+                  <children xsi:type="net.sf:XmlNode" name="from" targetElement="from (model:tFormalExpression)">
+                    <children xsi:type="net.sf:TextNode" name="from" text="&lt;%=getValue(&quot;Id&quot;)%>"/>
+                  </children>
+                  <children xsi:type="net.sf:XmlNode" name="to" targetElement="to (model:tFormalExpression)">
+                    <children xsi:type="net.sf:TextNode" name="to" text="_&lt;%=getValue(&quot;Id&quot;)%>CURRENT_ADDRESSInput"/>
+                  </children>
+                </children>
+              </children>
+              <children xsi:type="net.sf:XmlNode" name="dataInputAssociation" targetElement="dataInputAssociation (model:tDataInputAssociation)">
+                <children xsi:type="net.sf:TextNode" name="TargetRef Condition" text="&lt;targetRef>_&lt;%=getValue(&quot;Id&quot;)%>CURRENT_ADDRESSInput&lt;/targetRef>"/>
+                <children xsi:type="net.sf:XmlNode" name="assignment" targetElement="assignment (model:tAssignment)">
+                  <children xsi:type="net.sf:XmlNode" name="from" targetElement="from (model:tFormalExpression)">
+                    <children xsi:type="net.sf:TextNode" name="from" text="Condition Text"/>
+                  </children>
+                  <children xsi:type="net.sf:XmlNode" name="to" targetElement="to (model:tFormalExpression)">
+                    <children xsi:type="net.sf:TextNode" name="to" text="_&lt;%=getValue(&quot;Id&quot;)%>CONDITIONInput"/>
+                  </children>
+                </children>
+              </children>
+              <xmlAttributes name="name" value="EvalConditionBPMN"/>
+              <xmlAttributes name="id" value="_&lt;%=getValue(&quot;Id&quot;)%>"/>
+            </children>
+            <children xsi:type="net.sf:XmlNode" name="property" targetElement="property (model:tProperty)">
+              <xmlAttributes name="itemSubjectRef" value="_condStatus"/>
+              <xmlAttributes name="id" value="_condStatus&lt;%=getValue(&quot;Id&quot;)%>"/>
+            </children>
+          </children>
+          <children xsi:type="net.sf:IterationNode" name="Activitys [Import Model]" iterationReference="Activity (xpdl2:Activity_._type)" conditionFilter="&lt;%=getValue(&quot;Name&quot;).contains(&quot;ImportModel&quot;)%>" sortDescending="true">
+            <children xsi:type="net.sf:XmlNode" name="task &lt;importModel>" targetElement="flowElement (model:tTask)">
+              <children xsi:type="net.sf:XmlNode" name="ioSpecification" targetElement="ioSpecification (model:tInputOutputSpecification)">
+                <children xsi:type="net.sf:XmlNode" name="dataInput" targetElement="dataInput (model:tDataInput)">
+                  <xmlAttributes name="id" value="_&lt;%=getValue(&quot;Id&quot;)%>MODEL_URLInput"/>
+                  <xmlAttributes name="name" value="MODEL_URL"/>
+                </children>
+                <children xsi:type="net.sf:XmlNode" name="inputSet" targetElement="inputSet (model:tInputSet)">
+                  <children xsi:type="net.sf:TextNode" name="dataInputRefs" text="&lt;dataInputRefs>_&lt;%=getValue(&quot;Id&quot;)%>MODEL_URLInput&lt;/dataInputRefs>"/>
+                </children>
+              </children>
+              <children xsi:type="net.sf:XmlNode" name="dataInputAssociation" targetElement="dataInputAssociation (model:tDataInputAssociation)">
+                <children xsi:type="net.sf:XmlNode" name="assignment" targetElement="assignment (model:tAssignment)">
+                  <children xsi:type="net.sf:XmlNode" name="from" targetElement="from (model:tFormalExpression)">
+                    <children xsi:type="net.sf:TextNode" name="from" text="&lt;%=getValue(&quot;Name&quot;).split(&quot;_&quot;)[1]%>"/>
+                  </children>
+                  <children xsi:type="net.sf:XmlNode" name="to" targetElement="to (model:tFormalExpression)">
+                    <children xsi:type="net.sf:TextNode" name="to" text="_&lt;%=getValue(&quot;Id&quot;)%>MODEL_URLInput"/>
+                  </children>
+                </children>
+                <children xsi:type="net.sf:TextNode" name="targetRef" text="_&lt;%=getValue(&quot;Id&quot;)%>MODEL_URLInput"/>
+              </children>
+              <xmlAttributes name="name" value="ImportModel"/>
+              <xmlAttributes name="id" value="_&lt;%=getValue(&quot;Id&quot;)%>"/>
+            </children>
+          </children>
+          <children xsi:type="net.sf:IterationNode" name="Activitys [New package]" iterationReference="Activity (xpdl2:Activity_._type)" conditionFilter="&lt;%=getValue(&quot;Name&quot;).contains(&quot;NewPackage&quot;)%>">
+            <children xsi:type="net.sf:XmlNode" name="task [new package]" targetElement="flowElement (model:tTask)">
+              <children xsi:type="net.sf:XmlNode" name="ioSpecification" targetElement="ioSpecification (model:tInputOutputSpecification)">
+                <children xsi:type="net.sf:XmlNode" name="dataInput" targetElement="dataInput (model:tDataInput)">
+                  <xmlAttributes name="id" value="_&lt;%=getValue(&quot;Id&quot;)%>CONTAINER_NAMEInput"/>
+                  <xmlAttributes name="name" value="CONTAINER_NAME"/>
+                </children>
+                <children xsi:type="net.sf:XmlNode" name="dataInput" targetElement="dataInput (model:tDataInput)">
+                  <xmlAttributes name="id" value="_&lt;%=getValue(&quot;Id&quot;)%>PACKAGE_NAMEInput"/>
+                  <xmlAttributes name="name" value="PACKAGE_NAME"/>
+                </children>
+                <children xsi:type="net.sf:XmlNode" name="inputSet" targetElement="inputSet (model:tInputSet)">
+                  <children xsi:type="net.sf:TextNode" name="dataInputRefs" text="&lt;dataInputRefs>_&lt;%=getValue(&quot;Id&quot;)%>PACKAGE_NAMEInput&lt;/dataInputRefs>"/>
+                  <children xsi:type="net.sf:TextNode" name="dataInputRefs" text="&lt;dataInputRefs>_&lt;%=getValue(&quot;Id&quot;)%>CONTAINER_NAMEInput&lt;/dataInputRefs>"/>
+                </children>
+              </children>
+              <children xsi:type="net.sf:XmlNode" name="dataInputAssociation" targetElement="dataInputAssociation (model:tDataInputAssociation)">
+                <children xsi:type="net.sf:XmlNode" name="assignment" targetElement="assignment (model:tAssignment)">
+                  <children xsi:type="net.sf:XmlNode" name="from" targetElement="from (model:tFormalExpression)">
+                    <children xsi:type="net.sf:TextNode" name="from" text="appModel"/>
+                  </children>
+                  <children xsi:type="net.sf:XmlNode" name="to" targetElement="to (model:tFormalExpression)">
+                    <children xsi:type="net.sf:TextNode" name="to" text="_&lt;%=getValue(&quot;Id&quot;)%>CONTAINER_NAMEInput"/>
+                  </children>
+                </children>
+                <children xsi:type="net.sf:TextNode" name="targetRef" text="_&lt;%=getValue(&quot;Id&quot;)%>CONTAINER_NAMEInput"/>
+              </children>
+              <children xsi:type="net.sf:XmlNode" name="dataInputAssociation" targetElement="dataInputAssociation (model:tDataInputAssociation)">
+                <children xsi:type="net.sf:XmlNode" name="assignment" targetElement="assignment (model:tAssignment)">
+                  <children xsi:type="net.sf:XmlNode" name="from" targetElement="from (model:tFormalExpression)">
+                    <children xsi:type="net.sf:TextNode" name="from" text="&quot;?&quot;"/>
+                  </children>
+                  <children xsi:type="net.sf:XmlNode" name="to" targetElement="to (model:tFormalExpression)">
+                    <children xsi:type="net.sf:TextNode" name="to" text="_&lt;%=getValue(&quot;Id&quot;)%>PACKAGE_NAMEInput"/>
+                  </children>
+                </children>
+                <children xsi:type="net.sf:TextNode" name="targetRef" text="_&lt;%=getValue(&quot;Id&quot;)%>PACKAGE_NAMEInput"/>
+              </children>
+              <xmlAttributes name="name" value="NewPackage"/>
+              <xmlAttributes name="id" value="_&lt;%=getValue(&quot;Id&quot;)%>"/>
+            </children>
+          </children>
+          <children xsi:type="net.sf:IterationNode" name="Activitys [Export Model]" iterationReference="Activity (xpdl2:Activity_._type)" conditionFilter="&lt;%=getValue(&quot;Name&quot;).contains(&quot;ExportModel&quot;)%>" sortDescending="true">
+            <children xsi:type="net.sf:XmlNode" name="task &lt;exportModel>" targetElement="flowElement (model:tTask)">
+              <children xsi:type="net.sf:XmlNode" name="ioSpecification" targetElement="ioSpecification (model:tInputOutputSpecification)">
+                <children xsi:type="net.sf:XmlNode" name="dataInput" targetElement="dataInput (model:tDataInput)">
+                  <xmlAttributes name="id" value="_&lt;%=getValue(&quot;Id&quot;)%>MODEL_URLInput"/>
+                  <xmlAttributes name="name" value="MODEL_URL"/>
+                </children>
+                <children xsi:type="net.sf:XmlNode" name="inputSet" targetElement="inputSet (model:tInputSet)">
+                  <children xsi:type="net.sf:TextNode" name="dataInputRefs" text="&lt;dataInputRefs>_&lt;%=getValue(&quot;Id&quot;)%>MODEL_URLInput&lt;/dataInputRefs>"/>
+                </children>
+              </children>
+              <children xsi:type="net.sf:XmlNode" name="dataInputAssociation" targetElement="dataInputAssociation (model:tDataInputAssociation)">
+                <children xsi:type="net.sf:XmlNode" name="assignment" targetElement="assignment (model:tAssignment)">
+                  <children xsi:type="net.sf:XmlNode" name="from" targetElement="from (model:tFormalExpression)">
+                    <children xsi:type="net.sf:TextNode" name="from" text="&lt;%=getValue(&quot;Name&quot;).split(&quot;_&quot;)[1]%>"/>
+                  </children>
+                  <children xsi:type="net.sf:XmlNode" name="to" targetElement="to (model:tFormalExpression)">
+                    <children xsi:type="net.sf:TextNode" name="to" text="_&lt;%=getValue(&quot;Id&quot;)%>MODEL_URLInput"/>
+                  </children>
+                </children>
+                <children xsi:type="net.sf:TextNode" name="targetRef" text="_&lt;%=getValue(&quot;Id&quot;)%>MODEL_URLInput"/>
+              </children>
+              <xmlAttributes name="name" value="ExportModel"/>
+              <xmlAttributes name="id" value="_&lt;%=getValue(&quot;Id&quot;)%>"/>
+            </children>
+          </children>
+        </children>
+        <children xsi:type="net.sf:IterationNode" name="Transitions" iterationReference="Transitions (xpdl2:Transitions_._type)">
+          <children xsi:type="net.sf:IterationNode" name="Transitions" iterationReference="Transition (xpdl2:Transition_._type)">
+            <children xsi:type="net.sf:XmlNode" name="flowElement" targetElement="flowElement (model:tSequenceFlow)">
+              <xmlAttributes name="id" value="_&lt;%=getValue(&quot;Id&quot;)%>"/>
+              <xmlAttributes name="sourceRef" value="_&lt;%=getValue(&quot;From&quot;)%>"/>
+              <xmlAttributes name="targetRef" value="_&lt;%=getValue(&quot;To&quot;)%>"/>
+            </children>
+          </children>
+        </children>
+        <xmlAttributes name="processType" value="Private"/>
+        <xmlAttributes name="isExecutable" value="true"/>
+        <xmlAttributes name="id" value="org.reusefusion.reuse"/>
+        <xmlAttributes name="name" value="Reuse Process"/>
+      </children>
+    </children>
+  </children>
+</net.sf:ProjectNode>

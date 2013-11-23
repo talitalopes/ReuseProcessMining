@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/JETTransformation/src" modelPluginID="JETTransformation"
+    modelName="Prom" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.xsd.ecore.importer" complianceLevel="6.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>../metamodel/prom.xsd</foreignModel>
+  <genPackages prefix="Prom" resource="XML" disposableProviderFactory="true" ecorePackage="Prom.ecore#/">
+    <genClasses ecoreClass="Prom.ecore#//ActivitiesType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Prom.ecore#//ActivitiesType/activity"/>
+    </genClasses>
+    <genClasses ecoreClass="Prom.ecore#//ActivityType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Prom.ecore#//ActivityType/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Prom.ecore#//ActivityType/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Prom.ecore#//ActivityType/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Prom.ecore#//ConnectorGraphicsInfosType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Prom.ecore#//ConnectorGraphicsInfosType/connectorGraphicsInfo"/>
+    </genClasses>
+    <genClasses ecoreClass="Prom.ecore#//ConnectorGraphicsInfoType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Prom.ecore#//ConnectorGraphicsInfoType/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Prom.ecore#//ConnectorGraphicsInfoType/borderColor"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Prom.ecore#//ConnectorGraphicsInfoType/toolId"/>
+    </genClasses>
+    <genClasses ecoreClass="Prom.ecore#//DocumentRoot">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EAttribute Prom.ecore#//DocumentRoot/mixed"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Prom.ecore#//DocumentRoot/xMLNSPrefixMap"/>
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Prom.ecore#//DocumentRoot/xSISchemaLocation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Prom.ecore#//DocumentRoot/package"/>
+    </genClasses>
+    <genClasses ecoreClass="Prom.ecore#//PackageHeaderType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Prom.ecore#//PackageHeaderType/xPDLVersion"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Prom.ecore#//PackageHeaderType/vendor"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Prom.ecore#//PackageHeaderType/created"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Prom.ecore#//PackageHeaderType/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Prom.ecore#//PackageHeaderType/documentation"/>
+    </genClasses>
+    <genClasses ecoreClass="Prom.ecore#//PackageType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Prom.ecore#//PackageType/packageHeader"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Prom.ecore#//PackageType/pools"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Prom.ecore#//PackageType/workflowProcesses"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Prom.ecore#//PackageType/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Prom.ecore#//PackageType/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Prom.ecore#//ParticipantType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Prom.ecore#//ParticipantType/participantType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Prom.ecore#//ParticipantType/id"/>
+    </genClasses>
+    <genClasses ecoreClass="Prom.ecore#//ParticipantTypeType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Prom.ecore#//ParticipantTypeType/value"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Prom.ecore#//ParticipantTypeType/type"/>
+    </genClasses>
+    <genClasses ecoreClass="Prom.ecore#//ProcessHeaderType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Prom.ecore#//ProcessHeaderType/created"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Prom.ecore#//ProcessHeaderType/priority"/>
+    </genClasses>
+    <genClasses ecoreClass="Prom.ecore#//RedefinableHeaderType">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Prom.ecore#//RedefinableHeaderType/author"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Prom.ecore#//RedefinableHeaderType/version"/>
+    </genClasses>
+    <genClasses ecoreClass="Prom.ecore#//TransitionsType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Prom.ecore#//TransitionsType/transition"/>
+    </genClasses>
+    <genClasses ecoreClass="Prom.ecore#//TransitionType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Prom.ecore#//TransitionType/connectorGraphicsInfos"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Prom.ecore#//TransitionType/from"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Prom.ecore#//TransitionType/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Prom.ecore#//TransitionType/to"/>
+    </genClasses>
+    <genClasses ecoreClass="Prom.ecore#//WorkflowProcessesType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Prom.ecore#//WorkflowProcessesType/workflowProcess"/>
+    </genClasses>
+    <genClasses ecoreClass="Prom.ecore#//WorkflowProcessType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Prom.ecore#//WorkflowProcessType/processHeader"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Prom.ecore#//WorkflowProcessType/redefinableHeader"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Prom.ecore#//WorkflowProcessType/xpdlParticipants"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Prom.ecore#//WorkflowProcessType/activitySets"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Prom.ecore#//WorkflowProcessType/activities"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Prom.ecore#//WorkflowProcessType/transitions"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Prom.ecore#//WorkflowProcessType/accessLevel"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Prom.ecore#//WorkflowProcessType/id"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Prom.ecore#//WorkflowProcessType/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Prom.ecore#//XpdlParticipantsType">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Prom.ecore#//XpdlParticipantsType/participant"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
