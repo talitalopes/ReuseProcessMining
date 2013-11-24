@@ -23,9 +23,9 @@ import org.deckfour.xes.model.XTrace;
 import org.deckfour.xes.out.XesXmlSerializer;
 import org.deckfour.xes.xstream.XesXStreamPersistency;
 
-import Miner.Event;
-import Miner.Process;
-import Miner.ProcessInstance;
+import br.ufrj.cos.prisma.model.miner.Event;
+import br.ufrj.cos.prisma.model.miner.Process;
+import br.ufrj.cos.prisma.model.miner.ProcessInstance;
 
 import com.thoughtworks.xstream.XStream;
 

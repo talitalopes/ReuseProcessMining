@@ -7,9 +7,9 @@ import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.TreeSelection;
 
-import Miner.Process;
 import br.ufrj.cos.prisma.miner.openxes.XESLogGenerator;
 import br.ufrj.cos.prisma.miner.popup.dialogs.GenerateLogDialog;
+import br.ufrj.cos.prisma.model.miner.Process;
 
 
 

@@ -4,8 +4,49 @@
 	<extension point="org.eclipse.emf.ecore.generated_package">
   		<package
 			uri="http://process/reuse/miner"
-			class="br.ufrj.cos.prisma.miner.MinerPackage"/>
+			class="br.ufrj.cos.prisma.model.miner.MinerPackage"/>
 	</extension>
+
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <!-- @generated miner -->
+      <factory
+            uri="http://prisma.cos.ufrj.br/processreuseminer"
+            class="br.ufrj.cos.prisma.model.miner.provider.MinerItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated miner -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="br.ufrj.cos.prisma.model.miner.presentation.MinerModelWizardID"
+            name="%_UI_MinerModelWizard_label"
+            class="br.ufrj.cos.prisma.model.miner.presentation.MinerModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/MinerModelFile.gif">
+         <description>%_UI_MinerModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated miner -->
+      <editor
+            id="br.ufrj.cos.prisma.model.miner.presentation.MinerEditorID"
+            name="%_UI_MinerEditor_label"
+            icon="icons/full/obj16/MinerModelFile.gif"
+            extensions="miner"
+            class="br.ufrj.cos.prisma.model.miner.presentation.MinerEditor"
+            contributorClass="br.ufrj.cos.prisma.model.miner.presentation.MinerActionBarContributor">
+      </editor>
+   </extension>
 	<extension
          point="org.eclipse.ui.popupMenus">
       <objectContribution
@@ -24,14 +65,14 @@
          </menu>
          <action
                label="Extract Reuse Actions"
-               class="Miner.popup.actions.StartExtractionAction"
+               class="br.ufrj.cos.prisma.miner.popup.actions.StartExtractionAction"
                menubarPath="ProcessReuseMiner.menu1/group1"
                enablesFor="1"
                id="Miner.popup.actions.StartExtractionAction">
          </action>
          <action
                label="Generate XES Log"
-               class="Miner.popup.actions.GenerateXESFileAction"
+               class="br.ufrj.cos.prisma.miner.popup.actions.GenerateXESFileAction"
                menubarPath="ProcessReuseMiner.menu1/group2"
                enablesFor="1"
                id="Miner.popup.actions.StartExtractionAction">
@@ -39,4 +80,5 @@
          
       </objectContribution>
    </extension>
+null
 </plugin>

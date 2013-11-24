@@ -23,16 +23,16 @@ import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.swt.widgets.Shell;
 
-import Miner.Activity;
-import Miner.ActivityType;
-import Miner.Commit;
-import Miner.Event;
-import Miner.MinerFactory;
-import Miner.MinerPackage;
-import Miner.Process;
-import Miner.ProcessInstance;
 import br.ufrj.cos.prisma.miner.util.Constants;
 import br.ufrj.cos.prisma.miner.util.Log;
+import br.ufrj.cos.prisma.model.miner.Activity;
+import br.ufrj.cos.prisma.model.miner.ActivityType;
+import br.ufrj.cos.prisma.model.miner.Commit;
+import br.ufrj.cos.prisma.model.miner.Event;
+import br.ufrj.cos.prisma.model.miner.MinerFactory;
+import br.ufrj.cos.prisma.model.miner.MinerPackage;
+import br.ufrj.cos.prisma.model.miner.Process;
+import br.ufrj.cos.prisma.model.miner.ProcessInstance;
 
 /**
  * Reuse Actions Extractor.
