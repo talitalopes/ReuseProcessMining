@@ -3,8 +3,8 @@
 package br.ufrj.cos.prisma.model.miner.provider;
 
 
-import br.ufrj.cos.prisma.model.miner.Activity;
-import br.ufrj.cos.prisma.model.miner.MinerPackage;
+import miner.Activity;
+import miner.MinerPackage;
 
 import java.util.Collection;
 import java.util.List;

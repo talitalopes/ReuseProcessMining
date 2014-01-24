@@ -4,8 +4,8 @@
  */
 package br.ufrj.cos.prisma.model.miner.validation;
 
-import br.ufrj.cos.prisma.model.miner.Commit;
-import br.ufrj.cos.prisma.model.miner.Event;
+import miner.Commit;
+import miner.Event;
 
 import org.eclipse.emf.common.util.EList;
 

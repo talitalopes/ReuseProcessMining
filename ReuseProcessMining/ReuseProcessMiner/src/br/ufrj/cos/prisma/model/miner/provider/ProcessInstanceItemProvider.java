@@ -3,20 +3,17 @@
 package br.ufrj.cos.prisma.model.miner.provider;
 
 
-import br.ufrj.cos.prisma.model.miner.MinerFactory;
-import br.ufrj.cos.prisma.model.miner.MinerPackage;
-import br.ufrj.cos.prisma.model.miner.ProcessInstance;
-
 import java.util.Collection;
 import java.util.List;
 
+import miner.MinerFactory;
+import miner.MinerPackage;
+import miner.ProcessInstance;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;

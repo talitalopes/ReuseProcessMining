@@ -4,8 +4,8 @@
  */
 package br.ufrj.cos.prisma.model.miner.validation;
 
-import br.ufrj.cos.prisma.model.miner.Activity;
-import br.ufrj.cos.prisma.model.miner.ProcessInstance;
+import miner.Activity;
+import miner.ProcessInstance;
 
 import org.eclipse.emf.common.util.EList;
 

@@ -2,15 +2,14 @@
  */
 package br.ufrj.cos.prisma.model.miner.util;
 
-import br.ufrj.cos.prisma.model.miner.Activity;
-import br.ufrj.cos.prisma.model.miner.Commit;
-import br.ufrj.cos.prisma.model.miner.Event;
-import br.ufrj.cos.prisma.model.miner.MinerPackage;
-import br.ufrj.cos.prisma.model.miner.ProcessInstance;
+import miner.Activity;
+import miner.Commit;
+import miner.Event;
+import miner.MinerPackage;
+import miner.ProcessInstance;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.util.Switch;
 
 /**
@@ -71,7 +70,7 @@ public class MinerSwitch<T> extends Switch<T> {
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
 			case MinerPackage.PROCESS: {
-				br.ufrj.cos.prisma.model.miner.Process process = (br.ufrj.cos.prisma.model.miner.Process)theEObject;
+				miner.Process process = (miner.Process)theEObject;
 				T result = caseProcess(process);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
@@ -115,7 +114,7 @@ public class MinerSwitch<T> extends Switch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseProcess(br.ufrj.cos.prisma.model.miner.Process object) {
+	public T caseProcess(miner.Process object) {
 		return null;
 	}
 

@@ -19,7 +19,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 
-import br.ufrj.cos.prisma.model.miner.Process;
+import miner.Process;
 
 public class ProcessMiningDialog extends Dialog {
 	protected Shell shell;

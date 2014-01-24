@@ -1,6 +1,9 @@
 package br.ufrj.cos.prisma;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.Scanner;
 
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.revwalk.RevCommit;
@@ -11,7 +14,6 @@ public class GitManager {
 
 	public static String repoURL;
 	public static String localDir;
-
 
 	public static void main(String[] args) {
 		if (args.length < 2) {
@@ -31,12 +33,51 @@ public class GitManager {
 		}
 
 		List<RevCommit> commitsHistory = repositoryHelper.getCommitsHistory();
-		for (RevCommit commit: commitsHistory) {
-			repositoryHelper.cloneFromCommit(commit);
+		// TODO: replace project name
+		for (RevCommit commit : commitsHistory) {
+			String projectDir = localDir + "/" + commit.getCommitTime();
+			log("projectDir: " + projectDir);
+
+			GitRepositoryHelper localHelper = new GitRepositoryHelper(repoURL,
+					projectDir);
+			localHelper.cloneFromCommit(commit);
 		}
-		
+
+		try {
+			listFilesForFolder(new File(localDir));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
+	public static void listFilesForFolder(final File folder) throws IOException {
+		for (final File fileEntry : folder.listFiles()) {
+			if (fileEntry.isDirectory()) {
+				listFilesForFolder(fileEntry);
+			} else {
+				if (fileEntry.getName().equals(".project")) {
+					String content = readFile(fileEntry);
+					System.out.println(content);
+				}
+			}
+		}
+	}
+
+	private static String readFile(File file) throws IOException {
+	    StringBuilder fileContents = new StringBuilder((int)file.length());
+	    Scanner scanner = new Scanner(file);
+	    String lineSeparator = System.getProperty("line.separator");
+
+	    try {
+	        while(scanner.hasNextLine()) {        
+	            fileContents.append(scanner.nextLine() + lineSeparator);
+	        }
+	        return fileContents.toString();
+	    } finally {
+	        scanner.close();
+	    }
+	}
+	
 	private static void log(String message) {
 		if (verbose) {
 			System.out.println(message);

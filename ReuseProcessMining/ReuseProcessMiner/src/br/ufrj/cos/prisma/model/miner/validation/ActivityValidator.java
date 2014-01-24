@@ -4,7 +4,7 @@
  */
 package br.ufrj.cos.prisma.model.miner.validation;
 
-import br.ufrj.cos.prisma.model.miner.ActivityType;
+import miner.ActivityType;
 
 /**
  * A sample validator interface for {@link br.ufrj.cos.prisma.model.miner.Activity}.

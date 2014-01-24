@@ -2,17 +2,15 @@
  */
 package br.ufrj.cos.prisma.model.miner.util;
 
-import br.ufrj.cos.prisma.model.miner.Activity;
-import br.ufrj.cos.prisma.model.miner.Commit;
-import br.ufrj.cos.prisma.model.miner.Event;
-import br.ufrj.cos.prisma.model.miner.MinerPackage;
-import br.ufrj.cos.prisma.model.miner.ProcessInstance;
+import miner.Activity;
+import miner.Commit;
+import miner.Event;
+import miner.MinerPackage;
+import miner.ProcessInstance;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -72,7 +70,7 @@ public class MinerAdapterFactory extends AdapterFactoryImpl {
 	protected MinerSwitch<Adapter> modelSwitch =
 		new MinerSwitch<Adapter>() {
 			@Override
-			public Adapter caseProcess(br.ufrj.cos.prisma.model.miner.Process object) {
+			public Adapter caseProcess(miner.Process object) {
 				return createProcessAdapter();
 			}
 			@Override

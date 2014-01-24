@@ -4,9 +4,9 @@
  */
 package br.ufrj.cos.prisma.model.miner.validation;
 
-import br.ufrj.cos.prisma.model.miner.Event;
-
 import java.util.Date;
+
+import miner.Event;
 
 import org.eclipse.emf.common.util.EList;
 

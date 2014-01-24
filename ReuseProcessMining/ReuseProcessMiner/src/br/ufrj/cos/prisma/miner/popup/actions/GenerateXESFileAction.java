@@ -7,11 +7,9 @@ import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.TreeSelection;
 
-import br.ufrj.cos.prisma.miner.openxes.XESLogGenerator;
+import br.ufrj.cos.prisma.miner.OpenXES.XESLogGenerator;
 import br.ufrj.cos.prisma.miner.popup.dialogs.GenerateLogDialog;
-import br.ufrj.cos.prisma.model.miner.Process;
-
-
+import miner.Process;
 
 public class GenerateXESFileAction  extends ProcessMiningAction {
 
@@ -19,13 +17,21 @@ public class GenerateXESFileAction  extends ProcessMiningAction {
 		super();
 	}
 	
-	public static void generateLog(Process process) {
+	public static void generateLog(Process process, boolean classesOnly) {
 		System.out.println(String.format("Log will be generated: %s", generateFilename("test")));
 		
-		XESLogGenerator xesGen = new XESLogGenerator();
+		XESLogGenerator xesGen = new XESLogGenerator(classesOnly);
 		xesGen.getXESRepresentationFromProcess(process);
 		xesGen.serialize(generateFilename("test"));
 
+	}
+	
+	public static void generateLog(Process process) {
+		generateLog(process, false);
+	}
+
+	public static void generateLogForClasses(Process process) {
+		generateLog(process, true);
 	}
 	
 	private static String generateFilename(String prefix) {

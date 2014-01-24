@@ -3,19 +3,16 @@
 package br.ufrj.cos.prisma.model.miner.provider;
 
 
-import br.ufrj.cos.prisma.model.miner.MinerFactory;
-import br.ufrj.cos.prisma.model.miner.MinerPackage;
-
 import java.util.Collection;
 import java.util.List;
 
+import miner.MinerFactory;
+import miner.MinerPackage;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -139,7 +136,7 @@ public class ProcessItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((br.ufrj.cos.prisma.model.miner.Process)object).getName();
+		String label = ((miner.Process)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Process_type") :
 			getString("_UI_Process_type") + " " + label;
@@ -156,7 +153,7 @@ public class ProcessItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(br.ufrj.cos.prisma.model.miner.Process.class)) {
+		switch (notification.getFeatureID(miner.Process.class)) {
 			case MinerPackage.PROCESS__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

@@ -4,9 +4,9 @@
  */
 package br.ufrj.cos.prisma.model.miner.validation;
 
-import br.ufrj.cos.prisma.model.miner.Activity;
-
 import java.util.Date;
+
+import miner.Activity;
 
 /**
  * A sample validator interface for {@link br.ufrj.cos.prisma.model.miner.Event}.

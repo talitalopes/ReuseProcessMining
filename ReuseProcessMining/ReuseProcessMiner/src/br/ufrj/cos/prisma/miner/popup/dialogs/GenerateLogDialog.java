@@ -15,6 +15,7 @@ public class GenerateLogDialog extends ProcessMiningDialog {
 	@Override
 	protected void createButtonsForButtonBar(Composite parent) {
 		createButton(parent, Constants.ID_GENERATE_LOG, Constants.LABEL_GENERATE_LOG, true);
+		createButton(parent, Constants.ID_GENERATE_LOG_CLASSES_ONLY, Constants.LABEL_GENERATE_CLASSES_LOG, true);
 		super.createButtonsForButtonBar(parent);
 	}
 
@@ -24,6 +25,9 @@ public class GenerateLogDialog extends ProcessMiningDialog {
 		case Constants.ID_GENERATE_LOG:
 			generateXESLog();
 			break;
+		case Constants.ID_GENERATE_LOG_CLASSES_ONLY:
+			generateXESLogForClasses();
+			break;
 		default:
 			super.buttonPressed(buttonId);
 		}
@@ -31,6 +35,10 @@ public class GenerateLogDialog extends ProcessMiningDialog {
 		
 	protected void generateXESLog() {
 		GenerateXESFileAction.generateLog(getProcess());
+	}
+
+	protected void generateXESLogForClasses() {
+		GenerateXESFileAction.generateLogForClasses(getProcess());
 	}
 
 }

@@ -3,9 +3,9 @@
 package br.ufrj.cos.prisma.model.miner.provider;
 
 
-import br.ufrj.cos.prisma.model.miner.Commit;
-import br.ufrj.cos.prisma.model.miner.MinerFactory;
-import br.ufrj.cos.prisma.model.miner.MinerPackage;
+import miner.Commit;
+import miner.MinerFactory;
+import miner.MinerPackage;
 
 import java.util.Collection;
 import java.util.List;
