@@ -16,10 +16,13 @@ public class MethodExtensionActivity extends MinerActivity {
 		this.activity = MinerFactory.eINSTANCE.createActivity();
 		this.activity.setId(this.activityKey);
 		this.activity.setType(getMethodExtensionType(method));
-		this.activity.setName(method.getElementName());
+
+		String activityName = String.format("%s.%s",
+				superClassFW.getFullyQualifiedName(), method.getElementName());
+		this.activity.setName(activityName);
 		this.activity.setAppClass(type.getElementName());
 	}
-	
+
 	private ActivityType getMethodExtensionType(IMethod method) {
 		try {
 			if (method.getSource().contains(

@@ -308,6 +308,7 @@ public class ReuseActionsExtractor {
 			String methodKey = String.format("%s+%s+%s",
 					superClassFW.getElementName(), type.getElementName(),
 					method.getElementName());
+			
 			if (eventsOrder.contains(methodKey)) {
 				continue;
 			}
