@@ -40,7 +40,7 @@ import br.ufrj.cos.prisma.miner.util.Log;
 
 /**
  * Reuse Actions Extractor. This class is responsible for extracting reuse
- * actions from aplications code. All applications are related to a single
+ * actions from applications code. All applications are related to a single
  * framework and the reuse actions corresponds to actions executed to build the
  * application from the framework.
  **/
@@ -69,7 +69,7 @@ public class ReuseActionsExtractor {
 			Log.i(Constants.ERROR_FRAMEWORK_NOT_EXISTS);
 			return;
 		}
-		
+
 		mProcess = new MinerProcess(process);
 		eventsOrder = new ArrayList<String>();
 		Log.i(String.format("%s: %s", Constants.FRAMEWORK_PROJECT_NAME_KEY,
@@ -77,62 +77,96 @@ public class ReuseActionsExtractor {
 
 		try {
 			// Add process instances to the process
-			getFrameworkApplicationsCommits();
+			// Iterates in the workspace grouping projects into framework
+			// applications
+			mProcess.populateApplicationsFromWorkspaceProjects(jdtHelper);
+
+			for (MinerApplication app : mProcess.getMinerApplications()) {
+				Log.i(String.format("Application Name: %s - Projects - %d", app
+						.getApplication().getName(), app.getAllCommits().size()));
+				for (MinerCommit commit : app.getAllCommits()) {
+					IJavaProject javaProject = openProject(commit
+							.getWorkspaceProject());
+					if (javaProject == null) {
+						continue;
+					}
+
+					for (IPackageFragment mPackage : javaProject
+							.getPackageFragments()) {
+						explorePackage(mPackage, commit);
+					}
+				}
+			}
+
+			Log.i("Process applications: " + mProcess.getAllApplications().size());
 			process.getInstances().addAll(mProcess.getAllApplications());
+			
 		} catch (CoreException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	private static void getFrameworkApplicationsCommits()
-			throws CoreException {
-//		Commit lastCommit = null; 
-		
-		// Get all projects in the workspace
-		IProject[] projects = jdtHelper.getAllProjectsInWorkspace();
 
+	/**
+	 * Explore projects to extract reuse actions
+	 * @deprecated
+	 * **/
+	private static void getFrameworkApplicationsCommits() throws CoreException {
+
+//		Commit lastCommit = null;
+		IProject[] projects = jdtHelper.getAllProjectsInWorkspace();
 		// Loop over all projects
 		for (IProject project : projects) {
-			project.open(null);
-			if (!jdtHelper.isIProjectValid(project)) {
+			if (!JDTHelper.isIProjectValid(jdtHelper.getFrameworkProject(),
+					project)) {
 				continue;
 			}
 
-			IJavaProject javaProject = JavaCore.create(project);
-			if (!JDTHelper.isJavaProjectValid(javaProject)) {
-				continue;
-			}
-			
+			IJavaProject javaProject = openProject(project);
 			jdtHelper.setCurrentFrameworkApplicationProject(javaProject);
-			String applicationName = JDTHelper.getApplicationNameForJavaProject(javaProject);
-			MinerApplication application = mProcess.getApplicationByName(applicationName);			
+			String applicationName = JDTHelper
+					.getApplicationNameFromProjectName(javaProject
+							.getElementName());
+			MinerApplication application = mProcess
+					.getApplicationByName(applicationName);
 
-			// The name of the project follows the pattern: name - commitid - date TODO:confirm ordering
+			// The name of the project follows the pattern: name - commitid -
+			// date TODO:confirm ordering
 			String[] keys = javaProject.getElementName().split("\\.");
 			MinerCommit minerCommit = new MinerCommit(keys);
 			addExistingEventsToCommit(minerCommit.getCommit());
 			application.addCommit(minerCommit);
-			
+
 			mProcess.addApplication(application);
 
 			// Explore the files in this project
 			boolean mine = true;
 			for (IPackageFragment mPackage : javaProject.getPackageFragments()) {
 				if (mine) {
-					explorePackage(mPackage, minerCommit.getCommit());
+					 explorePackage(mPackage, minerCommit);
 				}
-				
-//				if (lastCommit != null && lastCommit.equals(c)) {
-//					System.out.println("Same events. Can stop mining: " + mine);
-//					System.out.println("Last commit: " + lastCommit);
-//					System.out.println("commit: " + c);
-//					System.out.println("First: " + lastCommit != null);
-//					System.out.println("Second: " + lastCommit.equals(c));
-//					mine = false; // TODO: stop mining when reuse actions are the same
-//				}
-//				lastCommit = c;
+
+				// if (lastCommit != null && lastCommit.equals(c)) {
+				// System.out.println("Same events. Can stop mining: " + mine);
+				// System.out.println("Last commit: " + lastCommit);
+				// System.out.println("commit: " + c);
+				// System.out.println("First: " + lastCommit != null);
+				// System.out.println("Second: " + lastCommit.equals(c));
+				// mine = false; // TODO: stop mining when reuse actions are the
+				// same
+				// }
+				// lastCommit = c;
 			}
 		}
+	}
+
+	private static IJavaProject openProject(IProject project)
+			throws CoreException {
+		project.open(null);
+		IJavaProject javaProject = JavaCore.create(project);
+		if (!JDTHelper.isJavaProjectValid(javaProject)) {
+			return null;
+		}
+		return javaProject;
 	}
 
 	private static void addExistingEventsToCommit(Commit c) {
@@ -151,7 +185,7 @@ public class ReuseActionsExtractor {
 				continue;
 			}
 
-			MinerEvent event = new MinerEvent(activity, c);
+			MinerEvent event = new MinerEvent(activity, c.getDate());
 			c.getEvents().add(event.getEvent());
 		}
 	}
@@ -187,7 +221,7 @@ public class ReuseActionsExtractor {
 		return ((CustomSearchRequestor) requestor).getMatch();
 	}
 
-	public static void explorePackage(IPackageFragment p, Commit c)
+	public static void explorePackage(IPackageFragment p, MinerCommit mc)
 			throws JavaModelException {
 		if (p.getKind() != IPackageFragmentRoot.K_SOURCE) {
 			return;
@@ -198,7 +232,7 @@ public class ReuseActionsExtractor {
 		for (ICompilationUnit unit : units) {
 			for (IType type : unit.getAllTypes()) {
 				if (type.isClass()) {
-					extractClassAndMethods(type, c);
+					extractClassAndMethods(type, mc);
 				} else if (type.isInterface()) {
 					continue; // TODO: get interfaces
 				}
@@ -206,27 +240,31 @@ public class ReuseActionsExtractor {
 		}
 	}
 
-	private static void extractClassAndMethods(IType type, Commit c)
+	private static void extractClassAndMethods(IType type, MinerCommit c)
 			throws JavaModelException {
 		// Check is superclass belongs to framework.
-		IType superClassFW = JDTHelper.isFrameworkClass(jdtHelper.getFrameworkProject(), type);
+		IType superClassFW = JDTHelper.isFrameworkClass(
+				jdtHelper.getFrameworkProject(), type);
 		if (superClassFW == null) {
 			return;
 		}
-		
+
 		try {
-			SearchMatch mMatch = callHierarchy(jdtHelper.getCurrentFrameworkApplicationProject(),
+			SearchMatch mMatch = callHierarchy(
+					jdtHelper.getCurrentFrameworkApplicationProject(),
 					type.getElementName());
 			if (mMatch != null) {
-				IType dependentIType = jdtHelper.getCurrentFrameworkApplicationProject()
-						.findType(mMatch.getResource().getName());
+				IType dependentIType = jdtHelper
+						.getCurrentFrameworkApplicationProject().findType(
+								mMatch.getResource().getName());
 				extractClassAndMethods(dependentIType, c);
 			}
 		} catch (CoreException e) {
 			e.printStackTrace();
 		}
 
-		MinerActivity classExtensionActivity = getClassActivity(superClassFW, type);
+		MinerActivity classExtensionActivity = getClassActivity(superClassFW,
+				type);
 		String activityNameKey = String.format("%s+%s",
 				superClassFW.getFullyQualifiedName(), type.getElementName());
 
@@ -234,8 +272,9 @@ public class ReuseActionsExtractor {
 			return;
 		}
 
-		MinerEvent minerEvent = new MinerEvent(classExtensionActivity, c); 
-		c.getEvents().add(minerEvent.getEvent());
+		MinerEvent minerEvent = new MinerEvent(classExtensionActivity, c.getDate());
+		c.addEvent(minerEvent);
+//		c.getEvents().add(minerEvent.getEvent());
 		eventsOrder.add(activityNameKey);
 
 		getClassMethods(superClassFW, type, c);
@@ -253,7 +292,7 @@ public class ReuseActionsExtractor {
 
 	}
 
-	private static void getClassMethods(IType superClassFW, IType type, Commit c)
+	private static void getClassMethods(IType superClassFW, IType type, MinerCommit c)
 			throws JavaModelException {
 		IMethod[] methods = type.getMethods();
 
@@ -262,8 +301,8 @@ public class ReuseActionsExtractor {
 			if (!isExtension) {
 				continue;
 			}
-			MinerActivity methodExtensionActivity = getMethodActivity(superClassFW,
-					type, method);
+			MinerActivity methodExtensionActivity = getMethodActivity(
+					superClassFW, type, method);
 
 			// Super class + method + class name
 			String methodKey = String.format("%s+%s+%s",
@@ -273,35 +312,39 @@ public class ReuseActionsExtractor {
 				continue;
 			}
 
-			MinerEvent methodExtensionEvent = new MinerEvent(methodExtensionActivity, c);
-			c.getEvents().add(methodExtensionEvent.getEvent());
+			MinerEvent methodExtensionEvent = new MinerEvent(
+					methodExtensionActivity, c.getDate());
+			c.addEvent(methodExtensionEvent);
 
 			eventsOrder.add(methodKey);
 		}
 	}
 
 	private static MinerActivity getClassActivity(IType superClassFW, IType type) {
-		String activityKey = MinerActivity.getKeyForClass(superClassFW);		
-		MinerActivity classExtensionActivity = mProcess.getActivityById(activityKey);
+		String activityKey = MinerActivity.getKeyForClass(superClassFW);
+		MinerActivity classExtensionActivity = mProcess
+				.getActivityById(activityKey);
 		if (classExtensionActivity != null) {
 			return classExtensionActivity;
 		}
 
 		classExtensionActivity = new ClassExtensionActivity(superClassFW, type);
 		mProcess.addActivity(classExtensionActivity);
-		
+
 		return classExtensionActivity;
 	}
 
-	private static MinerActivity getMethodActivity(IType superClassFW, IType type,
-			IMethod method) throws JavaModelException {
+	private static MinerActivity getMethodActivity(IType superClassFW,
+			IType type, IMethod method) throws JavaModelException {
 		String methodKey = MinerActivity.getKeyForMethod(superClassFW, method);
-		MinerActivity methodExtensionActivity = mProcess.getActivityById(methodKey);
-		if (methodExtensionActivity != null) { 
+		MinerActivity methodExtensionActivity = mProcess
+				.getActivityById(methodKey);
+		if (methodExtensionActivity != null) {
 			return methodExtensionActivity;
 		}
 
-		methodExtensionActivity = new MethodExtensionActivity(superClassFW, type, method);
+		methodExtensionActivity = new MethodExtensionActivity(superClassFW,
+				type, method);
 		mProcess.addActivity(methodExtensionActivity);
 
 		return methodExtensionActivity;

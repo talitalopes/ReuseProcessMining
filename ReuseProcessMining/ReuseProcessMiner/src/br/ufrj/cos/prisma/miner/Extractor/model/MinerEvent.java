@@ -1,6 +1,7 @@
 package br.ufrj.cos.prisma.miner.Extractor.model;
 
-import miner.Commit;
+import java.util.Date;
+
 import miner.Event;
 import miner.MinerFactory;
 
@@ -8,10 +9,10 @@ public class MinerEvent {
 
 	Event event;
 	
-	public MinerEvent(MinerActivity activity, Commit c) {
+	public MinerEvent(MinerActivity activity, Date date) {
 		this.event = MinerFactory.eINSTANCE.createEvent();
 		this.event.setActivity(activity.getActivity());
-		this.event.setDate(c.getDate());
+		this.event.setDate(date);
 		this.event.setLifecycleStatus("COMPLETE");
 	}
 	

@@ -106,9 +106,9 @@ public class JDTHelper {
 		return null;
 	}
 
-	public boolean isIProjectValid(IProject project) throws CoreException {
+	public static boolean isIProjectValid(IJavaProject frameworkProject, IProject project) throws CoreException {
 		if (!project.isNatureEnabled(Constants.JAVA_NATURE)
-				|| (project.getName().equals(getFrameworkProject()
+				|| (project.getName().equals(frameworkProject
 						.getElementName()))) {
 			return false;
 		}
@@ -127,9 +127,9 @@ public class JDTHelper {
 	 * project.
 	 * 
 	 * **/
-	public static String getApplicationNameForJavaProject(
-			IJavaProject javaProject) {
-		String[] keys = javaProject.getElementName().split("\\.");
+	public static String getApplicationNameFromProjectName(
+			String projectName) {
+		String[] keys = projectName.split("\\.");
 		String name = "";
 		for (int i = 0; i < keys.length - 2; i++) {
 			name = name + "." + keys[i];
