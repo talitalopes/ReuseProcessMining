@@ -725,3 +725,10 @@ ReuseProcessMining/MinerEMFModel.tests/src/miner/tests/MinerExample.java
 ReuseProcessMining/MinerEMFModel.tests/src/miner/tests/MinerTests.java
 ReuseProcessMining/MinerEMFModel.tests/src/miner/tests/ProcessInstanceTest.java
 ReuseProcessMining/MinerEMFModel.tests/src/miner/tests/ProcessTest.java
+Python/GitCrawler/.project
+Python/GitCrawler/.pydevproject
+Python/GitCrawler/br/__init__.py
+Python/GitCrawler/br/ufrj/__init__.py
+Python/GitCrawler/br/ufrj/cos/__init__.py
+Python/GitCrawler/br/ufrj/cos/prisma/GitCrawler.py
+Python/GitCrawler/br/ufrj/cos/prisma/__init__.py

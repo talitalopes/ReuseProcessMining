@@ -1,11 +1,6 @@
 package br.ufrj.cos.prisma.miner.Extractor;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,8 +25,11 @@ import org.eclipse.jdt.core.search.SearchMatch;
 import org.eclipse.jdt.core.search.SearchParticipant;
 import org.eclipse.jdt.core.search.SearchPattern;
 import org.eclipse.jdt.core.search.SearchRequestor;
+import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.swt.widgets.Shell;
 
+import br.ufrj.cos.prisma.helpers.GitRepositoryHelper;
+import br.ufrj.cos.prisma.helpers.ProjectHelper;
 import br.ufrj.cos.prisma.helpers.RepositoriesHelper;
 import br.ufrj.cos.prisma.miner.Extractor.model.ClassExtensionActivity;
 import br.ufrj.cos.prisma.miner.Extractor.model.JDTHelper;
@@ -44,6 +42,7 @@ import br.ufrj.cos.prisma.miner.Extractor.model.MinerProcess;
 import br.ufrj.cos.prisma.miner.util.Constants;
 import br.ufrj.cos.prisma.miner.util.CustomSearchRequestor;
 import br.ufrj.cos.prisma.miner.util.Log;
+import br.ufrj.cos.prisma.model.GithubRepository;
 
 /**
  * Reuse Actions Extractor. This class is responsible for extracting reuse
@@ -55,9 +54,9 @@ public class ReuseActionsExtractor {
 	private static MinerProcess mProcess;
 	private static JDTHelper jdtHelper;
 	private static List<String> eventsOrder;
+	private static ProjectHelper projectHelper;
 
 	public static void start(Process process, Shell shell) {
-		listRepositories();
 		if (process == null) {
 			Log.i(Constants.ERROR_KEY, Constants.PROCESS_NOT_EXISTS);
 			return;
@@ -67,12 +66,60 @@ public class ReuseActionsExtractor {
 			Log.i(Constants.ERROR_KEY, Constants.ERROR_LOADING_FRAMEWORK);
 			return;
 		}
-		 
+
+		System.out.println(String.format(
+				"Extracting reuse actions related to %s framework",
+				process.getName()));
+		// manageFrameworkApplications(process);
+
 		mineReuseActions(process);
 	}
 
-	private static void listRepositories() {
-		RepositoriesHelper.listRepositories("graphiti");
+	private static void manageFrameworkApplications(Process process) {
+		List<GithubRepository> repositories = listRepositories();
+
+		System.out.println(String.format("%d repositories found", repositories.size()));
+		
+		for (GithubRepository repo : repositories) {
+			System.out.println(String.format("Current repository: %s", repo.getName()));
+			
+			GitRepositoryHelper helper = new GitRepositoryHelper(repo);
+			List<RevCommit> applications = helper.getCommitsHistory();
+			projectHelper = new ProjectHelper();
+
+			System.out.println(String.format("%d commits found", applications.size()));
+			for (RevCommit c : applications) {
+				helper.cloneFromCommit(c);
+				importProjectIntoWorkspace(repo.getRepoFile());
+				mineReuseActions(process);
+			}
+			deleteApplicationProjectsFromWorkspace();
+		}
+	}
+
+	// TODO: implement
+	/**
+	 * This method imports project inside a given folder to the workspace.
+	 * 
+	 * @param localDir
+	 *            the location of the projects
+	 * **/
+	private static void importProjectIntoWorkspace(File repoDir) {
+		projectHelper.importAllProjectsInsideRepoFolder(repoDir);
+	}
+
+	// TODO: implement
+	/**
+	 * This method removes a project from the workspace.
+	 * 
+	 * @param ?
+	 * **/
+	private static void deleteApplicationProjectsFromWorkspace() {
+		projectHelper.deleteProjectsFromWorkspace();
+	}
+
+	private static List<GithubRepository> listRepositories() {
+		return RepositoriesHelper.listRepositories("JJTV5_gef");
 	}
 
 	private static void mineReuseActions(Process process) {
@@ -98,9 +145,11 @@ public class ReuseActionsExtractor {
 						.format("Application Name: %s - Projects - %d", app
 								.getApplication().getName(), app
 								.getAllCommits().size()));
+
 				for (MinerCommit commit : app.getAllCommits()) {
 					IJavaProject javaProject = openProject(commit
 							.getWorkspaceProject());
+
 					if (javaProject == null) {
 						continue;
 					}
@@ -109,6 +158,7 @@ public class ReuseActionsExtractor {
 							.getPackageFragments()) {
 						explorePackage(mPackage, commit);
 					}
+
 				}
 			}
 
@@ -126,7 +176,7 @@ public class ReuseActionsExtractor {
 	 * 
 	 * @deprecated
 	 * **/
-	private static void getFrameworkApplicationsCommits() throws CoreException {
+	public static void getFrameworkApplicationsCommits() throws CoreException {
 
 		// Commit lastCommit = null;
 		IProject[] projects = jdtHelper.getAllProjectsInWorkspace();
