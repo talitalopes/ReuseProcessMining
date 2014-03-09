@@ -2,14 +2,15 @@ package br.ufrj.cos.prisma.miner.popup.actions;
 
 import java.util.Calendar;
 
+import miner.Process;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.TreeSelection;
 
-import br.ufrj.cos.prisma.miner.OpenXES.XESLogGenerator;
+import br.ufrj.cos.prisma.miner.openxes.XESLogGenerator;
 import br.ufrj.cos.prisma.miner.popup.dialogs.GenerateLogDialog;
-import miner.Process;
 
 public class GenerateXESFileAction  extends ProcessMiningAction {
 

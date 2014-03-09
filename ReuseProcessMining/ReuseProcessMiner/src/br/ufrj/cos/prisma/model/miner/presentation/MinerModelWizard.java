@@ -15,6 +15,7 @@ import java.util.StringTokenizer;
 
 import miner.MinerFactory;
 import miner.MinerPackage;
+import miner.provider.MinerEditPlugin;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
@@ -58,8 +59,6 @@ import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.ISetSelectionTarget;
-
-import miner.provider.MinerEditPlugin;
 
 
 /**

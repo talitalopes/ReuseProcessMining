@@ -1,5 +1,11 @@
 package br.ufrj.cos.prisma.miner.Extractor;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +32,7 @@ import org.eclipse.jdt.core.search.SearchPattern;
 import org.eclipse.jdt.core.search.SearchRequestor;
 import org.eclipse.swt.widgets.Shell;
 
+import br.ufrj.cos.prisma.helpers.RepositoriesHelper;
 import br.ufrj.cos.prisma.miner.Extractor.model.ClassExtensionActivity;
 import br.ufrj.cos.prisma.miner.Extractor.model.JDTHelper;
 import br.ufrj.cos.prisma.miner.Extractor.model.MethodExtensionActivity;
@@ -50,6 +57,7 @@ public class ReuseActionsExtractor {
 	private static List<String> eventsOrder;
 
 	public static void start(Process process, Shell shell) {
+		listRepositories();
 		if (process == null) {
 			Log.i(Constants.ERROR_KEY, Constants.PROCESS_NOT_EXISTS);
 			return;
@@ -59,8 +67,12 @@ public class ReuseActionsExtractor {
 			Log.i(Constants.ERROR_KEY, Constants.ERROR_LOADING_FRAMEWORK);
 			return;
 		}
-
+		 
 		mineReuseActions(process);
+	}
+
+	private static void listRepositories() {
+		RepositoriesHelper.listRepositories("graphiti");
 	}
 
 	private static void mineReuseActions(Process process) {
@@ -82,8 +94,10 @@ public class ReuseActionsExtractor {
 			mProcess.populateApplicationsFromWorkspaceProjects(jdtHelper);
 
 			for (MinerApplication app : mProcess.getMinerApplications()) {
-				Log.i(String.format("Application Name: %s - Projects - %d", app
-						.getApplication().getName(), app.getAllCommits().size()));
+				Log.i(String
+						.format("Application Name: %s - Projects - %d", app
+								.getApplication().getName(), app
+								.getAllCommits().size()));
 				for (MinerCommit commit : app.getAllCommits()) {
 					IJavaProject javaProject = openProject(commit
 							.getWorkspaceProject());
@@ -98,9 +112,10 @@ public class ReuseActionsExtractor {
 				}
 			}
 
-			Log.i("Process applications: " + mProcess.getAllApplications().size());
+			Log.i("Process applications: "
+					+ mProcess.getAllApplications().size());
 			process.getInstances().addAll(mProcess.getAllApplications());
-			
+
 		} catch (CoreException e) {
 			e.printStackTrace();
 		}
@@ -108,11 +123,12 @@ public class ReuseActionsExtractor {
 
 	/**
 	 * Explore projects to extract reuse actions
+	 * 
 	 * @deprecated
 	 * **/
 	private static void getFrameworkApplicationsCommits() throws CoreException {
 
-//		Commit lastCommit = null;
+		// Commit lastCommit = null;
 		IProject[] projects = jdtHelper.getAllProjectsInWorkspace();
 		// Loop over all projects
 		for (IProject project : projects) {
@@ -142,7 +158,7 @@ public class ReuseActionsExtractor {
 			boolean mine = true;
 			for (IPackageFragment mPackage : javaProject.getPackageFragments()) {
 				if (mine) {
-					 explorePackage(mPackage, minerCommit);
+					explorePackage(mPackage, minerCommit);
 				}
 
 				// if (lastCommit != null && lastCommit.equals(c)) {
@@ -272,9 +288,10 @@ public class ReuseActionsExtractor {
 			return;
 		}
 
-		MinerEvent minerEvent = new MinerEvent(classExtensionActivity, c.getDate());
+		MinerEvent minerEvent = new MinerEvent(classExtensionActivity,
+				c.getDate());
 		c.addEvent(minerEvent);
-//		c.getEvents().add(minerEvent.getEvent());
+		// c.getEvents().add(minerEvent.getEvent());
 		eventsOrder.add(activityNameKey);
 
 		getClassMethods(superClassFW, type, c);
@@ -292,8 +309,8 @@ public class ReuseActionsExtractor {
 
 	}
 
-	private static void getClassMethods(IType superClassFW, IType type, MinerCommit c)
-			throws JavaModelException {
+	private static void getClassMethods(IType superClassFW, IType type,
+			MinerCommit c) throws JavaModelException {
 		IMethod[] methods = type.getMethods();
 
 		for (IMethod method : methods) {
@@ -308,7 +325,7 @@ public class ReuseActionsExtractor {
 			String methodKey = String.format("%s+%s+%s",
 					superClassFW.getElementName(), type.getElementName(),
 					method.getElementName());
-			
+
 			if (eventsOrder.contains(methodKey)) {
 				continue;
 			}

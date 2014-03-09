@@ -1,4 +1,4 @@
-package br.ufrj.cos.prisma.miner.OpenXES;
+package br.ufrj.cos.prisma.miner.openxes;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
