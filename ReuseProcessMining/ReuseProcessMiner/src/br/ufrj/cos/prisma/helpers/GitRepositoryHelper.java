@@ -19,16 +19,18 @@ import org.eclipse.jgit.api.errors.RefNotFoundException;
 import org.eclipse.jgit.api.errors.TransportException;
 import org.eclipse.jgit.revwalk.RevCommit;
 
+import br.ufrj.cos.prisma.model.GithubRepository;
+
 public class GitRepositoryHelper {
 
 	String repoURL;
 	String localDir;
 	File repoFile;
 	
-	public GitRepositoryHelper(String repoURL, String localDir) {
-		this.repoURL = repoURL;
-		this.localDir = localDir;
-		this.repoFile = new File(localDir);
+	public GitRepositoryHelper(GithubRepository repo) {
+		this.repoURL = repo.getCloneUrl();
+		this.localDir = repo.getLocalDir();
+		this.repoFile = repo.getRepoFile();
 	}
 	
 	public Git getRepo() {
@@ -88,6 +90,17 @@ public class GitRepositoryHelper {
 		} catch (GitAPIException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void cloneFromOldestCommit() {
+		List<RevCommit> commits = getCommitsHistory();
+		if (commits == null || commits.size() == 0) {
+			System.out.println("No commits were made to this repository.");
+			return;
+		}
+		
+		RevCommit firstCommit = getCommitsHistory().get(0);
+		cloneFromCommit(firstCommit);
 	}
 	
 	public File cloneGitRepo() {
