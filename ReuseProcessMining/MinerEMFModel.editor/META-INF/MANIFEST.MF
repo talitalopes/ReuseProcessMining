@@ -8,7 +8,8 @@ Bundle-Activator: miner.presentation.MinerEditorPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: miner.presentation
+Export-Package: miner.presentation,
+ minerv1.presentation
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;visibility:=reexport,
  MinerEMFModel.edit;visibility:=reexport,
