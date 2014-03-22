@@ -38,4 +38,9 @@ Import-Package: miner,
  miner.impl,
  miner.presentation,
  miner.provider,
- miner.util
+ miner.util,
+ minerv1,
+ minerv1.impl,
+ minerv1.presentation,
+ minerv1.provider,
+ minerv1.util

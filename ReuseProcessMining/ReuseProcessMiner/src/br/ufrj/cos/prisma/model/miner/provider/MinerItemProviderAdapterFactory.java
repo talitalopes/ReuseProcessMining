@@ -2,7 +2,7 @@
  */
 package br.ufrj.cos.prisma.model.miner.provider;
 
-import br.ufrj.cos.prisma.model.miner.util.MinerAdapterFactory;
+import miner.util.MinerAdapterFactory;
 
 import java.util.ArrayList;
 import java.util.Collection;

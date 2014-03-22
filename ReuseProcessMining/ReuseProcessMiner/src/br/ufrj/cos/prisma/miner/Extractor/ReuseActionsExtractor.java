@@ -6,6 +6,7 @@ import java.util.List;
 
 import miner.Commit;
 import miner.Process;
+import minerv1.FrameworkProcess;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
@@ -70,30 +71,67 @@ public class ReuseActionsExtractor {
 		System.out.println(String.format(
 				"Extracting reuse actions related to %s framework",
 				process.getName()));
-		// manageFrameworkApplications(process);
 
-		mineReuseActions(process);
+//		manageFrameworkApplications(process);
+
+		 mineReuseActions(process);
 	}
 
 	private static void manageFrameworkApplications(Process process) {
+		mProcess = new MinerProcess(process);
+		jdtHelper = new JDTHelper(process.getName());
+		
 		List<GithubRepository> repositories = listRepositories();
 
-		System.out.println(String.format("%d repositories found", repositories.size()));
-		
+		System.out.println(String.format("%d repositories found",
+				repositories.size()));
+
+		// A repository corresponds to a framework application (process
+		// instance)
 		for (GithubRepository repo : repositories) {
-			System.out.println(String.format("Current repository: %s", repo.getName()));
-			
+			System.out
+					.println(String.format(
+							"Current repository (process instance): %s",
+							repo.getName()));
+
+			MinerApplication app = new MinerApplication(repo.getName());
+			mProcess.addApplication(app);
+
 			GitRepositoryHelper helper = new GitRepositoryHelper(repo);
 			List<RevCommit> applications = helper.getCommitsHistory();
 			projectHelper = new ProjectHelper();
 
-			System.out.println(String.format("%d commits found", applications.size()));
+			System.out.println(String.format("%d commits found",
+					applications.size()));
 			for (RevCommit c : applications) {
+				MinerCommit mCommit = new MinerCommit(c.getId().getName(),
+						c.getCommitTime());
+
+				System.out.println("Cloning repo in " + repo.getLocalDir());
 				helper.cloneFromCommit(c);
+				
+				System.out.println("Importing projects");
 				importProjectIntoWorkspace(repo.getRepoFile());
-				mineReuseActions(process);
+				
+				List<IProject> projects = new ArrayList<IProject>();
+				IProject[] projectsArray = jdtHelper.getAllProjectsInWorkspace();
+				for (int i = 0; i < projectsArray.length; i++) {
+					if (projectsArray[i].getName().toLowerCase().contains("miner")) {
+						continue;
+					}
+					projects.add(projectsArray[i]);
+				}
+				app.setWorkspaceProjects(projects);
+
+				System.out.println("Mining RA");
+				mineReuseActionsFromCommit(mCommit);
+				
+				System.out.println("Deleting projects from workspace");
+				deleteApplicationProjectsFromWorkspace();
+				
+				app.addCommit(mCommit);
+				mProcess.addApplication(app);
 			}
-			deleteApplicationProjectsFromWorkspace();
 		}
 	}
 
@@ -120,6 +158,38 @@ public class ReuseActionsExtractor {
 
 	private static List<GithubRepository> listRepositories() {
 		return RepositoriesHelper.listRepositories("JJTV5_gef");
+	}
+
+	private static void mineReuseActionsFromCommit(MinerCommit commit) {
+		eventsOrder = new ArrayList<String>();
+		Log.i(String.format("%s: %s", Constants.FRAMEWORK_PROJECT_NAME_KEY,
+				jdtHelper.getFrameworkProject().getElementName()));
+
+		if (!jdtHelper.frameworkProjectExists()) {
+			Log.i(Constants.ERROR_FRAMEWORK_NOT_EXISTS);
+			return;
+		}
+
+		try {
+			IProject[] projects = jdtHelper.getAllProjectsInWorkspace();
+
+			for (int i = 0; i < projects.length; i++) {
+				IJavaProject javaProject = openProject(projects[i]);
+				if (javaProject == null) {
+					continue;
+				}
+
+				for (IPackageFragment mPackage : javaProject
+						.getPackageFragments()) {
+					explorePackage(mPackage, commit);
+				}
+			}
+		} catch (JavaModelException e) {
+			e.printStackTrace();
+		} catch (CoreException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 	private static void mineReuseActions(Process process) {

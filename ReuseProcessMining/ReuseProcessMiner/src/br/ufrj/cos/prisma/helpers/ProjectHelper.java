@@ -85,6 +85,10 @@ public class ProjectHelper {
 			}
 	
 			try {
+				if (project.getName().toLowerCase().contains("miner")) {
+					continue;
+				}
+				
 				project.delete(false, null);
 			} catch (CoreException e) {
 				e.printStackTrace();
