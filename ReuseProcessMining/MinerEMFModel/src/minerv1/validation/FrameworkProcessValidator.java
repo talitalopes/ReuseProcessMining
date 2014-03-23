@@ -4,6 +4,7 @@
  */
 package minerv1.validation;
 
+import minerv1.Activity;
 import minerv1.FrameworkApplication;
 import org.eclipse.emf.common.util.EList;
 
@@ -20,4 +21,8 @@ public interface FrameworkProcessValidator {
 	boolean validateName(String value);
 
 	boolean validateApplications(EList<FrameworkApplication> value);
+
+	boolean validateActivities(EList<Activity> value);
+
+	boolean validateActivities(Activity value);
 }

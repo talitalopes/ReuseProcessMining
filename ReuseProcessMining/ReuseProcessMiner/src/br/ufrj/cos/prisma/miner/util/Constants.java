@@ -12,7 +12,7 @@ public class Constants {
 	public static String ERROR_FRAMEWORK_NOT_EXISTS = "Framework project does not exist.";
 	
 	public static String LABEL_START_MINING = "Start Mining";
-	public static String LABEL_START_MINING_REPO = "Start Mining remote repositories";
+	public static String LABEL_START_MINING_REPO = "Mine remote repositories";
 	public static String LABEL_GENERATE_LOG = "Generate Complete Log";
 	public static String LABEL_GENERATE_CLASSES_LOG = "Generate Log for Classes";
 
@@ -23,4 +23,6 @@ public class Constants {
 	
 	public static final String CLASS_EXTENSION = "CLASS_EXTENSION";
 	public static final String METHOD_EXTENSION = "METHOD_EXTENSION";
+	
+	public static final String CONSOLE_NAME = "PROCESS_MINING_CONSOLE";
 }

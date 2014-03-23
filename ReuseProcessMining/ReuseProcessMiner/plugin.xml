@@ -73,14 +73,14 @@
             </separator>
          </menu>
          <action
-               label="Extract Reuse Actions"
+               label="Mine Reuse Actions"
                class="br.ufrj.cos.prisma.miner.popup.actions.StartExtractionAction"
                menubarPath="ProcessReuseMiner.menu1/group1"
                enablesFor="1"
                id="Miner.popup.actions.StartExtractionAction">
          </action>
          <action
-               label="Extract Repositories Mining"
+               label="Mine Repositories"
                class="br.ufrj.cos.prisma.miner.popup.actions.StartRepositoriesExtractionAction"
                menubarPath="ProcessReuseMiner.menu1/group1"
                enablesFor="1"

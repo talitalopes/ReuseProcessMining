@@ -3,6 +3,7 @@
 package minerv1.impl;
 
 import java.util.Collection;
+import minerv1.Activity;
 import minerv1.FrameworkApplication;
 import minerv1.FrameworkProcess;
 import minerv1.Minerv1Package;
@@ -28,6 +29,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <ul>
  *   <li>{@link minerv1.impl.FrameworkProcessImpl#getName <em>Name</em>}</li>
  *   <li>{@link minerv1.impl.FrameworkProcessImpl#getApplications <em>Applications</em>}</li>
+ *   <li>{@link minerv1.impl.FrameworkProcessImpl#getActivities <em>Activities</em>}</li>
  * </ul>
  * </p>
  *
@@ -63,6 +65,16 @@ public class FrameworkProcessImpl extends MinimalEObjectImpl.Container implement
 	 * @ordered
 	 */
 	protected EList<FrameworkApplication> applications;
+
+	/**
+	 * The cached value of the '{@link #getActivities() <em>Activities</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getActivities()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Activity> activities;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -121,11 +133,25 @@ public class FrameworkProcessImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Activity> getActivities() {
+		if (activities == null) {
+			activities = new EObjectContainmentEList<Activity>(Activity.class, this, Minerv1Package.FRAMEWORK_PROCESS__ACTIVITIES);
+		}
+		return activities;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 			case Minerv1Package.FRAMEWORK_PROCESS__APPLICATIONS:
 				return ((InternalEList<?>)getApplications()).basicRemove(otherEnd, msgs);
+			case Minerv1Package.FRAMEWORK_PROCESS__ACTIVITIES:
+				return ((InternalEList<?>)getActivities()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -142,6 +168,8 @@ public class FrameworkProcessImpl extends MinimalEObjectImpl.Container implement
 				return getName();
 			case Minerv1Package.FRAMEWORK_PROCESS__APPLICATIONS:
 				return getApplications();
+			case Minerv1Package.FRAMEWORK_PROCESS__ACTIVITIES:
+				return getActivities();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -162,6 +190,10 @@ public class FrameworkProcessImpl extends MinimalEObjectImpl.Container implement
 				getApplications().clear();
 				getApplications().addAll((Collection<? extends FrameworkApplication>)newValue);
 				return;
+			case Minerv1Package.FRAMEWORK_PROCESS__ACTIVITIES:
+				getActivities().clear();
+				getActivities().addAll((Collection<? extends Activity>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -180,6 +212,9 @@ public class FrameworkProcessImpl extends MinimalEObjectImpl.Container implement
 			case Minerv1Package.FRAMEWORK_PROCESS__APPLICATIONS:
 				getApplications().clear();
 				return;
+			case Minerv1Package.FRAMEWORK_PROCESS__ACTIVITIES:
+				getActivities().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -196,6 +231,8 @@ public class FrameworkProcessImpl extends MinimalEObjectImpl.Container implement
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case Minerv1Package.FRAMEWORK_PROCESS__APPLICATIONS:
 				return applications != null && !applications.isEmpty();
+			case Minerv1Package.FRAMEWORK_PROCESS__ACTIVITIES:
+				return activities != null && !activities.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

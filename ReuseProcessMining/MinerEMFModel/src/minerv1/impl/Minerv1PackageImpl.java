@@ -153,6 +153,15 @@ public class Minerv1PackageImpl extends EPackageImpl implements Minerv1Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getFrameworkProcess_Activities() {
+		return (EReference)frameworkProcessEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getFrameworkApplication() {
 		return frameworkApplicationEClass;
 	}
@@ -287,6 +296,7 @@ public class Minerv1PackageImpl extends EPackageImpl implements Minerv1Package {
 		frameworkProcessEClass = createEClass(FRAMEWORK_PROCESS);
 		createEAttribute(frameworkProcessEClass, FRAMEWORK_PROCESS__NAME);
 		createEReference(frameworkProcessEClass, FRAMEWORK_PROCESS__APPLICATIONS);
+		createEReference(frameworkProcessEClass, FRAMEWORK_PROCESS__ACTIVITIES);
 
 		frameworkApplicationEClass = createEClass(FRAMEWORK_APPLICATION);
 		createEAttribute(frameworkApplicationEClass, FRAMEWORK_APPLICATION__NAME);
@@ -339,6 +349,7 @@ public class Minerv1PackageImpl extends EPackageImpl implements Minerv1Package {
 		initEClass(frameworkProcessEClass, FrameworkProcess.class, "FrameworkProcess", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFrameworkProcess_Name(), ecorePackage.getEString(), "name", null, 0, 1, FrameworkProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getFrameworkProcess_Applications(), this.getFrameworkApplication(), null, "applications", null, 0, -1, FrameworkProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFrameworkProcess_Activities(), this.getActivity(), null, "activities", null, 0, -1, FrameworkProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(frameworkApplicationEClass, FrameworkApplication.class, "FrameworkApplication", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFrameworkApplication_Name(), ecorePackage.getEString(), "name", null, 0, 1, FrameworkApplication.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

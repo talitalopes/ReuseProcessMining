@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link minerv1.FrameworkProcess#getName <em>Name</em>}</li>
  *   <li>{@link minerv1.FrameworkProcess#getApplications <em>Applications</em>}</li>
+ *   <li>{@link minerv1.FrameworkProcess#getActivities <em>Activities</em>}</li>
  * </ul>
  * </p>
  *
@@ -64,5 +65,21 @@ public interface FrameworkProcess extends EObject {
 	 * @generated
 	 */
 	EList<FrameworkApplication> getApplications();
+
+	/**
+	 * Returns the value of the '<em><b>Activities</b></em>' containment reference list.
+	 * The list contents are of type {@link minerv1.Activity}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Activities</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Activities</em>' containment reference list.
+	 * @see minerv1.Minerv1Package#getFrameworkProcess_Activities()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Activity> getActivities();
 
 } // FrameworkProcess

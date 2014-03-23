@@ -10,6 +10,7 @@ Package minerv1 <http://prisma.cos.ufrj.br/processreuseminerv1>
   Class FrameworkProcess
     Attribute name : EString
     Reference applications : FrameworkApplication<<0..*>>
+    Reference activities : Activity<<0..*>>
 
   Class FrameworkApplication
     Attribute name : EString

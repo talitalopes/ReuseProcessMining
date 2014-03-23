@@ -86,13 +86,22 @@ public interface Minerv1Package extends EPackage {
 	int FRAMEWORK_PROCESS__APPLICATIONS = 1;
 
 	/**
+	 * The feature id for the '<em><b>Activities</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FRAMEWORK_PROCESS__ACTIVITIES = 2;
+
+	/**
 	 * The number of structural features of the '<em>Framework Process</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FRAMEWORK_PROCESS_FEATURE_COUNT = 2;
+	int FRAMEWORK_PROCESS_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Framework Process</em>' class.
@@ -305,6 +314,17 @@ public interface Minerv1Package extends EPackage {
 	EReference getFrameworkProcess_Applications();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link minerv1.FrameworkProcess#getActivities <em>Activities</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Activities</em>'.
+	 * @see minerv1.FrameworkProcess#getActivities()
+	 * @see #getFrameworkProcess()
+	 * @generated
+	 */
+	EReference getFrameworkProcess_Activities();
+
+	/**
 	 * Returns the meta object for class '{@link minerv1.FrameworkApplication <em>Framework Application</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -480,6 +500,14 @@ public interface Minerv1Package extends EPackage {
 		 * @generated
 		 */
 		EReference FRAMEWORK_PROCESS__APPLICATIONS = eINSTANCE.getFrameworkProcess_Applications();
+
+		/**
+		 * The meta object literal for the '<em><b>Activities</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FRAMEWORK_PROCESS__ACTIVITIES = eINSTANCE.getFrameworkProcess_Activities();
 
 		/**
 		 * The meta object literal for the '{@link minerv1.impl.FrameworkApplicationImpl <em>Framework Application</em>}' class.

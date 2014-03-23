@@ -102,6 +102,7 @@ public class FrameworkProcessItemProvider
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(Minerv1Package.Literals.FRAMEWORK_PROCESS__APPLICATIONS);
+			childrenFeatures.add(Minerv1Package.Literals.FRAMEWORK_PROCESS__ACTIVITIES);
 		}
 		return childrenFeatures;
 	}
@@ -160,6 +161,7 @@ public class FrameworkProcessItemProvider
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case Minerv1Package.FRAMEWORK_PROCESS__APPLICATIONS:
+			case Minerv1Package.FRAMEWORK_PROCESS__ACTIVITIES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -181,6 +183,11 @@ public class FrameworkProcessItemProvider
 			(createChildParameter
 				(Minerv1Package.Literals.FRAMEWORK_PROCESS__APPLICATIONS,
 				 Minerv1Factory.eINSTANCE.createFrameworkApplication()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(Minerv1Package.Literals.FRAMEWORK_PROCESS__ACTIVITIES,
+				 Minerv1Factory.eINSTANCE.createActivity()));
 	}
 
 	/**
