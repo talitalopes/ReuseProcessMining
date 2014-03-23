@@ -9,7 +9,23 @@ Package minerv1 <http://prisma.cos.ufrj.br/processreuseminerv1>
 
   Class FrameworkProcess
     Attribute name : EString
+    Reference applications : FrameworkApplication<<0..*>>
 
   Class FrameworkApplication
     Attribute name : EString
     Attribute repositoryUrl : EString
+    Reference commits : Commit<<0..*>>
+
+  Class Commit
+    Attribute id : EString
+    Attribute name : EString
+
+  Class Activity
+    Attribute id : EString
+    Attribute name : EString
+    Attribute type : ActivityType
+
+  Enum ActivityType
+    Literal METHOD_EXTENSION = 0
+    Literal CLASS_EXTENSION = 1
+    Literal OVERRIDES_METHOD = 2

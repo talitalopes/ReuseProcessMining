@@ -4,6 +4,9 @@
  */
 package minerv1.validation;
 
+import minerv1.Commit;
+import org.eclipse.emf.common.util.EList;
+
 
 /**
  * A sample validator interface for {@link minerv1.FrameworkApplication}.
@@ -16,4 +19,8 @@ public interface FrameworkApplicationValidator {
 
 	boolean validateName(String value);
 	boolean validateRepositoryUrl(String value);
+
+	boolean validateCommits(EList<Commit> value);
+
+	boolean validateCommits(Commit value);
 }

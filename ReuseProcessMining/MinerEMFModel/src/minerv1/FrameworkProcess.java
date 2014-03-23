@@ -2,6 +2,7 @@
  */
 package minerv1;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -13,6 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link minerv1.FrameworkProcess#getName <em>Name</em>}</li>
+ *   <li>{@link minerv1.FrameworkProcess#getApplications <em>Applications</em>}</li>
  * </ul>
  * </p>
  *
@@ -46,5 +48,21 @@ public interface FrameworkProcess extends EObject {
 	 * @generated
 	 */
 	void setName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Applications</b></em>' containment reference list.
+	 * The list contents are of type {@link minerv1.FrameworkApplication}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Applications</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Applications</em>' containment reference list.
+	 * @see minerv1.Minerv1Package#getFrameworkProcess_Applications()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<FrameworkApplication> getApplications();
 
 } // FrameworkProcess

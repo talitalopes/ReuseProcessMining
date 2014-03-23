@@ -40,6 +40,8 @@
             icon="icons/full/obj16/Minerv1ModelFile.gif"
             id="minerv1.presentation.Minerv1ModelWizardID"
             name="Miner1 Model">
+            <description>%_UI_MinerModelWizard_description</description>
+         	<selection class="org.eclipse.core.resources.IResource"/>
       </wizard>
    </extension>
 
@@ -94,5 +96,29 @@
          
       </objectContribution>
    </extension>
+ <extension
+       id="ReuseProcessMinerID"
+       point="org.eclipse.core.runtime.products">
+    <product
+          application="org.eclipse.ui.ide.workbench"
+          name="ReuseProcessMiner">
+       <property
+             name="appName"
+             value="ReuseProcessMiner">
+       </property>
+    </product>
+ </extension>
+ <extension
+       id="product"
+       point="org.eclipse.core.runtime.products">
+    <product
+          application="org.eclipse.e4.ui.workbench.swt.E4Application"
+          name="ReuseProcessMiner">
+       <property
+             name="appName"
+             value="ReuseProcessMiner">
+       </property>
+    </product>
+ </extension>
 null
 </plugin>

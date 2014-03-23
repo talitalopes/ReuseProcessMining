@@ -76,6 +76,14 @@ public class Minerv1AdapterFactory extends AdapterFactoryImpl {
 				return createFrameworkApplicationAdapter();
 			}
 			@Override
+			public Adapter caseCommit(Commit object) {
+				return createCommitAdapter();
+			}
+			@Override
+			public Adapter caseActivity(Activity object) {
+				return createActivityAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -120,6 +128,34 @@ public class Minerv1AdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createFrameworkApplicationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link minerv1.Commit <em>Commit</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see minerv1.Commit
+	 * @generated
+	 */
+	public Adapter createCommitAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link minerv1.Activity <em>Activity</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see minerv1.Activity
+	 * @generated
+	 */
+	public Adapter createActivityAdapter() {
 		return null;
 	}
 

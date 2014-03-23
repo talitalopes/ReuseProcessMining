@@ -6,8 +6,7 @@ package minerv1.provider;
 import java.util.Collection;
 import java.util.List;
 
-import minerv1.FrameworkApplication;
-import minerv1.Minerv1Factory;
+import minerv1.Activity;
 import minerv1.Minerv1Package;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -15,7 +14,6 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -28,12 +26,12 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link minerv1.FrameworkApplication} object.
+ * This is the item provider adapter for a {@link minerv1.Activity} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class FrameworkApplicationItemProvider
+public class ActivityItemProvider
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -47,7 +45,7 @@ public class FrameworkApplicationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FrameworkApplicationItemProvider(AdapterFactory adapterFactory) {
+	public ActivityItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -62,10 +60,33 @@ public class FrameworkApplicationItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addIdPropertyDescriptor(object);
 			addNamePropertyDescriptor(object);
-			addRepositoryUrlPropertyDescriptor(object);
+			addTypePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Id feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addIdPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Activity_id_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Activity_id_feature", "_UI_Activity_type"),
+				 Minerv1Package.Literals.ACTIVITY__ID,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -79,9 +100,9 @@ public class FrameworkApplicationItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_FrameworkApplication_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_FrameworkApplication_name_feature", "_UI_FrameworkApplication_type"),
-				 Minerv1Package.Literals.FRAMEWORK_APPLICATION__NAME,
+				 getString("_UI_Activity_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Activity_name_feature", "_UI_Activity_type"),
+				 Minerv1Package.Literals.ACTIVITY__NAME,
 				 true,
 				 false,
 				 false,
@@ -91,19 +112,19 @@ public class FrameworkApplicationItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Repository Url feature.
+	 * This adds a property descriptor for the Type feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addRepositoryUrlPropertyDescriptor(Object object) {
+	protected void addTypePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_FrameworkApplication_repositoryUrl_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_FrameworkApplication_repositoryUrl_feature", "_UI_FrameworkApplication_type"),
-				 Minerv1Package.Literals.FRAMEWORK_APPLICATION__REPOSITORY_URL,
+				 getString("_UI_Activity_type_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Activity_type_feature", "_UI_Activity_type"),
+				 Minerv1Package.Literals.ACTIVITY__TYPE,
 				 true,
 				 false,
 				 false,
@@ -113,44 +134,14 @@ public class FrameworkApplicationItemProvider
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(Minerv1Package.Literals.FRAMEWORK_APPLICATION__COMMITS);
-		}
-		return childrenFeatures;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
-	}
-
-	/**
-	 * This returns FrameworkApplication.gif.
+	 * This returns Activity.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/FrameworkApplication"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Activity"));
 	}
 
 	/**
@@ -161,10 +152,10 @@ public class FrameworkApplicationItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((FrameworkApplication)object).getName();
+		String label = ((Activity)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_FrameworkApplication_type") :
-			getString("_UI_FrameworkApplication_type") + " " + label;
+			getString("_UI_Activity_type") :
+			getString("_UI_Activity_type") + " " + label;
 	}
 
 	/**
@@ -178,13 +169,11 @@ public class FrameworkApplicationItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(FrameworkApplication.class)) {
-			case Minerv1Package.FRAMEWORK_APPLICATION__NAME:
-			case Minerv1Package.FRAMEWORK_APPLICATION__REPOSITORY_URL:
+		switch (notification.getFeatureID(Activity.class)) {
+			case Minerv1Package.ACTIVITY__ID:
+			case Minerv1Package.ACTIVITY__NAME:
+			case Minerv1Package.ACTIVITY__TYPE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case Minerv1Package.FRAMEWORK_APPLICATION__COMMITS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -200,11 +189,6 @@ public class FrameworkApplicationItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(Minerv1Package.Literals.FRAMEWORK_APPLICATION__COMMITS,
-				 Minerv1Factory.eINSTANCE.createCommit()));
 	}
 
 	/**

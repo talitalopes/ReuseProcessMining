@@ -2,15 +2,22 @@
  */
 package minerv1.impl;
 
+import java.util.Collection;
+import minerv1.Commit;
 import minerv1.FrameworkApplication;
 import minerv1.Minerv1Package;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,6 +28,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <ul>
  *   <li>{@link minerv1.impl.FrameworkApplicationImpl#getName <em>Name</em>}</li>
  *   <li>{@link minerv1.impl.FrameworkApplicationImpl#getRepositoryUrl <em>Repository Url</em>}</li>
+ *   <li>{@link minerv1.impl.FrameworkApplicationImpl#getCommits <em>Commits</em>}</li>
  * </ul>
  * </p>
  *
@@ -66,6 +74,16 @@ public class FrameworkApplicationImpl extends MinimalEObjectImpl.Container imple
 	 * @ordered
 	 */
 	protected String repositoryUrl = REPOSITORY_URL_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getCommits() <em>Commits</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCommits()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Commit> commits;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -133,6 +151,32 @@ public class FrameworkApplicationImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Commit> getCommits() {
+		if (commits == null) {
+			commits = new EObjectContainmentEList<Commit>(Commit.class, this, Minerv1Package.FRAMEWORK_APPLICATION__COMMITS);
+		}
+		return commits;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case Minerv1Package.FRAMEWORK_APPLICATION__COMMITS:
+				return ((InternalEList<?>)getCommits()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -140,6 +184,8 @@ public class FrameworkApplicationImpl extends MinimalEObjectImpl.Container imple
 				return getName();
 			case Minerv1Package.FRAMEWORK_APPLICATION__REPOSITORY_URL:
 				return getRepositoryUrl();
+			case Minerv1Package.FRAMEWORK_APPLICATION__COMMITS:
+				return getCommits();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -149,6 +195,7 @@ public class FrameworkApplicationImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -157,6 +204,10 @@ public class FrameworkApplicationImpl extends MinimalEObjectImpl.Container imple
 				return;
 			case Minerv1Package.FRAMEWORK_APPLICATION__REPOSITORY_URL:
 				setRepositoryUrl((String)newValue);
+				return;
+			case Minerv1Package.FRAMEWORK_APPLICATION__COMMITS:
+				getCommits().clear();
+				getCommits().addAll((Collection<? extends Commit>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -176,6 +227,9 @@ public class FrameworkApplicationImpl extends MinimalEObjectImpl.Container imple
 			case Minerv1Package.FRAMEWORK_APPLICATION__REPOSITORY_URL:
 				setRepositoryUrl(REPOSITORY_URL_EDEFAULT);
 				return;
+			case Minerv1Package.FRAMEWORK_APPLICATION__COMMITS:
+				getCommits().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -192,6 +246,8 @@ public class FrameworkApplicationImpl extends MinimalEObjectImpl.Container imple
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 			case Minerv1Package.FRAMEWORK_APPLICATION__REPOSITORY_URL:
 				return REPOSITORY_URL_EDEFAULT == null ? repositoryUrl != null : !REPOSITORY_URL_EDEFAULT.equals(repositoryUrl);
+			case Minerv1Package.FRAMEWORK_APPLICATION__COMMITS:
+				return commits != null && !commits.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

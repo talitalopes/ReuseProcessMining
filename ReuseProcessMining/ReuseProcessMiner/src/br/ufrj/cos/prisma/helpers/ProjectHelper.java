@@ -18,14 +18,14 @@ import org.eclipse.ui.PlatformUI;
 public class ProjectHelper {
 
 	List<IProject> javaProjects;
-	
+
 	public ProjectHelper() {
 		javaProjects = new ArrayList<IProject>();
 	}
 
 	public void importAllProjectsInsideRepoFolder(File repoFolder) {
 		List<File> firstLevelDirs = listFirstLevelFolders(repoFolder);
-		
+
 		for (File folder : firstLevelDirs) {
 			String projectPath = getProjectFolderPath(folder);
 			if (projectPath == null) {
@@ -35,7 +35,8 @@ public class ProjectHelper {
 		}
 	}
 
-	public void importProjectIntoWorkspaceUsingProjectPath(final String projectPath) {
+	public void importProjectIntoWorkspaceUsingProjectPath(
+			final String projectPath) {
 		final IWorkspace workspace = ResourcesPlugin.getWorkspace();
 
 		Runnable runnable = new Runnable() {
@@ -48,9 +49,9 @@ public class ProjectHelper {
 							projectDescription.getName());
 					JavaCapabilityConfigurationPage.createProject(project,
 							projectDescription.getLocationURI(), null);
-					
+
 					javaProjects.add(project);
-					
+
 				} catch (CoreException e) {
 					e.printStackTrace();
 				}
@@ -62,38 +63,40 @@ public class ProjectHelper {
 		workbench.getDisplay().syncExec(runnable);
 	}
 
-//	public void importProjectIntoWorkspace(String projectName) {
-//		IProject project = ResourcesPlugin.getWorkspace().getRoot()
-//				.getProject(projectName);
-//		try {
-//			project.create(null);
-//			project.open(null);
-//			IJavaProject javaProject = JavaCore.create(project);
-//			this.javaProjects.add(e) = (!JDTHelper.isJavaProjectValid(javaProject)) ? null
-//					: javaProject;
-//		} catch (CoreException e) {
-//			System.out.println("Error importing project into workspace");
-//			e.printStackTrace();
-//		}
-//	}
+	// public void importProjectIntoWorkspace(String projectName) {
+	// IProject project = ResourcesPlugin.getWorkspace().getRoot()
+	// .getProject(projectName);
+	// try {
+	// project.create(null);
+	// project.open(null);
+	// IJavaProject javaProject = JavaCore.create(project);
+	// this.javaProjects.add(e) = (!JDTHelper.isJavaProjectValid(javaProject)) ?
+	// null
+	// : javaProject;
+	// } catch (CoreException e) {
+	// System.out.println("Error importing project into workspace");
+	// e.printStackTrace();
+	// }
+	// }
 
 	public void deleteProjectsFromWorkspace() {
-		for (IProject project: this.javaProjects) {
+		for (IProject project : this.javaProjects) {
 
 			if (!project.exists()) {
 				return;
 			}
-	
+
 			try {
-				if (project.getName().toLowerCase().contains("miner")) {
+				if (project.getName().toLowerCase().contains("miner")
+						|| project.getName().toLowerCase().contains("gef")) {
 					continue;
 				}
-				
+
 				project.delete(false, null);
 			} catch (CoreException e) {
 				e.printStackTrace();
 			}
-			
+
 		}
 	}
 

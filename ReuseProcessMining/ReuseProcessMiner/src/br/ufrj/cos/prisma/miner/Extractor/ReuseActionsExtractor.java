@@ -1,12 +1,10 @@
 package br.ufrj.cos.prisma.miner.Extractor;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import miner.Commit;
 import miner.Process;
-import minerv1.FrameworkProcess;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
@@ -26,12 +24,8 @@ import org.eclipse.jdt.core.search.SearchMatch;
 import org.eclipse.jdt.core.search.SearchParticipant;
 import org.eclipse.jdt.core.search.SearchPattern;
 import org.eclipse.jdt.core.search.SearchRequestor;
-import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.swt.widgets.Shell;
 
-import br.ufrj.cos.prisma.helpers.GitRepositoryHelper;
-import br.ufrj.cos.prisma.helpers.ProjectHelper;
-import br.ufrj.cos.prisma.helpers.RepositoriesHelper;
 import br.ufrj.cos.prisma.miner.Extractor.model.ClassExtensionActivity;
 import br.ufrj.cos.prisma.miner.Extractor.model.JDTHelper;
 import br.ufrj.cos.prisma.miner.Extractor.model.MethodExtensionActivity;
@@ -43,7 +37,6 @@ import br.ufrj.cos.prisma.miner.Extractor.model.MinerProcess;
 import br.ufrj.cos.prisma.miner.util.Constants;
 import br.ufrj.cos.prisma.miner.util.CustomSearchRequestor;
 import br.ufrj.cos.prisma.miner.util.Log;
-import br.ufrj.cos.prisma.model.GithubRepository;
 
 /**
  * Reuse Actions Extractor. This class is responsible for extracting reuse
@@ -55,7 +48,6 @@ public class ReuseActionsExtractor {
 	private static MinerProcess mProcess;
 	private static JDTHelper jdtHelper;
 	private static List<String> eventsOrder;
-	private static ProjectHelper projectHelper;
 
 	public static void start(Process process, Shell shell) {
 		if (process == null) {
@@ -77,88 +69,6 @@ public class ReuseActionsExtractor {
 		 mineReuseActions(process);
 	}
 
-	private static void manageFrameworkApplications(Process process) {
-		mProcess = new MinerProcess(process);
-		jdtHelper = new JDTHelper(process.getName());
-		
-		List<GithubRepository> repositories = listRepositories();
-
-		System.out.println(String.format("%d repositories found",
-				repositories.size()));
-
-		// A repository corresponds to a framework application (process
-		// instance)
-		for (GithubRepository repo : repositories) {
-			System.out
-					.println(String.format(
-							"Current repository (process instance): %s",
-							repo.getName()));
-
-			MinerApplication app = new MinerApplication(repo.getName());
-			mProcess.addApplication(app);
-
-			GitRepositoryHelper helper = new GitRepositoryHelper(repo);
-			List<RevCommit> applications = helper.getCommitsHistory();
-			projectHelper = new ProjectHelper();
-
-			System.out.println(String.format("%d commits found",
-					applications.size()));
-			for (RevCommit c : applications) {
-				MinerCommit mCommit = new MinerCommit(c.getId().getName(),
-						c.getCommitTime());
-
-				System.out.println("Cloning repo in " + repo.getLocalDir());
-				helper.cloneFromCommit(c);
-				
-				System.out.println("Importing projects");
-				importProjectIntoWorkspace(repo.getRepoFile());
-				
-				List<IProject> projects = new ArrayList<IProject>();
-				IProject[] projectsArray = jdtHelper.getAllProjectsInWorkspace();
-				for (int i = 0; i < projectsArray.length; i++) {
-					if (projectsArray[i].getName().toLowerCase().contains("miner")) {
-						continue;
-					}
-					projects.add(projectsArray[i]);
-				}
-				app.setWorkspaceProjects(projects);
-
-				System.out.println("Mining RA");
-				mineReuseActionsFromCommit(mCommit);
-				
-				System.out.println("Deleting projects from workspace");
-				deleteApplicationProjectsFromWorkspace();
-				
-				app.addCommit(mCommit);
-				mProcess.addApplication(app);
-			}
-		}
-	}
-
-	// TODO: implement
-	/**
-	 * This method imports project inside a given folder to the workspace.
-	 * 
-	 * @param localDir
-	 *            the location of the projects
-	 * **/
-	private static void importProjectIntoWorkspace(File repoDir) {
-		projectHelper.importAllProjectsInsideRepoFolder(repoDir);
-	}
-
-	// TODO: implement
-	/**
-	 * This method removes a project from the workspace.
-	 * 
-	 * @param ?
-	 * **/
-	private static void deleteApplicationProjectsFromWorkspace() {
-		projectHelper.deleteProjectsFromWorkspace();
-	}
-
-	private static List<GithubRepository> listRepositories() {
-		return RepositoriesHelper.listRepositories("JJTV5_gef");
-	}
 
 	private static void mineReuseActionsFromCommit(MinerCommit commit) {
 		eventsOrder = new ArrayList<String>();

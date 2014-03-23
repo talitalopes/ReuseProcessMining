@@ -118,6 +118,52 @@ public class Minerv1ItemProviderAdapterFactory extends Minerv1AdapterFactory imp
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link minerv1.Commit} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CommitItemProvider commitItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link minerv1.Commit}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCommitAdapter() {
+		if (commitItemProvider == null) {
+			commitItemProvider = new CommitItemProvider(this);
+		}
+
+		return commitItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link minerv1.Activity} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ActivityItemProvider activityItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link minerv1.Activity}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createActivityAdapter() {
+		if (activityItemProvider == null) {
+			activityItemProvider = new ActivityItemProvider(this);
+		}
+
+		return activityItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -218,6 +264,8 @@ public class Minerv1ItemProviderAdapterFactory extends Minerv1AdapterFactory imp
 	public void dispose() {
 		if (frameworkProcessItemProvider != null) frameworkProcessItemProvider.dispose();
 		if (frameworkApplicationItemProvider != null) frameworkApplicationItemProvider.dispose();
+		if (commitItemProvider != null) commitItemProvider.dispose();
+		if (activityItemProvider != null) activityItemProvider.dispose();
 	}
 
 }

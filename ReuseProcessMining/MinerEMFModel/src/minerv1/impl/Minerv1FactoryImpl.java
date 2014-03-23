@@ -5,6 +5,7 @@ package minerv1.impl;
 import minerv1.*;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -58,8 +59,40 @@ public class Minerv1FactoryImpl extends EFactoryImpl implements Minerv1Factory {
 		switch (eClass.getClassifierID()) {
 			case Minerv1Package.FRAMEWORK_PROCESS: return createFrameworkProcess();
 			case Minerv1Package.FRAMEWORK_APPLICATION: return createFrameworkApplication();
+			case Minerv1Package.COMMIT: return createCommit();
+			case Minerv1Package.ACTIVITY: return createActivity();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object createFromString(EDataType eDataType, String initialValue) {
+		switch (eDataType.getClassifierID()) {
+			case Minerv1Package.ACTIVITY_TYPE:
+				return createActivityTypeFromString(eDataType, initialValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String convertToString(EDataType eDataType, Object instanceValue) {
+		switch (eDataType.getClassifierID()) {
+			case Minerv1Package.ACTIVITY_TYPE:
+				return convertActivityTypeToString(eDataType, instanceValue);
+			default:
+				throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -81,6 +114,46 @@ public class Minerv1FactoryImpl extends EFactoryImpl implements Minerv1Factory {
 	public FrameworkApplication createFrameworkApplication() {
 		FrameworkApplicationImpl frameworkApplication = new FrameworkApplicationImpl();
 		return frameworkApplication;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Commit createCommit() {
+		CommitImpl commit = new CommitImpl();
+		return commit;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Activity createActivity() {
+		ActivityImpl activity = new ActivityImpl();
+		return activity;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ActivityType createActivityTypeFromString(EDataType eDataType, String initialValue) {
+		ActivityType result = ActivityType.get(initialValue);
+		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertActivityTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**

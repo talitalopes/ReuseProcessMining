@@ -4,7 +4,9 @@ package minerv1;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -75,13 +77,22 @@ public interface Minerv1Package extends EPackage {
 	int FRAMEWORK_PROCESS__NAME = 0;
 
 	/**
+	 * The feature id for the '<em><b>Applications</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FRAMEWORK_PROCESS__APPLICATIONS = 1;
+
+	/**
 	 * The number of structural features of the '<em>Framework Process</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FRAMEWORK_PROCESS_FEATURE_COUNT = 1;
+	int FRAMEWORK_PROCESS_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Framework Process</em>' class.
@@ -121,13 +132,22 @@ public interface Minerv1Package extends EPackage {
 	int FRAMEWORK_APPLICATION__REPOSITORY_URL = 1;
 
 	/**
+	 * The feature id for the '<em><b>Commits</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FRAMEWORK_APPLICATION__COMMITS = 2;
+
+	/**
 	 * The number of structural features of the '<em>Framework Application</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FRAMEWORK_APPLICATION_FEATURE_COUNT = 2;
+	int FRAMEWORK_APPLICATION_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Framework Application</em>' class.
@@ -137,6 +157,119 @@ public interface Minerv1Package extends EPackage {
 	 * @ordered
 	 */
 	int FRAMEWORK_APPLICATION_OPERATION_COUNT = 0;
+
+
+	/**
+	 * The meta object id for the '{@link minerv1.impl.CommitImpl <em>Commit</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see minerv1.impl.CommitImpl
+	 * @see minerv1.impl.Minerv1PackageImpl#getCommit()
+	 * @generated
+	 */
+	int COMMIT = 2;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMIT__ID = 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMIT__NAME = 1;
+
+	/**
+	 * The number of structural features of the '<em>Commit</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMIT_FEATURE_COUNT = 2;
+
+	/**
+	 * The number of operations of the '<em>Commit</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMIT_OPERATION_COUNT = 0;
+
+
+	/**
+	 * The meta object id for the '{@link minerv1.impl.ActivityImpl <em>Activity</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see minerv1.impl.ActivityImpl
+	 * @see minerv1.impl.Minerv1PackageImpl#getActivity()
+	 * @generated
+	 */
+	int ACTIVITY = 3;
+
+	/**
+	 * The feature id for the '<em><b>Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTIVITY__ID = 0;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTIVITY__NAME = 1;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTIVITY__TYPE = 2;
+
+	/**
+	 * The number of structural features of the '<em>Activity</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTIVITY_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Activity</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTIVITY_OPERATION_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link minerv1.ActivityType <em>Activity Type</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see minerv1.ActivityType
+	 * @see minerv1.impl.Minerv1PackageImpl#getActivityType()
+	 * @generated
+	 */
+	int ACTIVITY_TYPE = 4;
 
 
 	/**
@@ -159,6 +292,17 @@ public interface Minerv1Package extends EPackage {
 	 * @generated
 	 */
 	EAttribute getFrameworkProcess_Name();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link minerv1.FrameworkProcess#getApplications <em>Applications</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Applications</em>'.
+	 * @see minerv1.FrameworkProcess#getApplications()
+	 * @see #getFrameworkProcess()
+	 * @generated
+	 */
+	EReference getFrameworkProcess_Applications();
 
 	/**
 	 * Returns the meta object for class '{@link minerv1.FrameworkApplication <em>Framework Application</em>}'.
@@ -191,6 +335,102 @@ public interface Minerv1Package extends EPackage {
 	 * @generated
 	 */
 	EAttribute getFrameworkApplication_RepositoryUrl();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link minerv1.FrameworkApplication#getCommits <em>Commits</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Commits</em>'.
+	 * @see minerv1.FrameworkApplication#getCommits()
+	 * @see #getFrameworkApplication()
+	 * @generated
+	 */
+	EReference getFrameworkApplication_Commits();
+
+	/**
+	 * Returns the meta object for class '{@link minerv1.Commit <em>Commit</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Commit</em>'.
+	 * @see minerv1.Commit
+	 * @generated
+	 */
+	EClass getCommit();
+
+	/**
+	 * Returns the meta object for the attribute '{@link minerv1.Commit#getId <em>Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Id</em>'.
+	 * @see minerv1.Commit#getId()
+	 * @see #getCommit()
+	 * @generated
+	 */
+	EAttribute getCommit_Id();
+
+	/**
+	 * Returns the meta object for the attribute '{@link minerv1.Commit#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see minerv1.Commit#getName()
+	 * @see #getCommit()
+	 * @generated
+	 */
+	EAttribute getCommit_Name();
+
+	/**
+	 * Returns the meta object for class '{@link minerv1.Activity <em>Activity</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Activity</em>'.
+	 * @see minerv1.Activity
+	 * @generated
+	 */
+	EClass getActivity();
+
+	/**
+	 * Returns the meta object for the attribute '{@link minerv1.Activity#getId <em>Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Id</em>'.
+	 * @see minerv1.Activity#getId()
+	 * @see #getActivity()
+	 * @generated
+	 */
+	EAttribute getActivity_Id();
+
+	/**
+	 * Returns the meta object for the attribute '{@link minerv1.Activity#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see minerv1.Activity#getName()
+	 * @see #getActivity()
+	 * @generated
+	 */
+	EAttribute getActivity_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link minerv1.Activity#getType <em>Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Type</em>'.
+	 * @see minerv1.Activity#getType()
+	 * @see #getActivity()
+	 * @generated
+	 */
+	EAttribute getActivity_Type();
+
+	/**
+	 * Returns the meta object for enum '{@link minerv1.ActivityType <em>Activity Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>Activity Type</em>'.
+	 * @see minerv1.ActivityType
+	 * @generated
+	 */
+	EEnum getActivityType();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -234,6 +474,14 @@ public interface Minerv1Package extends EPackage {
 		EAttribute FRAMEWORK_PROCESS__NAME = eINSTANCE.getFrameworkProcess_Name();
 
 		/**
+		 * The meta object literal for the '<em><b>Applications</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FRAMEWORK_PROCESS__APPLICATIONS = eINSTANCE.getFrameworkProcess_Applications();
+
+		/**
 		 * The meta object literal for the '{@link minerv1.impl.FrameworkApplicationImpl <em>Framework Application</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -258,6 +506,84 @@ public interface Minerv1Package extends EPackage {
 		 * @generated
 		 */
 		EAttribute FRAMEWORK_APPLICATION__REPOSITORY_URL = eINSTANCE.getFrameworkApplication_RepositoryUrl();
+
+		/**
+		 * The meta object literal for the '<em><b>Commits</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FRAMEWORK_APPLICATION__COMMITS = eINSTANCE.getFrameworkApplication_Commits();
+
+		/**
+		 * The meta object literal for the '{@link minerv1.impl.CommitImpl <em>Commit</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see minerv1.impl.CommitImpl
+		 * @see minerv1.impl.Minerv1PackageImpl#getCommit()
+		 * @generated
+		 */
+		EClass COMMIT = eINSTANCE.getCommit();
+
+		/**
+		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COMMIT__ID = eINSTANCE.getCommit_Id();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute COMMIT__NAME = eINSTANCE.getCommit_Name();
+
+		/**
+		 * The meta object literal for the '{@link minerv1.impl.ActivityImpl <em>Activity</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see minerv1.impl.ActivityImpl
+		 * @see minerv1.impl.Minerv1PackageImpl#getActivity()
+		 * @generated
+		 */
+		EClass ACTIVITY = eINSTANCE.getActivity();
+
+		/**
+		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ACTIVITY__ID = eINSTANCE.getActivity_Id();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ACTIVITY__NAME = eINSTANCE.getActivity_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ACTIVITY__TYPE = eINSTANCE.getActivity_Type();
+
+		/**
+		 * The meta object literal for the '{@link minerv1.ActivityType <em>Activity Type</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see minerv1.ActivityType
+		 * @see minerv1.impl.Minerv1PackageImpl#getActivityType()
+		 * @generated
+		 */
+		EEnum ACTIVITY_TYPE = eINSTANCE.getActivityType();
 
 	}
 

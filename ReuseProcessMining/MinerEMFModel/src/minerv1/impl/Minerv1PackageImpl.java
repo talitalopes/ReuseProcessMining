@@ -2,6 +2,9 @@
  */
 package minerv1.impl;
 
+import minerv1.Activity;
+import minerv1.ActivityType;
+import minerv1.Commit;
 import minerv1.FrameworkApplication;
 import minerv1.FrameworkProcess;
 import minerv1.Minerv1Factory;
@@ -9,8 +12,10 @@ import minerv1.Minerv1Package;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
@@ -33,6 +38,27 @@ public class Minerv1PackageImpl extends EPackageImpl implements Minerv1Package {
 	 * @generated
 	 */
 	private EClass frameworkApplicationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass commitEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass activityEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EEnum activityTypeEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -118,6 +144,15 @@ public class Minerv1PackageImpl extends EPackageImpl implements Minerv1Package {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EReference getFrameworkProcess_Applications() {
+		return (EReference)frameworkProcessEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getFrameworkApplication() {
 		return frameworkApplicationEClass;
 	}
@@ -138,6 +173,87 @@ public class Minerv1PackageImpl extends EPackageImpl implements Minerv1Package {
 	 */
 	public EAttribute getFrameworkApplication_RepositoryUrl() {
 		return (EAttribute)frameworkApplicationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFrameworkApplication_Commits() {
+		return (EReference)frameworkApplicationEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getCommit() {
+		return commitEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getCommit_Id() {
+		return (EAttribute)commitEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getCommit_Name() {
+		return (EAttribute)commitEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getActivity() {
+		return activityEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getActivity_Id() {
+		return (EAttribute)activityEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getActivity_Name() {
+		return (EAttribute)activityEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EAttribute getActivity_Type() {
+		return (EAttribute)activityEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EEnum getActivityType() {
+		return activityTypeEEnum;
 	}
 
 	/**
@@ -170,10 +286,24 @@ public class Minerv1PackageImpl extends EPackageImpl implements Minerv1Package {
 		// Create classes and their features
 		frameworkProcessEClass = createEClass(FRAMEWORK_PROCESS);
 		createEAttribute(frameworkProcessEClass, FRAMEWORK_PROCESS__NAME);
+		createEReference(frameworkProcessEClass, FRAMEWORK_PROCESS__APPLICATIONS);
 
 		frameworkApplicationEClass = createEClass(FRAMEWORK_APPLICATION);
 		createEAttribute(frameworkApplicationEClass, FRAMEWORK_APPLICATION__NAME);
 		createEAttribute(frameworkApplicationEClass, FRAMEWORK_APPLICATION__REPOSITORY_URL);
+		createEReference(frameworkApplicationEClass, FRAMEWORK_APPLICATION__COMMITS);
+
+		commitEClass = createEClass(COMMIT);
+		createEAttribute(commitEClass, COMMIT__ID);
+		createEAttribute(commitEClass, COMMIT__NAME);
+
+		activityEClass = createEClass(ACTIVITY);
+		createEAttribute(activityEClass, ACTIVITY__ID);
+		createEAttribute(activityEClass, ACTIVITY__NAME);
+		createEAttribute(activityEClass, ACTIVITY__TYPE);
+
+		// Create enums
+		activityTypeEEnum = createEEnum(ACTIVITY_TYPE);
 	}
 
 	/**
@@ -208,10 +338,27 @@ public class Minerv1PackageImpl extends EPackageImpl implements Minerv1Package {
 		// Initialize classes, features, and operations; add parameters
 		initEClass(frameworkProcessEClass, FrameworkProcess.class, "FrameworkProcess", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFrameworkProcess_Name(), ecorePackage.getEString(), "name", null, 0, 1, FrameworkProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFrameworkProcess_Applications(), this.getFrameworkApplication(), null, "applications", null, 0, -1, FrameworkProcess.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(frameworkApplicationEClass, FrameworkApplication.class, "FrameworkApplication", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getFrameworkApplication_Name(), ecorePackage.getEString(), "name", null, 0, 1, FrameworkApplication.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFrameworkApplication_RepositoryUrl(), ecorePackage.getEString(), "repositoryUrl", null, 0, 1, FrameworkApplication.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getFrameworkApplication_Commits(), this.getCommit(), null, "commits", null, 0, -1, FrameworkApplication.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(commitEClass, Commit.class, "Commit", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getCommit_Id(), ecorePackage.getEString(), "id", null, 0, 1, Commit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getCommit_Name(), ecorePackage.getEString(), "name", null, 0, 1, Commit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(activityEClass, Activity.class, "Activity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getActivity_Id(), ecorePackage.getEString(), "id", null, 0, 1, Activity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getActivity_Name(), ecorePackage.getEString(), "name", null, 0, 1, Activity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getActivity_Type(), this.getActivityType(), "type", null, 0, 1, Activity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		// Initialize enums and add enum literals
+		initEEnum(activityTypeEEnum, ActivityType.class, "ActivityType");
+		addEEnumLiteral(activityTypeEEnum, ActivityType.METHOD_EXTENSION);
+		addEEnumLiteral(activityTypeEEnum, ActivityType.CLASS_EXTENSION);
+		addEEnumLiteral(activityTypeEEnum, ActivityType.OVERRIDES_METHOD);
 
 		// Create resource
 		createResource(eNS_URI);

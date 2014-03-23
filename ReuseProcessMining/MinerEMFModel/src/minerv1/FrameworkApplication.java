@@ -2,6 +2,7 @@
  */
 package minerv1;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -14,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link minerv1.FrameworkApplication#getName <em>Name</em>}</li>
  *   <li>{@link minerv1.FrameworkApplication#getRepositoryUrl <em>Repository Url</em>}</li>
+ *   <li>{@link minerv1.FrameworkApplication#getCommits <em>Commits</em>}</li>
  * </ul>
  * </p>
  *
@@ -73,5 +75,21 @@ public interface FrameworkApplication extends EObject {
 	 * @generated
 	 */
 	void setRepositoryUrl(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Commits</b></em>' containment reference list.
+	 * The list contents are of type {@link minerv1.Commit}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Commits</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Commits</em>' containment reference list.
+	 * @see minerv1.Minerv1Package#getFrameworkApplication_Commits()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Commit> getCommits();
 
 } // FrameworkApplication
