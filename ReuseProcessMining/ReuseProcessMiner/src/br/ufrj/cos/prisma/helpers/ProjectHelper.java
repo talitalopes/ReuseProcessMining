@@ -92,7 +92,7 @@ public class ProjectHelper {
 					continue;
 				}
 
-				project.delete(false, null);
+				project.delete(true, null);
 			} catch (CoreException e) {
 				e.printStackTrace();
 			}

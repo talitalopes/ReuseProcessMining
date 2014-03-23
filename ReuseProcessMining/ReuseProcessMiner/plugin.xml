@@ -50,7 +50,7 @@
       <editor
             id="model.miner.presentation.MinerEditorID"
             name="%_UI_MinerEditor_label"
-            icon="icons/full/obj16/MinerModelFile.gif"
+            icon="icons/full/obj16/Minerv1ModelFile.gif"
             extensions="miner"
             class="miner.presentation.MinerEditor"
             contributorClass="miner.presentation.MinerActionBarContributor">

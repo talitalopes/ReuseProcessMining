@@ -8,12 +8,14 @@ import minerv1.FrameworkApplication;
 import minerv1.FrameworkProcess;
 import minerv1.Minerv1Factory;
 
+import org.eclipse.core.resources.IProject;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.swt.widgets.Shell;
 
 import br.ufrj.cos.prisma.helpers.GitRepositoryHelper;
 import br.ufrj.cos.prisma.helpers.ProjectHelper;
 import br.ufrj.cos.prisma.helpers.RepositoriesHelper;
+import br.ufrj.cos.prisma.miner.Extractor.model.JDTHelper;
 import br.ufrj.cos.prisma.miner.util.Constants;
 import br.ufrj.cos.prisma.miner.util.Log;
 import br.ufrj.cos.prisma.model.GithubRepository;
@@ -21,7 +23,7 @@ import br.ufrj.cos.prisma.model.GithubRepository;
 public class RepositoriesExtractor {
 
 	private static ProjectHelper projectHelper;
-	
+		
 	public static void start(FrameworkProcess process, Shell shell) {
 		if (process == null) {
 			Log.i(Constants.ERROR_KEY, Constants.PROCESS_NOT_EXISTS);
@@ -73,7 +75,7 @@ public class RepositoriesExtractor {
 				System.out.println("Importing projects into folder: " + repo.getRepoFile());
 				importProjectIntoWorkspace(repo.getRepoFile());
 				
-				exploreProjectsInWorkspace();
+				exploreProjectsInWorkspace(process);
 				
 				System.out.println("Deleting projects from workspace");
 				deleteApplicationProjectsFromWorkspace();
@@ -132,8 +134,13 @@ public class RepositoriesExtractor {
 		return RepositoriesHelper.listRepositories("JJTV5_gef");
 	}
 
-	private static void exploreProjectsInWorkspace() {
+	private static void exploreProjectsInWorkspace(FrameworkProcess process) {
+		JDTHelper jdtHelper = new JDTHelper(process.getName());
+		IProject[] projects = jdtHelper.getAllProjectsInWorkspace();
 		
+		for (int i = 0; i < projects.length; i++) {
+			System.out.println(projects[i].getName());
+		}
 	}
 	
 }
