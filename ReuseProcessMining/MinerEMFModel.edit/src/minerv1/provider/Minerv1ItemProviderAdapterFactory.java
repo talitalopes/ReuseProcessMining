@@ -164,6 +164,29 @@ public class Minerv1ItemProviderAdapterFactory extends Minerv1AdapterFactory imp
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link minerv1.Event} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected EventItemProvider eventItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link minerv1.Event}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createEventAdapter() {
+		if (eventItemProvider == null) {
+			eventItemProvider = new EventItemProvider(this);
+		}
+
+		return eventItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -266,6 +289,7 @@ public class Minerv1ItemProviderAdapterFactory extends Minerv1AdapterFactory imp
 		if (frameworkApplicationItemProvider != null) frameworkApplicationItemProvider.dispose();
 		if (commitItemProvider != null) commitItemProvider.dispose();
 		if (activityItemProvider != null) activityItemProvider.dispose();
+		if (eventItemProvider != null) eventItemProvider.dispose();
 	}
 
 }

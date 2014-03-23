@@ -7,19 +7,19 @@ import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
 
 /**
- * This is the central singleton for the Miner edit plugin.
+ * This is the central singleton for the Minerv1 edit plugin.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public final class MinerEditPlugin extends EMFPlugin {
+public final class Minerv1EditPlugin extends EMFPlugin {
 	/**
 	 * Keep track of the singleton.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final MinerEditPlugin INSTANCE = new MinerEditPlugin();
+	public static final Minerv1EditPlugin INSTANCE = new Minerv1EditPlugin();
 
 	/**
 	 * Keep track of the singleton.
@@ -35,7 +35,7 @@ public final class MinerEditPlugin extends EMFPlugin {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MinerEditPlugin() {
+	public Minerv1EditPlugin() {
 		super
 		  (new ResourceLocator [] {
 		   });

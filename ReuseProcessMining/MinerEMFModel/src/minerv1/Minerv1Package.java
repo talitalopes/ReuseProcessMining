@@ -197,13 +197,22 @@ public interface Minerv1Package extends EPackage {
 	int COMMIT__NAME = 1;
 
 	/**
+	 * The feature id for the '<em><b>Events</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COMMIT__EVENTS = 2;
+
+	/**
 	 * The number of structural features of the '<em>Commit</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int COMMIT_FEATURE_COUNT = 2;
+	int COMMIT_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Commit</em>' class.
@@ -271,6 +280,61 @@ public interface Minerv1Package extends EPackage {
 	int ACTIVITY_OPERATION_COUNT = 0;
 
 	/**
+	 * The meta object id for the '{@link minerv1.impl.EventImpl <em>Event</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see minerv1.impl.EventImpl
+	 * @see minerv1.impl.Minerv1PackageImpl#getEvent()
+	 * @generated
+	 */
+	int EVENT = 4;
+
+	/**
+	 * The feature id for the '<em><b>Activity</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT__ACTIVITY = 0;
+
+	/**
+	 * The feature id for the '<em><b>Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT__DATE = 1;
+
+	/**
+	 * The feature id for the '<em><b>Lifecycle Status</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT__LIFECYCLE_STATUS = 2;
+
+	/**
+	 * The number of structural features of the '<em>Event</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_FEATURE_COUNT = 3;
+
+	/**
+	 * The number of operations of the '<em>Event</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EVENT_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link minerv1.ActivityType <em>Activity Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -278,7 +342,7 @@ public interface Minerv1Package extends EPackage {
 	 * @see minerv1.impl.Minerv1PackageImpl#getActivityType()
 	 * @generated
 	 */
-	int ACTIVITY_TYPE = 4;
+	int ACTIVITY_TYPE = 5;
 
 
 	/**
@@ -400,6 +464,17 @@ public interface Minerv1Package extends EPackage {
 	EAttribute getCommit_Name();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link minerv1.Commit#getEvents <em>Events</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Events</em>'.
+	 * @see minerv1.Commit#getEvents()
+	 * @see #getCommit()
+	 * @generated
+	 */
+	EReference getCommit_Events();
+
+	/**
 	 * Returns the meta object for class '{@link minerv1.Activity <em>Activity</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -441,6 +516,49 @@ public interface Minerv1Package extends EPackage {
 	 * @generated
 	 */
 	EAttribute getActivity_Type();
+
+	/**
+	 * Returns the meta object for class '{@link minerv1.Event <em>Event</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Event</em>'.
+	 * @see minerv1.Event
+	 * @generated
+	 */
+	EClass getEvent();
+
+	/**
+	 * Returns the meta object for the reference '{@link minerv1.Event#getActivity <em>Activity</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Activity</em>'.
+	 * @see minerv1.Event#getActivity()
+	 * @see #getEvent()
+	 * @generated
+	 */
+	EReference getEvent_Activity();
+
+	/**
+	 * Returns the meta object for the attribute '{@link minerv1.Event#getDate <em>Date</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Date</em>'.
+	 * @see minerv1.Event#getDate()
+	 * @see #getEvent()
+	 * @generated
+	 */
+	EAttribute getEvent_Date();
+
+	/**
+	 * Returns the meta object for the attribute '{@link minerv1.Event#getLifecycleStatus <em>Lifecycle Status</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Lifecycle Status</em>'.
+	 * @see minerv1.Event#getLifecycleStatus()
+	 * @see #getEvent()
+	 * @generated
+	 */
+	EAttribute getEvent_LifecycleStatus();
 
 	/**
 	 * Returns the meta object for enum '{@link minerv1.ActivityType <em>Activity Type</em>}'.
@@ -570,6 +688,14 @@ public interface Minerv1Package extends EPackage {
 		EAttribute COMMIT__NAME = eINSTANCE.getCommit_Name();
 
 		/**
+		 * The meta object literal for the '<em><b>Events</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference COMMIT__EVENTS = eINSTANCE.getCommit_Events();
+
+		/**
 		 * The meta object literal for the '{@link minerv1.impl.ActivityImpl <em>Activity</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -602,6 +728,40 @@ public interface Minerv1Package extends EPackage {
 		 * @generated
 		 */
 		EAttribute ACTIVITY__TYPE = eINSTANCE.getActivity_Type();
+
+		/**
+		 * The meta object literal for the '{@link minerv1.impl.EventImpl <em>Event</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see minerv1.impl.EventImpl
+		 * @see minerv1.impl.Minerv1PackageImpl#getEvent()
+		 * @generated
+		 */
+		EClass EVENT = eINSTANCE.getEvent();
+
+		/**
+		 * The meta object literal for the '<em><b>Activity</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference EVENT__ACTIVITY = eINSTANCE.getEvent_Activity();
+
+		/**
+		 * The meta object literal for the '<em><b>Date</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EVENT__DATE = eINSTANCE.getEvent_Date();
+
+		/**
+		 * The meta object literal for the '<em><b>Lifecycle Status</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EVENT__LIFECYCLE_STATUS = eINSTANCE.getEvent_LifecycleStatus();
 
 		/**
 		 * The meta object literal for the '{@link minerv1.ActivityType <em>Activity Type</em>}' enum.

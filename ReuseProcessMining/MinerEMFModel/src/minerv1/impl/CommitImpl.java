@@ -2,15 +2,22 @@
  */
 package minerv1.impl;
 
+import java.util.Collection;
 import minerv1.Commit;
+import minerv1.Event;
 import minerv1.Minerv1Package;
 
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,6 +28,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <ul>
  *   <li>{@link minerv1.impl.CommitImpl#getId <em>Id</em>}</li>
  *   <li>{@link minerv1.impl.CommitImpl#getName <em>Name</em>}</li>
+ *   <li>{@link minerv1.impl.CommitImpl#getEvents <em>Events</em>}</li>
  * </ul>
  * </p>
  *
@@ -66,6 +74,16 @@ public class CommitImpl extends MinimalEObjectImpl.Container implements Commit {
 	 * @ordered
 	 */
 	protected String name = NAME_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getEvents() <em>Events</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getEvents()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Event> events;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -133,6 +151,32 @@ public class CommitImpl extends MinimalEObjectImpl.Container implements Commit {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<Event> getEvents() {
+		if (events == null) {
+			events = new EObjectContainmentEList<Event>(Event.class, this, Minerv1Package.COMMIT__EVENTS);
+		}
+		return events;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case Minerv1Package.COMMIT__EVENTS:
+				return ((InternalEList<?>)getEvents()).basicRemove(otherEnd, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -140,6 +184,8 @@ public class CommitImpl extends MinimalEObjectImpl.Container implements Commit {
 				return getId();
 			case Minerv1Package.COMMIT__NAME:
 				return getName();
+			case Minerv1Package.COMMIT__EVENTS:
+				return getEvents();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -149,6 +195,7 @@ public class CommitImpl extends MinimalEObjectImpl.Container implements Commit {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -157,6 +204,10 @@ public class CommitImpl extends MinimalEObjectImpl.Container implements Commit {
 				return;
 			case Minerv1Package.COMMIT__NAME:
 				setName((String)newValue);
+				return;
+			case Minerv1Package.COMMIT__EVENTS:
+				getEvents().clear();
+				getEvents().addAll((Collection<? extends Event>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -176,6 +227,9 @@ public class CommitImpl extends MinimalEObjectImpl.Container implements Commit {
 			case Minerv1Package.COMMIT__NAME:
 				setName(NAME_EDEFAULT);
 				return;
+			case Minerv1Package.COMMIT__EVENTS:
+				getEvents().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -192,6 +246,8 @@ public class CommitImpl extends MinimalEObjectImpl.Container implements Commit {
 				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
 			case Minerv1Package.COMMIT__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
+			case Minerv1Package.COMMIT__EVENTS:
+				return events != null && !events.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -5,7 +5,7 @@ package br.ufrj.cos.prisma.model.miner.provider;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import miner.util.MinerAdapterFactory;
+import minerv1.util.Minerv1AdapterFactory;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
@@ -32,7 +32,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * <!-- end-user-doc -->
  * @generated
  */
-public class MinerItemProviderAdapterFactory extends MinerAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
+public class Minerv1ItemProviderAdapterFactory extends Minerv1AdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc -->
@@ -63,7 +63,7 @@ public class MinerItemProviderAdapterFactory extends MinerAdapterFactory impleme
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MinerItemProviderAdapterFactory() {
+	public Minerv1ItemProviderAdapterFactory() {
 		supportedTypes.add(IEditingDomainItemProvider.class);
 		supportedTypes.add(IStructuredItemContentProvider.class);
 		supportedTypes.add(ITreeItemContentProvider.class);
@@ -72,53 +72,76 @@ public class MinerItemProviderAdapterFactory extends MinerAdapterFactory impleme
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link miner.Process} instances.
+	 * This keeps track of the one adapter used for all {@link minerv1.FrameworkProcess} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ProcessItemProvider processItemProvider;
+	protected FrameworkProcessItemProvider frameworkProcessItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link miner.Process}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createProcessAdapter() {
-		if (processItemProvider == null) {
-			processItemProvider = new ProcessItemProvider(this);
-		}
-
-		return processItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link miner.ProcessInstance} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ProcessInstanceItemProvider processInstanceItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link miner.ProcessInstance}.
+	 * This creates an adapter for a {@link minerv1.FrameworkProcess}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createProcessInstanceAdapter() {
-		if (processInstanceItemProvider == null) {
-			processInstanceItemProvider = new ProcessInstanceItemProvider(this);
+	public Adapter createFrameworkProcessAdapter() {
+		if (frameworkProcessItemProvider == null) {
+			frameworkProcessItemProvider = new FrameworkProcessItemProvider(this);
 		}
 
-		return processInstanceItemProvider;
+		return frameworkProcessItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link miner.Activity} instances.
+	 * This keeps track of the one adapter used for all {@link minerv1.FrameworkApplication} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FrameworkApplicationItemProvider frameworkApplicationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link minerv1.FrameworkApplication}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFrameworkApplicationAdapter() {
+		if (frameworkApplicationItemProvider == null) {
+			frameworkApplicationItemProvider = new FrameworkApplicationItemProvider(this);
+		}
+
+		return frameworkApplicationItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link minerv1.Commit} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CommitItemProvider commitItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link minerv1.Commit}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCommitAdapter() {
+		if (commitItemProvider == null) {
+			commitItemProvider = new CommitItemProvider(this);
+		}
+
+		return commitItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link minerv1.Activity} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -126,7 +149,7 @@ public class MinerItemProviderAdapterFactory extends MinerAdapterFactory impleme
 	protected ActivityItemProvider activityItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link miner.Activity}.
+	 * This creates an adapter for a {@link minerv1.Activity}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -141,7 +164,7 @@ public class MinerItemProviderAdapterFactory extends MinerAdapterFactory impleme
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link miner.Event} instances.
+	 * This keeps track of the one adapter used for all {@link minerv1.Event} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -149,7 +172,7 @@ public class MinerItemProviderAdapterFactory extends MinerAdapterFactory impleme
 	protected EventItemProvider eventItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link miner.Event}.
+	 * This creates an adapter for a {@link minerv1.Event}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -161,29 +184,6 @@ public class MinerItemProviderAdapterFactory extends MinerAdapterFactory impleme
 		}
 
 		return eventItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link miner.Commit} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected CommitItemProvider commitItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link miner.Commit}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createCommitAdapter() {
-		if (commitItemProvider == null) {
-			commitItemProvider = new CommitItemProvider(this);
-		}
-
-		return commitItemProvider;
 	}
 
 	/**
@@ -285,11 +285,11 @@ public class MinerItemProviderAdapterFactory extends MinerAdapterFactory impleme
 	 * @generated
 	 */
 	public void dispose() {
-		if (processItemProvider != null) processItemProvider.dispose();
-		if (processInstanceItemProvider != null) processInstanceItemProvider.dispose();
+		if (frameworkProcessItemProvider != null) frameworkProcessItemProvider.dispose();
+		if (frameworkApplicationItemProvider != null) frameworkApplicationItemProvider.dispose();
+		if (commitItemProvider != null) commitItemProvider.dispose();
 		if (activityItemProvider != null) activityItemProvider.dispose();
 		if (eventItemProvider != null) eventItemProvider.dispose();
-		if (commitItemProvider != null) commitItemProvider.dispose();
 	}
 
 }

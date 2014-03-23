@@ -3,11 +3,11 @@
 package br.ufrj.cos.prisma.model.miner.provider;
 
 
-import miner.Activity;
-import miner.MinerPackage;
-
 import java.util.Collection;
 import java.util.List;
+
+import minerv1.Activity;
+import minerv1.Minerv1Package;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -26,7 +26,7 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link br.ufrj.cos.prisma.model.miner.Activity} object.
+ * This is the item provider adapter for a {@link minerv1.Activity} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -63,7 +63,6 @@ public class ActivityItemProvider
 			addIdPropertyDescriptor(object);
 			addNamePropertyDescriptor(object);
 			addTypePropertyDescriptor(object);
-			addAppClassPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -81,7 +80,7 @@ public class ActivityItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Activity_id_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Activity_id_feature", "_UI_Activity_type"),
-				 MinerPackage.Literals.ACTIVITY__ID,
+				 Minerv1Package.Literals.ACTIVITY__ID,
 				 true,
 				 false,
 				 false,
@@ -103,7 +102,7 @@ public class ActivityItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Activity_name_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Activity_name_feature", "_UI_Activity_type"),
-				 MinerPackage.Literals.ACTIVITY__NAME,
+				 Minerv1Package.Literals.ACTIVITY__NAME,
 				 true,
 				 false,
 				 false,
@@ -125,29 +124,7 @@ public class ActivityItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Activity_type_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Activity_type_feature", "_UI_Activity_type"),
-				 MinerPackage.Literals.ACTIVITY__TYPE,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the App Class feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addAppClassPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Activity_appClass_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Activity_appClass_feature", "_UI_Activity_type"),
-				 MinerPackage.Literals.ACTIVITY__APP_CLASS,
+				 Minerv1Package.Literals.ACTIVITY__TYPE,
 				 true,
 				 false,
 				 false,
@@ -193,10 +170,9 @@ public class ActivityItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Activity.class)) {
-			case MinerPackage.ACTIVITY__ID:
-			case MinerPackage.ACTIVITY__NAME:
-			case MinerPackage.ACTIVITY__TYPE:
-			case MinerPackage.ACTIVITY__APP_CLASS:
+			case Minerv1Package.ACTIVITY__ID:
+			case Minerv1Package.ACTIVITY__NAME:
+			case Minerv1Package.ACTIVITY__TYPE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
@@ -223,7 +199,7 @@ public class ActivityItemProvider
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return MinerEditPlugin.INSTANCE;
+		return Minerv1EditPlugin.INSTANCE;
 	}
 
 }

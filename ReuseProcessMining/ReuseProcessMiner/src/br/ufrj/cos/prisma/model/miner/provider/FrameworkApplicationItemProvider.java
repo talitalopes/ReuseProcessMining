@@ -1,12 +1,12 @@
 /**
  */
-package minerv1.provider;
+package br.ufrj.cos.prisma.model.miner.provider;
 
 
 import java.util.Collection;
 import java.util.List;
 
-import minerv1.Commit;
+import minerv1.FrameworkApplication;
 import minerv1.Minerv1Factory;
 import minerv1.Minerv1Package;
 
@@ -28,12 +28,12 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link minerv1.Commit} object.
+ * This is the item provider adapter for a {@link minerv1.FrameworkApplication} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class CommitItemProvider
+public class FrameworkApplicationItemProvider
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -47,7 +47,7 @@ public class CommitItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CommitItemProvider(AdapterFactory adapterFactory) {
+	public FrameworkApplicationItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -62,32 +62,10 @@ public class CommitItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addIdPropertyDescriptor(object);
 			addNamePropertyDescriptor(object);
+			addRepositoryUrlPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Id feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addIdPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Commit_id_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Commit_id_feature", "_UI_Commit_type"),
-				 Minerv1Package.Literals.COMMIT__ID,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
 	}
 
 	/**
@@ -101,9 +79,31 @@ public class CommitItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Commit_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Commit_name_feature", "_UI_Commit_type"),
-				 Minerv1Package.Literals.COMMIT__NAME,
+				 getString("_UI_FrameworkApplication_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FrameworkApplication_name_feature", "_UI_FrameworkApplication_type"),
+				 Minerv1Package.Literals.FRAMEWORK_APPLICATION__NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Repository Url feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addRepositoryUrlPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FrameworkApplication_repositoryUrl_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FrameworkApplication_repositoryUrl_feature", "_UI_FrameworkApplication_type"),
+				 Minerv1Package.Literals.FRAMEWORK_APPLICATION__REPOSITORY_URL,
 				 true,
 				 false,
 				 false,
@@ -124,7 +124,7 @@ public class CommitItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(Minerv1Package.Literals.COMMIT__EVENTS);
+			childrenFeatures.add(Minerv1Package.Literals.FRAMEWORK_APPLICATION__COMMITS);
 		}
 		return childrenFeatures;
 	}
@@ -143,14 +143,14 @@ public class CommitItemProvider
 	}
 
 	/**
-	 * This returns Commit.gif.
+	 * This returns FrameworkApplication.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Commit"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/FrameworkApplication"));
 	}
 
 	/**
@@ -161,10 +161,10 @@ public class CommitItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Commit)object).getName();
+		String label = ((FrameworkApplication)object).getName();
 		return label == null || label.length() == 0 ?
-			getString("_UI_Commit_type") :
-			getString("_UI_Commit_type") + " " + label;
+			getString("_UI_FrameworkApplication_type") :
+			getString("_UI_FrameworkApplication_type") + " " + label;
 	}
 
 	/**
@@ -178,12 +178,12 @@ public class CommitItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Commit.class)) {
-			case Minerv1Package.COMMIT__ID:
-			case Minerv1Package.COMMIT__NAME:
+		switch (notification.getFeatureID(FrameworkApplication.class)) {
+			case Minerv1Package.FRAMEWORK_APPLICATION__NAME:
+			case Minerv1Package.FRAMEWORK_APPLICATION__REPOSITORY_URL:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case Minerv1Package.COMMIT__EVENTS:
+			case Minerv1Package.FRAMEWORK_APPLICATION__COMMITS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -203,8 +203,8 @@ public class CommitItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(Minerv1Package.Literals.COMMIT__EVENTS,
-				 Minerv1Factory.eINSTANCE.createEvent()));
+				(Minerv1Package.Literals.FRAMEWORK_APPLICATION__COMMITS,
+				 Minerv1Factory.eINSTANCE.createCommit()));
 	}
 
 	/**

@@ -7,12 +7,14 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-import miner.Event;
-import miner.MinerPackage;
+import minerv1.Event;
+import minerv1.Minerv1Package;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -25,7 +27,7 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link br.ufrj.cos.prisma.model.miner.Event} object.
+ * This is the item provider adapter for a {@link minerv1.Event} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -77,9 +79,9 @@ public class EventItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Event_activity_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Event_activity_feature", "_UI_Event_type"),
-				 MinerPackage.Literals.EVENT__ACTIVITY,
+				 getString("_UI_Event_Activity_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Event_Activity_feature", "_UI_Event_type"),
+				 Minerv1Package.Literals.EVENT__ACTIVITY,
 				 true,
 				 false,
 				 true,
@@ -101,7 +103,7 @@ public class EventItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Event_date_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Event_date_feature", "_UI_Event_type"),
-				 MinerPackage.Literals.EVENT__DATE,
+				 Minerv1Package.Literals.EVENT__DATE,
 				 true,
 				 false,
 				 false,
@@ -123,7 +125,7 @@ public class EventItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Event_lifecycleStatus_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Event_lifecycleStatus_feature", "_UI_Event_type"),
-				 MinerPackage.Literals.EVENT__LIFECYCLE_STATUS,
+				 Minerv1Package.Literals.EVENT__LIFECYCLE_STATUS,
 				 true,
 				 false,
 				 false,
@@ -170,8 +172,8 @@ public class EventItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Event.class)) {
-			case MinerPackage.EVENT__DATE:
-			case MinerPackage.EVENT__LIFECYCLE_STATUS:
+			case Minerv1Package.EVENT__DATE:
+			case Minerv1Package.EVENT__LIFECYCLE_STATUS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
@@ -198,7 +200,7 @@ public class EventItemProvider
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return MinerEditPlugin.INSTANCE;
+		return Minerv1EditPlugin.INSTANCE;
 	}
 
 }

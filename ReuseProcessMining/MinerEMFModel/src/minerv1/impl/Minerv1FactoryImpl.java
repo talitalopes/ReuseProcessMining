@@ -61,6 +61,7 @@ public class Minerv1FactoryImpl extends EFactoryImpl implements Minerv1Factory {
 			case Minerv1Package.FRAMEWORK_APPLICATION: return createFrameworkApplication();
 			case Minerv1Package.COMMIT: return createCommit();
 			case Minerv1Package.ACTIVITY: return createActivity();
+			case Minerv1Package.EVENT: return createEvent();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -134,6 +135,16 @@ public class Minerv1FactoryImpl extends EFactoryImpl implements Minerv1Factory {
 	public Activity createActivity() {
 		ActivityImpl activity = new ActivityImpl();
 		return activity;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Event createEvent() {
+		EventImpl event = new EventImpl();
+		return event;
 	}
 
 	/**

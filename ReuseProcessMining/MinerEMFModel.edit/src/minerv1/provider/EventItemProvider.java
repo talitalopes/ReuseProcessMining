@@ -4,10 +4,10 @@ package minerv1.provider;
 
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
-import minerv1.Commit;
-import minerv1.Minerv1Factory;
+import minerv1.Event;
 import minerv1.Minerv1Package;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -15,7 +15,6 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -28,12 +27,12 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link minerv1.Commit} object.
+ * This is the item provider adapter for a {@link minerv1.Event} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class CommitItemProvider
+public class EventItemProvider
 	extends ItemProviderAdapter
 	implements
 		IEditingDomainItemProvider,
@@ -47,7 +46,7 @@ public class CommitItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CommitItemProvider(AdapterFactory adapterFactory) {
+	public EventItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -62,26 +61,49 @@ public class CommitItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addIdPropertyDescriptor(object);
-			addNamePropertyDescriptor(object);
+			addActivityPropertyDescriptor(object);
+			addDatePropertyDescriptor(object);
+			addLifecycleStatusPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Id feature.
+	 * This adds a property descriptor for the Activity feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIdPropertyDescriptor(Object object) {
+	protected void addActivityPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Commit_id_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Commit_id_feature", "_UI_Commit_type"),
-				 Minerv1Package.Literals.COMMIT__ID,
+				 getString("_UI_Event_Activity_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Event_Activity_feature", "_UI_Event_type"),
+				 Minerv1Package.Literals.EVENT__ACTIVITY,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Date feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDatePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Event_date_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Event_date_feature", "_UI_Event_type"),
+				 Minerv1Package.Literals.EVENT__DATE,
 				 true,
 				 false,
 				 false,
@@ -91,19 +113,19 @@ public class CommitItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Name feature.
+	 * This adds a property descriptor for the Lifecycle Status feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addNamePropertyDescriptor(Object object) {
+	protected void addLifecycleStatusPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Commit_name_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Commit_name_feature", "_UI_Commit_type"),
-				 Minerv1Package.Literals.COMMIT__NAME,
+				 getString("_UI_Event_lifecycleStatus_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Event_lifecycleStatus_feature", "_UI_Event_type"),
+				 Minerv1Package.Literals.EVENT__LIFECYCLE_STATUS,
 				 true,
 				 false,
 				 false,
@@ -113,44 +135,14 @@ public class CommitItemProvider
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(Minerv1Package.Literals.COMMIT__EVENTS);
-		}
-		return childrenFeatures;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
-	}
-
-	/**
-	 * This returns Commit.gif.
+	 * This returns Event.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Commit"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Event"));
 	}
 
 	/**
@@ -161,10 +153,11 @@ public class CommitItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Commit)object).getName();
+		Date labelValue = ((Event)object).getDate();
+		String label = labelValue == null ? null : labelValue.toString();
 		return label == null || label.length() == 0 ?
-			getString("_UI_Commit_type") :
-			getString("_UI_Commit_type") + " " + label;
+			getString("_UI_Event_type") :
+			getString("_UI_Event_type") + " " + label;
 	}
 
 	/**
@@ -178,13 +171,10 @@ public class CommitItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Commit.class)) {
-			case Minerv1Package.COMMIT__ID:
-			case Minerv1Package.COMMIT__NAME:
+		switch (notification.getFeatureID(Event.class)) {
+			case Minerv1Package.EVENT__DATE:
+			case Minerv1Package.EVENT__LIFECYCLE_STATUS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case Minerv1Package.COMMIT__EVENTS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -200,11 +190,6 @@ public class CommitItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(Minerv1Package.Literals.COMMIT__EVENTS,
-				 Minerv1Factory.eINSTANCE.createEvent()));
 	}
 
 	/**

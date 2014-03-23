@@ -1,12 +1,16 @@
 package br.ufrj.cos.prisma.miner.Extractor;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import minerv1.Activity;
+import minerv1.ActivityType;
 import minerv1.Commit;
+import minerv1.Event;
 import minerv1.FrameworkApplication;
 import minerv1.FrameworkProcess;
 import minerv1.Minerv1Factory;
@@ -50,7 +54,9 @@ public class RepositoriesExtractor {
 	private ProjectHelper projectHelper;
 	private FrameworkProcess process;
 	private JDTHelper jdtHelper;
-	private Set<String> processActivities;
+	private Map<String, Activity> processActivities;
+	private Set<String> commitEvents;
+	private Commit currentCommit;
 
 	private static RepositoriesExtractor instance;
 
@@ -62,7 +68,8 @@ public class RepositoriesExtractor {
 		this.process = process;
 		this.jdtHelper = new JDTHelper(process.getName());
 		this.projectHelper = new ProjectHelper();
-		this.processActivities = new HashSet<String>();
+		this.processActivities = new HashMap<String, Activity>();
+		this.commitEvents = new HashSet<String>();
 	}
 
 	public static RepositoriesExtractor getInstance() {
@@ -93,8 +100,7 @@ public class RepositoriesExtractor {
 	private void manageFrameworkApplications() {
 		List<GithubRepository> repositories = listRepositories();
 
-		log(String.format("%d repositories found",
-				repositories.size()));
+		log(String.format("%d repositories found", repositories.size()));
 
 		// A repository corresponds to a framework application (process
 		// instance)
@@ -108,57 +114,29 @@ public class RepositoriesExtractor {
 			GitRepositoryHelper helper = new GitRepositoryHelper(repo);
 			List<RevCommit> applications = helper.getCommitsHistory();
 
-			log(String.format(
-					"%d commits found for application %s", applications.size(),
-					repo.getName()));
+			log(String.format("%d commits found for application %s",
+					applications.size(), repo.getName()));
 
 			for (RevCommit c : applications) {
 				Commit commit = Minerv1Factory.eINSTANCE.createCommit();
 				commit.setName(c.getName());
 				commit.setId(c.getId().getName());
-				app.getCommits().add(commit);
-
+//				if (this.currentCommit != null) {
+//					commit.getEvents().addAll(this.currentCommit.getEvents());
+//				}
+				this.currentCommit = commit;
+				
 				helper.cloneFromCommit(c);
 
-				log("Importing projects into folder: "
-						+ repo.getRepoFile());
+				log("Importing projects into folder: " + repo.getRepoFile());
 				importProjectIntoWorkspace(repo.getRepoFile());
-
+				app.getCommits().add(this.currentCommit);
+				
 				exploreProjectsInWorkspace(process);
 
 				log("Deleting projects from workspace");
 				deleteApplicationProjectsFromWorkspace();
 			}
-
-			// MinerCommit mCommit = new MinerCommit(c.getId().getName(),
-			// c.getCommitTime());
-			//
-			// System.out.println("Cloning repo in " + repo.getLocalDir());
-			// helper.cloneFromCommit(c);
-			//
-			// System.out.println("Importing projects into folder: " +
-			// repo.getRepoFile());
-			// importProjectIntoWorkspace(repo.getRepoFile());
-			//
-			// List<IProject> projects = new ArrayList<IProject>();
-			// IProject[] projectsArray = jdtHelper.getAllProjectsInWorkspace();
-			// for (int i = 0; i < projectsArray.length; i++) {
-			// if (projectsArray[i].getName().toLowerCase().contains("miner")) {
-			// continue;
-			// }
-			// projects.add(projectsArray[i]);
-			// }
-			// app.setWorkspaceProjects(projects);
-			//
-			// System.out.println("Mining RA");
-			// mineReuseActionsFromCommit(mCommit);
-			//
-			// System.out.println("Deleting projects from workspace");
-			// deleteApplicationProjectsFromWorkspace();
-			//
-			// app.addCommit(mCommit);
-			// mProcess.addApplication(app);
-			// }
 		}
 	}
 
@@ -205,7 +183,7 @@ public class RepositoriesExtractor {
 		if (javaProject == null) {
 			return;
 		}
-		
+
 		jdtHelper.setCurrentFrameworkApplicationProject(javaProject);
 		IPackageFragment[] packages = null;
 		try {
@@ -268,14 +246,19 @@ public class RepositoriesExtractor {
 			if (superClassFW == null) {
 				return;
 			}
+
+			Activity classActivity = getActivityForSuperClass(superClassFW);
+			String activityEventKey = String
+					.format("%s+%s", superClassFW.getFullyQualifiedName(),
+							type.getElementName());
 			
-			if (!this.processActivities.contains(superClassFW.getFullyQualifiedName())) {
-				this.processActivities.add(superClassFW.getFullyQualifiedName());
-				Activity a = Minerv1Factory.eINSTANCE.createActivity();
-				a.setName(superClassFW.getFullyQualifiedName());
-				this.process.getActivities().add(a);
+			if (!this.commitEvents.contains(activityEventKey)) {
+				this.commitEvents.add(activityEventKey);
+				Event e = Minerv1Factory.eINSTANCE.createEvent();
+				e.setActivity(classActivity);
+				this.currentCommit.getEvents().add(e);
 			}
-			
+
 			SearchMatch mMatch = callHierarchy(
 					jdtHelper.getCurrentFrameworkApplicationProject(),
 					type.getElementName());
@@ -285,12 +268,28 @@ public class RepositoriesExtractor {
 								mMatch.getResource().getName());
 				extractClassesAndMethods(dependentIType);
 			}
+
 		} catch (JavaModelException e) {
 			e.printStackTrace();
 		} catch (CoreException e) {
 			e.printStackTrace();
 		}
 
+	}
+
+	private Activity getActivityForSuperClass(IType superClassFW) {
+		String key = superClassFW.getFullyQualifiedName();
+		if (this.processActivities.containsKey(key)) {
+			return this.processActivities.get(key);
+		}
+		
+		Activity a = Minerv1Factory.eINSTANCE.createActivity();
+		a.setName(superClassFW.getFullyQualifiedName());
+		a.setType(ActivityType.CLASS_EXTENSION);
+		this.process.getActivities().add(a);
+		this.processActivities.put(key, a);
+		
+		return a;
 	}
 
 	private static SearchMatch callHierarchy(IJavaProject javaProject,
@@ -323,7 +322,7 @@ public class RepositoriesExtractor {
 
 		return ((CustomSearchRequestor) requestor).getMatch();
 	}
-	
+
 	private IJavaProject openProject(IProject project) {
 		try {
 			project.open(null);
@@ -349,7 +348,8 @@ public class RepositoriesExtractor {
 			}
 		}
 		// no console found, so create a new one
-		MessageConsole myConsole = new MessageConsole(Constants.CONSOLE_NAME, null);
+		MessageConsole myConsole = new MessageConsole(Constants.CONSOLE_NAME,
+				null);
 		conMan.addConsoles(new IConsole[] { myConsole });
 		return myConsole;
 	}

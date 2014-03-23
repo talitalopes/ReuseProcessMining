@@ -3,12 +3,12 @@
 package br.ufrj.cos.prisma.model.miner.provider;
 
 
-import miner.Commit;
-import miner.MinerFactory;
-import miner.MinerPackage;
-
 import java.util.Collection;
 import java.util.List;
+
+import minerv1.Commit;
+import minerv1.Minerv1Factory;
+import minerv1.Minerv1Package;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -16,7 +16,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -29,7 +28,7 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link br.ufrj.cos.prisma.model.miner.Commit} object.
+ * This is the item provider adapter for a {@link minerv1.Commit} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
@@ -64,7 +63,7 @@ public class CommitItemProvider
 			super.getPropertyDescriptors(object);
 
 			addIdPropertyDescriptor(object);
-			addDatePropertyDescriptor(object);
+			addNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -82,7 +81,7 @@ public class CommitItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Commit_id_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Commit_id_feature", "_UI_Commit_type"),
-				 MinerPackage.Literals.COMMIT__ID,
+				 Minerv1Package.Literals.COMMIT__ID,
 				 true,
 				 false,
 				 false,
@@ -92,19 +91,19 @@ public class CommitItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Date feature.
+	 * This adds a property descriptor for the Name feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDatePropertyDescriptor(Object object) {
+	protected void addNamePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_Commit_date_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Commit_date_feature", "_UI_Commit_type"),
-				 MinerPackage.Literals.COMMIT__DATE,
+				 getString("_UI_Commit_name_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Commit_name_feature", "_UI_Commit_type"),
+				 Minerv1Package.Literals.COMMIT__NAME,
 				 true,
 				 false,
 				 false,
@@ -125,7 +124,7 @@ public class CommitItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(MinerPackage.Literals.COMMIT__EVENTS);
+			childrenFeatures.add(Minerv1Package.Literals.COMMIT__EVENTS);
 		}
 		return childrenFeatures;
 	}
@@ -162,7 +161,7 @@ public class CommitItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Commit)object).getId();
+		String label = ((Commit)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Commit_type") :
 			getString("_UI_Commit_type") + " " + label;
@@ -180,11 +179,11 @@ public class CommitItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Commit.class)) {
-			case MinerPackage.COMMIT__ID:
-			case MinerPackage.COMMIT__DATE:
+			case Minerv1Package.COMMIT__ID:
+			case Minerv1Package.COMMIT__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case MinerPackage.COMMIT__EVENTS:
+			case Minerv1Package.COMMIT__EVENTS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -204,8 +203,8 @@ public class CommitItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(MinerPackage.Literals.COMMIT__EVENTS,
-				 MinerFactory.eINSTANCE.createEvent()));
+				(Minerv1Package.Literals.COMMIT__EVENTS,
+				 Minerv1Factory.eINSTANCE.createEvent()));
 	}
 
 	/**
@@ -216,7 +215,7 @@ public class CommitItemProvider
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return MinerEditPlugin.INSTANCE;
+		return Minerv1EditPlugin.INSTANCE;
 	}
 
 }
