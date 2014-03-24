@@ -32,7 +32,6 @@ import org.eclipse.jdt.core.search.SearchMatch;
 import org.eclipse.jdt.core.search.SearchParticipant;
 import org.eclipse.jdt.core.search.SearchPattern;
 import org.eclipse.jdt.core.search.SearchRequestor;
-import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.console.ConsolePlugin;
 import org.eclipse.ui.console.IConsole;
@@ -40,7 +39,6 @@ import org.eclipse.ui.console.IConsoleManager;
 import org.eclipse.ui.console.MessageConsole;
 import org.eclipse.ui.console.MessageConsoleStream;
 
-import br.ufrj.cos.prisma.helpers.GitRepositoryHelper;
 import br.ufrj.cos.prisma.helpers.ProjectHelper;
 import br.ufrj.cos.prisma.helpers.RepositoriesHelper;
 import br.ufrj.cos.prisma.miner.Extractor.model.JDTHelper;
@@ -99,45 +97,50 @@ public class RepositoriesExtractor {
 
 	private void manageFrameworkApplications() {
 		List<GithubRepository> repositories = listRepositories();
-
 		log(String.format("%d repositories found", repositories.size()));
 
-		// A repository corresponds to a framework application (process
-		// instance)
+		// create applications for repositories
 		for (GithubRepository repo : repositories) {
 			FrameworkApplication app = Minerv1Factory.eINSTANCE
 					.createFrameworkApplication();
 			app.setName(repo.getName());
 			app.setRepositoryUrl(repo.getUrl());
 			process.getApplications().add(app);
-
-			GitRepositoryHelper helper = new GitRepositoryHelper(repo);
-			List<RevCommit> applications = helper.getCommitsHistory();
-
-			log(String.format("%d commits found for application %s",
-					applications.size(), repo.getName()));
-
-			for (RevCommit c : applications) {
-				Commit commit = Minerv1Factory.eINSTANCE.createCommit();
-				commit.setName(c.getName());
-				commit.setId(c.getId().getName());
-//				if (this.currentCommit != null) {
-//					commit.getEvents().addAll(this.currentCommit.getEvents());
-//				}
-				this.currentCommit = commit;
-				
-				helper.cloneFromCommit(c);
-
-				log("Importing projects into folder: " + repo.getRepoFile());
-				importProjectIntoWorkspace(repo.getRepoFile());
-				app.getCommits().add(this.currentCommit);
-				
-				exploreProjectsInWorkspace(process);
-
-				log("Deleting projects from workspace");
-				deleteApplicationProjectsFromWorkspace();
-			}
 		}
+		
+		return;
+		// A repository corresponds to a framework application
+//		for (GithubRepository repo : repositories) {
+//			FrameworkApplication app = Minerv1Factory.eINSTANCE
+//					.createFrameworkApplication();
+//			app.setName(repo.getName());
+//			app.setRepositoryUrl(repo.getUrl());
+//			process.getApplications().add(app);
+//
+//			GitRepositoryHelper helper = new GitRepositoryHelper(repo);
+//			List<RevCommit> applications = helper.getCommitsHistory();
+//
+//			log(String.format("%d commits found for application %s",
+//					applications.size(), repo.getName()));
+//
+//			for (RevCommit c : applications) {
+//				Commit commit = Minerv1Factory.eINSTANCE.createCommit();
+//				commit.setName(c.getName());
+//				commit.setId(c.getId().getName());
+//				this.currentCommit = commit;
+//				
+//				helper.cloneFromCommit(c);
+//
+//				log("Importing projects into folder: " + repo.getRepoFile());
+//				importProjectIntoWorkspace(repo.getRepoFile());
+//				app.getCommits().add(this.currentCommit);
+//				
+//				exploreProjectsInWorkspace(process);
+//
+//				log("Deleting projects from workspace");
+//				deleteApplicationProjectsFromWorkspace();
+//			}
+//		}
 	}
 
 	/**
@@ -160,7 +163,8 @@ public class RepositoriesExtractor {
 	}
 
 	private List<GithubRepository> listRepositories() {
-		return RepositoriesHelper.listRepositories("JJTV5_gef");
+//		return RepositoriesHelper.listRepositories("JJTV5_gef");
+		return RepositoriesHelper.listRepositories("graphiti");
 	}
 
 	private void exploreProjectsInWorkspace(FrameworkProcess process) {
