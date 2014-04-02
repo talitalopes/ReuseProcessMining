@@ -66,7 +66,7 @@ public class ListRepositoriesAction implements IObjectActionDelegate {
 			FrameworkApplication app = Minerv1Factory.eINSTANCE
 					.createFrameworkApplication();
 			app.setName(repo.getName());
-			app.setRepositoryUrl(repo.getUrl());
+			app.setRepositoryUrl(repo.getCloneUrl());
 			System.out.println("Add application " + app.getName()
 					+ " to process " + process.getName());
 			this.process.getApplications().add(app);

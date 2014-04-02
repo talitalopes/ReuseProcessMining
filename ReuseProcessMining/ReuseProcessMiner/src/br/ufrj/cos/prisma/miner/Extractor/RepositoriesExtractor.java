@@ -32,6 +32,7 @@ import org.eclipse.jdt.core.search.SearchMatch;
 import org.eclipse.jdt.core.search.SearchParticipant;
 import org.eclipse.jdt.core.search.SearchPattern;
 import org.eclipse.jdt.core.search.SearchRequestor;
+import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.console.ConsolePlugin;
 import org.eclipse.ui.console.IConsole;
@@ -39,6 +40,7 @@ import org.eclipse.ui.console.IConsoleManager;
 import org.eclipse.ui.console.MessageConsole;
 import org.eclipse.ui.console.MessageConsoleStream;
 
+import br.ufrj.cos.prisma.helpers.GitRepositoryHelper;
 import br.ufrj.cos.prisma.helpers.ProjectHelper;
 import br.ufrj.cos.prisma.helpers.RepositoriesHelper;
 import br.ufrj.cos.prisma.miner.Extractor.model.JDTHelper;
@@ -91,56 +93,84 @@ public class RepositoriesExtractor {
 				"Extracting reuse actions related to %s framework",
 				process.getName()));
 
-		RepositoriesExtractor.getInstance().manageFrameworkApplications();
+		RepositoriesExtractor.getInstance().mineReuseActionsFromRepositories();
+	}
 
+	private void mineReuseActionsFromRepositories() {
+		for (FrameworkApplication app : process.getApplications()) {
+			GitRepositoryHelper helper = getRepositoryHelper(app);
+
+			List<RevCommit> applications = helper.getCommitsHistory();
+			log(String.format("%d commits found for application %s",
+					applications.size(), app.getName()));
+
+			for (RevCommit c : applications) {
+				System.out.println("Current commit: " + c.getName());
+				Commit commit = Minerv1Factory.eINSTANCE.createCommit();
+				commit.setName(c.getName());
+				commit.setId(c.getId().getName());
+				this.currentCommit = commit;
+
+				helper.cloneFromCommit(c);
+
+				importProjectIntoWorkspace(helper.getRepoFile());
+				
+				app.getCommits().add(this.currentCommit);
+
+				exploreProjectsInWorkspace(process);
+				
+				log("Deleting projects from workspace");
+				deleteApplicationProjectsFromWorkspace();
+			}
+		}
+	}
+
+	private GitRepositoryHelper getRepositoryHelper(FrameworkApplication app) {
+		final String REPO_CLONE_LOCAL_DIR = "/users/talitalopes/Documents/Mestrado/github/";
+		String repoLocalDir = String.format("%s%s", REPO_CLONE_LOCAL_DIR,
+				app.getName());
+		File repoFile = new File(repoLocalDir);
+		GitRepositoryHelper helper = new GitRepositoryHelper(
+				app.getRepositoryUrl(), repoFile);
+		return helper;
 	}
 
 	private void manageFrameworkApplications() {
 		List<GithubRepository> repositories = listRepositories();
 		log(String.format("%d repositories found", repositories.size()));
 
-		// create applications for repositories
+		// A repository corresponds to a framework application
 		for (GithubRepository repo : repositories) {
 			FrameworkApplication app = Minerv1Factory.eINSTANCE
 					.createFrameworkApplication();
 			app.setName(repo.getName());
 			app.setRepositoryUrl(repo.getUrl());
 			process.getApplications().add(app);
+
+			GitRepositoryHelper helper = new GitRepositoryHelper(repo);
+			List<RevCommit> applications = helper.getCommitsHistory();
+
+			log(String.format("%d commits found for application %s",
+					applications.size(), repo.getName()));
+
+			for (RevCommit c : applications) {
+				Commit commit = Minerv1Factory.eINSTANCE.createCommit();
+				commit.setName(c.getName());
+				commit.setId(c.getId().getName());
+				this.currentCommit = commit;
+
+				helper.cloneFromCommit(c);
+
+				log("Importing projects into folder: " + repo.getRepoFile());
+				importProjectIntoWorkspace(repo.getRepoFile());
+				app.getCommits().add(this.currentCommit);
+
+				exploreProjectsInWorkspace(process);
+
+				log("Deleting projects from workspace");
+				deleteApplicationProjectsFromWorkspace();
+			}
 		}
-		
-		return;
-		// A repository corresponds to a framework application
-//		for (GithubRepository repo : repositories) {
-//			FrameworkApplication app = Minerv1Factory.eINSTANCE
-//					.createFrameworkApplication();
-//			app.setName(repo.getName());
-//			app.setRepositoryUrl(repo.getUrl());
-//			process.getApplications().add(app);
-//
-//			GitRepositoryHelper helper = new GitRepositoryHelper(repo);
-//			List<RevCommit> applications = helper.getCommitsHistory();
-//
-//			log(String.format("%d commits found for application %s",
-//					applications.size(), repo.getName()));
-//
-//			for (RevCommit c : applications) {
-//				Commit commit = Minerv1Factory.eINSTANCE.createCommit();
-//				commit.setName(c.getName());
-//				commit.setId(c.getId().getName());
-//				this.currentCommit = commit;
-//				
-//				helper.cloneFromCommit(c);
-//
-//				log("Importing projects into folder: " + repo.getRepoFile());
-//				importProjectIntoWorkspace(repo.getRepoFile());
-//				app.getCommits().add(this.currentCommit);
-//				
-//				exploreProjectsInWorkspace(process);
-//
-//				log("Deleting projects from workspace");
-//				deleteApplicationProjectsFromWorkspace();
-//			}
-//		}
 	}
 
 	/**
@@ -150,7 +180,8 @@ public class RepositoriesExtractor {
 	 *            the location of the projects
 	 * **/
 	private void importProjectIntoWorkspace(File repoDir) {
-		this.projectHelper.importAllProjectsInsideRepoFolder(repoDir);
+//		this.projectHelper.importAllProjectsInsideRepoFolder(repoDir);
+		this.projectHelper.findProjectsInRepositoryFolder(repoDir);
 	}
 
 	/**
@@ -163,23 +194,25 @@ public class RepositoriesExtractor {
 	}
 
 	private List<GithubRepository> listRepositories() {
-//		return RepositoriesHelper.listRepositories("JJTV5_gef");
+		// return RepositoriesHelper.listRepositories("JJTV5_gef");
 		return RepositoriesHelper.listRepositories("graphiti");
 	}
 
 	private void exploreProjectsInWorkspace(FrameworkProcess process) {
-		JDTHelper jdtHelper = new JDTHelper(process.getName());
-		IProject[] projects = jdtHelper.getAllProjectsInWorkspace();
-
-		for (int i = 0; i < projects.length; i++) {
-			if (projects[i].getName().toLowerCase().equals("miner")
-					|| projects[i].getName().toLowerCase().contains("eclipse")) {
+//		JDTHelper jdtHelper = new JDTHelper(process.getName());
+//		IProject[] projects = jdtHelper.getAllProjectsInWorkspace();
+		List<IProject> projects = projectHelper.getProjects();
+		
+		log(">>>>>Project count:  " + projects.size());
+		for (int i = 0; i < projects.size(); i++) {
+			if (projects.get(i).getName().toLowerCase().equals("miner")
+					|| projects.get(i).getName().toLowerCase().equals(this.process.getName().toLowerCase())) {
 				continue;
 			}
 
-			log(">>>>>Project:  " + projects[i].getName());
-			exploreProject(projects[i]);
-		}
+			log(">>>>>Project:  " + projects.get(i).getName());
+			exploreProject(projects.get(i));
+		}		
 	}
 
 	private void exploreProject(IProject project) {
@@ -255,7 +288,7 @@ public class RepositoriesExtractor {
 			String activityEventKey = String
 					.format("%s+%s", superClassFW.getFullyQualifiedName(),
 							type.getElementName());
-			
+
 			if (!this.commitEvents.contains(activityEventKey)) {
 				this.commitEvents.add(activityEventKey);
 				Event e = Minerv1Factory.eINSTANCE.createEvent();
@@ -286,13 +319,13 @@ public class RepositoriesExtractor {
 		if (this.processActivities.containsKey(key)) {
 			return this.processActivities.get(key);
 		}
-		
+
 		Activity a = Minerv1Factory.eINSTANCE.createActivity();
 		a.setName(superClassFW.getFullyQualifiedName());
 		a.setType(ActivityType.CLASS_EXTENSION);
 		this.process.getActivities().add(a);
 		this.processActivities.put(key, a);
-		
+
 		return a;
 	}
 

@@ -24,13 +24,16 @@ import br.ufrj.cos.prisma.model.GithubRepository;
 public class GitRepositoryHelper {
 
 	String repoURL;
-	String localDir;
 	File repoFile;
 	
 	public GitRepositoryHelper(GithubRepository repo) {
 		this.repoURL = repo.getCloneUrl();
-		this.localDir = repo.getLocalDir();
 		this.repoFile = repo.getRepoFile();
+	}
+	
+	public GitRepositoryHelper(String url, File repoFile) {
+		this.repoURL = url;
+		this.repoFile = repoFile;		
 	}
 	
 	public Git getRepo() {
@@ -148,6 +151,10 @@ public class GitRepositoryHelper {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public File getRepoFile() {
+		return this.repoFile;
 	}
 
 }
