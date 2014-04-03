@@ -93,7 +93,42 @@ public class RepositoriesExtractor {
 				"Extracting reuse actions related to %s framework",
 				process.getName()));
 
+		// use projects already imported to the workspace
+		boolean importProjects = false;
+		if (!importProjects) {
+			RepositoriesExtractor.getInstance().mineReuseActionsFromWorkspace();
+			return;
+		}
+
 		RepositoriesExtractor.getInstance().mineReuseActionsFromRepositories();
+	}
+	
+	private void mineReuseActionsFromWorkspace() {
+		JDTHelper jdtHelper = new JDTHelper(process.getName());
+		IProject[] projects = jdtHelper.getAllProjectsInWorkspace();
+		System.out.println("Projects count: " + projects.length);
+		
+		for (int i = 0; i < projects.length; i++) {
+			if (projects[i].getName().toLowerCase().equals("miner")
+					|| projects[i].getName().toLowerCase().equals(this.process.getName().toLowerCase())) {
+				continue;
+			}
+
+			FrameworkApplication app = Minerv1Factory.eINSTANCE.createFrameworkApplication();
+			app.setName(projects[i].getName().toLowerCase());
+			
+			Commit c = Minerv1Factory.eINSTANCE.createCommit();
+			String id = String.format("commit%s", i);
+			c.setId(id);
+			c.setName(id);
+			this.currentCommit = c;
+			
+			log(">>>>>Project:  " + projects[i].getName());
+			exploreProject(projects[i]);
+			
+			app.getCommits().add(c);
+			process.getApplications().add(app);
+		}	
 	}
 
 	private void mineReuseActionsFromRepositories() {
@@ -103,7 +138,7 @@ public class RepositoriesExtractor {
 			List<RevCommit> applications = helper.getCommitsHistory();
 			log(String.format("%d commits found for application %s",
 					applications.size(), app.getName()));
-
+			
 			for (RevCommit c : applications) {
 				System.out.println("Current commit: " + c.getName());
 				Commit commit = Minerv1Factory.eINSTANCE.createCommit();
@@ -112,7 +147,7 @@ public class RepositoriesExtractor {
 				this.currentCommit = commit;
 
 				helper.cloneFromCommit(c);
-
+				
 				importProjectIntoWorkspace(helper.getRepoFile());
 				
 				app.getCommits().add(this.currentCommit);
@@ -234,6 +269,7 @@ public class RepositoriesExtractor {
 		}
 
 		for (IPackageFragment mPackage : packages) {
+			log("current package: " + mPackage);
 			explorePackage(mPackage);
 		}
 
@@ -258,8 +294,8 @@ public class RepositoriesExtractor {
 		}
 
 		try {
+			log(">> units: " + units.length);
 			for (ICompilationUnit unit : units) {
-
 				for (IType type : unit.getAllTypes()) {
 					if (type.isClass()) {
 						extractClassesAndMethods(type);
@@ -283,6 +319,7 @@ public class RepositoriesExtractor {
 			if (superClassFW == null) {
 				return;
 			}
+			log("superClassFW not null: " + superClassFW);
 
 			Activity classActivity = getActivityForSuperClass(superClassFW);
 			String activityEventKey = String

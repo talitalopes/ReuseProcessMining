@@ -20,6 +20,7 @@ public class JDTHelper {
 
 	public JDTHelper(String projectName) {
 		this.frameworkProject = getFrameworkProject(projectName);
+		System.out.println(projectName + " " + this.frameworkProject);
 	}
 
 	public boolean frameworkProjectExists() {
@@ -77,15 +78,23 @@ public class JDTHelper {
 	public static IType isFrameworkClass(IJavaProject framework, IType type)
 			throws JavaModelException {
 		if (framework == null) {
+			System.out.println("Error: framework null");
 			return null;
 		}
 
-		if (type == null || type.getSuperclassName() == null) {
+		if (type == null) {
+			System.out.println("Error: type null" + type);
 			return null;
 		}
-
+		
+		if (type.getSuperclassName() == null) {
+			System.out.println("Error: superclass null" + type.getSuperclassTypeSignature());
+			return null;
+		}
+		
 		IType superClass = null;
 		if (type.getCompilationUnit() == null) {
+			System.out.println("Error: type compilation unit null");
 			return null;
 		}
 
@@ -97,8 +106,9 @@ public class JDTHelper {
 
 			// TODO: generalize this code!!!
 			if (imports[i].getElementName().contains(type.getSuperclassName())
-					&& imports[i].getElementName().contains("gef")) {
+					&& imports[i].getElementName().contains(framework.getElementName())) {
 				superClass = framework.findType(imports[i].getElementName());
+				System.out.println(">>> not null: " + superClass);
 				return superClass;
 			}
 		}
