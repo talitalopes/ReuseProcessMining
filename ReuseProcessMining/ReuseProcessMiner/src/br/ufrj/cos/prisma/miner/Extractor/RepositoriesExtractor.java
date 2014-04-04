@@ -227,8 +227,6 @@ public class RepositoriesExtractor {
 
 	/**
 	 * This method removes a project from the workspace.
-	 * 
-	 * @param ?
 	 * **/
 	private void deleteApplicationProjectsFromWorkspace() {
 		this.projectHelper.deleteProjectsFromWorkspace();
