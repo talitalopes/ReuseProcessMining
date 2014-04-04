@@ -24,6 +24,7 @@ public class MineRepositoriesAction extends BaseExtractionAction {
 	public void run(IAction action) {
 		super.run(action);
 		mineReuseActionsFromRepositories();
+		save();
 	}
 	
 	private void mineReuseActionsFromRepositories() {

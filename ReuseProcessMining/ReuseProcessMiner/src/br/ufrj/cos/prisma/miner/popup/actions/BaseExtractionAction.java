@@ -5,6 +5,12 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import minerv1.Activity;
+import minerv1.ActivityType;
+import minerv1.Commit;
+import minerv1.Event;
+import minerv1.Minerv1Factory;
+
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jdt.core.ICompilationUnit;
@@ -22,6 +28,7 @@ import org.eclipse.jdt.core.search.SearchMatch;
 import org.eclipse.jdt.core.search.SearchParticipant;
 import org.eclipse.jdt.core.search.SearchPattern;
 import org.eclipse.jdt.core.search.SearchRequestor;
+import org.eclipse.jface.action.IAction;
 import org.eclipse.ui.console.ConsolePlugin;
 import org.eclipse.ui.console.IConsole;
 import org.eclipse.ui.console.IConsoleManager;
@@ -33,12 +40,6 @@ import br.ufrj.cos.prisma.miner.Extractor.model.JDTHelper;
 import br.ufrj.cos.prisma.miner.util.Constants;
 import br.ufrj.cos.prisma.miner.util.CustomSearchRequestor;
 
-import minerv1.Activity;
-import minerv1.ActivityType;
-import minerv1.Commit;
-import minerv1.Event;
-import minerv1.Minerv1Factory;
-
 public class BaseExtractionAction extends BaseAction {
 	protected ProjectHelper projectHelper;
 	protected Commit currentCommit;
@@ -49,9 +50,14 @@ public class BaseExtractionAction extends BaseAction {
 	public BaseExtractionAction() {
 		super();
 		this.projectHelper = new ProjectHelper();
-		this.jdtHelper = new JDTHelper(process.getName());
 		this.processActivities = new HashMap<String, Activity>();
 		this.commitEvents = new HashSet<String>();		
+	}
+	
+	@Override
+	public void run(IAction arg0) {
+		super.run(arg0);
+		this.jdtHelper = new JDTHelper(process.getName());
 	}
 	
 	protected void exploreProject(IProject project) {
