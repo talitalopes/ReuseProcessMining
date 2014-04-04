@@ -78,6 +78,7 @@ public class GitRepositoryHelper {
 		if (commit == null)
 			return;
 		
+		deleteRepo();
 		try {
 			Git git = getRepo();
 			git.checkout().setName(commit.name()).call();
@@ -89,7 +90,7 @@ public class GitRepositoryHelper {
 		} catch (InvalidRefNameException e) {
 			e.printStackTrace();
 		} catch (CheckoutConflictException e) {
-			e.printStackTrace();
+			System.out.println("ERROR: CheckoutConflictException");
 		} catch (GitAPIException e) {
 			e.printStackTrace();
 		}

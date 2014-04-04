@@ -83,12 +83,12 @@ public class JDTHelper {
 		}
 
 		if (type == null) {
-			System.out.println("Error: type null" + type);
+			System.out.println("Error: type null");
 			return null;
 		}
 		
 		if (type.getSuperclassName() == null) {
-			System.out.println("Error: superclass null" + type.getSuperclassTypeSignature());
+			System.out.println("Error: superclass null " + type);
 			return null;
 		}
 		
@@ -105,6 +105,7 @@ public class JDTHelper {
 			}
 
 			// TODO: generalize this code!!!
+			System.out.println(">>>> Imports: " + imports[i]);
 			if (imports[i].getElementName().contains(type.getSuperclassName())
 					&& imports[i].getElementName().contains(framework.getElementName())) {
 				superClass = framework.findType(imports[i].getElementName());

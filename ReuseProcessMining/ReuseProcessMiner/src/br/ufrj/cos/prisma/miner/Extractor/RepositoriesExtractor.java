@@ -42,12 +42,10 @@ import org.eclipse.ui.console.MessageConsoleStream;
 
 import br.ufrj.cos.prisma.helpers.GitRepositoryHelper;
 import br.ufrj.cos.prisma.helpers.ProjectHelper;
-import br.ufrj.cos.prisma.helpers.RepositoriesHelper;
 import br.ufrj.cos.prisma.miner.Extractor.model.JDTHelper;
 import br.ufrj.cos.prisma.miner.util.Constants;
 import br.ufrj.cos.prisma.miner.util.CustomSearchRequestor;
 import br.ufrj.cos.prisma.miner.util.Log;
-import br.ufrj.cos.prisma.model.GithubRepository;
 
 public class RepositoriesExtractor {
 
@@ -57,7 +55,7 @@ public class RepositoriesExtractor {
 	private Map<String, Activity> processActivities;
 	private Set<String> commitEvents;
 	private Commit currentCommit;
-
+	
 	private static RepositoriesExtractor instance;
 
 	private static void instantiate(FrameworkProcess process) {
@@ -94,7 +92,7 @@ public class RepositoriesExtractor {
 				process.getName()));
 
 		// use projects already imported to the workspace
-		boolean importProjects = false;
+		boolean importProjects = true;
 		if (!importProjects) {
 			RepositoriesExtractor.getInstance().mineReuseActionsFromWorkspace();
 			return;
@@ -128,6 +126,9 @@ public class RepositoriesExtractor {
 			
 			app.getCommits().add(c);
 			process.getApplications().add(app);
+
+			log("Deleting projects from workspace");
+			deleteApplicationProjectsFromWorkspace();			
 		}	
 	}
 
@@ -148,6 +149,7 @@ public class RepositoriesExtractor {
 
 				helper.cloneFromCommit(c);
 				
+				log("Importing projects into workspace");
 				importProjectIntoWorkspace(helper.getRepoFile());
 				
 				app.getCommits().add(this.currentCommit);
@@ -170,43 +172,48 @@ public class RepositoriesExtractor {
 		return helper;
 	}
 
-	private void manageFrameworkApplications() {
-		List<GithubRepository> repositories = listRepositories();
-		log(String.format("%d repositories found", repositories.size()));
-
-		// A repository corresponds to a framework application
-		for (GithubRepository repo : repositories) {
-			FrameworkApplication app = Minerv1Factory.eINSTANCE
-					.createFrameworkApplication();
-			app.setName(repo.getName());
-			app.setRepositoryUrl(repo.getUrl());
-			process.getApplications().add(app);
-
-			GitRepositoryHelper helper = new GitRepositoryHelper(repo);
-			List<RevCommit> applications = helper.getCommitsHistory();
-
-			log(String.format("%d commits found for application %s",
-					applications.size(), repo.getName()));
-
-			for (RevCommit c : applications) {
-				Commit commit = Minerv1Factory.eINSTANCE.createCommit();
-				commit.setName(c.getName());
-				commit.setId(c.getId().getName());
-				this.currentCommit = commit;
-
-				helper.cloneFromCommit(c);
-
-				log("Importing projects into folder: " + repo.getRepoFile());
-				importProjectIntoWorkspace(repo.getRepoFile());
-				app.getCommits().add(this.currentCommit);
-
-				exploreProjectsInWorkspace(process);
-
-				log("Deleting projects from workspace");
-				deleteApplicationProjectsFromWorkspace();
-			}
-		}
-	}
+//	private void manageFrameworkApplications() {
+//		List<GithubRepository> repositories = listRepositories();
+//		log(String.format("%d repositories found", repositories.size()));
+//
+//		// A repository corresponds to a framework application
+//		for (GithubRepository repo : repositories) {
+//			FrameworkApplication app = Minerv1Factory.eINSTANCE
+//					.createFrameworkApplication();
+//			app.setName(repo.getName());
+//			app.setRepositoryUrl(repo.getUrl());
+//			process.getApplications().add(app);
+//
+//			GitRepositoryHelper helper = new GitRepositoryHelper(repo);
+//			List<RevCommit> applications = helper.getCommitsHistory();
+//
+//			log(String.format("%d commits found for application %s",
+//					applications.size(), repo.getName()));
+//
+//			for (RevCommit c : applications) {
+//				Commit commit = Minerv1Factory.eINSTANCE.createCommit();
+//				commit.setName(c.getName());
+//				commit.setId(c.getId().getName());
+//				this.currentCommit = commit;
+//
+//				helper.cloneFromCommit(c);
+//
+//				log("Importing projects into folder: " + repo.getRepoFile());
+//				importProjectIntoWorkspace(repo.getRepoFile());
+//				app.getCommits().add(this.currentCommit);
+//
+//				exploreProjectsInWorkspace(process);
+//
+//				log("Deleting projects from workspace");
+//				deleteApplicationProjectsFromWorkspace();
+//			}
+//		}
+//	}
+//
+//	private List<GithubRepository> listRepositories() {
+//	// return RepositoriesHelper.listRepositories("JJTV5_gef");
+//	return RepositoriesHelper.listRepositories("graphiti");
+//}
 
 	/**
 	 * This method imports project inside a given folder to the workspace.
@@ -215,7 +222,6 @@ public class RepositoriesExtractor {
 	 *            the location of the projects
 	 * **/
 	private void importProjectIntoWorkspace(File repoDir) {
-//		this.projectHelper.importAllProjectsInsideRepoFolder(repoDir);
 		this.projectHelper.findProjectsInRepositoryFolder(repoDir);
 	}
 
@@ -228,24 +234,15 @@ public class RepositoriesExtractor {
 		this.projectHelper.deleteProjectsFromWorkspace();
 	}
 
-	private List<GithubRepository> listRepositories() {
-		// return RepositoriesHelper.listRepositories("JJTV5_gef");
-		return RepositoriesHelper.listRepositories("graphiti");
-	}
-
 	private void exploreProjectsInWorkspace(FrameworkProcess process) {
-//		JDTHelper jdtHelper = new JDTHelper(process.getName());
-//		IProject[] projects = jdtHelper.getAllProjectsInWorkspace();
 		List<IProject> projects = projectHelper.getProjects();
 		
-		log(">>>>>Project count:  " + projects.size());
 		for (int i = 0; i < projects.size(); i++) {
 			if (projects.get(i).getName().toLowerCase().equals("miner")
 					|| projects.get(i).getName().toLowerCase().equals(this.process.getName().toLowerCase())) {
 				continue;
 			}
 
-			log(">>>>>Project:  " + projects.get(i).getName());
 			exploreProject(projects.get(i));
 		}		
 	}
@@ -261,7 +258,8 @@ public class RepositoriesExtractor {
 		try {
 			packages = javaProject.getPackageFragments();
 		} catch (JavaModelException e) {
-			e.printStackTrace();
+			System.out.println("Error: JavaModelException");
+			return;
 		}
 
 		if (packages == null) {
@@ -269,7 +267,6 @@ public class RepositoriesExtractor {
 		}
 
 		for (IPackageFragment mPackage : packages) {
-			log("current package: " + mPackage);
 			explorePackage(mPackage);
 		}
 
@@ -294,7 +291,6 @@ public class RepositoriesExtractor {
 		}
 
 		try {
-			log(">> units: " + units.length);
 			for (ICompilationUnit unit : units) {
 				for (IType type : unit.getAllTypes()) {
 					if (type.isClass()) {
@@ -319,7 +315,6 @@ public class RepositoriesExtractor {
 			if (superClassFW == null) {
 				return;
 			}
-			log("superClassFW not null: " + superClassFW);
 
 			Activity classActivity = getActivityForSuperClass(superClassFW);
 			String activityEventKey = String

@@ -32,18 +32,38 @@ public class ProjectHelper {
 
 		for (int i = 0; i < folderFiles.length; i++) {
 			File file = folderFiles[i];
+			System.out.println(file.getName());
 
 			if (file.getName().equals(".project")) {
-				System.out.println("Project: " + file.getPath());
 				importProjectIntoWorkspaceUsingProjectPath(file.getPath());
+				continue;
 			}
 
-			// if (file.isDirectory()) {
-			// System.out.println("directory: " + file.getName());
-			// findProjectsInRepositoryFolder(file);
-			// }
+			if (file.isDirectory() && isProjectFolder(file)) {
+				String path = file.getPath() + "/.project";
+				File f = new File(path);
+				importProjectIntoWorkspaceUsingProjectPath(f.getPath());
+			}
 		}
 		return;
+	}
+
+	public boolean isProjectFolder(File folder) {
+		if (folder == null || !folder.isDirectory()) {
+			return false;
+		}
+
+		File[] folderFiles = folder.listFiles();
+		if (folderFiles == null) {
+			return false;
+		}
+
+		for (int i = 0; i < folderFiles.length; i++) {
+			if (folderFiles[i].getName().equals(".project")) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public void importProjectIntoWorkspaceUsingProjectPath(
@@ -106,7 +126,7 @@ public class ProjectHelper {
 			}
 
 			try {
-				System.out.println("deleting: " + project.getName());
+				System.out.println("deleting: " + project);
 				if (project.getName().toLowerCase().contains("miner")
 						|| project.getName().toLowerCase().contains("gef")) {
 					continue;
