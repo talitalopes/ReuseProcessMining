@@ -33,8 +33,7 @@ public class ListRepositoriesAction extends BaseAction {
 			System.out.println("Add application " + app.getName()
 					+ " to process " + process.getName());
 			this.process.getApplications().add(app);
-		}
-		
+		}		
 		save();
 
 		return repositories;
