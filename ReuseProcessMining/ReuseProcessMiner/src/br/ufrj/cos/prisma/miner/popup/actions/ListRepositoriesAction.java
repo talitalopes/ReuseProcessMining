@@ -1,20 +1,11 @@
 package br.ufrj.cos.prisma.miner.popup.actions;
 
-import java.io.IOException;
 import java.util.List;
 
 import minerv1.FrameworkApplication;
-import minerv1.FrameworkProcess;
 import minerv1.Minerv1Factory;
 
-import org.eclipse.core.resources.IFile;
-import org.eclipse.emf.common.command.BasicCommandStack;
-import org.eclipse.emf.common.notify.AdapterFactory;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.viewers.ISelection;
 
 import br.ufrj.cos.prisma.helpers.RepositoriesHelper;
 import br.ufrj.cos.prisma.model.GithubRepository;
@@ -47,47 +38,6 @@ public class ListRepositoriesAction extends BaseAction {
 		save();
 
 		return repositories;
-	}
-
-	public void loadModel(IFile model) {
-		try {
-			AdapterFactoryEditingDomain editingDomain = new AdapterFactoryEditingDomain(
-					getAdapterFactory(), new BasicCommandStack());
-			resource = editingDomain.createResource(model.getFullPath()
-					.toString());
-			resource.load(null);
-
-			EObject eObject = resource.getContents().get(0);
-			this.process = (FrameworkProcess) eObject;
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	public void save() {
-		try {
-			resource.save(null);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	/**
-	 * Return an ComposedAdapterFactory for all registered models
-	 * 
-	 * @return a ComposedAdapterFactory
-	 */
-	protected AdapterFactory getAdapterFactory() {
-		if (composedAdapterFactory == null) {
-			composedAdapterFactory = new ComposedAdapterFactory(
-					ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-		}
-		return composedAdapterFactory;
-	}
-
-	@Override
-	public void selectionChanged(IAction arg0, ISelection arg1) {
 	}
 
 }
