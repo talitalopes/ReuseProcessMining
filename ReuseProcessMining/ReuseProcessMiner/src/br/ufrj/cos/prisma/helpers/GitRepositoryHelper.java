@@ -25,17 +25,17 @@ public class GitRepositoryHelper {
 
 	String repoURL;
 	File repoFile;
-	
+
 	public GitRepositoryHelper(GithubRepository repo) {
 		this.repoURL = repo.getCloneUrl();
 		this.repoFile = repo.getRepoFile();
 	}
-	
+
 	public GitRepositoryHelper(String url, File repoFile) {
 		this.repoURL = url;
-		this.repoFile = repoFile;		
+		this.repoFile = repoFile;
 	}
-	
+
 	public Git getRepo() {
 		Git git = null;
 		try {
@@ -44,25 +44,32 @@ public class GitRepositoryHelper {
 				cloneGitRepo();
 			}
 			git = Git.open(repoFile);
-			
+			git.fetch().call();
+
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (InvalidRemoteException e) {
+			e.printStackTrace();
+		} catch (TransportException e) {
+			e.printStackTrace();
+		} catch (GitAPIException e) {
 			e.printStackTrace();
 		}
 
 		return git;
 	}
-	
+
 	public List<RevCommit> getCommitsHistory() {
-		List<RevCommit> commitsHistory = new ArrayList<RevCommit>(); 
+		List<RevCommit> commitsHistory = new ArrayList<RevCommit>();
 		LogCommand logcommand;
 		try {
 			logcommand = getRepo().log().all();
 			Iterable<RevCommit> commitsIterable = logcommand.call();
-			
-			for (RevCommit commit: commitsIterable) {
+
+			for (RevCommit commit : commitsIterable) {
 				commitsHistory.add(0, commit);
 			}
-			
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (NoHeadException e) {
@@ -70,16 +77,25 @@ public class GitRepositoryHelper {
 		} catch (GitAPIException e) {
 			e.printStackTrace();
 		}
-		
+
 		return commitsHistory;
 	}
-	
+
+	public void discardChanges() {
+		try {
+			Runtime.getRuntime().exec("git checkout -- .", null, repoFile);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 	public void cloneFromCommit(RevCommit commit) {
 		if (commit == null)
 			return;
-		
-		deleteRepo();
+
+		// deleteRepo();
 		try {
+			discardChanges();
 			Git git = getRepo();
 			git.checkout().setName(commit.name()).call();
 
@@ -95,18 +111,18 @@ public class GitRepositoryHelper {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void cloneFromOldestCommit() {
 		List<RevCommit> commits = getCommitsHistory();
 		if (commits == null || commits.size() == 0) {
 			System.out.println("No commits were made to this repository.");
 			return;
 		}
-		
+
 		RevCommit firstCommit = getCommitsHistory().get(0);
 		cloneFromCommit(firstCommit);
 	}
-	
+
 	public File cloneGitRepo() {
 		CloneCommand clone = new CloneCommand();
 		clone.setURI(repoURL).setNoCheckout(true).setDirectory(repoFile);
@@ -124,10 +140,10 @@ public class GitRepositoryHelper {
 			System.out.println("GitAPIException");
 			e.printStackTrace();
 		}
-		
+
 		return repoFile;
 	}
-	
+
 	public boolean repoExists(File repoFile) {
 		try {
 			if (repoFile.isDirectory()) {
@@ -145,7 +161,7 @@ public class GitRepositoryHelper {
 
 		return false;
 	}
-	
+
 	public void deleteRepo() {
 		try {
 			FileUtils.deleteDirectory(repoFile);
