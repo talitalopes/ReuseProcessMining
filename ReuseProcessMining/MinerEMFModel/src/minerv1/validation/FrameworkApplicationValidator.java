@@ -22,5 +22,7 @@ public interface FrameworkApplicationValidator {
 
 	boolean validateCommits(EList<Commit> value);
 
+	boolean validateMine(boolean value);
+
 	boolean validateCommits(Commit value);
 }

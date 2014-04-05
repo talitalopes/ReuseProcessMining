@@ -29,6 +29,10 @@ public class MineRepositoriesAction extends BaseExtractionAction {
 	
 	private void mineReuseActionsFromRepositories() {
 		for (FrameworkApplication app : process.getApplications()) {
+			if (!app.mine()) {
+				continue;
+			}
+			
 			GitRepositoryHelper helper = getRepositoryHelper(app);
 
 			List<RevCommit> applications = helper.getCommitsHistory();
@@ -48,12 +52,13 @@ public class MineRepositoriesAction extends BaseExtractionAction {
 				importProjectIntoWorkspace(helper.getRepoFile());
 				
 				app.getCommits().add(this.currentCommit);
-
+				log(this.currentCommit.getId());
 				exploreProjectsInWorkspace(process);
 				
 				log("Deleting projects from workspace");
 				deleteApplicationProjectsFromWorkspace();
 			}
+			app.setMine(false);
 		}
 	}
 	

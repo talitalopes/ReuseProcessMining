@@ -64,6 +64,7 @@ public class FrameworkApplicationItemProvider
 
 			addNamePropertyDescriptor(object);
 			addRepositoryUrlPropertyDescriptor(object);
+			addMinePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -108,6 +109,28 @@ public class FrameworkApplicationItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Mine feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addMinePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_FrameworkApplication_mine_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_FrameworkApplication_mine_feature", "_UI_FrameworkApplication_type"),
+				 Minerv1Package.Literals.FRAMEWORK_APPLICATION__MINE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -181,6 +204,7 @@ public class FrameworkApplicationItemProvider
 		switch (notification.getFeatureID(FrameworkApplication.class)) {
 			case Minerv1Package.FRAMEWORK_APPLICATION__NAME:
 			case Minerv1Package.FRAMEWORK_APPLICATION__REPOSITORY_URL:
+			case Minerv1Package.FRAMEWORK_APPLICATION__MINE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case Minerv1Package.FRAMEWORK_APPLICATION__COMMITS:

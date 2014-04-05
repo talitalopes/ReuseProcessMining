@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link minerv1.impl.FrameworkApplicationImpl#getName <em>Name</em>}</li>
  *   <li>{@link minerv1.impl.FrameworkApplicationImpl#getRepositoryUrl <em>Repository Url</em>}</li>
  *   <li>{@link minerv1.impl.FrameworkApplicationImpl#getCommits <em>Commits</em>}</li>
+ *   <li>{@link minerv1.impl.FrameworkApplicationImpl#isMine <em>Mine</em>}</li>
  * </ul>
  * </p>
  *
@@ -84,6 +85,26 @@ public class FrameworkApplicationImpl extends MinimalEObjectImpl.Container imple
 	 * @ordered
 	 */
 	protected EList<Commit> commits;
+
+	/**
+	 * The default value of the '{@link #mine() <em>Mine</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #mine()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean MINE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #mine() <em>Mine</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #mine()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean mine = MINE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -163,6 +184,27 @@ public class FrameworkApplicationImpl extends MinimalEObjectImpl.Container imple
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean mine() {
+		return mine;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setMine(boolean newMine) {
+		boolean oldMine = mine;
+		mine = newMine;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Minerv1Package.FRAMEWORK_APPLICATION__MINE, oldMine, mine));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -186,6 +228,8 @@ public class FrameworkApplicationImpl extends MinimalEObjectImpl.Container imple
 				return getRepositoryUrl();
 			case Minerv1Package.FRAMEWORK_APPLICATION__COMMITS:
 				return getCommits();
+			case Minerv1Package.FRAMEWORK_APPLICATION__MINE:
+				return mine();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -209,6 +253,9 @@ public class FrameworkApplicationImpl extends MinimalEObjectImpl.Container imple
 				getCommits().clear();
 				getCommits().addAll((Collection<? extends Commit>)newValue);
 				return;
+			case Minerv1Package.FRAMEWORK_APPLICATION__MINE:
+				setMine((Boolean)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -230,6 +277,9 @@ public class FrameworkApplicationImpl extends MinimalEObjectImpl.Container imple
 			case Minerv1Package.FRAMEWORK_APPLICATION__COMMITS:
 				getCommits().clear();
 				return;
+			case Minerv1Package.FRAMEWORK_APPLICATION__MINE:
+				setMine(MINE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -248,6 +298,8 @@ public class FrameworkApplicationImpl extends MinimalEObjectImpl.Container imple
 				return REPOSITORY_URL_EDEFAULT == null ? repositoryUrl != null : !REPOSITORY_URL_EDEFAULT.equals(repositoryUrl);
 			case Minerv1Package.FRAMEWORK_APPLICATION__COMMITS:
 				return commits != null && !commits.isEmpty();
+			case Minerv1Package.FRAMEWORK_APPLICATION__MINE:
+				return mine != MINE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -266,6 +318,8 @@ public class FrameworkApplicationImpl extends MinimalEObjectImpl.Container imple
 		result.append(name);
 		result.append(", repositoryUrl: ");
 		result.append(repositoryUrl);
+		result.append(", mine: ");
+		result.append(mine);
 		result.append(')');
 		return result.toString();
 	}

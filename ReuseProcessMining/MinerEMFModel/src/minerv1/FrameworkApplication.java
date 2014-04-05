@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link minerv1.FrameworkApplication#getName <em>Name</em>}</li>
  *   <li>{@link minerv1.FrameworkApplication#getRepositoryUrl <em>Repository Url</em>}</li>
  *   <li>{@link minerv1.FrameworkApplication#getCommits <em>Commits</em>}</li>
+ *   <li>{@link minerv1.FrameworkApplication#isMine <em>Mine</em>}</li>
  * </ul>
  * </p>
  *
@@ -91,5 +92,31 @@ public interface FrameworkApplication extends EObject {
 	 * @generated
 	 */
 	EList<Commit> getCommits();
+
+	/**
+	 * Returns the value of the '<em><b>Mine</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Mine</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Mine</em>' attribute.
+	 * @see #setMine(boolean)
+	 * @see minerv1.Minerv1Package#getFrameworkApplication_Mine()
+	 * @model
+	 * @generated
+	 */
+	boolean mine();
+
+	/**
+	 * Sets the value of the '{@link minerv1.FrameworkApplication#isMine <em>Mine</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Mine</em>' attribute.
+	 * @see #mine()
+	 * @generated
+	 */
+	void setMine(boolean value);
 
 } // FrameworkApplication

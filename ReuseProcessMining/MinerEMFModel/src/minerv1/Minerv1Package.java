@@ -150,13 +150,22 @@ public interface Minerv1Package extends EPackage {
 	int FRAMEWORK_APPLICATION__COMMITS = 2;
 
 	/**
+	 * The feature id for the '<em><b>Mine</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FRAMEWORK_APPLICATION__MINE = 3;
+
+	/**
 	 * The number of structural features of the '<em>Framework Application</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FRAMEWORK_APPLICATION_FEATURE_COUNT = 3;
+	int FRAMEWORK_APPLICATION_FEATURE_COUNT = 4;
 
 	/**
 	 * The number of operations of the '<em>Framework Application</em>' class.
@@ -432,6 +441,17 @@ public interface Minerv1Package extends EPackage {
 	EReference getFrameworkApplication_Commits();
 
 	/**
+	 * Returns the meta object for the attribute '{@link minerv1.FrameworkApplication#isMine <em>Mine</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Mine</em>'.
+	 * @see minerv1.FrameworkApplication#mine()
+	 * @see #getFrameworkApplication()
+	 * @generated
+	 */
+	EAttribute getFrameworkApplication_Mine();
+
+	/**
 	 * Returns the meta object for class '{@link minerv1.Commit <em>Commit</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -660,6 +680,14 @@ public interface Minerv1Package extends EPackage {
 		 * @generated
 		 */
 		EReference FRAMEWORK_APPLICATION__COMMITS = eINSTANCE.getFrameworkApplication_Commits();
+
+		/**
+		 * The meta object literal for the '<em><b>Mine</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute FRAMEWORK_APPLICATION__MINE = eINSTANCE.getFrameworkApplication_Mine();
 
 		/**
 		 * The meta object literal for the '{@link minerv1.impl.CommitImpl <em>Commit</em>}' class.
