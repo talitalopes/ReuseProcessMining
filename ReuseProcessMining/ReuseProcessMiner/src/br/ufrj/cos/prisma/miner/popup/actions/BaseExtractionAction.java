@@ -1,6 +1,5 @@
 package br.ufrj.cos.prisma.miner.popup.actions;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -10,7 +9,6 @@ import minerv1.Activity;
 import minerv1.ActivityType;
 import minerv1.Commit;
 import minerv1.Event;
-import minerv1.FrameworkApplication;
 import minerv1.Minerv1Factory;
 
 import org.eclipse.core.resources.IProject;
@@ -32,7 +30,6 @@ import org.eclipse.jdt.core.search.SearchPattern;
 import org.eclipse.jdt.core.search.SearchRequestor;
 import org.eclipse.jface.action.IAction;
 
-import br.ufrj.cos.prisma.helpers.GitRepositoryHelper;
 import br.ufrj.cos.prisma.helpers.ProjectHelper;
 import br.ufrj.cos.prisma.miner.Extractor.model.JDTHelper;
 import br.ufrj.cos.prisma.miner.util.CustomSearchRequestor;
