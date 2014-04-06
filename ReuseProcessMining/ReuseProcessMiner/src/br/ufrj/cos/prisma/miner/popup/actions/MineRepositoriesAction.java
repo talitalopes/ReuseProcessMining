@@ -2,8 +2,9 @@ package br.ufrj.cos.prisma.miner.popup.actions;
 
 import java.util.List;
 
+import minerv1.Commit;
 import minerv1.FrameworkApplication;
-import minerv1.FrameworkProcess;
+import minerv1.Minerv1Factory;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.jdt.core.JavaModelException;
@@ -29,7 +30,7 @@ public class MineRepositoriesAction extends BaseExtractionAction {
 	public void run(IAction action) {
 		super.run(action);
 		mineReuseActionsFromRepositories();
-		save();
+		// save();
 	}
 
 	private void mineReuseActionsFromRepositories() {
@@ -42,38 +43,33 @@ public class MineRepositoriesAction extends BaseExtractionAction {
 					.getInstanceForApplication(app);
 
 			List<String> applications = helper.getCommitsHistoryFromMaster();
-			
+
 			LogHelper.log(String.format("%d commits found for application %s",
 					applications.size(), app.getName()));
-			
+
 			while (currentIndex < applications.size()) {
-				String currentCommit = applications.get(currentIndex);
-				ExploreCommitTask exploreTask = new ExploreCommitTask(process, app,
-						currentCommit);
-				exploreTask.addListener(new TaskListener() {
-					@Override
-					public void threadComplete(Runnable runner,
-							List<IProject> projects) {
-						System.out.println("Finishing task");
-						deleteProjectsFromWorkspace(projects);
-						wait = false;
-					}
-				});
-				
+				String currentCommitId = applications.get(currentIndex);
+				this.currentCommit = createCommit(currentCommitId);
+
+				ExploreCommitTask exploreTask = new ExploreCommitTask(app,
+						currentCommitId);
+				exploreTask.addListener(onTaskCompletedListener(app));
+
 				// and now get the workbench to do the work
 				final IWorkbench workbench = PlatformUI.getWorkbench();
 				workbench.getDisplay().syncExec(exploreTask);
-	
+
 				while (wait) {
-					System.out.println("waiting");
 				}
+
 				System.out.println("Preparing for next commit");
 				this.currentIndex++;
 			}
-			
+
 			helper.deleteParentFolder();
-			System.out.println("Finishing FrameworkApplication " + app.getName());
-			
+			System.out.println("Finishing FrameworkApplication "
+					+ app.getName());
+
 			// LogHelper.log("Start exploring commits");
 			// for (String commitId : applications) {
 			// LogHelper.log("Current commit: " + commitId);
@@ -102,22 +98,45 @@ public class MineRepositoriesAction extends BaseExtractionAction {
 		}
 	}
 
-	private void exploreProjectsInWorkspace(FrameworkProcess process)
-			throws JavaModelException {
-		System.out.println("exploreProjectsInWorkspace: " + process.getName());
+	private TaskListener onTaskCompletedListener(final FrameworkApplication app) {
+		return new TaskListener() {
+			@Override
+			public void threadComplete(Runnable runner,
+					final List<IProject> projects) {
+				exploreProjects(projects);
+				
+				app.getCommits().add(currentCommit);
+				deleteProjectsFromWorkspace(projects);
+				wait = false;
 
-		List<IProject> projects = projectHelper.getProjects();
+				System.out.println("Finishing task");
+				save();
+			}
+		};
+	}
 
+	private void exploreProjects(List<IProject> projects) {
 		for (IProject project : projects) {
-			System.out.println("Project; " + project.getName());
+			System.out.println("Exploring Project: " + project.getName());
 			if (project.getName().toLowerCase().equals("miner")
 					|| project.getName().toLowerCase()
 							.equals(this.process.getName().toLowerCase())) {
 				continue;
 			}
 
-			exploreProject(project);
+			try {
+				exploreProject(project);
+			} catch (JavaModelException e) {
+				LogHelper.log("JavaModelException", e.getMessage());
+			}
 		}
+	}
+
+	private Commit createCommit(String id) {
+		Commit commit = Minerv1Factory.eINSTANCE.createCommit();
+		commit.setName(id);
+		commit.setId(id);
+		return commit;
 	}
 
 	/**

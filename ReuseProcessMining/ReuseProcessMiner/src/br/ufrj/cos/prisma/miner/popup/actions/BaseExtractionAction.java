@@ -1,6 +1,5 @@
 package br.ufrj.cos.prisma.miner.popup.actions;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -16,26 +15,16 @@ import minerv1.Minerv1Factory;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jdt.core.ICompilationUnit;
-import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IPackageFragment;
 import org.eclipse.jdt.core.IPackageFragmentRoot;
 import org.eclipse.jdt.core.IType;
-import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
-import org.eclipse.jdt.core.search.IJavaSearchConstants;
-import org.eclipse.jdt.core.search.IJavaSearchScope;
-import org.eclipse.jdt.core.search.SearchEngine;
-import org.eclipse.jdt.core.search.SearchMatch;
-import org.eclipse.jdt.core.search.SearchParticipant;
-import org.eclipse.jdt.core.search.SearchPattern;
-import org.eclipse.jdt.core.search.SearchRequestor;
 import org.eclipse.jface.action.IAction;
 
+import br.ufrj.cos.prisma.helpers.JDTHelper;
 import br.ufrj.cos.prisma.helpers.LogHelper;
 import br.ufrj.cos.prisma.helpers.ProjectHelper;
-import br.ufrj.cos.prisma.miner.Extractor.model.JDTHelper;
-import br.ufrj.cos.prisma.miner.util.CustomSearchRequestor;
 
 public class BaseExtractionAction extends BaseAction {
 	protected ProjectHelper projectHelper;
@@ -57,14 +46,13 @@ public class BaseExtractionAction extends BaseAction {
 		this.jdtHelper = new JDTHelper(process.getName());
 	}
 
-	// TODO: avaliar remoção deste método
 	protected void exploreProject(IProject project) throws JavaModelException {
-		System.out.println("Explore Project; " + project.getName());
-		IJavaProject javaProject = openProject(project);
+		IJavaProject javaProject = JDTHelper.openProject(project);
 		if (javaProject == null) {
 			return;
 		}
-
+		
+		System.out.println("Explore Project: " + javaProject.getElementName());
 		jdtHelper.setCurrentFrameworkApplicationProject(javaProject);
 		IPackageFragment[] packages = null;
 		packages = javaProject.getPackageFragments();
@@ -77,39 +65,49 @@ public class BaseExtractionAction extends BaseAction {
 			explorePackage(mPackage);
 		}
 
+//		javaProject.close();
+		JDTHelper.closeProject(project);
 	}
 
 	private void explorePackage(IPackageFragment p) {
+		
 		try {
+			p.open(null);
 			if (p.getKind() != IPackageFragmentRoot.K_SOURCE) {
 				return;
 			}
-		} catch (JavaModelException e1) {
-			e1.printStackTrace();
-			return;
-		}
-
-		ICompilationUnit[] units = null;
-		try {
-			units = p.getCompilationUnits();
 		} catch (JavaModelException e) {
-			e.printStackTrace();
+			LogHelper.log("JavaModelException", e.getMessage());
 			return;
 		}
-
+		
+		System.out.println("Exploring package: " + p.getElementName());
 		try {
+			ICompilationUnit[] units = p.getCompilationUnits();
 			for (ICompilationUnit unit : units) {
 				for (IType type : unit.getAllTypes()) {
-					if (type.isClass()) {
-						extractClassesAndMethods(type);
-					} else if (type.isInterface()) {
-						continue; // TODO: get interfaces
+					if (!type.isClass()) {
+						continue;
 					}
+					System.out.println("Type:" + type.getElementName());
+					extractClassesAndMethods(type);
+//					if (type.isClass()) {
+//						extractClassesAndMethods(type);
+//					} else if (type.isInterface()) {
+//						continue; // TODO: get interfaces
+//					}
 				}
-
+				unit.close();
 			}
+			
 		} catch (JavaModelException e) {
 			e.printStackTrace();
+		}
+		
+		try {
+			p.close();
+		} catch (JavaModelException e) {
+			LogHelper.log("JavaModelException (closing package)", e.getMessage());
 		}
 	}
 
@@ -149,9 +147,9 @@ public class BaseExtractionAction extends BaseAction {
 
 		} catch (JavaModelException e) {
 			LogHelper.log("JavaModelException", e.getMessage());
-		} catch (CoreException e) {
+		} /* catch (CoreException e) {
 			LogHelper.log("CoreException", e.getMessage());
-		}
+		}*/
 		System.out
 				.println("extractClassesAndMethods: " + type.getElementName());
 
@@ -172,78 +170,59 @@ public class BaseExtractionAction extends BaseAction {
 		return a;
 	}
 
-	private static SearchMatch callHierarchy(IJavaProject javaProject,
-			String searchKeyword) throws CoreException {
-		SearchPattern pattern = SearchPattern.createPattern(searchKeyword,
-				IJavaSearchConstants.CLASS, IJavaSearchConstants.REFERENCES,
-				SearchPattern.R_CASE_SENSITIVE);
+//	private static SearchMatch callHierarchy(IJavaProject javaProject,
+//			String searchKeyword) throws CoreException {
+//		SearchPattern pattern = SearchPattern.createPattern(searchKeyword,
+//				IJavaSearchConstants.CLASS, IJavaSearchConstants.REFERENCES,
+//				SearchPattern.R_CASE_SENSITIVE);
+//
+//		if (pattern == null) {
+//			return null;
+//		}
+//
+//		boolean includeReferencedProjects = false;
+//		IJavaElement[] javaProjects = new IJavaElement[] { javaProject };
+//		IJavaSearchScope scope = SearchEngine.createJavaSearchScope(
+//				javaProjects, includeReferencedProjects); // <--- ????
+//
+//		SearchRequestor requestor = CustomSearchRequestor.getInstance();
+//
+//		SearchEngine searchEngine = new SearchEngine();
+//		SearchParticipant[] searchParticipant = new SearchParticipant[] { SearchEngine
+//				.getDefaultSearchParticipant() };
+//
+//		try {
+//			searchEngine.search(pattern, searchParticipant, scope, requestor,
+//					null);
+//		} catch (Exception e) {
+//			return null;
+//		}
+//
+//		return ((CustomSearchRequestor) requestor).getMatch();
+//	}
 
-		if (pattern == null) {
-			return null;
-		}
-
-		boolean includeReferencedProjects = false;
-		IJavaElement[] javaProjects = new IJavaElement[] { javaProject };
-		IJavaSearchScope scope = SearchEngine.createJavaSearchScope(
-				javaProjects, includeReferencedProjects); // <--- ????
-
-		SearchRequestor requestor = CustomSearchRequestor.getInstance();
-
-		SearchEngine searchEngine = new SearchEngine();
-		SearchParticipant[] searchParticipant = new SearchParticipant[] { SearchEngine
-				.getDefaultSearchParticipant() };
-
-		try {
-			searchEngine.search(pattern, searchParticipant, scope, requestor,
-					null);
-		} catch (Exception e) {
-			return null;
-		}
-
-		return ((CustomSearchRequestor) requestor).getMatch();
-	}
-
-	private IJavaProject openProject(IProject project) {
-		try {
-			project.open(null);
-		} catch (CoreException e) {
-			e.printStackTrace();
-			return null;
-		}
-
-		IJavaProject javaProject = JavaCore.create(project);
-		if (!JDTHelper.isJavaProjectValid(javaProject)) {
-			return null;
-		}
-		return javaProject;
-	}
-
-	protected void deleteProjectsFromWorkspace(List<IProject> javaProjects) {
-		List<IProject> projectsToDelete = new ArrayList<IProject>();
-		projectsToDelete.addAll(javaProjects);
-		javaProjects.clear();
-
-		for (IProject project : projectsToDelete) {
+	protected void deleteProjectsFromWorkspace(List<IProject> javaProjects) {		
+		while (javaProjects.size() > 0) {
+			IProject project = javaProjects.remove(0);
 
 			if (!project.exists()) {
 				return;
 			}
 
 			try {
-				System.out.println("deleting: " + project);
 				if (project.getName().toLowerCase().contains("miner")
 						|| project.getName().toLowerCase().contains("gef")) {
 					continue;
 				}
 
 				project.delete(true, null);
+				project = null;
 
 			} catch (CoreException e) {
 				e.printStackTrace();
 			}
 		}
-
-		projectsToDelete.clear();
+		javaProjects = null;
 	}
 
 }
