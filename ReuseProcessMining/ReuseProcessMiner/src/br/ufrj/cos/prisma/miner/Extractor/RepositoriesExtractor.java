@@ -136,7 +136,7 @@ public class RepositoriesExtractor {
 		for (FrameworkApplication app : process.getApplications()) {
 			GitRepositoryHelper helper = getRepositoryHelper(app);
 
-			List<RevCommit> applications = helper.getCommitsHistory();
+			List<RevCommit> applications = helper.getCompleteCommitsHistory();
 			log(String.format("%d commits found for application %s",
 					applications.size(), app.getName()));
 			

@@ -1,5 +1,6 @@
 package br.ufrj.cos.prisma.miner.popup.actions;
 
+import java.io.File;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -9,6 +10,7 @@ import minerv1.Activity;
 import minerv1.ActivityType;
 import minerv1.Commit;
 import minerv1.Event;
+import minerv1.FrameworkApplication;
 import minerv1.Minerv1Factory;
 
 import org.eclipse.core.resources.IProject;
@@ -29,15 +31,10 @@ import org.eclipse.jdt.core.search.SearchParticipant;
 import org.eclipse.jdt.core.search.SearchPattern;
 import org.eclipse.jdt.core.search.SearchRequestor;
 import org.eclipse.jface.action.IAction;
-import org.eclipse.ui.console.ConsolePlugin;
-import org.eclipse.ui.console.IConsole;
-import org.eclipse.ui.console.IConsoleManager;
-import org.eclipse.ui.console.MessageConsole;
-import org.eclipse.ui.console.MessageConsoleStream;
 
+import br.ufrj.cos.prisma.helpers.GitRepositoryHelper;
 import br.ufrj.cos.prisma.helpers.ProjectHelper;
 import br.ufrj.cos.prisma.miner.Extractor.model.JDTHelper;
-import br.ufrj.cos.prisma.miner.util.Constants;
 import br.ufrj.cos.prisma.miner.util.CustomSearchRequestor;
 
 public class BaseExtractionAction extends BaseAction {
@@ -51,16 +48,16 @@ public class BaseExtractionAction extends BaseAction {
 		super();
 		this.projectHelper = new ProjectHelper();
 		this.processActivities = new HashMap<String, Activity>();
-		this.commitEvents = new HashSet<String>();		
+		this.commitEvents = new HashSet<String>();
 	}
-	
+
 	@Override
 	public void run(IAction arg0) {
 		super.run(arg0);
 		this.jdtHelper = new JDTHelper(process.getName());
 	}
-	
-	protected void exploreProject(IProject project) {
+
+	protected void exploreProject(IProject project) throws JavaModelException {
 		IJavaProject javaProject = openProject(project);
 		if (javaProject == null) {
 			return;
@@ -68,12 +65,7 @@ public class BaseExtractionAction extends BaseAction {
 
 		jdtHelper.setCurrentFrameworkApplicationProject(javaProject);
 		IPackageFragment[] packages = null;
-		try {
-			packages = javaProject.getPackageFragments();
-		} catch (JavaModelException e) {
-			System.out.println("Error: JavaModelException");
-			return;
-		}
+		packages = javaProject.getPackageFragments();
 
 		if (packages == null) {
 			return;
@@ -84,7 +76,7 @@ public class BaseExtractionAction extends BaseAction {
 		}
 
 	}
-	
+
 	private void explorePackage(IPackageFragment p) {
 		try {
 			if (p.getKind() != IPackageFragmentRoot.K_SOURCE) {
@@ -158,7 +150,7 @@ public class BaseExtractionAction extends BaseAction {
 		}
 
 	}
-	
+
 	private Activity getActivityForSuperClass(IType superClassFW) {
 		String key = superClassFW.getFullyQualifiedName();
 		if (this.processActivities.containsKey(key)) {
@@ -173,7 +165,7 @@ public class BaseExtractionAction extends BaseAction {
 
 		return a;
 	}
-	
+
 	private static SearchMatch callHierarchy(IJavaProject javaProject,
 			String searchKeyword) throws CoreException {
 		SearchPattern pattern = SearchPattern.createPattern(searchKeyword,
@@ -204,7 +196,7 @@ public class BaseExtractionAction extends BaseAction {
 
 		return ((CustomSearchRequestor) requestor).getMatch();
 	}
-	
+
 	private IJavaProject openProject(IProject project) {
 		try {
 			project.open(null);
@@ -219,7 +211,7 @@ public class BaseExtractionAction extends BaseAction {
 		}
 		return javaProject;
 	}
-	
+
 	/**
 	 * This method removes a project from the workspace.
 	 * **/
@@ -227,31 +219,4 @@ public class BaseExtractionAction extends BaseAction {
 		this.projectHelper.deleteProjectsFromWorkspace();
 	}
 
-	
-	//+-----------------+
-	//| Logging methods |
-	//+-----------------+
-	
-	protected static void log(String message) {
-		MessageConsole myConsole = findConsole();
-		MessageConsoleStream out = myConsole.newMessageStream();
-		out.println(message);
-	}
-	
-	private static MessageConsole findConsole() {
-		ConsolePlugin plugin = ConsolePlugin.getDefault();
-		IConsoleManager conMan = plugin.getConsoleManager();
-		IConsole[] existing = conMan.getConsoles();
-		for (int i = 0; i < existing.length; i++) {
-			if (Constants.CONSOLE_NAME.equals(existing[i].getName())) {
-				return (MessageConsole) existing[i];
-			}
-		}
-		// no console found, so create a new one
-		MessageConsole myConsole = new MessageConsole(Constants.CONSOLE_NAME,
-				null);
-		conMan.addConsoles(new IConsole[] { myConsole });
-		return myConsole;
-	}
-		
 }

@@ -9,10 +9,12 @@ import minerv1.FrameworkProcess;
 import minerv1.Minerv1Factory;
 
 import org.eclipse.core.resources.IProject;
+import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jgit.revwalk.RevCommit;
 
 import br.ufrj.cos.prisma.helpers.GitRepositoryHelper;
+import br.ufrj.cos.prisma.helpers.LogHelper;
 
 public class MineRepositoriesAction extends BaseExtractionAction {
 
@@ -35,12 +37,13 @@ public class MineRepositoriesAction extends BaseExtractionAction {
 			
 			GitRepositoryHelper helper = getRepositoryHelper(app);
 
-			List<RevCommit> applications = helper.getCommitsHistory();
-			log(String.format("%d commits found for application %s",
+			List<RevCommit> applications = helper.getCompleteCommitsHistory();
+			LogHelper.log(String.format("%d commits found for application %s",
 					applications.size(), app.getName()));
 			
+			LogHelper.log("Start exploring commits");
 			for (RevCommit c : applications) {
-				System.out.println("Current commit: " + c.getName());
+				LogHelper.log("Current commit: " + c.getName());
 				Commit commit = Minerv1Factory.eINSTANCE.createCommit();
 				commit.setName(c.getName());
 				commit.setId(c.getId().getName());
@@ -48,21 +51,26 @@ public class MineRepositoriesAction extends BaseExtractionAction {
 
 				helper.cloneFromCommit(c);
 				
-				log("Importing projects into workspace");
+				LogHelper.log("Importing projects into workspace");
 				importProjectIntoWorkspace(helper.getRepoFile());
 				
 				app.getCommits().add(this.currentCommit);
-				log(this.currentCommit.getId());
-				exploreProjectsInWorkspace(process);
+				LogHelper.log(this.currentCommit.getId());
+				try {
+					exploreProjectsInWorkspace(process);
+				} catch (JavaModelException e) {
+					LogHelper.log("Error: JavaModelException");
+				}
 				
-				log("Deleting projects from workspace");
+				LogHelper.log("Deleting projects from workspace");
 				deleteApplicationProjectsFromWorkspace();
 			}
+			LogHelper.log("Finish exploring commits");
 			app.setMine(false);
 		}
 	}
 	
-	private void exploreProjectsInWorkspace(FrameworkProcess process) {
+	private void exploreProjectsInWorkspace(FrameworkProcess process) throws JavaModelException {
 		List<IProject> projects = projectHelper.getProjects();
 		
 		for (int i = 0; i < projects.size(); i++) {
@@ -75,7 +83,7 @@ public class MineRepositoriesAction extends BaseExtractionAction {
 		}		
 	}
 	
-	private GitRepositoryHelper getRepositoryHelper(FrameworkApplication app) {
+	protected GitRepositoryHelper getRepositoryHelper(FrameworkApplication app) {
 		final String REPO_CLONE_LOCAL_DIR = "/users/talitalopes/Documents/Mestrado/github/";
 		String repoLocalDir = String.format("%s%s", REPO_CLONE_LOCAL_DIR,
 				app.getName());
@@ -93,6 +101,11 @@ public class MineRepositoriesAction extends BaseExtractionAction {
 	 * **/
 	private void importProjectIntoWorkspace(File repoDir) {
 		this.projectHelper.findProjectsInRepositoryFolder(repoDir);
+	}
+	
+	protected void deleteApplicationProjectsFromWorkspace(FrameworkApplication app) {
+		deleteApplicationProjectsFromWorkspace();
+		getRepositoryHelper(app).deleteParentFolder();
 	}
 	
 }

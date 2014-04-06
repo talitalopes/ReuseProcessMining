@@ -5,8 +5,10 @@ import minerv1.FrameworkApplication;
 import minerv1.Minerv1Factory;
 
 import org.eclipse.core.resources.IProject;
+import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jface.action.IAction;
 
+import br.ufrj.cos.prisma.helpers.LogHelper;
 import br.ufrj.cos.prisma.miner.Extractor.model.JDTHelper;
 
 public class MineWorkspaceAction extends BaseExtractionAction {
@@ -41,13 +43,17 @@ public class MineWorkspaceAction extends BaseExtractionAction {
 			c.setName(id);
 			this.currentCommit = c;
 			
-			log(">>>>>Project:  " + projects[i].getName());
-			exploreProject(projects[i]);
+			LogHelper.log(">>>>>Project:  " + projects[i].getName());
+			try {
+				exploreProject(projects[i]);
+			} catch (JavaModelException e) {
+				LogHelper.log("Error: JavaModelException");
+			}
 			
 			app.getCommits().add(c);
 			process.getApplications().add(app);
 
-			log("Deleting projects from workspace");
+			LogHelper.log("Deleting projects from workspace");
 			deleteApplicationProjectsFromWorkspace();			
 		}	
 	}
