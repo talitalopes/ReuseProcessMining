@@ -24,10 +24,8 @@ import org.eclipse.jface.action.IAction;
 
 import br.ufrj.cos.prisma.helpers.JDTHelper;
 import br.ufrj.cos.prisma.helpers.LogHelper;
-import br.ufrj.cos.prisma.helpers.ProjectHelper;
 
 public class BaseExtractionAction extends BaseAction {
-	protected ProjectHelper projectHelper;
 	protected Commit currentCommit;
 	protected JDTHelper jdtHelper;
 	protected Map<String, Activity> processActivities;
@@ -35,7 +33,6 @@ public class BaseExtractionAction extends BaseAction {
 
 	public BaseExtractionAction() {
 		super();
-		this.projectHelper = new ProjectHelper();
 		this.processActivities = new HashMap<String, Activity>();
 		this.commitEvents = new HashSet<String>();
 	}

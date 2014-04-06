@@ -26,8 +26,8 @@ import org.eclipse.jdt.core.search.SearchPattern;
 import org.eclipse.jdt.core.search.SearchRequestor;
 import org.eclipse.swt.widgets.Shell;
 
+import br.ufrj.cos.prisma.helpers.JDTHelper;
 import br.ufrj.cos.prisma.miner.Extractor.model.ClassExtensionActivity;
-import br.ufrj.cos.prisma.miner.Extractor.model.JDTHelper;
 import br.ufrj.cos.prisma.miner.Extractor.model.MethodExtensionActivity;
 import br.ufrj.cos.prisma.miner.Extractor.model.MinerActivity;
 import br.ufrj.cos.prisma.miner.Extractor.model.MinerApplication;

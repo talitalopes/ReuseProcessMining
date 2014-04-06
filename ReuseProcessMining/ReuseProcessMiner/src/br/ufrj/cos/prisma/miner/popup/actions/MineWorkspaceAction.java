@@ -8,8 +8,8 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jface.action.IAction;
 
+import br.ufrj.cos.prisma.helpers.JDTHelper;
 import br.ufrj.cos.prisma.helpers.LogHelper;
-import br.ufrj.cos.prisma.miner.Extractor.model.JDTHelper;
 
 public class MineWorkspaceAction extends BaseExtractionAction {
 
@@ -54,7 +54,7 @@ public class MineWorkspaceAction extends BaseExtractionAction {
 			process.getApplications().add(app);
 
 			LogHelper.log("Deleting projects from workspace");
-			deleteApplicationProjectsFromWorkspace();			
+//			deleteApplicationProjectsFromWorkspace();			
 		}	
 	}
 	
