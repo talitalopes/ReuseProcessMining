@@ -1,7 +1,9 @@
 package br.ufrj.cos.prisma.miner.popup.actions;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -30,6 +32,7 @@ import org.eclipse.jdt.core.search.SearchPattern;
 import org.eclipse.jdt.core.search.SearchRequestor;
 import org.eclipse.jface.action.IAction;
 
+import br.ufrj.cos.prisma.helpers.LogHelper;
 import br.ufrj.cos.prisma.helpers.ProjectHelper;
 import br.ufrj.cos.prisma.miner.Extractor.model.JDTHelper;
 import br.ufrj.cos.prisma.miner.util.CustomSearchRequestor;
@@ -54,7 +57,9 @@ public class BaseExtractionAction extends BaseAction {
 		this.jdtHelper = new JDTHelper(process.getName());
 	}
 
+	// TODO: avaliar remoção deste método
 	protected void exploreProject(IProject project) throws JavaModelException {
+		System.out.println("Explore Project; " + project.getName());
 		IJavaProject javaProject = openProject(project);
 		if (javaProject == null) {
 			return;
@@ -118,6 +123,8 @@ public class BaseExtractionAction extends BaseAction {
 				return;
 			}
 
+			System.out
+					.println("SuperclassFW: " + superClassFW.getElementName());
 			Activity classActivity = getActivityForSuperClass(superClassFW);
 			String activityEventKey = String
 					.format("%s+%s", superClassFW.getFullyQualifiedName(),
@@ -130,21 +137,23 @@ public class BaseExtractionAction extends BaseAction {
 				this.currentCommit.getEvents().add(e);
 			}
 
-			SearchMatch mMatch = callHierarchy(
-					jdtHelper.getCurrentFrameworkApplicationProject(),
-					type.getElementName());
-			if (mMatch != null) {
-				IType dependentIType = jdtHelper
-						.getCurrentFrameworkApplicationProject().findType(
-								mMatch.getResource().getName());
-				extractClassesAndMethods(dependentIType);
-			}
+			// SearchMatch mMatch = callHierarchy(
+			// jdtHelper.getCurrentFrameworkApplicationProject(),
+			// type.getElementName());
+			// if (mMatch != null) {
+			// IType dependentIType = jdtHelper
+			// .getCurrentFrameworkApplicationProject().findType(
+			// mMatch.getResource().getName());
+			// extractClassesAndMethods(dependentIType);
+			// }
 
 		} catch (JavaModelException e) {
-			e.printStackTrace();
+			LogHelper.log("JavaModelException", e.getMessage());
 		} catch (CoreException e) {
-			e.printStackTrace();
+			LogHelper.log("CoreException", e.getMessage());
 		}
+		System.out
+				.println("extractClassesAndMethods: " + type.getElementName());
 
 	}
 
@@ -209,11 +218,32 @@ public class BaseExtractionAction extends BaseAction {
 		return javaProject;
 	}
 
-	/**
-	 * This method removes a project from the workspace.
-	 * **/
-	protected void deleteApplicationProjectsFromWorkspace() {
-		this.projectHelper.deleteProjectsFromWorkspace();
+	protected void deleteProjectsFromWorkspace(List<IProject> javaProjects) {
+		List<IProject> projectsToDelete = new ArrayList<IProject>();
+		projectsToDelete.addAll(javaProjects);
+		javaProjects.clear();
+
+		for (IProject project : projectsToDelete) {
+
+			if (!project.exists()) {
+				return;
+			}
+
+			try {
+				System.out.println("deleting: " + project);
+				if (project.getName().toLowerCase().contains("miner")
+						|| project.getName().toLowerCase().contains("gef")) {
+					continue;
+				}
+
+				project.delete(true, null);
+
+			} catch (CoreException e) {
+				e.printStackTrace();
+			}
+		}
+
+		projectsToDelete.clear();
 	}
 
 }
