@@ -142,9 +142,13 @@ public class JDTHelper {
 			String projectName) {
 		String[] keys = projectName.split("\\.");
 		String name = "";
-		for (int i = 0; i < keys.length - 2; i++) {
-			name = name + "." + keys[i];
+		
+		if (keys.length > 2) {
+			for (int i = 0; i < keys.length - 2; i++) {
+				name = name + "." + keys[i];
+			}			
 		}
+		
 		String applicationName = name.replaceFirst("\\.", "");
 		System.out.println("Application name: " + applicationName);
 		return applicationName;
