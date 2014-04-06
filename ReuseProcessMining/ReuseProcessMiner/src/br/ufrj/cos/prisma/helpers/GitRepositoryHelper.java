@@ -8,6 +8,8 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import minerv1.FrameworkApplication;
+
 import org.apache.commons.io.FileUtils;
 import org.eclipse.jgit.api.CloneCommand;
 import org.eclipse.jgit.api.Git;
@@ -39,7 +41,7 @@ public class GitRepositoryHelper {
 		this.repoURL = url;
 		this.repoFile = repoFile;
 	}
-
+	
 	public Git getRepo() {
 		Git git = null;
 		try {
@@ -62,26 +64,29 @@ public class GitRepositoryHelper {
 
 		return git;
 	}
-	
+
 	public List<String> getCommitsHistoryFromMaster() {
-		// we need to clone the repository for the first time to get the correct commit history
+		// we need to clone the repository for the first time to get the correct
+		// commit history
 		getRepo();
-		
+
 		List<String> commits = new ArrayList<String>();
 		// Switch to master to get log history from that branch only
 		try {
 			Runtime.getRuntime().exec("git checkout master", null, repoFile);
-			InputStream is = Runtime.getRuntime().exec("git log --format=%H", null, repoFile).getInputStream();
+			InputStream is = Runtime.getRuntime()
+					.exec("git log --format=%H", null, repoFile)
+					.getInputStream();
 			String log = getStringFromInputStream(is);
-			String[] logArraySeparatedByAuthor = log.split("\n"); 
-			for (int i = 0; i < logArraySeparatedByAuthor.length; i++) {
-				commits.add(0, logArraySeparatedByAuthor[i]);
+			String[] logArray = log.split("\n");
+			for (int i = 0; i < logArray.length; i++) {
+				commits.add(0, logArray[i]);
 			}
-			
+
 		} catch (IOException e) {
 			LogHelper.log("IOException", e.getMessage());
 		}
-		
+
 		return commits;
 	}
 
@@ -89,7 +94,7 @@ public class GitRepositoryHelper {
 		List<RevCommit> commitsHistory = new ArrayList<RevCommit>();
 		LogCommand logcommand;
 		try {
-			
+
 			logcommand = getRepo().log().all();
 			Iterable<RevCommit> commitsIterable = logcommand.call();
 
@@ -140,14 +145,14 @@ public class GitRepositoryHelper {
 			LogHelper.log("GitAPIException", e.getMessage());
 		}
 	}
-	
+
 	public void cloneFromCommit(String commitId) {
 		if (commitId == null) {
 			return;
 		}
-		cloneFromCommitId(commitId);	
+		cloneFromCommitId(commitId);
 	}
-	
+
 	public void cloneFromCommit(RevCommit commit) {
 		if (commit == null) {
 			return;
@@ -185,13 +190,15 @@ public class GitRepositoryHelper {
 	}
 
 	public boolean repoExists(File repoFile) {
+		if (!repoFile.isDirectory()) {
+			return false;
+		}
+
 		try {
-			if (repoFile.isDirectory()) {
-				File[] fileNames = repoFile.listFiles();
-				for (int i = 0; i < fileNames.length; i++) {
-					if (fileNames[i].toString().contains(".git")) {
-						return true;
-					}
+			File[] fileNames = repoFile.listFiles();
+			for (int i = 0; i < fileNames.length; i++) {
+				if (fileNames[i].toString().contains(".git")) {
+					return true;
 				}
 			}
 
@@ -216,6 +223,10 @@ public class GitRepositoryHelper {
 	}
 
 	public void deleteParentFolder() {
+		if (repoFile == null) {
+			return;
+		}
+
 		try {
 			LogHelper.log("Deleting Parent file: " + repoFile.getParentFile());
 			FileUtils.deleteDirectory(repoFile.getParentFile());
@@ -227,7 +238,6 @@ public class GitRepositoryHelper {
 
 	// convert InputStream to String
 	private String getStringFromInputStream(InputStream is) {
-
 		BufferedReader br = null;
 		StringBuilder sb = new StringBuilder();
 
@@ -252,6 +262,16 @@ public class GitRepositoryHelper {
 		}
 
 		return sb.toString();
-
 	}
+	
+	public static GitRepositoryHelper getInstanceForApplication(FrameworkApplication app) {
+		final String REPO_CLONE_LOCAL_DIR = "/users/talitalopes/Documents/Mestrado/github/";
+		String repoLocalDir = String.format("%s%s", REPO_CLONE_LOCAL_DIR,
+				app.getName());
+		File repoFile = new File(repoLocalDir);
+		GitRepositoryHelper helper = new GitRepositoryHelper(
+				app.getRepositoryUrl(), repoFile);
+		return helper;
+	}
+
 }
