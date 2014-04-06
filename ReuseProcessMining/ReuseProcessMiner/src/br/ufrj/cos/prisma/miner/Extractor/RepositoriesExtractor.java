@@ -41,15 +41,13 @@ import org.eclipse.ui.console.MessageConsole;
 import org.eclipse.ui.console.MessageConsoleStream;
 
 import br.ufrj.cos.prisma.helpers.GitRepositoryHelper;
-import br.ufrj.cos.prisma.helpers.ProjectHelper;
-import br.ufrj.cos.prisma.miner.Extractor.model.JDTHelper;
+import br.ufrj.cos.prisma.helpers.JDTHelper;
 import br.ufrj.cos.prisma.miner.util.Constants;
 import br.ufrj.cos.prisma.miner.util.CustomSearchRequestor;
 import br.ufrj.cos.prisma.miner.util.Log;
 
 public class RepositoriesExtractor {
 
-	private ProjectHelper projectHelper;
 	private FrameworkProcess process;
 	private JDTHelper jdtHelper;
 	private Map<String, Activity> processActivities;
@@ -65,7 +63,6 @@ public class RepositoriesExtractor {
 	private RepositoriesExtractor(FrameworkProcess process) {
 		this.process = process;
 		this.jdtHelper = new JDTHelper(process.getName());
-		this.projectHelper = new ProjectHelper();
 		this.processActivities = new HashMap<String, Activity>();
 		this.commitEvents = new HashSet<String>();
 	}
@@ -154,7 +151,8 @@ public class RepositoriesExtractor {
 				
 				app.getCommits().add(this.currentCommit);
 
-				exploreProjectsInWorkspace(process);
+				// TODO: update method to pass projects as a parameter
+//				exploreProjectsInWorkspace(process);
 				
 				log("Deleting projects from workspace");
 				deleteApplicationProjectsFromWorkspace();
@@ -222,19 +220,19 @@ public class RepositoriesExtractor {
 	 *            the location of the projects
 	 * **/
 	private void importProjectIntoWorkspace(File repoDir) {
-		this.projectHelper.findProjectsInRepositoryFolder(repoDir);
+		// TODO: update to new code. Project Helper will be removed
+//		this.projectHelper.findProjectsInRepositoryFolder(repoDir);
 	}
 
 	/**
 	 * This method removes a project from the workspace.
 	 * **/
 	private void deleteApplicationProjectsFromWorkspace() {
-		this.projectHelper.deleteProjectsFromWorkspace();
+		// TODO: update to new code. Project Helper will be removed
+//		this.projectHelper.deleteProjectsFromWorkspace();
 	}
 
-	private void exploreProjectsInWorkspace(FrameworkProcess process) {
-		List<IProject> projects = projectHelper.getProjects();
-		
+	private void exploreProjectsInWorkspace(List<IProject> projects) {
 		for (int i = 0; i < projects.size(); i++) {
 			if (projects.get(i).getName().toLowerCase().equals("miner")
 					|| projects.get(i).getName().toLowerCase().equals(this.process.getName().toLowerCase())) {

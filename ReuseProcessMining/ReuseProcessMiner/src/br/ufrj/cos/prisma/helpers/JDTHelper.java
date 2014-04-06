@@ -1,4 +1,4 @@
-package br.ufrj.cos.prisma.miner.Extractor.model;
+package br.ufrj.cos.prisma.helpers;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspace;
@@ -153,4 +153,74 @@ public class JDTHelper {
 		System.out.println("Application name: " + applicationName);
 		return applicationName;
 	}
+	
+	public static IJavaProject openProject(IProject project) {
+		try {
+			project.open(null);
+		} catch (CoreException e) {
+			return null;
+		}
+
+		IJavaProject javaProject = JavaCore.create(project);
+		if (!JDTHelper.isJavaProjectValid(javaProject)) {
+			
+			try {
+				javaProject.close();
+				closeProject(project);
+			} catch (JavaModelException e) {
+				LogHelper.log("Couldn't close java project");
+			}
+			
+			return null;
+		}
+//		closeProject(project);
+		return javaProject;
+	}
+	
+	public static void closeProject(IProject project) {
+		try {
+			project.close(null);
+		} catch (JavaModelException e) {
+			LogHelper.log("Couldn't close project");
+		} catch (CoreException e) {
+			LogHelper.log("Couldn't close project");
+		}
+	}
+	
+//	public static void explorePackage(IPackageFragment p) {
+//		System.out.println("Exploring package: " + p.getElementName());
+//		
+//		try {
+//			if (p.getKind() != IPackageFragmentRoot.K_SOURCE) {
+//				return;
+//			}
+//		} catch (JavaModelException e1) {
+//			e1.printStackTrace();
+//			return;
+//		}
+//
+//		ICompilationUnit[] units = null;
+//		try {
+//			units = p.getCompilationUnits();
+//		} catch (JavaModelException e) {
+//			e.printStackTrace();
+//			return;
+//		}
+//
+//		try {
+//			for (ICompilationUnit unit : units) {
+//				for (IType type : unit.getAllTypes()) {
+//					if (type.isClass()) {
+//						extractClassesAndMethods(type);
+//					} else if (type.isInterface()) {
+//						continue; // TODO: get interfaces
+//					}
+//				}
+//
+//			}
+//		} catch (JavaModelException e) {
+//			e.printStackTrace();
+//		}
+//	}
+		
 }

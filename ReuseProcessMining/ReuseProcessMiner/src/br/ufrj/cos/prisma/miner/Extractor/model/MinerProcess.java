@@ -10,6 +10,8 @@ import miner.ProcessInstance;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 
+import br.ufrj.cos.prisma.helpers.JDTHelper;
+
 public class MinerProcess {
 
 	Process process;
