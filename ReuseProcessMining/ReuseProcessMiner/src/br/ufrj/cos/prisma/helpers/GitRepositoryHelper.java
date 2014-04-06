@@ -1,7 +1,10 @@
 package br.ufrj.cos.prisma.helpers;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +16,7 @@ import org.eclipse.jgit.api.errors.CheckoutConflictException;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.api.errors.InvalidRefNameException;
 import org.eclipse.jgit.api.errors.InvalidRemoteException;
+import org.eclipse.jgit.api.errors.JGitInternalException;
 import org.eclipse.jgit.api.errors.NoHeadException;
 import org.eclipse.jgit.api.errors.RefAlreadyExistsException;
 import org.eclipse.jgit.api.errors.RefNotFoundException;
@@ -47,22 +51,45 @@ public class GitRepositoryHelper {
 			git.fetch().call();
 
 		} catch (IOException e) {
-			e.printStackTrace();
+			LogHelper.log("Error: IOException");
 		} catch (InvalidRemoteException e) {
-			e.printStackTrace();
+			LogHelper.log("InvalidRemoteException", e.getMessage());
 		} catch (TransportException e) {
-			e.printStackTrace();
+			LogHelper.log("TransportException", e.getMessage());
 		} catch (GitAPIException e) {
-			e.printStackTrace();
+			LogHelper.log("GitAPIException", e.getMessage());
 		}
 
 		return git;
 	}
+	
+	public List<String> getCommitsHistoryFromMaster() {
+		// we need to clone the repository for the first time to get the correct commit history
+		getRepo();
+		
+		List<String> commits = new ArrayList<String>();
+		// Switch to master to get log history from that branch only
+		try {
+			Runtime.getRuntime().exec("git checkout master", null, repoFile);
+			InputStream is = Runtime.getRuntime().exec("git log --format=%H", null, repoFile).getInputStream();
+			String log = getStringFromInputStream(is);
+			String[] logArraySeparatedByAuthor = log.split("\n"); 
+			for (int i = 0; i < logArraySeparatedByAuthor.length; i++) {
+				commits.add(0, logArraySeparatedByAuthor[i]);
+			}
+			
+		} catch (IOException e) {
+			LogHelper.log("IOException", e.getMessage());
+		}
+		
+		return commits;
+	}
 
-	public List<RevCommit> getCommitsHistory() {
+	public List<RevCommit> getCompleteCommitsHistory() {
 		List<RevCommit> commitsHistory = new ArrayList<RevCommit>();
 		LogCommand logcommand;
 		try {
+			
 			logcommand = getRepo().log().all();
 			Iterable<RevCommit> commitsIterable = logcommand.call();
 
@@ -71,11 +98,11 @@ public class GitRepositoryHelper {
 			}
 
 		} catch (IOException e) {
-			e.printStackTrace();
+			LogHelper.log("IOException", e.getMessage());
 		} catch (NoHeadException e) {
-			e.printStackTrace();
+			LogHelper.log("NoHeadException", e.getMessage());
 		} catch (GitAPIException e) {
-			e.printStackTrace();
+			LogHelper.log("GitAPIException", e.getMessage());
 		}
 
 		return commitsHistory;
@@ -83,9 +110,10 @@ public class GitRepositoryHelper {
 
 	public void discardChanges() {
 		try {
+			LogHelper.log("discarging changes");
 			Runtime.getRuntime().exec("git checkout -- .", null, repoFile);
 		} catch (IOException e) {
-			e.printStackTrace();
+			LogHelper.log("Error: IOException");
 		}
 	}
 
@@ -99,46 +127,45 @@ public class GitRepositoryHelper {
 			Git git = getRepo();
 			git.checkout().setName(commit.name()).call();
 
+		} catch (JGitInternalException e) {
+			LogHelper.log("JGitInternalException", e.getMessage());
 		} catch (RefAlreadyExistsException e) {
-			e.printStackTrace();
+			LogHelper.log("RefAlreadyExistsException", e.getMessage());
 		} catch (RefNotFoundException e) {
-			e.printStackTrace();
+			LogHelper.log("RefNotFoundException", e.getMessage());
 		} catch (InvalidRefNameException e) {
-			e.printStackTrace();
+			LogHelper.log("InvalidRefNameException", e.getMessage());
 		} catch (CheckoutConflictException e) {
-			System.out.println("ERROR: CheckoutConflictException");
+			LogHelper.log("CheckoutConflictException", e.getMessage());
 		} catch (GitAPIException e) {
-			e.printStackTrace();
+			LogHelper.log("GitAPIException", e.getMessage());
 		}
 	}
 
 	public void cloneFromOldestCommit() {
-		List<RevCommit> commits = getCommitsHistory();
+		List<RevCommit> commits = getCompleteCommitsHistory();
 		if (commits == null || commits.size() == 0) {
-			System.out.println("No commits were made to this repository.");
+			LogHelper.log("No commits were made to this repository.");
 			return;
 		}
 
-		RevCommit firstCommit = getCommitsHistory().get(0);
+		RevCommit firstCommit = getCompleteCommitsHistory().get(0);
 		cloneFromCommit(firstCommit);
 	}
 
 	public File cloneGitRepo() {
 		CloneCommand clone = new CloneCommand();
-		clone.setURI(repoURL).setNoCheckout(true).setDirectory(repoFile);
+		clone.setURI(repoURL).setNoCheckout(false).setDirectory(repoFile);
 
 		try {
 			clone.call();
 
 		} catch (InvalidRemoteException e) {
-			System.out.println("InvalidRemoteException");
-			e.printStackTrace();
+			LogHelper.log("InvalidRemoteException", e.getMessage());
 		} catch (TransportException e) {
-			System.out.println("TransportException");
-			e.printStackTrace();
+			LogHelper.log("TransportException", e.getMessage());
 		} catch (GitAPIException e) {
-			System.out.println("GitAPIException");
-			e.printStackTrace();
+			LogHelper.log("GitAPIException", e.getMessage());
 		}
 
 		return repoFile;
@@ -156,7 +183,7 @@ public class GitRepositoryHelper {
 			}
 
 		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
+			LogHelper.log("IllegalArgumentException", e.getMessage());
 		}
 
 		return false;
@@ -166,6 +193,7 @@ public class GitRepositoryHelper {
 		try {
 			FileUtils.deleteDirectory(repoFile);
 		} catch (IOException e) {
+			LogHelper.log("Couldn't delete repository folder");
 			e.printStackTrace();
 		}
 	}
@@ -174,4 +202,43 @@ public class GitRepositoryHelper {
 		return this.repoFile;
 	}
 
+	public void deleteParentFolder() {
+		try {
+			LogHelper.log("Deleting Parent file: " + repoFile.getParentFile());
+			FileUtils.deleteDirectory(repoFile.getParentFile());
+		} catch (IOException e) {
+			LogHelper.log("Couldn't delete parent folder");
+		}
+
+	}
+
+	// convert InputStream to String
+	private String getStringFromInputStream(InputStream is) {
+
+		BufferedReader br = null;
+		StringBuilder sb = new StringBuilder();
+
+		String line;
+		try {
+
+			br = new BufferedReader(new InputStreamReader(is));
+			while ((line = br.readLine()) != null) {
+				sb.append(line + "\n");
+			}
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (br != null) {
+				try {
+					br.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+
+		return sb.toString();
+
+	}
 }
