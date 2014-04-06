@@ -3,7 +3,6 @@ package br.ufrj.cos.prisma.thread;
 import java.io.File;
 
 import minerv1.FrameworkApplication;
-import minerv1.FrameworkProcess;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IProjectDescription;
@@ -17,30 +16,25 @@ import org.eclipse.jdt.ui.wizards.JavaCapabilityConfigurationPage;
 import br.ufrj.cos.prisma.helpers.GitRepositoryHelper;
 
 public class ExploreCommitTask extends NotificationThread {
-	FrameworkProcess process;
 	FrameworkApplication app;
 	String currentCommit;
 	GitRepositoryHelper gitHelper;
 
-	public ExploreCommitTask(FrameworkProcess process,
-			FrameworkApplication app, String currentCommit) {
+	public ExploreCommitTask(FrameworkApplication app, String currentCommitId) {
 		super();
 		
-		this.process = process;
 		this.app = app;
-		this.currentCommit = currentCommit;
+		this.currentCommit = currentCommitId;
 		this.gitHelper = GitRepositoryHelper.getInstanceForApplication(app);
 	}
-
+	
 	@Override
 	public void doWork() {
 		// clone repository with current commit's content
 		cloneCurrentCommit();
 
 		// find and import projects into workspace
-		findProjectsInReporitoryFolder();
-		
-		exploreProjects();
+		findProjectsInReporitoryFolder();		
 	}
 
 	private void cloneCurrentCommit() {
@@ -92,36 +86,6 @@ public class ExploreCommitTask extends NotificationThread {
 		}
 	}
 
-	private void exploreProjects() {
-		if (projects.size() == 0) {
-			return;
-		}
-		System.out.println("exploreProjectsInWorkspace: " + process.getName());
-	}
-
-//	private void deleteProjectsFromWorkspace() {
-//		for (IProject project : projects) {
-//			if (!project.exists()) {
-//				return;
-//			}
-//
-//			try {
-//				System.out.println("deleting: " + project);
-//				if (project.getName().toLowerCase().contains("miner")
-//						|| project.getName().toLowerCase().contains("gef")) {
-//					continue;
-//				}
-//
-//				project.delete(true, null);
-//
-//			} catch (CoreException e) {
-//				e.printStackTrace();
-//			}
-//		}
-//		projects.clear();
-//		projects = null;
-//	}
-
 	//--------+
 	// Utils  |
 	//--------+
@@ -144,11 +108,25 @@ public class ExploreCommitTask extends NotificationThread {
 		return false;
 	}
 
-//	@Override
-//	public void threadComplete(Runnable runner, List<IProject> projects) {
-//		exploreProjects();
-//		deleteProjectsFromWorkspace();
-//		gitHelper.deleteParentFolder();
+//	private IJavaProject getFrameworkProject() {
+//		// Get the root of the workspace
+//		IWorkspace workspace = ResourcesPlugin.getWorkspace();
+//		IWorkspaceRoot root = workspace.getRoot();
+//		IJavaProject frameworkProject = null;
+//
+//		try {
+//			String name = process.getName();
+//			IProject fProject = root.getProject(name);
+//			if (fProject.exists()) {
+//				fProject.open(null);
+//				frameworkProject = JavaCore.create(root.getProject(name));
+//			}
+//
+//		} catch (CoreException e) {
+//			e.printStackTrace();
+//		}
+//
+//		return frameworkProject;
 //	}
 
 }
