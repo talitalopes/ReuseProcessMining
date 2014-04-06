@@ -117,15 +117,14 @@ public class GitRepositoryHelper {
 		}
 	}
 
-	public void cloneFromCommit(RevCommit commit) {
-		if (commit == null)
+	public void cloneFromCommitId(String id) {
+		if (id == null)
 			return;
 
-		// deleteRepo();
 		try {
 			discardChanges();
 			Git git = getRepo();
-			git.checkout().setName(commit.name()).call();
+			git.checkout().setName(id).call();
 
 		} catch (JGitInternalException e) {
 			LogHelper.log("JGitInternalException", e.getMessage());
@@ -141,16 +140,30 @@ public class GitRepositoryHelper {
 			LogHelper.log("GitAPIException", e.getMessage());
 		}
 	}
+	
+	public void cloneFromCommit(String commitId) {
+		if (commitId == null) {
+			return;
+		}
+		cloneFromCommitId(commitId);	
+	}
+	
+	public void cloneFromCommit(RevCommit commit) {
+		if (commit == null) {
+			return;
+		}
+		cloneFromCommitId(commit.name());
+	}
 
 	public void cloneFromOldestCommit() {
-		List<RevCommit> commits = getCompleteCommitsHistory();
+		List<String> commits = getCommitsHistoryFromMaster();
 		if (commits == null || commits.size() == 0) {
 			LogHelper.log("No commits were made to this repository.");
 			return;
 		}
 
-		RevCommit firstCommit = getCompleteCommitsHistory().get(0);
-		cloneFromCommit(firstCommit);
+		String firstCommit = commits.get(0);
+		cloneFromCommitId(firstCommit);
 	}
 
 	public File cloneGitRepo() {
