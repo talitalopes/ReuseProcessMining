@@ -1,111 +1,136 @@
 package br.ufrj.cos.prisma.miner.popup.actions;
 
-import java.io.File;
 import java.util.List;
 
-import minerv1.Commit;
 import minerv1.FrameworkApplication;
 import minerv1.FrameworkProcess;
-import minerv1.Minerv1Factory;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jface.action.IAction;
-import org.eclipse.jgit.revwalk.RevCommit;
+import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.PlatformUI;
 
 import br.ufrj.cos.prisma.helpers.GitRepositoryHelper;
 import br.ufrj.cos.prisma.helpers.LogHelper;
+import br.ufrj.cos.prisma.thread.ExploreCommitTask;
+import br.ufrj.cos.prisma.thread.TaskListener;
 
 public class MineRepositoriesAction extends BaseExtractionAction {
+	int currentIndex;
+	boolean wait;
 
 	public MineRepositoriesAction() {
 		super();
+		wait = true;
 	}
-	
+
 	@Override
 	public void run(IAction action) {
 		super.run(action);
 		mineReuseActionsFromRepositories();
 		save();
 	}
-	
+
 	private void mineReuseActionsFromRepositories() {
 		for (FrameworkApplication app : process.getApplications()) {
+			currentIndex = 0;
 			if (!app.mine()) {
 				continue;
 			}
-			
-			GitRepositoryHelper helper = getRepositoryHelper(app);
+			final GitRepositoryHelper helper = GitRepositoryHelper
+					.getInstanceForApplication(app);
 
-			List<RevCommit> applications = helper.getCompleteCommitsHistory();
+			List<String> applications = helper.getCommitsHistoryFromMaster();
+			
 			LogHelper.log(String.format("%d commits found for application %s",
 					applications.size(), app.getName()));
 			
-			LogHelper.log("Start exploring commits");
-			for (RevCommit c : applications) {
-				LogHelper.log("Current commit: " + c.getName());
-				Commit commit = Minerv1Factory.eINSTANCE.createCommit();
-				commit.setName(c.getName());
-				commit.setId(c.getId().getName());
-				this.currentCommit = commit;
-
-				helper.cloneFromCommit(c);
+			while (currentIndex < applications.size()) {
+				String currentCommit = applications.get(currentIndex);
+				ExploreCommitTask exploreTask = new ExploreCommitTask(process, app,
+						currentCommit);
+				exploreTask.addListener(new TaskListener() {
+					@Override
+					public void threadComplete(Runnable runner,
+							List<IProject> projects) {
+						System.out.println("Finishing task");
+						deleteProjectsFromWorkspace(projects);
+						wait = false;
+					}
+				});
 				
-				LogHelper.log("Importing projects into workspace");
-				importProjectIntoWorkspace(helper.getRepoFile());
-				
-				app.getCommits().add(this.currentCommit);
-				LogHelper.log(this.currentCommit.getId());
-				try {
-					exploreProjectsInWorkspace(process);
-				} catch (JavaModelException e) {
-					LogHelper.log("Error: JavaModelException");
+				// and now get the workbench to do the work
+				final IWorkbench workbench = PlatformUI.getWorkbench();
+				workbench.getDisplay().syncExec(exploreTask);
+	
+				while (wait) {
+					System.out.println("waiting");
 				}
-				
-				LogHelper.log("Deleting projects from workspace");
-				deleteApplicationProjectsFromWorkspace();
+				System.out.println("Preparing for next commit");
+				this.currentIndex++;
 			}
-			LogHelper.log("Finish exploring commits");
-			app.setMine(false);
+			
+			helper.deleteParentFolder();
+			System.out.println("Finishing FrameworkApplication " + app.getName());
+			
+			// LogHelper.log("Start exploring commits");
+			// for (String commitId : applications) {
+			// LogHelper.log("Current commit: " + commitId);
+			// Commit commit = Minerv1Factory.eINSTANCE.createCommit();
+			// commit.setName(commitId);
+			// commit.setId(commitId);
+			// this.currentCommit = commit;
+			// app.getCommits().add(this.currentCommit);
+			//
+			// helper.cloneFromCommitId(commitId);
+			//
+			// importProjectIntoWorkspace(helper.getRepoFile());
+			//
+			// try {
+			// exploreProjectsInWorkspace(process);
+			// } catch (JavaModelException e) {
+			// LogHelper.log("Error: JavaModelException");
+			// }
+
+			// LogHelper.log("Deleting projects from workspace");
+			// deleteApplicationProjectsFromWorkspace();
+
+			// }
+			// LogHelper.log("Finish exploring commits");
+			// app.setMine(false);
 		}
 	}
-	
-	private void exploreProjectsInWorkspace(FrameworkProcess process) throws JavaModelException {
+
+	private void exploreProjectsInWorkspace(FrameworkProcess process)
+			throws JavaModelException {
+		System.out.println("exploreProjectsInWorkspace: " + process.getName());
+
 		List<IProject> projects = projectHelper.getProjects();
-		
-		for (int i = 0; i < projects.size(); i++) {
-			if (projects.get(i).getName().toLowerCase().equals("miner")
-					|| projects.get(i).getName().toLowerCase().equals(this.process.getName().toLowerCase())) {
+
+		for (IProject project : projects) {
+			System.out.println("Project; " + project.getName());
+			if (project.getName().toLowerCase().equals("miner")
+					|| project.getName().toLowerCase()
+							.equals(this.process.getName().toLowerCase())) {
 				continue;
 			}
 
-			exploreProject(projects.get(i));
-		}		
+			exploreProject(project);
+		}
 	}
-	
-	protected GitRepositoryHelper getRepositoryHelper(FrameworkApplication app) {
-		final String REPO_CLONE_LOCAL_DIR = "/users/talitalopes/Documents/Mestrado/github/";
-		String repoLocalDir = String.format("%s%s", REPO_CLONE_LOCAL_DIR,
-				app.getName());
-		File repoFile = new File(repoLocalDir);
-		GitRepositoryHelper helper = new GitRepositoryHelper(
-				app.getRepositoryUrl(), repoFile);
-		return helper;
-	}
-	
+
 	/**
 	 * This method imports project inside a given folder to the workspace.
 	 * 
 	 * @param localDir
 	 *            the location of the projects
 	 * **/
-	private void importProjectIntoWorkspace(File repoDir) {
-		this.projectHelper.findProjectsInRepositoryFolder(repoDir);
-	}
-	
-	protected void deleteApplicationProjectsFromWorkspace(FrameworkApplication app) {
-		deleteApplicationProjectsFromWorkspace();
-		getRepositoryHelper(app).deleteParentFolder();
-	}
-	
+	// private void importProjectIntoWorkspace(File repoDir) {
+	// LogHelper.log("Importing projects into workspace from commit: " +
+	// this.currentCommit.getId());
+	// this.projectHelper.findProjectsInRepositoryFolder(repoDir);
+	// this.projectHelper.testTaskListener(repoDir);
+	// }
+
 }
