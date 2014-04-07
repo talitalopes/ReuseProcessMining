@@ -102,13 +102,6 @@
          </action>
          
          <action
-               label="Mine Repositories (old)"
-               class="br.ufrj.cos.prisma.miner.popup.actions.StartRepositoriesExtractionAction"
-               menubarPath="ProcessReuseMiner.menu1/group1"
-               enablesFor="1"
-               id="Miner.popup.actions.StartRepositoriesExtractionAction">
-         </action>
-         <action
                label="Generate XES Log"
                class="br.ufrj.cos.prisma.miner.popup.actions.GenerateXESFileAction"
                menubarPath="ProcessReuseMiner.menu1/group2"
