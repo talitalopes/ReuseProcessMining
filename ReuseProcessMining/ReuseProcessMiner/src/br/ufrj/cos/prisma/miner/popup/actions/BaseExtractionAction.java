@@ -15,15 +15,24 @@ import minerv1.Minerv1Factory;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jdt.core.ICompilationUnit;
+import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IPackageFragment;
 import org.eclipse.jdt.core.IPackageFragmentRoot;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.JavaModelException;
+import org.eclipse.jdt.core.search.IJavaSearchConstants;
+import org.eclipse.jdt.core.search.IJavaSearchScope;
+import org.eclipse.jdt.core.search.SearchEngine;
+import org.eclipse.jdt.core.search.SearchMatch;
+import org.eclipse.jdt.core.search.SearchParticipant;
+import org.eclipse.jdt.core.search.SearchPattern;
+import org.eclipse.jdt.core.search.SearchRequestor;
 import org.eclipse.jface.action.IAction;
 
 import br.ufrj.cos.prisma.helpers.JDTHelper;
 import br.ufrj.cos.prisma.helpers.LogHelper;
+import br.ufrj.cos.prisma.miner.util.CustomSearchRequestor;
 
 public class BaseExtractionAction extends BaseAction {
 	protected Commit currentCommit;
@@ -48,7 +57,7 @@ public class BaseExtractionAction extends BaseAction {
 		if (javaProject == null) {
 			return;
 		}
-		
+
 		System.out.println("Explore Project: " + javaProject.getElementName());
 		jdtHelper.setCurrentFrameworkApplicationProject(javaProject);
 		IPackageFragment[] packages = null;
@@ -62,23 +71,22 @@ public class BaseExtractionAction extends BaseAction {
 			explorePackage(mPackage);
 		}
 
-//		javaProject.close();
 		JDTHelper.closeProject(project);
 	}
 
 	private void explorePackage(IPackageFragment p) {
-		
+
 		try {
 			p.open(null);
 			if (p.getKind() != IPackageFragmentRoot.K_SOURCE) {
 				return;
 			}
 		} catch (JavaModelException e) {
-			LogHelper.log("JavaModelException", e.getMessage());
+			LogHelper.log("JavaModelException (explorePackage) ",
+					e.getMessage());
 			return;
 		}
-		
-		System.out.println("Exploring package: " + p.getElementName());
+
 		try {
 			ICompilationUnit[] units = p.getCompilationUnits();
 			for (ICompilationUnit unit : units) {
@@ -86,25 +94,20 @@ public class BaseExtractionAction extends BaseAction {
 					if (!type.isClass()) {
 						continue;
 					}
-					System.out.println("Type:" + type.getElementName());
 					extractClassesAndMethods(type);
-//					if (type.isClass()) {
-//						extractClassesAndMethods(type);
-//					} else if (type.isInterface()) {
-//						continue; // TODO: get interfaces
-//					}
 				}
 				unit.close();
 			}
-			
+
 		} catch (JavaModelException e) {
 			e.printStackTrace();
 		}
-		
+
 		try {
 			p.close();
 		} catch (JavaModelException e) {
-			LogHelper.log("JavaModelException (closing package)", e.getMessage());
+			LogHelper.log("JavaModelException (closing package)",
+					e.getMessage());
 		}
 	}
 
@@ -118,8 +121,6 @@ public class BaseExtractionAction extends BaseAction {
 				return;
 			}
 
-			System.out
-					.println("SuperclassFW: " + superClassFW.getElementName());
 			Activity classActivity = getActivityForSuperClass(superClassFW);
 			String activityEventKey = String
 					.format("%s+%s", superClassFW.getFullyQualifiedName(),
@@ -132,23 +133,23 @@ public class BaseExtractionAction extends BaseAction {
 				this.currentCommit.getEvents().add(e);
 			}
 
-			// SearchMatch mMatch = callHierarchy(
-			// jdtHelper.getCurrentFrameworkApplicationProject(),
-			// type.getElementName());
-			// if (mMatch != null) {
-			// IType dependentIType = jdtHelper
-			// .getCurrentFrameworkApplicationProject().findType(
-			// mMatch.getResource().getName());
-			// extractClassesAndMethods(dependentIType);
-			// }
+			SearchMatch mMatch = callHierarchy(
+					jdtHelper.getCurrentFrameworkApplicationProject(),
+					type.getElementName());
+			if (mMatch != null) {
+				IType dependentIType = jdtHelper
+						.getCurrentFrameworkApplicationProject().findType(
+								mMatch.getResource().getName());
+				extractClassesAndMethods(dependentIType);
+			}
 
 		} catch (JavaModelException e) {
-			LogHelper.log("JavaModelException", e.getMessage());
-		} /* catch (CoreException e) {
-			LogHelper.log("CoreException", e.getMessage());
-		}*/
-		System.out
-				.println("extractClassesAndMethods: " + type.getElementName());
+			LogHelper.log("JavaModelException (extractClassesAndMethods) ",
+					e.getMessage());
+		} catch (CoreException e) {
+			LogHelper.log("CoreException (extractClassesAndMethods) ",
+					e.getMessage());
+		}
 
 	}
 
@@ -167,38 +168,38 @@ public class BaseExtractionAction extends BaseAction {
 		return a;
 	}
 
-//	private static SearchMatch callHierarchy(IJavaProject javaProject,
-//			String searchKeyword) throws CoreException {
-//		SearchPattern pattern = SearchPattern.createPattern(searchKeyword,
-//				IJavaSearchConstants.CLASS, IJavaSearchConstants.REFERENCES,
-//				SearchPattern.R_CASE_SENSITIVE);
-//
-//		if (pattern == null) {
-//			return null;
-//		}
-//
-//		boolean includeReferencedProjects = false;
-//		IJavaElement[] javaProjects = new IJavaElement[] { javaProject };
-//		IJavaSearchScope scope = SearchEngine.createJavaSearchScope(
-//				javaProjects, includeReferencedProjects); // <--- ????
-//
-//		SearchRequestor requestor = CustomSearchRequestor.getInstance();
-//
-//		SearchEngine searchEngine = new SearchEngine();
-//		SearchParticipant[] searchParticipant = new SearchParticipant[] { SearchEngine
-//				.getDefaultSearchParticipant() };
-//
-//		try {
-//			searchEngine.search(pattern, searchParticipant, scope, requestor,
-//					null);
-//		} catch (Exception e) {
-//			return null;
-//		}
-//
-//		return ((CustomSearchRequestor) requestor).getMatch();
-//	}
+	private static SearchMatch callHierarchy(IJavaProject javaProject,
+			String searchKeyword) throws CoreException {
+		SearchPattern pattern = SearchPattern.createPattern(searchKeyword,
+				IJavaSearchConstants.CLASS, IJavaSearchConstants.REFERENCES,
+				SearchPattern.R_CASE_SENSITIVE);
 
-	protected void deleteProjectsFromWorkspace(List<IProject> javaProjects) {		
+		if (pattern == null) {
+			return null;
+		}
+
+		boolean includeReferencedProjects = false;
+		IJavaElement[] javaProjects = new IJavaElement[] { javaProject };
+		IJavaSearchScope scope = SearchEngine.createJavaSearchScope(
+				javaProjects, includeReferencedProjects); // <--- ????
+
+		SearchRequestor requestor = CustomSearchRequestor.getInstance();
+
+		SearchEngine searchEngine = new SearchEngine();
+		SearchParticipant[] searchParticipant = new SearchParticipant[] { SearchEngine
+				.getDefaultSearchParticipant() };
+
+		try {
+			searchEngine.search(pattern, searchParticipant, scope, requestor,
+					null);
+		} catch (Exception e) {
+			return null;
+		}
+
+		return ((CustomSearchRequestor) requestor).getMatch();
+	}
+
+	protected void deleteProjectsFromWorkspace(List<IProject> javaProjects) {
 		while (javaProjects.size() > 0) {
 			IProject project = javaProjects.remove(0);
 
@@ -216,7 +217,8 @@ public class BaseExtractionAction extends BaseAction {
 				project = null;
 
 			} catch (CoreException e) {
-				e.printStackTrace();
+				LogHelper.log("CoreException (deleteProjectsFromWorkspace) ",
+						e.getMessage());
 			}
 		}
 		javaProjects = null;
