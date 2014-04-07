@@ -14,6 +14,7 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.jdt.ui.wizards.JavaCapabilityConfigurationPage;
 
 import br.ufrj.cos.prisma.helpers.GitRepositoryHelper;
+import br.ufrj.cos.prisma.helpers.LogHelper;
 
 public class ExploreCommitTask extends NotificationThread {
 	FrameworkApplication app;
@@ -44,6 +45,7 @@ public class ExploreCommitTask extends NotificationThread {
 
 	private void findProjectsInReporitoryFolder() {
 		System.out.println("Finding projects in workspace");
+		
 		File[] folderFiles = gitHelper.getRepoFile().listFiles();
 
 		for (int i = 0; i < folderFiles.length; i++) {
@@ -65,6 +67,7 @@ public class ExploreCommitTask extends NotificationThread {
 
 	private void importProjects(String projectPath) {
 		System.out.println("Importing found projects to workspace");
+		
 		try {
 			IWorkspace workspace = ResourcesPlugin.getWorkspace();
 
@@ -80,9 +83,9 @@ public class ExploreCommitTask extends NotificationThread {
 			System.out.println("javaProjects: " + projects.size());
 
 		} catch (CoreException e) {
-			e.printStackTrace();
+			LogHelper.log("CoreException (importing project) ", e.getMessage());
 		} catch (Exception e) {
-			System.out.println("Couldn't import project: " + projectPath);
+			LogHelper.log("Exception (importing project) " + projectPath);
 		}
 	}
 
@@ -107,26 +110,5 @@ public class ExploreCommitTask extends NotificationThread {
 		}
 		return false;
 	}
-
-//	private IJavaProject getFrameworkProject() {
-//		// Get the root of the workspace
-//		IWorkspace workspace = ResourcesPlugin.getWorkspace();
-//		IWorkspaceRoot root = workspace.getRoot();
-//		IJavaProject frameworkProject = null;
-//
-//		try {
-//			String name = process.getName();
-//			IProject fProject = root.getProject(name);
-//			if (fProject.exists()) {
-//				fProject.open(null);
-//				frameworkProject = JavaCore.create(root.getProject(name));
-//			}
-//
-//		} catch (CoreException e) {
-//			e.printStackTrace();
-//		}
-//
-//		return frameworkProject;
-//	}
 
 }

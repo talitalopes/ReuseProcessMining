@@ -30,7 +30,6 @@ public class MineRepositoriesAction extends BaseExtractionAction {
 	public void run(IAction action) {
 		super.run(action);
 		mineReuseActionsFromRepositories();
-		// save();
 	}
 
 	private void mineReuseActionsFromRepositories() {
@@ -48,6 +47,9 @@ public class MineRepositoriesAction extends BaseExtractionAction {
 					applications.size(), app.getName()));
 
 			while (currentIndex < applications.size()) {
+				System.out.println(String.format("Commit %d out of %d",
+						currentIndex + 1, applications.size()));
+				
 				String currentCommitId = applications.get(currentIndex);
 				this.currentCommit = createCommit(currentCommitId);
 
@@ -62,39 +64,13 @@ public class MineRepositoriesAction extends BaseExtractionAction {
 				while (wait) {
 				}
 
-				System.out.println("Preparing for next commit");
+				wait = true;
 				this.currentIndex++;
 			}
 
 			helper.deleteParentFolder();
 			System.out.println("Finishing FrameworkApplication "
 					+ app.getName());
-
-			// LogHelper.log("Start exploring commits");
-			// for (String commitId : applications) {
-			// LogHelper.log("Current commit: " + commitId);
-			// Commit commit = Minerv1Factory.eINSTANCE.createCommit();
-			// commit.setName(commitId);
-			// commit.setId(commitId);
-			// this.currentCommit = commit;
-			// app.getCommits().add(this.currentCommit);
-			//
-			// helper.cloneFromCommitId(commitId);
-			//
-			// importProjectIntoWorkspace(helper.getRepoFile());
-			//
-			// try {
-			// exploreProjectsInWorkspace(process);
-			// } catch (JavaModelException e) {
-			// LogHelper.log("Error: JavaModelException");
-			// }
-
-			// LogHelper.log("Deleting projects from workspace");
-			// deleteApplicationProjectsFromWorkspace();
-
-			// }
-			// LogHelper.log("Finish exploring commits");
-			// app.setMine(false);
 		}
 	}
 
@@ -104,7 +80,7 @@ public class MineRepositoriesAction extends BaseExtractionAction {
 			public void threadComplete(Runnable runner,
 					final List<IProject> projects) {
 				exploreProjects(projects);
-				
+
 				app.getCommits().add(currentCommit);
 				deleteProjectsFromWorkspace(projects);
 				wait = false;
@@ -138,18 +114,5 @@ public class MineRepositoriesAction extends BaseExtractionAction {
 		commit.setId(id);
 		return commit;
 	}
-
-	/**
-	 * This method imports project inside a given folder to the workspace.
-	 * 
-	 * @param localDir
-	 *            the location of the projects
-	 * **/
-	// private void importProjectIntoWorkspace(File repoDir) {
-	// LogHelper.log("Importing projects into workspace from commit: " +
-	// this.currentCommit.getId());
-	// this.projectHelper.findProjectsInRepositoryFolder(repoDir);
-	// this.projectHelper.testTaskListener(repoDir);
-	// }
 
 }
