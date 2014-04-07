@@ -129,6 +129,11 @@ public class GitRepositoryHelper {
 		try {
 			discardChanges();
 			Git git = getRepo();
+			if (git == null) {
+				LogHelper.log("Git repo is null", "Error during repo clone");
+				return;
+			}
+			
 			git.checkout().setName(id).call();
 
 		} catch (JGitInternalException e) {
@@ -265,7 +270,8 @@ public class GitRepositoryHelper {
 	}
 	
 	public static GitRepositoryHelper getInstanceForApplication(FrameworkApplication app) {
-		final String REPO_CLONE_LOCAL_DIR = "/users/talitalopes/Documents/Mestrado/github/";
+//		final String REPO_CLONE_LOCAL_DIR = "/users/talitalopes/Documents/Mestrado/github/";
+		final String REPO_CLONE_LOCAL_DIR = "D:/Mestrado/Miner/github/";
 		String repoLocalDir = String.format("%s%s", REPO_CLONE_LOCAL_DIR,
 				app.getName());
 		File repoFile = new File(repoLocalDir);
