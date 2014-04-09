@@ -148,20 +148,26 @@ public class XESLogGenerator {
 			for (FrameworkApplication pi : p.getApplications()) {
 				traceName = pi.getName();
 				trace = createNewTrace(traceName);
-				System.out.println("trace: " + traceName);
 
-				if (trace != null && pi.getOrderedListOfEvents().size() > 0) {
-					for (Event e : pi.getOrderedListOfEvents()) {
-						event = createEvent(e);
-
-						if (event != null) {
-							System.out.println("event - " + event.getID()
-									+ " - " + e.getActivity().getName());
-							trace.add(event);
-						}
+				// we don't log empty traces
+				if (trace == null || pi.getOrderedListOfEvents().size() == 0) {
+					continue;
+				}
+				
+				int addedEvents = 0;
+				for (Event e : pi.getOrderedListOfEvents()) {
+					event = createEvent(e);
+					if (event != null) {
+						trace.add(event);
+						addedEvents++;
 					}
 				}
-				log.add(trace);
+				
+				// Prevent adding empty traces
+				if (addedEvents > 0) {
+					System.out.println("trace: " + traceName);
+					log.add(trace);
+				}
 			}
 		} catch (Exception e) {
 			LogHelper.log("Error genereting log", e.getMessage());
@@ -213,7 +219,7 @@ public class XESLogGenerator {
 			if (!dir.exists()) {
 				dir.mkdir();
 			}
-			
+
 			File sFile = new File(dir, filename);
 
 			System.out
