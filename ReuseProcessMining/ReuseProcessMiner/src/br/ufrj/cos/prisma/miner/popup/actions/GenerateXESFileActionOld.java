@@ -12,9 +12,9 @@ import org.eclipse.jface.viewers.TreeSelection;
 import br.ufrj.cos.prisma.miner.openxes.XESLogGenerator;
 import br.ufrj.cos.prisma.miner.popup.dialogs.GenerateLogDialog;
 
-public class GenerateXESFileAction  extends ProcessMiningAction {
+public class GenerateXESFileActionOld  extends ProcessMiningAction {
 
-	public GenerateXESFileAction() {
+	public GenerateXESFileActionOld() {
 		super();
 	}
 	

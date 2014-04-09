@@ -69,8 +69,7 @@ public class ReuseActionsExtractor {
 		 mineReuseActions(process);
 	}
 
-
-	private static void mineReuseActionsFromCommit(MinerCommit commit) {
+	public static void mineReuseActionsFromCommit(MinerCommit commit) {
 		eventsOrder = new ArrayList<String>();
 		Log.i(String.format("%s: %s", Constants.FRAMEWORK_PROJECT_NAME_KEY,
 				jdtHelper.getFrameworkProject().getElementName()));

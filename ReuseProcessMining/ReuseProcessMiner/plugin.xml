@@ -101,12 +101,20 @@
                id="Miner.popup.actions.MineRepositoriesAction">
          </action>
          
-         <action
+         <!--action
                label="Generate XES Log"
                class="br.ufrj.cos.prisma.miner.popup.actions.GenerateXESFileAction"
                menubarPath="ProcessReuseMiner.menu1/group2"
                enablesFor="1"
                id="Miner.popup.actions.StartExtractionAction">
+         </action-->
+
+         <action
+               label="Generate XES Log"
+               class="br.ufrj.cos.prisma.miner.popup.actions.GenerateXESLogAction"
+               menubarPath="ProcessReuseMiner.menu1/group2"
+               enablesFor="1"
+               id="Miner.popup.actions.GenerateXESLogAction">
          </action>
          
       </objectContribution>

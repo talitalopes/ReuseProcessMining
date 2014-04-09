@@ -36,7 +36,7 @@ public class BaseAction implements IObjectActionDelegate {
 	}
 
 	@Override
-	public void run(IAction arg0) {
+	public void run(IAction action) {
 		ISelection sel = part.getSite().getSelectionProvider().getSelection();
 
 		if (sel instanceof TreeSelection) {

@@ -3,7 +3,7 @@ package br.ufrj.cos.prisma.miner.popup.dialogs;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 
-import br.ufrj.cos.prisma.miner.popup.actions.GenerateXESFileAction;
+import br.ufrj.cos.prisma.miner.popup.actions.GenerateXESFileActionOld;
 import br.ufrj.cos.prisma.miner.util.Constants;
 
 public class GenerateLogDialog extends ProcessMiningDialog {
@@ -34,11 +34,11 @@ public class GenerateLogDialog extends ProcessMiningDialog {
 	}
 		
 	protected void generateXESLog() {
-		GenerateXESFileAction.generateLog(getProcess());
+		GenerateXESFileActionOld.generateLog(getProcess());
 	}
 
 	protected void generateXESLogForClasses() {
-		GenerateXESFileAction.generateLogForClasses(getProcess());
+		GenerateXESFileActionOld.generateLogForClasses(getProcess());
 	}
 
 }
