@@ -2,17 +2,19 @@
  */
 package minerv1.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
+
 import minerv1.Commit;
+import minerv1.Event;
 import minerv1.FrameworkApplication;
 import minerv1.Minerv1Package;
 
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
@@ -324,4 +326,14 @@ public class FrameworkApplicationImpl extends MinimalEObjectImpl.Container imple
 		return result.toString();
 	}
 
+	public List<Event> getOrderedListOfEvents() {
+		List<Event> events = new ArrayList<Event>();
+		
+		for (Commit commit: getCommits()) {
+			events.addAll(commit.getEvents());
+		}
+		
+		return events;
+	}
+	
 } //FrameworkApplicationImpl
