@@ -6,11 +6,13 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Calendar;
 import java.util.Date;
 
-import miner.Event;
-import miner.Process;
 import miner.ProcessInstance;
+import minerv1.Event;
+import minerv1.FrameworkApplication;
+import minerv1.FrameworkProcess;
 
 import org.deckfour.xes.extension.std.XConceptExtension;
 import org.deckfour.xes.extension.std.XIdentityExtension;
@@ -26,6 +28,8 @@ import org.deckfour.xes.model.XLog;
 import org.deckfour.xes.model.XTrace;
 import org.deckfour.xes.out.XesXmlSerializer;
 import org.deckfour.xes.xstream.XesXStreamPersistency;
+
+import br.ufrj.cos.prisma.helpers.LogHelper;
 
 import com.thoughtworks.xstream.XStream;
 
@@ -78,9 +82,22 @@ public class XESLogGenerator {
 		return trace;
 	}
 
+	public XEvent createEvent(Event appEvent) {
+		if (appEvent.getActivity() == null) {
+			return null;
+		}
+
+		String type = appEvent.getActivity().getType().getName();
+		String eventName = appEvent.getActivity().getName();
+
+		// DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Calendar cal = Calendar.getInstance();
+		return createEvent(type, eventName, cal.getTime());
+	}
+
 	public XEvent createEvent(String type, String name, Date timestamp) {
 		XEvent event = null;
-		
+
 		type = (type.toLowerCase().equals("class_extension")) ? Constants.CLASS_EXTENSION
 				: Constants.METHOD_EXTENSION;
 		if (classesOnly && type.equals(Constants.METHOD_EXTENSION)) {
@@ -122,7 +139,36 @@ public class XESLogGenerator {
 		return event;
 	}
 
-	public void getXESRepresentationFromProcess(Process p) {
+	public void getXESRepresentationFromProcess(FrameworkProcess p) {
+		try {
+			String traceName = null;
+			XTrace trace = null;
+			XEvent event = null;
+
+			for (FrameworkApplication pi : p.getApplications()) {
+				traceName = pi.getName();
+				trace = createNewTrace(traceName);
+				System.out.println("trace: " + traceName);
+
+				if (trace != null && pi.getOrderedListOfEvents().size() > 0) {
+					for (Event e : pi.getOrderedListOfEvents()) {
+						event = createEvent(e);
+
+						if (event != null) {
+							System.out.println("event - " + event.getID()
+									+ " - " + e.getActivity().getName());
+							trace.add(event);
+						}
+					}
+				}
+				log.add(trace);
+			}
+		} catch (Exception e) {
+			LogHelper.log("Error genereting log", e.getMessage());
+		}
+	}
+
+	public void getXESRepresentationFromProcess(miner.Process p) {
 		try {
 			String traceName = null;
 			XTrace trace = null;
@@ -136,13 +182,13 @@ public class XESLogGenerator {
 
 				if (trace != null) {
 					int lastCommitIndex = pi.getCommits().size() - 1;
-					for (Event e : pi.getCommits().get(lastCommitIndex)
+					for (miner.Event e : pi.getCommits().get(lastCommitIndex)
 							.getEvents()) {
 						cDate = e.getDate();
 						event = createEvent(
 								e.getActivity().getType().getName(), e
 										.getActivity().getName(), cDate);
-						
+
 						if (event != null) {
 							trace.add(event);
 						}
@@ -162,10 +208,17 @@ public class XESLogGenerator {
 		XesXmlSerializer serializer = new XesXmlSerializer();
 
 		try {
-			File sFile = new File(
-					"/users/talitalopes/Documents/Mestrado/GEF/logs/"
+			File dir = new File(
+					"/users/talitalopes/Documents/Mestrado/Graphiti/logs/");
+			if (!dir.exists()) {
+				dir.mkdir();
+			}
+			
+			File sFile = new File(dir, filename);
+
+			System.out
+					.println("Serializing log with XStream at: /users/talitalopes/Documents/Mestrado/Graphiti/logs/"
 							+ filename);
-			System.out.println("Serializing log with XStream at: /users/talitalopes/Documents/Mestrado/GEF/logs/" + filename);
 
 			OutputStream oStream = new BufferedOutputStream(
 					new FileOutputStream(sFile));
