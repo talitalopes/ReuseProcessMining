@@ -5,6 +5,5 @@ import org.w3c.dom.Node;
 public class Transition {
 	public Node targetNode;
 	public Node sourceNode;
-	public Node transition;
-	
+	public Node transition;	
 }

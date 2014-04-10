@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><Package Id="XPDL_BPMN Diagram" Name="BPMN Diagram">
+	<PackageHeader>
+	<XPDLVersion>
+	2.0
+</XPDLVersion>
+<Vendor>
+	ProM
+</Vendor>
+<Created>
+	09/04/2014 09:13
+</Created>
+<Description>
+	ProM Mined BPMN Model
+</Description>
+<Documentation>
+	ProM Mined BPMN Model
+</Documentation>
+
+</PackageHeader>
+<Pools/>
+<WorkflowProcesses>
+	<WorkflowProcess AccessLevel="PUBLIC" Id="MainProcess-WF_BPMN Diagram" Name="BPMN Diagram">
+	<ProcessHeader>
+	<Created>
+	09/04/2014 09:13
+</Created>
+<Priority>
+	Normal
+</Priority>
+
+</ProcessHeader>
+<RedefinableHeader>
+	<Author>
+	ProM
+</Author>
+<Version>
+	2.0
+</Version>
+
+</RedefinableHeader>
+<XpdlParticipants>
+	<Participant Id="currentOwner">
+	<ParticipantType Type="ROLE"/>
+
+</Participant>
+
+</XpdlParticipants>
+<ActivitySets/>
+<Activities><Activity Id="1639146143" Name="CLASS_EXTENSION_org.eclipse.graphiti.features.impl.AbstractCreateConnectionFeature"/><Activity Id="926972564" Name="EvalConditionBPMN_?"/><Activity Id="-1775804728" Name="EXCLUSIVE-GATEWAY"><Route GatewayType="XOR" MarkerVisible="true"/><TransitionRestrictions><TransitionRestriction><Join Type="XOR"/></TransitionRestriction></TransitionRestrictions></Activity><Activity Id="-187453599" Name="CLASS_EXTENSION_org.eclipse.graphiti.features.custom.AbstractCustomFeature"/><Activity Id="783377583" Name="CLASS_EXTENSION_org.eclipse.graphiti.features.impl.DefaultReconnectionFeature"/><Activity Id="926972565" Name="EXCLUSIVE-GATEWAY"><Route GatewayType="XOR" MarkerVisible="true"/><TransitionRestrictions><TransitionRestriction><Split Type="XOR"/></TransitionRestriction></TransitionRestrictions></Activity><Activity Id="946295430" Name="Declaration_packageVar"/><Activity Id="946295431" Name="NewPackage_?"/><Activity Id="-2119850232" Name="EvalConditionBPMN_?"/><Activity Id="-1955523613" Name="EXCLUSIVE-GATEWAY"><Route GatewayType="XOR" MarkerVisible="true"/><TransitionRestrictions><TransitionRestriction><Join Type="XOR"/></TransitionRestriction></TransitionRestrictions></Activity><Activity Id="-1830325192" Name="START EVENT"/><Activity Id="-2119850231" Name="EXCLUSIVE-GATEWAY"><Route GatewayType="XOR" MarkerVisible="true"/><TransitionRestrictions><TransitionRestriction><Split Type="XOR"/></TransitionRestriction></TransitionRestrictions></Activity><Activity Id="-888899250" Name="EvalConditionBPMN_?"/><Activity Id="946295429" Name="ExportModel_models/app.uml"/><Activity Id="1712651453" Name="END"/><Activity Id="372769322" Name="EvalConditionBPMN_?"/><Activity Id="118834183" Name="CLASS_EXTENSION_org.eclipse.graphiti.features.impl.DefaultMoveShapeFeature"/><Activity Id="-1751368447" Name="CLASS_EXTENSION_org.eclipse.graphiti.features.impl.AbstractLayoutFeature"/><Activity Id="-454968484" Name="CLASS_EXTENSION_org.eclipse.graphiti.features.impl.DefaultRemoveFeature"/><Activity Id="-1302177330" Name="EXCLUSIVE-GATEWAY"><Route GatewayType="XOR" MarkerVisible="true"/><TransitionRestrictions><TransitionRestriction><Join Type="XOR"/></TransitionRestriction></TransitionRestrictions></Activity><Activity Id="-473833072" Name="END"/><Activity Id="372769323" Name="EXCLUSIVE-GATEWAY"><Route GatewayType="XOR" MarkerVisible="true"/><TransitionRestrictions><TransitionRestriction><Split Type="XOR"/></TransitionRestriction></TransitionRestrictions></Activity><Activity Id="946295428" Name="ImportModel_models/gef.uml"/><Activity Id="946295427" Name="CLASS_EXTENSION_org.eclipse.graphiti.features.impl.AbstractAddFeature"/><Activity Id="467875829" Name="CLASS_EXTENSION_org.eclipse.graphiti.features.impl.AbstractDirectEditingFeature"/><Activity Id="2085044899" Name="EXCLUSIVE-GATEWAY"><Route GatewayType="XOR" MarkerVisible="true"/><TransitionRestrictions><TransitionRestriction><Join Type="XOR"/></TransitionRestriction></TransitionRestrictions></Activity><Activity Id="824004818" Name="CLASS_EXTENSION_org.eclipse.graphiti.features.impl.DefaultResizeShapeFeature"/><Activity Id="-321311845" Name="EvalConditionBPMN_?"/><Activity Id="-1590336400" Name="START"/><Activity Id="-321311844" Name="EXCLUSIVE-GATEWAY"><Route GatewayType="XOR" MarkerVisible="true"/><TransitionRestrictions><TransitionRestriction><Split Type="XOR"/></TransitionRestriction></TransitionRestrictions></Activity><Activity Id="1822121869" Name="EXCLUSIVE-GATEWAY"><Route GatewayType="XOR" MarkerVisible="true"/><TransitionRestrictions><TransitionRestriction><Join Type="XOR"/></TransitionRestriction></TransitionRestrictions></Activity><Activity Id="-2074466460" Name="CLASS_EXTENSION_org.eclipse.graphiti.features.impl.AbstractUpdateFeature"/><Activity Id="1366574984" Name="EvalConditionBPMN_?"/><Activity Id="-147386008" Name="CLASS_EXTENSION_org.eclipse.graphiti.tb.DefaultToolBehaviorProvider"/><Activity Id="-888899249" Name="EXCLUSIVE-GATEWAY"><Route GatewayType="XOR" MarkerVisible="true"/><TransitionRestrictions><TransitionRestriction><Split Type="XOR"/></TransitionRestriction></TransitionRestrictions></Activity><Activity Id="1366574985" Name="EXCLUSIVE-GATEWAY"><Route GatewayType="XOR" MarkerVisible="true"/><TransitionRestrictions><TransitionRestriction><Split Type="XOR"/></TransitionRestriction></TransitionRestrictions></Activity><Activity Id="1249204103" Name="END EVENT"/><Activity Id="1122207915" Name="START"/></Activities>
+<Transitions><Transition From="1639146143" Id="-73182088" To="926972564"/><Transition From="926972564" Id="946295437" To="926972565"/><Transition From="-1775804728" Id="1984604960" To="946295427"/><Transition From="-187453599" Id="1029883749" To="-888899250"/><Transition From="783377583" Id="921781304" To="-1302177330"/><Transition From="926972565" Id="1248093239" To="2085044899"/><Transition From="926972565" Id="-383200919" To="118834183"/><Transition From="946295430" Id="946295435" To="946295431"/><Transition From="946295431" Id="946295436" To="1122207915"/><Transition From="-2119850232" Id="946295442" To="-2119850231"/><Transition From="-1955523613" Id="-947267610" To="-454968484"/><Transition From="-1830325192" Id="946295432" To="946295428"/><Transition From="-2119850231" Id="-1161018318" To="-1955523613"/><Transition From="-2119850231" Id="472754257" To="1822121869"/><Transition From="-888899250" Id="946295438" To="-888899249"/><Transition From="946295429" Id="946295434" To="946295430"/><Transition From="1712651453" Id="263048517" To="-473833072"/><Transition From="372769322" Id="946295440" To="372769323"/><Transition From="118834183" Id="-1594292489" To="-1302177330"/><Transition From="-1751368447" Id="1103515968" To="783377583"/><Transition From="-454968484" Id="-1657160448" To="-2119850232"/><Transition From="-1302177330" Id="1936026492" To="1639146143"/><Transition From="-473833072" Id="579912705" To="1249204103"/><Transition From="372769323" Id="988698937" To="-187453599"/><Transition From="372769323" Id="-577059983" To="2085044899"/><Transition From="946295428" Id="946295433" To="946295429"/><Transition From="946295427" Id="555849291" To="1366574984"/><Transition From="467875829" Id="814166033" To="372769322"/><Transition From="2085044899" Id="126621533" To="1712651453"/><Transition From="824004818" Id="515439160" To="-1775804728"/><Transition From="-321311845" Id="946295441" To="-321311844"/><Transition From="-1590336400" Id="-1702718561" To="-321311845"/><Transition From="-321311844" Id="1301949584" To="-2074466460"/><Transition From="-321311844" Id="-1636879518" To="824004818"/><Transition From="-321311844" Id="-1335505463" To="1822121869"/><Transition From="1822121869" Id="-1070230756" To="467875829"/><Transition From="-2074466460" Id="655552744" To="-147386008"/><Transition From="1366574984" Id="946295439" To="1366574985"/><Transition From="-147386008" Id="985718767" To="2085044899"/><Transition From="-888899249" Id="1442494915" To="-1955523613"/><Transition From="-888899249" Id="1073862926" To="1822121869"/><Transition From="1366574985" Id="-427895098" To="-1775804728"/><Transition From="1366574985" Id="-181407635" To="-1751368447"/><Transition From="1122207915" Id="-83751307" To="-1590336400"/></Transitions>
+
+</WorkflowProcess>
+
+</WorkflowProcesses>
+
+</Package>

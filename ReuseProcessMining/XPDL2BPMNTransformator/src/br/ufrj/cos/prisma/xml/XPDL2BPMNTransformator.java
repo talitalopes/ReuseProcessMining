@@ -18,6 +18,8 @@ public class XPDL2BPMNTransformator {
 	 * 
 	 * @param args
 	 *            meta model path, model path and output directory path.
+	 *            
+	 *           Params Example: metamodel/xpdl2-2.xsd metamodel/gef-prom.xpdl metamodel
 	 */
 	public static void main(String[] args) {
 		if (args.length != 3) {
