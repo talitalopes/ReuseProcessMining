@@ -222,8 +222,7 @@ public class XESLogGenerator {
 
 			File sFile = new File(dir, filename);
 
-			System.out
-					.println("Serializing log with XStream at: /users/talitalopes/Documents/Mestrado/Graphiti/logs/"
+			LogHelper.log("Serializing log with XStream at: /users/talitalopes/Documents/Mestrado/Graphiti/logs/"
 							+ filename);
 
 			OutputStream oStream = new BufferedOutputStream(

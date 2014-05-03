@@ -9,6 +9,7 @@ import minerv1.FrameworkProcess;
 
 import org.eclipse.jface.action.IAction;
 
+import br.ufrj.cos.prisma.helpers.LogHelper;
 import br.ufrj.cos.prisma.miner.openxes.XESLogGenerator;
 
 public class GenerateXESLogAction extends BaseAction {
@@ -28,7 +29,7 @@ public class GenerateXESLogAction extends BaseAction {
 	}
 	
 	public static void generateLog(FrameworkProcess process, boolean classesOnly) {
-		System.out.println(String.format("Log will be generated: %s", generateFilename("test")));
+		LogHelper.log(String.format("Log will be generated: %s", generateFilename("test")));
 		
 		XESLogGenerator xesGen = new XESLogGenerator(classesOnly);
 		xesGen.getXESRepresentationFromProcess(process);
@@ -40,7 +41,7 @@ public class GenerateXESLogAction extends BaseAction {
 		return String.format("%s-%d-%d-%d_%d-%d.xes",
 				prefix,
 				Calendar.getInstance().get(Calendar.YEAR),
-				Calendar.getInstance().get(Calendar.MONTH), 
+				Calendar.getInstance().get(Calendar.MONTH + 1), 
 				Calendar.getInstance().get(Calendar.DAY_OF_MONTH),
 				Calendar.getInstance().get(Calendar.HOUR_OF_DAY),
 				Calendar.getInstance().get(Calendar.MINUTE));
